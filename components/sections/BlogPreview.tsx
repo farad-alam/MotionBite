@@ -25,7 +25,7 @@ export default function BlogPreview() {
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {blogPosts.map((post, i) => (
+          {blogPosts.slice(0, 6).map((post, i) => (
             <motion.div
               key={post.slug}
               initial={{ opacity: 0, y: 30 }}

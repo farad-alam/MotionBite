@@ -4,8 +4,9 @@ import { Analytics } from '@vercel/analytics/react'
 import '@/styles/globals.css'
 import { defaultMetadata } from '@/lib/seo'
 import { organizationSchema } from '@/lib/schema'
-import Navbar from '@/components/layout/Navbar'
-import Footer from '@/components/layout/Footer'
+import NavbarWrapper from '@/components/layout/NavbarWrapper'
+import FooterWrapper from '@/components/layout/FooterWrapper'
+import CrispProvider from '@/components/providers/CrispProvider'
 
 const oswald = Oswald({
   subsets: ['latin'],
@@ -31,10 +32,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       <body>
-        <Navbar />
+        <NavbarWrapper />
         <main>{children}</main>
-        <Footer />
+        <FooterWrapper />
         <Analytics />
+        <CrispProvider />
       </body>
     </html>
   )

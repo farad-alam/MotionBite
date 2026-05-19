@@ -87,18 +87,25 @@ export default function Services() {
           ))}
         </motion.div>
 
-        <motion.p
+        <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ delay: 0.4 }}
-          className="text-center font-body text-text-muted"
+          className="text-center space-y-2"
         >
-          Not sure which fits?{' '}
-          <Link href="/free-audit" className="text-green-primary hover:underline font-semibold">
-            Get a free consultation →
-          </Link>
-        </motion.p>
+          <p className="font-body text-text-muted">
+            Not sure which fits?{' '}
+            <Link href="/free-audit" className="text-green-primary hover:underline font-semibold">
+              Get a free consultation →
+            </Link>
+          </p>
+          <p className="font-body text-text-muted text-sm">
+            <Link href="/pricing" className="text-text-muted hover:text-green-primary underline underline-offset-2 transition-colors duration-200">
+              See full pricing breakdown →
+            </Link>
+          </p>
+        </motion.div>
       </div>
     </section>
   )

@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { blogPosts } from '@/data/blog-posts'
 import { notFound } from 'next/navigation'
 import ReadingProgress from '@/components/ui/ReadingProgress'
+import { articleSchema } from '@/lib/schema'
 
 export async function generateStaticParams() {
   return blogPosts.map((post) => ({ slug: post.slug }))
@@ -12,9 +13,34 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params
   const post = blogPosts.find((p) => p.slug === slug)
   if (!post) return {}
+
   return {
-    title: `${post.title} | MotionBite Blog`,
+    title: post.title,
     description: post.excerpt,
+    keywords: [
+      post.tag.toLowerCase(),
+      'web design for small businesses',
+      'small business website tips',
+      'MotionBite blog',
+      post.tag === 'SEO' ? 'small business SEO' : '',
+      post.tag === 'Restaurant' ? 'restaurant website design' : '',
+      post.tag === 'Pricing' ? 'website design cost' : '',
+    ].filter(Boolean),
+    authors: [{ name: 'MotionBite', url: 'https://motionbite.com' }],
+    openGraph: {
+      type: 'article',
+      title: post.title,
+      description: post.excerpt,
+      url: `https://motionbite.com/blog/${post.slug}`,
+      publishedTime: post.date,
+      authors: ['MotionBite'],
+      tags: [post.tag, 'Web Design', 'Small Business'],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: post.title,
+      description: post.excerpt,
+    },
   }
 }
 
@@ -28,6 +54,21 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
   return (
     <div className="min-h-screen bg-dark-base pt-32 pb-20">
+      {/* Article JSON-LD schema */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(
+            articleSchema({
+              title: post.title,
+              description: post.excerpt,
+              slug: post.slug,
+              datePublished: post.date,
+            })
+          ),
+        }}
+      />
+
       <ReadingProgress />
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Back link */}

@@ -3,7 +3,31 @@ import Link from 'next/link'
 
 export const metadata: Metadata = {
   title: 'Web Design Services for Small Businesses | MotionBite',
-  description: 'Professional web design and development for small businesses and restaurants. Starter Site from $1,500, Growth Package from $3,500. Delivered in 14 days.',
+  description:
+    'Professional web design for small businesses and restaurants. Starter Site from $1,500, Growth Package from $3,500. Every site delivered in 14 days.',
+  keywords: [
+    'web design services for small businesses',
+    'small business website design',
+    'restaurant website design service',
+    'professional web development agency',
+    'affordable website design packages',
+    'custom website design',
+    'web design 14 day delivery',
+    'small business web agency',
+  ],
+  openGraph: {
+    type: 'website',
+    title: 'Web Design Services for Small Businesses | MotionBite',
+    description:
+      'Professional web design for small businesses and restaurants. Starter Site from $1,500. Delivered in 14 days.',
+    url: 'https://motionbite.com/services',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Web Design Services for Small Businesses | MotionBite',
+    description:
+      'Professional web design for small businesses and restaurants. Starter Site from $1,500. Delivered in 14 days.',
+  },
 }
 
 const services = [

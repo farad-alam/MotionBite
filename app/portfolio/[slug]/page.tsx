@@ -13,7 +13,25 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   if (!item) return {}
   return {
     title: `${item.name} Case Study | MotionBite Portfolio`,
-    description: `How MotionBite helped ${item.name} achieve: ${item.result}. Full case study.`,
+    description: `How MotionBite helped ${item.name} — a ${item.industry} business — achieve: ${item.result}. Read the full web design case study.`,
+    keywords: [
+      `${item.industry.toLowerCase()} website design`,
+      'web design case study',
+      'small business website results',
+      'website redesign results',
+      'MotionBite portfolio',
+    ],
+    openGraph: {
+      type: 'website',
+      title: `${item.name} Case Study | MotionBite Portfolio`,
+      description: `How MotionBite helped ${item.name} achieve: ${item.result}. Full case study.`,
+      url: `https://motionbite.com/portfolio/${item.slug}`,
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: `${item.name} Case Study | MotionBite Portfolio`,
+      description: `How MotionBite helped ${item.name} achieve: ${item.result}.`,
+    },
   }
 }
 

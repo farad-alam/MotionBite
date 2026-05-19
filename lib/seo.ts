@@ -30,13 +30,13 @@ export const defaultMetadata: Metadata = {
     title: 'Web Design for Small Businesses | MotionBite',
     description:
       'MotionBite builds fast, professional websites for small businesses and restaurants. Delivered in 14 days. Get your free audit today.',
-    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'MotionBite — We Build Websites That Mean Business' }],
+    // No images here — app/opengraph-image.tsx handles this automatically for all pages
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Web Design for Small Businesses | MotionBite',
-    description: 'MotionBite builds fast, professional websites for small businesses and restaurants. Delivered in 14 days.',
-    images: ['/og-image.png'],
+    description:
+      'MotionBite builds fast, professional websites for small businesses and restaurants. Delivered in 14 days.',
   },
   robots: {
     index: true,

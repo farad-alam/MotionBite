@@ -1,6 +1,10 @@
 import type { Metadata } from 'next'
 
-export const metadata: Metadata = { title: 'Terms of Service — MotionBite' }
+export const metadata: Metadata = {
+  title: 'Terms of Service | MotionBite',
+  description: 'MotionBite terms of service — our policies for web design and development engagements.',
+  robots: { index: false, follow: false },
+}
 
 export default function TermsPage() {
   return (

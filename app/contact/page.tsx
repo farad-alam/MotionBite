@@ -3,8 +3,30 @@ import Link from 'next/link'
 import ContactForm from './ContactForm'
 
 export const metadata: Metadata = {
-  title: 'Contact MotionBite — Let\'s Build Your Website',
-  description: 'Get in touch with MotionBite. We reply within 24 hours. Or book a free website audit directly.',
+  title: 'Contact MotionBite | Get a Free Website Consultation',
+  description:
+    'Contact MotionBite for a free website consultation. We reply within 24 hours. Small business web design starting from $1,500, delivered in 14 days.',
+  keywords: [
+    'contact web design agency',
+    'get a website quote',
+    'free website consultation',
+    'hire web designer for small business',
+    'web design enquiry',
+    'MotionBite contact',
+  ],
+  openGraph: {
+    type: 'website',
+    title: 'Contact MotionBite | Get a Free Website Consultation',
+    description:
+      'Contact MotionBite for a free website consultation. We reply within 24 hours. Small business web design from $1,500.',
+    url: 'https://motionbite.com/contact',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Contact MotionBite | Get a Free Website Consultation',
+    description:
+      'Contact MotionBite for a free website consultation. We reply within 24 hours. Small business web design from $1,500.',
+  },
 }
 
 const contactDetails = [

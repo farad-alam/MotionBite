@@ -36,6 +36,35 @@ export const organizationSchema = {
   },
 }
 
+export const articleSchema = ({
+  title,
+  description,
+  slug,
+  datePublished,
+  dateModified,
+}: {
+  title: string
+  description: string
+  slug: string
+  datePublished: string
+  dateModified?: string
+}) => ({
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: title,
+  description,
+  url: `https://motionbite.com/blog/${slug}`,
+  datePublished,
+  dateModified: dateModified || datePublished,
+  author: { '@type': 'Organization', name: 'MotionBite', url: 'https://motionbite.com' },
+  publisher: {
+    '@type': 'Organization',
+    name: 'MotionBite',
+    url: 'https://motionbite.com',
+    logo: { '@type': 'ImageObject', url: 'https://motionbite.com/logo.png' },
+  },
+})
+
 export const faqSchema = (items: { question: string; answer: string }[]) => ({
   '@context': 'https://schema.org',
   '@type': 'FAQPage',

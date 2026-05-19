@@ -1,6 +1,10 @@
 import type { Metadata } from 'next'
 
-export const metadata: Metadata = { title: 'Privacy Policy — MotionBite' }
+export const metadata: Metadata = {
+  title: 'Privacy Policy | MotionBite',
+  description: 'MotionBite privacy policy — how we collect, use, and protect your personal information.',
+  robots: { index: false, follow: false },
+}
 
 export default function PrivacyPage() {
   return (

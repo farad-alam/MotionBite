@@ -4,7 +4,30 @@ import { portfolioItems } from '@/data/portfolio'
 
 export const metadata: Metadata = {
   title: 'Portfolio — Websites That Worked | MotionBite',
-  description: 'Real websites built for small businesses and restaurants. See the results — reservations up 3x, inquiries doubled, bounce rate down 40%. View full case studies.',
+  description:
+    'Real websites built for small businesses and restaurants. Reservations up 3x, inquiries doubled, bounce rate down 40%. View the full case studies.',
+  keywords: [
+    'web design portfolio',
+    'small business website examples',
+    'restaurant website portfolio',
+    'website case studies',
+    'web design results',
+    'before and after website redesign',
+    'small business web design examples',
+  ],
+  openGraph: {
+    type: 'website',
+    title: 'Portfolio — Websites That Worked | MotionBite',
+    description:
+      'Real websites built for small businesses and restaurants. Reservations up 3x, inquiries doubled. View the full case studies.',
+    url: 'https://motionbite.com/portfolio',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Portfolio — Websites That Worked | MotionBite',
+    description:
+      'Real websites built for small businesses and restaurants. Reservations up 3x, inquiries doubled. View the full case studies.',
+  },
 }
 
 export default function PortfolioPage() {

@@ -3,8 +3,31 @@ import Link from 'next/link'
 import { blogPosts } from '@/data/blog-posts'
 
 export const metadata: Metadata = {
-  title: 'Blog — Web Tips for Small Business Owners | MotionBite',
-  description: 'Practical guides on web design, SEO, and digital strategy for small businesses and restaurants. Free resources from the MotionBite team.',
+  title: 'Web Design Blog for Small Business Owners | MotionBite',
+  description:
+    'Practical guides on web design, SEO, and digital strategy for small businesses and restaurants. Free expert advice from the MotionBite team.',
+  keywords: [
+    'web design tips for small businesses',
+    'small business SEO guide',
+    'website advice for small businesses',
+    'restaurant website tips',
+    'how to improve website conversions',
+    'web design blog',
+    'small business digital marketing tips',
+  ],
+  openGraph: {
+    type: 'website',
+    title: 'Web Design Blog for Small Business Owners | MotionBite',
+    description:
+      'Practical guides on web design, SEO, and digital strategy for small businesses and restaurants. Free expert advice.',
+    url: 'https://motionbite.com/blog',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Web Design Blog for Small Business Owners | MotionBite',
+    description:
+      'Practical guides on web design, SEO, and digital strategy for small businesses and restaurants. Free expert advice.',
+  },
 }
 
 const allTags = ['All', ...Array.from(new Set(blogPosts.map((p) => p.tag)))]

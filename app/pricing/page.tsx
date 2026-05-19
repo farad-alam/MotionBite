@@ -3,9 +3,32 @@ import { services } from '@/data/services'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Pricing — Simple, Transparent Web Design Packages',
+  title: 'Web Design Pricing — Packages from $1,500 | MotionBite',
   description:
-    'No hourly rates. No surprise invoices. Three clear web design packages starting from $1,500. See exactly what you get.',
+    'Transparent web design pricing with no hidden fees. Starter Site from $1,500, Growth Package from $3,500, Premium Build from $6,000. See exactly what you get.',
+  keywords: [
+    'web design cost',
+    'website design pricing',
+    'how much does a website cost',
+    'small business website packages',
+    'affordable website design pricing',
+    'web design packages and prices',
+    'website cost for small business',
+    'web design agency pricing',
+  ],
+  openGraph: {
+    type: 'website',
+    title: 'Web Design Pricing — Packages from $1,500 | MotionBite',
+    description:
+      'Transparent web design pricing. Starter Site from $1,500, Growth Package from $3,500, Premium Build from $6,000. No hidden fees.',
+    url: 'https://motionbite.com/pricing',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Web Design Pricing — Packages from $1,500 | MotionBite',
+    description:
+      'Transparent web design pricing. Starter Site from $1,500, Growth Package from $3,500, Premium Build from $6,000. No hidden fees.',
+  },
 }
 
 const pricingDetails = [

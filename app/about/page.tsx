@@ -2,8 +2,30 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 
 export const metadata: Metadata = {
-  title: 'About MotionBite — Web Design Agency',
-  description: 'MotionBite builds fast, professional websites for small businesses and restaurants. Delivered in 14 days. Learn about our team, values, and why we exist.',
+  title: 'About MotionBite | Web Design Agency for Small Businesses',
+  description:
+    'MotionBite is a web design agency for small businesses and restaurants. Fast delivery, transparent pricing, and results-focused design. Learn why we exist.',
+  keywords: [
+    'web design agency',
+    'small business web design agency',
+    'about MotionBite',
+    'affordable web design team',
+    'website design company for small businesses',
+    'professional web agency',
+  ],
+  openGraph: {
+    type: 'website',
+    title: 'About MotionBite | Web Design Agency for Small Businesses',
+    description:
+      'MotionBite is a web design agency for small businesses and restaurants. Fast delivery, transparent pricing, results-focused design.',
+    url: 'https://motionbite.com/about',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'About MotionBite | Web Design Agency for Small Businesses',
+    description:
+      'MotionBite is a web design agency for small businesses and restaurants. Fast delivery, transparent pricing, results-focused design.',
+  },
 }
 
 const values = [

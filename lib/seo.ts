@@ -5,20 +5,22 @@ const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://motionbite.com'
 export const defaultMetadata: Metadata = {
   metadataBase: new URL(BASE_URL),
   title: {
-    default: 'Web Design for Small Businesses | MotionBite',
+    default: 'Web Design & Development for Small Businesses | MotionBite',
     template: '%s | MotionBite',
   },
   description:
-    'MotionBite builds fast, professional websites for small businesses and restaurants. Delivered in 14 days. Get your free audit today.',
+    'MotionBite builds fast, professional websites for small businesses and restaurants — design and development handled end to end. Delivered in 14 days. Get your free audit today.',
   keywords: [
+    'web design and development for small businesses',
     'web design for small businesses',
-    'website builder for restaurants',
-    'affordable web development agency',
-    'professional website for local business',
-    'small business website design',
-    'custom website for small business',
-    'web design agency for food businesses',
-    'fast website design 14 days',
+    'web development for small businesses',
+    'website design and development agency',
+    'affordable web design and development',
+    'restaurant website design and development',
+    'custom web development for small business',
+    'small business web design agency',
+    'professional website development',
+    'fast website design and development',
   ],
   authors: [{ name: 'MotionBite' }],
   creator: 'MotionBite',
@@ -27,16 +29,15 @@ export const defaultMetadata: Metadata = {
     locale: 'en_US',
     url: BASE_URL,
     siteName: 'MotionBite',
-    title: 'Web Design for Small Businesses | MotionBite',
+    title: 'Web Design & Development for Small Businesses | MotionBite',
     description:
-      'MotionBite builds fast, professional websites for small businesses and restaurants. Delivered in 14 days. Get your free audit today.',
-    // No images here — app/opengraph-image.tsx handles this automatically for all pages
+      'MotionBite builds fast, professional websites for small businesses and restaurants — design and development end to end. Delivered in 14 days.',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Web Design for Small Businesses | MotionBite',
+    title: 'Web Design & Development for Small Businesses | MotionBite',
     description:
-      'MotionBite builds fast, professional websites for small businesses and restaurants. Delivered in 14 days.',
+      'MotionBite builds fast, professional websites for small businesses and restaurants — design and development end to end. Delivered in 14 days.',
   },
   robots: {
     index: true,

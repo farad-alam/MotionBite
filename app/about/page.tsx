@@ -2,29 +2,29 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 
 export const metadata: Metadata = {
-  title: 'About MotionBite | Web Design Agency for Small Businesses',
+  title: 'About MotionBite | Web Design & Development Agency',
   description:
-    'MotionBite is a web design agency for small businesses and restaurants. Fast delivery, transparent pricing, and results-focused design. Learn why we exist.',
+    'MotionBite is a web design and development agency for small businesses and restaurants. We handle design and code end to end — fast delivery, transparent pricing.',
   keywords: [
-    'web design agency',
-    'small business web design agency',
+    'web design and development agency',
+    'small business web design and development agency',
     'about MotionBite',
-    'affordable web design team',
-    'website design company for small businesses',
-    'professional web agency',
+    'affordable web design and development team',
+    'website design and development company for small businesses',
+    'professional web design developer agency',
   ],
   openGraph: {
     type: 'website',
-    title: 'About MotionBite | Web Design Agency for Small Businesses',
+    title: 'About MotionBite | Web Design & Development Agency',
     description:
-      'MotionBite is a web design agency for small businesses and restaurants. Fast delivery, transparent pricing, results-focused design.',
+      'MotionBite is a web design and development agency for small businesses and restaurants. Design and code end to end — fast delivery, transparent pricing.',
     url: 'https://motionbite.com/about',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'About MotionBite | Web Design Agency for Small Businesses',
+    title: 'About MotionBite | Web Design & Development Agency',
     description:
-      'MotionBite is a web design agency for small businesses and restaurants. Fast delivery, transparent pricing, results-focused design.',
+      'MotionBite is a web design and development agency for small businesses and restaurants. Design and code end to end — fast delivery, transparent pricing.',
   },
 }
 

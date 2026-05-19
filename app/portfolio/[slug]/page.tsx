@@ -15,10 +15,10 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     title: `${item.name} Case Study | MotionBite Portfolio`,
     description: `How MotionBite helped ${item.name} — a ${item.industry} business — achieve: ${item.result}. Read the full web design case study.`,
     keywords: [
-      `${item.industry.toLowerCase()} website design`,
-      'web design case study',
-      'small business website results',
-      'website redesign results',
+      `${item.industry.toLowerCase()} website design and development`,
+      'web design and development case study',
+      'small business website design and development results',
+      'website redesign and development results',
       'MotionBite portfolio',
     ],
     openGraph: {

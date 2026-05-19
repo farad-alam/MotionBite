@@ -3,31 +3,31 @@ import { services } from '@/data/services'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Web Design Pricing — Packages from $1,500 | MotionBite',
+  title: 'Web Design & Development Pricing — From $1,500 | MotionBite',
   description:
-    'Transparent web design pricing with no hidden fees. Starter Site from $1,500, Growth Package from $3,500, Premium Build from $6,000. See exactly what you get.',
+    'Transparent web design and development pricing with no hidden fees. Starter Site from $1,500, Growth Package from $3,500, Premium Build from $6,000.',
   keywords: [
-    'web design cost',
-    'website design pricing',
-    'how much does a website cost',
+    'web design and development cost',
+    'website design and development pricing',
+    'how much does web design and development cost',
     'small business website packages',
-    'affordable website design pricing',
-    'web design packages and prices',
-    'website cost for small business',
-    'web design agency pricing',
+    'affordable web design and development pricing',
+    'web design and development packages and prices',
+    'website development cost for small business',
+    'web design developer pricing',
   ],
   openGraph: {
     type: 'website',
-    title: 'Web Design Pricing — Packages from $1,500 | MotionBite',
+    title: 'Web Design & Development Pricing — From $1,500 | MotionBite',
     description:
-      'Transparent web design pricing. Starter Site from $1,500, Growth Package from $3,500, Premium Build from $6,000. No hidden fees.',
+      'Transparent web design and development pricing. Starter Site from $1,500, Growth Package from $3,500, Premium Build from $6,000. No hidden fees.',
     url: 'https://motionbite.com/pricing',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Web Design Pricing — Packages from $1,500 | MotionBite',
+    title: 'Web Design & Development Pricing — From $1,500 | MotionBite',
     description:
-      'Transparent web design pricing. Starter Site from $1,500, Growth Package from $3,500, Premium Build from $6,000. No hidden fees.',
+      'Transparent web design and development pricing. Starter Site from $1,500, Growth Package from $3,500. No hidden fees.',
   },
 }
 

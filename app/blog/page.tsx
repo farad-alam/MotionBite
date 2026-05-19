@@ -3,30 +3,30 @@ import Link from 'next/link'
 import { blogPosts } from '@/data/blog-posts'
 
 export const metadata: Metadata = {
-  title: 'Web Design Blog for Small Business Owners | MotionBite',
+  title: 'Web Design & Development Blog for Small Businesses | MotionBite',
   description:
-    'Practical guides on web design, SEO, and digital strategy for small businesses and restaurants. Free expert advice from the MotionBite team.',
+    'Practical guides on web design, web development, SEO, and digital strategy for small businesses and restaurants. Free expert advice from the MotionBite team.',
   keywords: [
-    'web design tips for small businesses',
-    'small business SEO guide',
-    'website advice for small businesses',
+    'web design and development tips for small businesses',
+    'small business web development guide',
+    'website design and development advice',
     'restaurant website tips',
     'how to improve website conversions',
-    'web design blog',
-    'small business digital marketing tips',
+    'web design and development blog',
+    'small business website development tips',
   ],
   openGraph: {
     type: 'website',
-    title: 'Web Design Blog for Small Business Owners | MotionBite',
+    title: 'Web Design & Development Blog for Small Businesses | MotionBite',
     description:
-      'Practical guides on web design, SEO, and digital strategy for small businesses and restaurants. Free expert advice.',
+      'Practical guides on web design, web development, and SEO for small businesses. Free expert advice from the MotionBite team.',
     url: 'https://motionbite.com/blog',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Web Design Blog for Small Business Owners | MotionBite',
+    title: 'Web Design & Development Blog for Small Businesses | MotionBite',
     description:
-      'Practical guides on web design, SEO, and digital strategy for small businesses and restaurants. Free expert advice.',
+      'Practical guides on web design, web development, and SEO for small businesses. Free expert advice from the MotionBite team.',
   },
 }
 

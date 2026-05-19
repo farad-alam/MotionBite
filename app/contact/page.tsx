@@ -3,29 +3,29 @@ import Link from 'next/link'
 import ContactForm from './ContactForm'
 
 export const metadata: Metadata = {
-  title: 'Contact MotionBite | Get a Free Website Consultation',
+  title: 'Contact MotionBite | Free Web Design & Development Consultation',
   description:
-    'Contact MotionBite for a free website consultation. We reply within 24 hours. Small business web design starting from $1,500, delivered in 14 days.',
+    'Contact MotionBite for a free web design and development consultation. We reply within 24 hours. Small business websites from $1,500, delivered in 14 days.',
   keywords: [
-    'contact web design agency',
-    'get a website quote',
-    'free website consultation',
-    'hire web designer for small business',
-    'web design enquiry',
+    'contact web design and development agency',
+    'get a website design and development quote',
+    'free web design consultation',
+    'hire web designer and developer for small business',
+    'web design and development enquiry',
     'MotionBite contact',
   ],
   openGraph: {
     type: 'website',
-    title: 'Contact MotionBite | Get a Free Website Consultation',
+    title: 'Contact MotionBite | Free Web Design & Development Consultation',
     description:
-      'Contact MotionBite for a free website consultation. We reply within 24 hours. Small business web design from $1,500.',
+      'Contact MotionBite for a free web design and development consultation. We reply within 24 hours. Websites from $1,500.',
     url: 'https://motionbite.com/contact',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Contact MotionBite | Get a Free Website Consultation',
+    title: 'Contact MotionBite | Free Web Design & Development Consultation',
     description:
-      'Contact MotionBite for a free website consultation. We reply within 24 hours. Small business web design from $1,500.',
+      'Contact MotionBite for a free web design and development consultation. We reply within 24 hours. Websites from $1,500.',
   },
 }
 

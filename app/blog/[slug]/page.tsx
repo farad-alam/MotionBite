@@ -19,12 +19,14 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     description: post.excerpt,
     keywords: [
       post.tag.toLowerCase(),
-      'web design for small businesses',
+      'web design and development for small businesses',
       'small business website tips',
       'MotionBite blog',
-      post.tag === 'SEO' ? 'small business SEO' : '',
-      post.tag === 'Restaurant' ? 'restaurant website design' : '',
-      post.tag === 'Pricing' ? 'website design cost' : '',
+      post.tag === 'SEO' ? 'small business SEO and web development' : '',
+      post.tag === 'Restaurant' ? 'restaurant website design and development' : '',
+      post.tag === 'Pricing' ? 'web design and development cost' : '',
+      post.tag === 'Strategy' ? 'web design and development strategy' : '',
+      post.tag === 'Process' ? 'web development process' : '',
     ].filter(Boolean),
     authors: [{ name: 'MotionBite', url: 'https://motionbite.com' }],
     openGraph: {

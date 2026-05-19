@@ -4,7 +4,7 @@ export const organizationSchema = {
   name: 'MotionBite',
   url: 'https://motionbite.com',
   logo: 'https://motionbite.com/logo.png',
-  description: 'Web design agency for small businesses. Fast, professional websites delivered in 14 days.',
+  description: 'Web design and development agency for small businesses and restaurants. Fast, professional websites designed and built end to end — delivered in 14 days.',
   email: 'hello@motionbite.com',
   sameAs: [
     'https://www.linkedin.com/company/motionbite',
@@ -12,7 +12,7 @@ export const organizationSchema = {
   ],
   hasOfferCatalog: {
     '@type': 'OfferCatalog',
-    name: 'Web Design Services',
+    name: 'Web Design & Development Services',
     itemListElement: [
       {
         '@type': 'Offer',

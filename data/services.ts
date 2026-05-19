@@ -1,0 +1,32 @@
+export const services = [
+  {
+    id: 'starter',
+    icon: '⚡',
+    name: 'Starter Site',
+    tagline: 'Your business, online in 10 days',
+    price: 'From $1,500',
+    features: ['Up to 5 pages', 'Mobile responsive', 'Basic SEO setup', 'Contact form', '1 round of revisions'],
+    popular: false,
+    href: '/pricing',
+  },
+  {
+    id: 'growth',
+    icon: '🚀',
+    name: 'Growth Package',
+    tagline: 'Built to rank, built to convert',
+    price: 'From $3,500',
+    features: ['Up to 10 pages', 'Advanced SEO + blog', '90+ Lighthouse score', 'Analytics integration', '2 rounds of revisions'],
+    popular: true,
+    href: '/pricing',
+  },
+  {
+    id: 'premium',
+    icon: '🔥',
+    name: 'Premium Build',
+    tagline: 'Custom web app or advanced site',
+    price: 'From $6,000',
+    features: ['Unlimited pages', 'Custom features', 'E-commerce ready', 'Full SEO strategy', 'Unlimited revisions'],
+    popular: false,
+    href: '/pricing',
+  },
+]

@@ -12,6 +12,7 @@ export type PortfolioItem = {
   results: string[]
   testimonial?: string
   clientName?: string
+  video?: string
 }
 
 export const portfolioItems: PortfolioItem[] = [
@@ -23,6 +24,7 @@ export const portfolioItems: PortfolioItem[] = [
     result: '3x more reservations after launch',
     tags: ['Next.js', 'Tailwind CSS', 'Framer Motion'],
     image: '/images/portfolio/papa-roma.jpg',
+    video: '/videos/portfolio/omatic.mp4',
     href: '/portfolio/papa-roma',
     challenge:
       'Papa Roma had no online presence — no website, no Google profile, no way for new customers to discover them. Walk-in traffic was the only source of new business, and the owners knew they were missing out on the growing number of diners who search online before deciding where to eat.',
@@ -46,6 +48,7 @@ export const portfolioItems: PortfolioItem[] = [
     result: '2x increase in online inquiries',
     tags: ['Next.js', 'E-commerce', 'SEO'],
     image: '/images/portfolio/yashfeen.jpg',
+    video: '/videos/portfolio/vechile.mp4',
     href: '/portfolio/yashfeen-boutique',
     challenge:
       "Yashfeen Boutique was operating entirely through Instagram and word-of-mouth. While their loyal customers loved them, new customers couldn't find them online. They had a full inventory of products but no way to showcase them to people searching Google.",
@@ -69,6 +72,7 @@ export const portfolioItems: PortfolioItem[] = [
     result: '40% lower bounce rate',
     tags: ['Next.js', 'GSAP', 'Tailwind CSS'],
     image: '/images/portfolio/nexlint.jpg',
+    video: '/videos/portfolio/nexlint.mp4',
     href: '/portfolio/nexlint-digital',
     challenge:
       "NexLint Digital had an existing website, but it was slow, visually generic, and not converting. Their bounce rate was over 70%, and their Google Ads traffic was being wasted because the landing experience wasn't good enough to generate leads. They needed a complete rebuild.",

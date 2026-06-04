@@ -6,53 +6,84 @@ import { blogPosts } from '@/data/blog-posts'
 
 export default function BlogPreview() {
   return (
-    <section className="bg-dark-card section-padding">
+    <section className="bg-[#FAFAFA] py-32">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-4 mb-12"
-        >
-          <h2 className="font-heading text-4xl md:text-5xl font-bold text-text-primary">
-            Web Tips for{' '}
-            <span className="text-green-primary">Small Business Owners</span>
-          </h2>
-          <Link href="/blog" className="text-green-primary hover:text-green-deep font-heading font-semibold text-sm transition-colors shrink-0">
-            Read All Articles →
-          </Link>
-        </motion.div>
+        
+        {/* Header */}
+        <div className="flex flex-col md:flex-row items-end justify-between mb-20 gap-8">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <div className="flex items-center gap-3 mb-6">
+              <span className="w-2 h-2 rounded-full bg-purple-primary" />
+              <span className="text-text-charcoal uppercase tracking-widest text-sm font-semibold font-body">Insights & Ideas</span>
+            </div>
+            <h2 className="font-heading font-black text-5xl md:text-7xl text-dark-base leading-[1.1]">
+              Latest from <br/>
+              <span className="font-serif italic text-purple-primary">the journal.</span>
+            </h2>
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
+            <Link
+              href="/blog"
+              className="inline-flex items-center justify-center gap-2 border border-dark-border/20 text-dark-base hover:border-purple-primary hover:text-purple-primary font-body font-semibold text-sm px-8 py-4 rounded-full transition-all duration-300"
+            >
+              Read All Articles
+            </Link>
+          </motion.div>
+        </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {blogPosts.slice(0, 6).map((post, i) => (
+        {/* Blog Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+          {blogPosts.slice(0, 3).map((post, i) => (
             <motion.div
               key={post.slug}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.6, delay: i * 0.15 }}
             >
-              <Link href={`/blog/${post.slug}`} className="group block bg-dark-base rounded-xl overflow-hidden glow-border hover:glow-shadow transition-all duration-300">
-                {/* Image placeholder */}
-                <div className="relative h-44 bg-dark-base overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-br from-green-primary/10 to-dark-card" />
-                  <div className="absolute inset-0 group-hover:bg-green-primary/5 transition-all duration-300" />
-                  <span className="absolute top-4 left-4 bg-dark-base/80 text-green-primary text-xs font-body px-2.5 py-1 rounded-full border border-green-primary/20">
-                    {post.tag}
-                  </span>
+              <Link href={`/blog/${post.slug}`} className="group block h-full">
+                {/* Image */}
+                <div className="relative h-72 rounded-3xl overflow-hidden mb-6 bg-light-border/20">
+                  <div className="absolute inset-0 bg-black/5 group-hover:bg-transparent transition-colors duration-500 z-10" />
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img 
+                    src={post.image || 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&q=80&w=800'} 
+                    alt={post.title}
+                    className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700 ease-out"
+                    onError={(e) => {
+                      // Fallback if local image doesn't exist
+                      (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&q=80&w=800'
+                    }}
+                  />
+                  {/* Tag */}
+                  <div className="absolute top-6 left-6 z-20">
+                    <span className="bg-white/90 backdrop-blur-sm text-dark-base text-xs font-body font-semibold px-4 py-2 rounded-full shadow-sm">
+                      {post.tag}
+                    </span>
+                  </div>
                 </div>
 
-                <div className="p-6">
-                  <div className="flex items-center gap-3 text-text-muted text-xs font-body mb-3">
+                {/* Content */}
+                <div>
+                  <div className="flex items-center gap-3 text-text-charcoal/60 text-sm font-body mb-4 font-medium">
                     <span>{post.readTime}</span>
-                    <span>·</span>
+                    <span className="w-1 h-1 rounded-full bg-light-border" />
                     <span>{new Date(post.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</span>
                   </div>
-                  <h3 className="font-heading text-lg font-bold text-text-primary group-hover:text-green-primary transition-colors duration-200 leading-snug">
+                  <h3 className="font-heading font-bold text-2xl text-dark-base group-hover:text-purple-primary transition-colors duration-300 leading-snug mb-3">
                     {post.title}
                   </h3>
-                  <p className="font-body text-text-muted text-sm mt-2 leading-relaxed line-clamp-2">
+                  <p className="font-body text-text-charcoal/70 text-base leading-relaxed line-clamp-2">
                     {post.excerpt}
                   </p>
                 </div>

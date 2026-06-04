@@ -74,13 +74,13 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
       <ReadingProgress />
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Back link */}
-        <Link href="/blog" className="text-green-primary text-sm font-body hover:underline mb-8 inline-block">
+        <Link href="/blog" className="text-purple-primary text-sm font-body hover:underline mb-8 inline-block">
           ← Back to Blog
         </Link>
 
         {/* Meta */}
         <div className="flex items-center gap-3 mb-4 flex-wrap">
-          <span className="bg-green-primary/10 border border-green-primary/20 text-green-primary text-xs font-body px-2.5 py-1 rounded-full">
+          <span className="bg-purple-primary/10 border border-purple-primary/20 text-purple-primary text-xs font-body px-2.5 py-1 rounded-full">
             {post.tag}
           </span>
           <span className="text-text-muted text-xs font-body">{post.readTime}</span>
@@ -95,7 +95,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         </h1>
 
         {/* Excerpt */}
-        <p className="font-body text-text-muted text-lg leading-relaxed mb-12 border-l-2 border-green-primary/40 pl-4">
+        <p className="font-body text-text-muted text-lg leading-relaxed mb-12 border-l-2 border-purple-primary/40 pl-4">
           {post.excerpt}
         </p>
 
@@ -125,7 +125,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
           </p>
           <Link
             href="/free-audit"
-            className="inline-flex items-center gap-2 bg-green-primary hover:bg-green-deep text-dark-base font-heading font-semibold px-6 py-3 rounded-md transition-colors duration-200"
+            className="inline-flex items-center gap-2 bg-purple-primary hover:bg-purple-dark text-dark-base font-heading font-semibold px-6 py-3 rounded-md transition-colors duration-200"
           >
             Get Your Free Audit →
           </Link>
@@ -140,10 +140,10 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                 <Link
                   key={r.slug}
                   href={`/blog/${r.slug}`}
-                  className="block bg-dark-card rounded-xl p-5 glow-border hover:border-green-primary/30 transition-all duration-200 group"
+                  className="block bg-dark-card rounded-xl p-5 glow-border hover:border-purple-primary/30 transition-all duration-200 group"
                 >
-                  <span className="text-xs font-body text-green-primary mb-2 block">{r.tag}</span>
-                  <h4 className="font-heading text-sm font-semibold text-text-primary group-hover:text-green-primary transition-colors leading-snug mb-2">
+                  <span className="text-xs font-body text-purple-primary mb-2 block">{r.tag}</span>
+                  <h4 className="font-heading text-sm font-semibold text-text-primary group-hover:text-purple-primary transition-colors leading-snug mb-2">
                     {r.title}
                   </h4>
                   <span className="text-xs font-body text-text-muted">{r.readTime}</span>

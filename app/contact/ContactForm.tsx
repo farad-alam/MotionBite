@@ -39,7 +39,7 @@ export default function ContactForm() {
         animate={{ opacity: 1, scale: 1 }}
         className="bg-dark-card rounded-2xl p-10 glow-border text-center"
       >
-        <div className="w-16 h-16 rounded-full bg-green-primary/10 border border-green-primary/20 flex items-center justify-center text-3xl mx-auto mb-5">
+        <div className="w-16 h-16 rounded-full bg-purple-primary/10 border border-purple-primary/20 flex items-center justify-center text-3xl mx-auto mb-5">
           ✓
         </div>
         <h3 className="font-heading text-2xl font-bold text-text-primary mb-3">Message sent!</h3>
@@ -62,7 +62,7 @@ export default function ContactForm() {
               type="text"
               value={form.name}
               onChange={(e) => setForm({ ...form, name: e.target.value })}
-              className={`w-full bg-dark-base border rounded-md px-4 py-3 text-text-primary font-body text-sm placeholder-text-muted/40 outline-none focus:border-green-primary transition-colors ${errors.name ? 'border-state-error' : 'border-dark-border'}`}
+              className={`w-full bg-dark-base border rounded-md px-4 py-3 text-text-primary font-body text-sm placeholder-text-muted/40 outline-none focus:border-purple-primary transition-colors ${errors.name ? 'border-state-error' : 'border-dark-border'}`}
               placeholder="John Smith"
             />
             {errors.name && <p className="text-state-error text-xs mt-1 font-body">{errors.name}</p>}
@@ -73,7 +73,7 @@ export default function ContactForm() {
               type="email"
               value={form.email}
               onChange={(e) => setForm({ ...form, email: e.target.value })}
-              className={`w-full bg-dark-base border rounded-md px-4 py-3 text-text-primary font-body text-sm placeholder-text-muted/40 outline-none focus:border-green-primary transition-colors ${errors.email ? 'border-state-error' : 'border-dark-border'}`}
+              className={`w-full bg-dark-base border rounded-md px-4 py-3 text-text-primary font-body text-sm placeholder-text-muted/40 outline-none focus:border-purple-primary transition-colors ${errors.email ? 'border-state-error' : 'border-dark-border'}`}
               placeholder="john@yourcompany.com"
             />
             {errors.email && <p className="text-state-error text-xs mt-1 font-body">{errors.email}</p>}
@@ -85,7 +85,7 @@ export default function ContactForm() {
           <select
             value={form.subject}
             onChange={(e) => setForm({ ...form, subject: e.target.value })}
-            className={`w-full bg-dark-base border rounded-md px-4 py-3 text-text-primary font-body text-sm outline-none focus:border-green-primary transition-colors ${errors.subject ? 'border-state-error' : 'border-dark-border'}`}
+            className={`w-full bg-dark-base border rounded-md px-4 py-3 text-text-primary font-body text-sm outline-none focus:border-purple-primary transition-colors ${errors.subject ? 'border-state-error' : 'border-dark-border'}`}
           >
             <option value="" disabled>Select a subject...</option>
             {subjects.map((s) => (
@@ -101,7 +101,7 @@ export default function ContactForm() {
             value={form.message}
             onChange={(e) => setForm({ ...form, message: e.target.value })}
             rows={5}
-            className={`w-full bg-dark-base border rounded-md px-4 py-3 text-text-primary font-body text-sm placeholder-text-muted/40 outline-none focus:border-green-primary transition-colors resize-none ${errors.message ? 'border-state-error' : 'border-dark-border'}`}
+            className={`w-full bg-dark-base border rounded-md px-4 py-3 text-text-primary font-body text-sm placeholder-text-muted/40 outline-none focus:border-purple-primary transition-colors resize-none ${errors.message ? 'border-state-error' : 'border-dark-border'}`}
             placeholder="Tell us about your business and what you need..."
           />
           {errors.message && <p className="text-state-error text-xs mt-1 font-body">{errors.message}</p>}
@@ -109,7 +109,7 @@ export default function ContactForm() {
 
         <button
           type="submit"
-          className="w-full bg-green-primary hover:bg-green-deep text-dark-base font-heading font-bold py-4 rounded-md transition-all duration-200 hover:scale-[1.01] text-base"
+          className="w-full bg-purple-primary hover:bg-purple-dark text-dark-base font-heading font-bold py-4 rounded-md transition-all duration-200 hover:scale-[1.01] text-base"
         >
           Send Message →
         </button>

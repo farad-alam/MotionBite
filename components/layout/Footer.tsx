@@ -46,14 +46,14 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-12 gap-4 lg:gap-6 mb-16 lg:mb-24">
           
           {/* Box 1: MotionBite Info */}
-          <div className="xl:col-span-5 bg-dark-card border border-dark-border rounded-3xl p-8 md:p-12 flex flex-col justify-between min-h-[320px] transition-colors duration-500 hover:border-green-primary/30">
+          <div className="xl:col-span-5 bg-dark-card border border-dark-border rounded-3xl p-8 md:p-12 flex flex-col justify-between min-h-[320px] transition-colors duration-500 hover:border-purple-primary/30">
             <div>
               <Link href="/" className="inline-flex items-center gap-3 mb-6">
-                <div className="w-12 h-12 rounded-xl bg-green-primary flex items-center justify-center shadow-[0_0_20px_rgba(0,200,150,0.3)]">
+                <div className="w-12 h-12 rounded-xl bg-purple-primary flex items-center justify-center shadow-[0_0_20px_rgba(125,64,255,0.3)]">
                   <span className="font-heading font-bold text-dark-base text-xl">MB</span>
                 </div>
                 <span className="font-heading text-3xl font-bold text-text-primary">
-                  Motion<span className="text-green-primary">Bite</span>
+                  Motion<span className="text-purple-primary">Bite</span>
                 </span>
               </Link>
             </div>
@@ -63,12 +63,12 @@ export default function Footer() {
           </div>
 
           {/* Box 2: Navigation */}
-          <div className="xl:col-span-3 bg-dark-card border border-dark-border rounded-3xl p-8 md:p-12 flex flex-col justify-between min-h-[320px] transition-colors duration-500 hover:border-green-primary/30">
+          <div className="xl:col-span-3 bg-dark-card border border-dark-border rounded-3xl p-8 md:p-12 flex flex-col justify-between min-h-[320px] transition-colors duration-500 hover:border-purple-primary/30">
             <h4 className="font-heading text-text-primary text-sm font-bold uppercase tracking-widest mb-12">Navigation</h4>
             <ul className="space-y-4 mt-auto">
               {navigationLinks.map((l) => (
                 <li key={l.href}>
-                  <Link href={l.href} className="text-text-muted hover:text-green-primary text-lg font-heading font-semibold transition-colors duration-200 block">
+                  <Link href={l.href} className="text-text-muted hover:text-purple-primary text-lg font-heading font-semibold transition-colors duration-200 block">
                     {l.label}
                   </Link>
                 </li>
@@ -77,12 +77,12 @@ export default function Footer() {
           </div>
 
           {/* Box 3: Info/Legal */}
-          <div className="xl:col-span-3 bg-dark-card border border-dark-border rounded-3xl p-8 md:p-12 flex flex-col justify-between min-h-[320px] transition-colors duration-500 hover:border-green-primary/30">
+          <div className="xl:col-span-3 bg-dark-card border border-dark-border rounded-3xl p-8 md:p-12 flex flex-col justify-between min-h-[320px] transition-colors duration-500 hover:border-purple-primary/30">
             <h4 className="font-heading text-text-primary text-sm font-bold uppercase tracking-widest mb-12">Information</h4>
             <ul className="space-y-4 mt-auto">
               {legalLinks.map((l) => (
                 <li key={l.href}>
-                  <Link href={l.href} className="text-text-muted hover:text-green-primary text-lg font-heading font-semibold transition-colors duration-200 block">
+                  <Link href={l.href} className="text-text-muted hover:text-purple-primary text-lg font-heading font-semibold transition-colors duration-200 block">
                     {l.label}
                   </Link>
                 </li>
@@ -98,7 +98,7 @@ export default function Footer() {
                 href={social.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-dark-card border border-dark-border rounded-2xl md:rounded-3xl xl:rounded-2xl flex items-center justify-center p-6 hover:border-green-primary hover:text-green-primary text-text-muted transition-all duration-300 min-h-[80px]"
+                className="bg-dark-card border border-dark-border rounded-2xl md:rounded-3xl xl:rounded-2xl flex items-center justify-center p-6 hover:border-purple-primary hover:text-purple-primary text-text-muted transition-all duration-300 min-h-[80px]"
                 aria-label={social.label}
               >
                 {social.icon}
@@ -122,7 +122,7 @@ export default function Footer() {
                  className="absolute inset-0 w-full h-full object-cover object-top saturate-150"
                />
                <div className="absolute inset-0 shadow-[inset_0_0_15px_rgba(0,0,0,0.8)] pointer-events-none rounded-[3vw] xl:rounded-[36px]" />
-               <div className="absolute inset-0 border border-green-primary/30 rounded-[3vw] xl:rounded-[36px] pointer-events-none" />
+               <div className="absolute inset-0 border border-purple-primary/30 rounded-[3vw] xl:rounded-[36px] pointer-events-none" />
             </div>
 
             <span className="font-heading font-black text-[15vw] xl:text-[220px] leading-none text-text-primary tracking-tighter uppercase mx-[0.5vw]">
@@ -137,7 +137,7 @@ export default function Footer() {
                  className="absolute inset-0 w-full h-full object-cover object-top saturate-150"
                />
                <div className="absolute inset-0 shadow-[inset_0_0_15px_rgba(0,0,0,0.8)] pointer-events-none rounded-[3vw] xl:rounded-[36px]" />
-               <div className="absolute inset-0 border border-green-primary/30 rounded-[3vw] xl:rounded-[36px] pointer-events-none" />
+               <div className="absolute inset-0 border border-purple-primary/30 rounded-[3vw] xl:rounded-[36px] pointer-events-none" />
             </div>
 
             <span className="font-heading font-black text-[15vw] xl:text-[220px] leading-none text-text-primary tracking-tighter uppercase ml-[0.5vw]">

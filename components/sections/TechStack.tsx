@@ -40,7 +40,7 @@ export default function TechStack() {
               transition={{ duration: 0.4, delay: i * 0.07 }}
               className="flex items-center gap-2 text-text-muted/40 hover:text-text-muted transition-colors duration-300 group"
             >
-              <span className="text-xl group-hover:text-green-primary transition-colors duration-300">{item.icon}</span>
+              <span className="text-xl group-hover:text-purple-primary transition-colors duration-300">{item.icon}</span>
               <span className="font-heading text-sm font-semibold">{item.name}</span>
             </motion.div>
           ))}

@@ -93,7 +93,7 @@ export default function PricingPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="font-heading text-5xl md:text-6xl lg:text-7xl font-bold text-text-primary mb-4">
             Simple, Transparent{' '}
-            <span className="text-green-primary">Pricing</span>
+            <span className="text-purple-primary">Pricing</span>
           </h1>
           <p className="font-body text-text-muted text-xl max-w-xl mx-auto">
             No hourly rates. No surprise invoices. Pick your package.
@@ -108,11 +108,11 @@ export default function PricingPage() {
             {pricingDetails.map((pkg) => (
               <div
                 key={pkg.id}
-                className={`relative bg-dark-card rounded-2xl p-8 flex flex-col glow-border ${pkg.popular ? 'ring-1 ring-green-primary/30' : ''}`}
+                className={`relative bg-dark-card rounded-2xl p-8 flex flex-col glow-border ${pkg.popular ? 'ring-1 ring-purple-primary/30' : ''}`}
               >
                 {pkg.popular && (
                   <div className="absolute -top-3 left-1/2 -translate-x-1/2">
-                    <span className="bg-green-primary text-dark-base font-heading font-bold text-xs px-4 py-1 rounded-full">
+                    <span className="bg-purple-primary text-dark-base font-heading font-bold text-xs px-4 py-1 rounded-full">
                       ⭐ Most Popular
                     </span>
                   </div>
@@ -121,12 +121,12 @@ export default function PricingPage() {
                 <div className="text-3xl mb-4">{pkg.icon}</div>
                 <h2 className="font-heading text-2xl font-bold text-text-primary mb-1">{pkg.name}</h2>
                 <p className="font-body text-text-muted text-sm mb-4">{pkg.tagline}</p>
-                <p className="font-heading text-3xl font-bold text-green-primary mb-6">{pkg.price}</p>
+                <p className="font-heading text-3xl font-bold text-purple-primary mb-6">{pkg.price}</p>
 
                 <ul className="space-y-3 mb-8 flex-1">
                   {pkg.fullFeatures.map((f) => (
                     <li key={f} className="flex items-start gap-2.5 text-text-muted text-sm font-body">
-                      <span className="text-green-primary mt-0.5 shrink-0">✓</span>
+                      <span className="text-purple-primary mt-0.5 shrink-0">✓</span>
                       {f}
                     </li>
                   ))}
@@ -136,8 +136,8 @@ export default function PricingPage() {
                   href={pkg.ctaHref}
                   className={`block text-center font-heading font-bold py-3.5 rounded-md transition-all duration-200 ${
                     pkg.popular
-                      ? 'bg-green-primary hover:bg-green-deep text-dark-base'
-                      : 'border border-dark-border text-text-primary hover:border-green-primary/40'
+                      ? 'bg-purple-primary hover:bg-purple-dark text-dark-base'
+                      : 'border border-dark-border text-text-primary hover:border-purple-primary/40'
                   }`}
                 >
                   {pkg.cta} →
@@ -148,7 +148,7 @@ export default function PricingPage() {
 
           <p className="text-center text-text-muted text-sm font-body mt-8">
             Not sure which fits?{' '}
-            <Link href="/free-audit" className="text-green-primary hover:underline">
+            <Link href="/free-audit" className="text-purple-primary hover:underline">
               Get a free consultation →
             </Link>
           </p>
@@ -181,7 +181,7 @@ export default function PricingPage() {
           <p className="font-body text-text-muted mb-8">Free consultation. No commitment.</p>
           <Link
             href="/free-audit"
-            className="inline-flex items-center gap-2 bg-green-primary hover:bg-green-deep text-dark-base font-heading font-bold px-8 py-4 rounded-md transition-all duration-200"
+            className="inline-flex items-center gap-2 bg-purple-primary hover:bg-purple-dark text-dark-base font-heading font-bold px-8 py-4 rounded-md transition-all duration-200"
           >
             Book My Free Audit →
           </Link>

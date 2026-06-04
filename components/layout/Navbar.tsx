@@ -5,11 +5,11 @@ import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
 
 const links = [
-  { href: '/services', label: 'Services' },
+  { href: '/services',  label: 'Services'  },
   { href: '/portfolio', label: 'Portfolio' },
-  { href: '/pricing', label: 'Pricing' },
-  { href: '/about', label: 'About' },
-  { href: '/blog', label: 'Blog' },
+  { href: '/pricing',   label: 'Pricing'   },
+  { href: '/about',     label: 'About'     },
+  { href: '/blog',      label: 'Blog'      },
 ]
 
 export default function Navbar() {
@@ -17,70 +17,76 @@ export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false)
 
   useEffect(() => {
-    const handler = () => setScrolled(window.scrollY > 20)
+    const handler = () => setScrolled(window.scrollY > 30)
     window.addEventListener('scroll', handler, { passive: true })
     return () => window.removeEventListener('scroll', handler)
   }, [])
 
   return (
     <>
-      <header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          scrolled
-            ? 'bg-dark-base/95 backdrop-blur-md border-b border-dark-border'
-            : 'bg-transparent'
-        }`}
-      >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16 md:h-20">
-            {/* Logo */}
-            <Link href="/" className="flex items-center gap-2 group">
-              <div className="w-8 h-8 rounded-md bg-green-primary flex items-center justify-center">
-                <span className="font-heading font-bold text-dark-base text-sm">MB</span>
-              </div>
-              <span className="font-heading text-lg font-semibold text-text-primary tracking-wide">
-                Motion<span className="text-green-primary">Bite</span>
-              </span>
-            </Link>
-
-            {/* Desktop nav */}
-            <nav className="hidden md:flex items-center gap-8">
-              {links.map((l) => (
-                <Link
-                  key={l.href}
-                  href={l.href}
-                  className="text-text-muted hover:text-text-primary text-sm font-body transition-colors duration-200"
-                >
-                  {l.label}
-                </Link>
-              ))}
-            </nav>
-
-            {/* Desktop CTA */}
-            <div className="hidden md:flex">
-              <Link
-                href="/free-audit"
-                className="bg-green-primary hover:bg-green-deep text-dark-base font-heading font-semibold text-sm px-5 py-2.5 rounded-md transition-colors duration-200"
-              >
-                Get Free Audit
-              </Link>
+      {/* ── FLOATING PILL NAVBAR ── */}
+      <header className="fixed top-0 left-0 right-0 z-50 flex justify-center pt-5 px-4">
+        <motion.div
+          initial={{ opacity: 0, y: -16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+          className={`
+            w-full max-w-4xl flex items-center justify-between
+            px-4 py-2.5
+            rounded-full border transition-all duration-300
+            ${scrolled
+              ? 'bg-[#0f0f12]/85 border-white/10 shadow-[0_8px_40px_rgba(0,0,0,0.5)] backdrop-blur-xl'
+              : 'bg-[#0f0f12]/70 border-transparent backdrop-blur-lg'
+            }
+          `}
+        >
+          {/* Logo */}
+          <Link href="/" className="flex items-center gap-2.5 shrink-0">
+            <div className="w-8 h-8 rounded-lg bg-purple-primary flex items-center justify-center" style={{ boxShadow: 'rgba(255,255,255,0.3) 0px 1px 2px inset' }}>
+              <span className="font-heading font-bold text-white text-xs">MB</span>
             </div>
+            <span className="font-heading text-base font-semibold text-text-primary tracking-wide">
+              Motion<span className="text-purple-primary">Bite</span>
+            </span>
+          </Link>
 
-            {/* Mobile hamburger */}
-            <button
-              className="md:hidden flex flex-col gap-1.5 p-2"
-              onClick={() => setMenuOpen(!menuOpen)}
-              aria-label="Toggle menu"
+          {/* Desktop nav — centered */}
+          <nav className="hidden md:flex items-center gap-1 absolute left-1/2 -translate-x-1/2">
+            {links.map((l) => (
+              <Link
+                key={l.href}
+                href={l.href}
+                className="text-text-muted hover:text-text-primary text-sm font-body px-3.5 py-1.5 rounded-lg transition-all duration-200 hover:bg-white/8"
+              >
+                {l.label}
+              </Link>
+            ))}
+          </nav>
+
+          {/* Desktop CTA */}
+          <div className="hidden md:flex items-center shrink-0">
+            <Link
+              href="/free-audit"
+              className="text-text-primary font-body font-semibold text-sm px-4 py-2 rounded-xl border border-white/20 transition-all duration-200 hover:bg-white/10 hover:border-white/30"
             >
-              <span className={`block w-5 h-0.5 bg-text-primary transition-all duration-300 ${menuOpen ? 'rotate-45 translate-y-2' : ''}`} />
-              <span className={`block w-5 h-0.5 bg-text-primary transition-all duration-300 ${menuOpen ? 'opacity-0' : ''}`} />
-              <span className={`block w-5 h-0.5 bg-text-primary transition-all duration-300 ${menuOpen ? '-rotate-45 -translate-y-2' : ''}`} />
-            </button>
+              Get Free Audit
+            </Link>
           </div>
-        </div>
+
+          {/* Mobile hamburger */}
+          <button
+            className="md:hidden flex flex-col gap-1.5 p-1.5 ml-auto"
+            onClick={() => setMenuOpen(!menuOpen)}
+            aria-label="Toggle menu"
+          >
+            <span className={`block w-5 h-0.5 bg-text-primary transition-all duration-300 ${menuOpen ? 'rotate-45 translate-y-2' : ''}`} />
+            <span className={`block w-5 h-0.5 bg-text-primary transition-all duration-300 ${menuOpen ? 'opacity-0' : ''}`} />
+            <span className={`block w-5 h-0.5 bg-text-primary transition-all duration-300 ${menuOpen ? '-rotate-45 -translate-y-2' : ''}`} />
+          </button>
+        </motion.div>
       </header>
 
-      {/* Mobile full-screen menu */}
+      {/* ── MOBILE FULL-SCREEN MENU ── */}
       <AnimatePresence>
         {menuOpen && (
           <motion.div
@@ -88,22 +94,33 @@ export default function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-0 z-40 bg-dark-base flex flex-col items-center justify-center gap-8 md:hidden"
+            className="fixed inset-0 z-40 bg-dark-base/97 backdrop-blur-xl flex flex-col items-center justify-center gap-8 md:hidden"
           >
+            {/* Close button */}
+            <button
+              onClick={() => setMenuOpen(false)}
+              className="absolute top-6 right-6 text-text-muted hover:text-text-primary text-2xl transition-colors"
+              aria-label="Close menu"
+            >
+              ×
+            </button>
+
             {links.map((l) => (
               <Link
                 key={l.href}
                 href={l.href}
                 onClick={() => setMenuOpen(false)}
-                className="font-heading text-3xl text-text-primary hover:text-green-primary transition-colors duration-200"
+                className="font-heading text-3xl text-text-primary hover:text-purple-primary transition-colors duration-200"
               >
                 {l.label}
               </Link>
             ))}
+
             <Link
               href="/free-audit"
               onClick={() => setMenuOpen(false)}
-              className="bg-green-primary text-dark-base font-heading font-semibold text-lg px-8 py-3 rounded-md mt-4"
+              className="text-white font-body font-bold text-base px-8 py-3.5 rounded-xl mt-4 transition-all duration-200"
+              style={{ backgroundColor: '#712EFF', boxShadow: 'rgba(255,255,255,0.72) 0px 2px 3px 0px inset' }}
             >
               Get Free Audit
             </Link>
@@ -111,11 +128,12 @@ export default function Navbar() {
         )}
       </AnimatePresence>
 
-      {/* Mobile sticky bottom CTA bar — hidden when menu is open */}
+      {/* ── MOBILE BOTTOM STICKY CTA ── */}
       <div className={`fixed bottom-0 left-0 right-0 z-30 md:hidden bg-dark-base/95 backdrop-blur-md border-t border-dark-border px-4 py-3 transition-transform duration-200 ${menuOpen ? 'translate-y-full' : 'translate-y-0'}`}>
         <Link
           href="/free-audit"
-          className="block w-full text-center bg-green-primary hover:bg-green-deep text-dark-base font-heading font-semibold text-sm py-3 rounded-md transition-colors duration-200"
+          className="block w-full text-center text-white font-body font-semibold text-sm py-3 rounded-xl transition-all duration-200"
+          style={{ backgroundColor: '#712EFF', boxShadow: 'rgba(255,255,255,0.72) 0px 2px 3px 0px inset' }}
         >
           Get Free Audit →
         </Link>

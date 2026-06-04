@@ -1,58 +1,74 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import { useRef } from 'react'
+import { motion, useScroll, useTransform } from 'framer-motion'
 import { testimonials } from '@/data/testimonials'
 
 export default function Testimonials() {
+  const targetRef = useRef<HTMLDivElement>(null)
+  
+  const { scrollYProgress } = useScroll({
+    target: targetRef,
+  })
+
+  // The track will be quite wide. We shift it left as the user scrolls down.
+  // Using -65% usually works well for ~4 full-width items. 
+  // You can adjust the ending percentage if the last item cuts off or scrolls too far.
+  const x = useTransform(scrollYProgress, [0, 1], ["0%", "-65%"])
+
   return (
-    <section className="bg-dark-card section-padding">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-14"
+    <section ref={targetRef} className="bg-[#060608] relative h-[400vh]">
+      <div className="sticky top-0 flex items-center h-screen overflow-hidden">
+        
+        {/* Background Accent */}
+        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-purple-primary/5 rounded-full blur-[120px] pointer-events-none" />
+
+        {/* The Horizontal Track */}
+        <motion.div 
+          style={{ x }} 
+          className="flex flex-nowrap items-center h-full gap-24 px-[10vw]"
         >
-          <h2 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-text-primary">
-            What Our{' '}
-            <span className="text-green-primary">Clients Say</span>
-          </h2>
-        </motion.div>
+          {/* Header Card (First item in the scroll) */}
+          <div className="w-[85vw] md:w-[45vw] flex-shrink-0 flex flex-col justify-center text-left">
+            <div className="flex items-center gap-3 mb-6">
+              <span className="w-2 h-2 rounded-full bg-purple-primary" />
+              <span className="text-white uppercase tracking-widest text-sm font-semibold font-body">Testimonials</span>
+            </div>
+            <h2 className="font-heading font-black text-5xl md:text-7xl lg:text-8xl text-white leading-tight">
+              Client <br />
+              <span className="font-serif italic text-purple-primary">love.</span>
+            </h2>
+          </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {/* Testimonial Cards */}
           {testimonials.map((t, i) => (
-            <motion.div
+            <div
               key={t.id}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: i * 0.12 }}
-              className="bg-dark-base rounded-xl p-8 glow-border flex flex-col"
+              className="w-[85vw] md:w-[65vw] flex-shrink-0 flex flex-col justify-center text-left"
             >
-              {/* Stars */}
-              <div className="text-green-primary text-sm mb-4">{'★'.repeat(t.rating)}</div>
-
-              {/* Quote mark */}
-              <div className="font-heading text-5xl text-green-primary/20 leading-none mb-2">&ldquo;</div>
-
-              <p className="font-body text-text-muted text-sm leading-relaxed flex-1 mb-6">
+              {/* Massive Quote Icon */}
+              <div className="font-serif italic text-7xl md:text-9xl text-white/5 leading-none mb-[-2rem] md:mb-[-4rem]">
+                &ldquo;
+              </div>
+              
+              {/* Massive Quote Text */}
+              <h3 className="font-serif italic text-3xl md:text-5xl lg:text-6xl text-white leading-tight mb-12 max-w-4xl">
                 {t.quote}
-              </p>
+              </h3>
 
-              {/* Client */}
-              <div className="flex items-center gap-3 border-t border-dark-border pt-5">
-                <div className="w-10 h-10 rounded-full bg-green-primary/10 border border-green-primary/20 flex items-center justify-center">
-                  <span className="font-heading text-green-primary text-xs font-bold">{t.initials}</span>
+              {/* Author Details */}
+              <div className="flex items-center gap-5 mt-4">
+                <div className="w-16 h-16 rounded-full bg-white/10 border border-white/20 flex items-center justify-center backdrop-blur-sm">
+                  <span className="font-heading font-black text-xl text-white">{t.initials}</span>
                 </div>
-                <div>
-                  <p className="font-heading text-text-primary text-sm font-semibold">{t.name}</p>
-                  <p className="font-body text-text-muted text-xs">{t.business}</p>
+                <div className="text-left">
+                  <p className="font-heading font-bold text-xl text-white mb-1">{t.name}</p>
+                  <p className="font-body text-purple-primary text-sm uppercase tracking-wider font-semibold">{t.business}</p>
                 </div>
               </div>
-            </motion.div>
+            </div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   )

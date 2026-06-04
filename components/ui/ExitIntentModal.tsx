@@ -37,7 +37,7 @@ export default function ExitIntentModal() {
             </button>
 
             <div className="text-center">
-              <div className="w-14 h-14 rounded-full bg-green-primary/10 border border-green-primary/20 flex items-center justify-center text-2xl mx-auto mb-5">
+              <div className="w-14 h-14 rounded-full bg-purple-primary/10 border border-purple-primary/20 flex items-center justify-center text-2xl mx-auto mb-5">
                 🎯
               </div>
               <h3 className="font-heading text-2xl font-bold text-text-primary mb-2">
@@ -50,7 +50,8 @@ export default function ExitIntentModal() {
               <Link
                 href="/free-audit"
                 onClick={dismiss}
-                className="block w-full text-center bg-green-primary hover:bg-green-deep text-dark-base font-heading font-bold py-3.5 rounded-md transition-colors duration-200 mb-3"
+                className="block w-full text-center text-white font-heading font-bold py-3.5 rounded-md transition-all duration-200 mb-3"
+                style={{ backgroundColor: '#712EFF', boxShadow: 'rgba(255,255,255,0.72) 0px 2px 3px 0px inset' }}
               >
                 Get My Free Audit →
               </Link>

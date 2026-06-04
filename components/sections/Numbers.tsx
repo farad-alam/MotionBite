@@ -14,7 +14,7 @@ function StatItem({ target, suffix, label, prefix }: { target: number; suffix: s
 
   return (
     <div ref={ref as React.RefObject<HTMLDivElement>} className="text-center">
-      <p className="font-heading text-5xl md:text-6xl lg:text-7xl font-bold text-green-primary mb-2">
+      <p className="font-heading text-5xl md:text-6xl lg:text-7xl font-bold text-purple-primary mb-2">
         {prefix}{count}{suffix}
       </p>
       <p className="font-body text-text-muted text-sm uppercase tracking-wider">{label}</p>
@@ -24,7 +24,7 @@ function StatItem({ target, suffix, label, prefix }: { target: number; suffix: s
 
 export default function Numbers() {
   return (
-    <section className="bg-dark-base section-padding">
+    <section className="bg-light-bg section-padding">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-10">
           {stats.map((s, i) => (

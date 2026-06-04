@@ -85,13 +85,13 @@ export default function AboutPage() {
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
-              <span className="inline-flex items-center gap-2 bg-green-primary/10 border border-green-primary/20 text-green-primary text-xs font-body px-3 py-1.5 rounded-full mb-6">
-                <span className="w-1.5 h-1.5 rounded-full bg-green-primary animate-pulse" />
+              <span className="inline-flex items-center gap-2 bg-purple-primary/10 border border-purple-primary/20 text-purple-primary text-xs font-body px-3 py-1.5 rounded-full mb-6">
+                <span className="w-1.5 h-1.5 rounded-full bg-purple-primary animate-pulse" />
                 About MotionBite
               </span>
               <h1 className="font-heading text-5xl md:text-6xl font-bold text-text-primary leading-tight mb-6">
                 We Build for the{' '}
-                <span className="text-green-primary">Underdogs</span>
+                <span className="text-purple-primary">Underdogs</span>
               </h1>
               <p className="font-body text-text-muted text-lg leading-relaxed mb-6">
                 Small businesses and restaurants compete online against brands with huge marketing budgets. MotionBite exists to level that playing field — by building websites that perform at the same level as those big budgets, for a fraction of the price.
@@ -105,7 +105,7 @@ export default function AboutPage() {
             <div className="grid grid-cols-2 gap-4">
               {stats.map((s, i) => (
                 <div key={i} className="bg-dark-card rounded-xl p-6 glow-border text-center">
-                  <p className="font-heading text-4xl font-bold text-green-primary mb-1">{s.value}</p>
+                  <p className="font-heading text-4xl font-bold text-purple-primary mb-1">{s.value}</p>
                   <p className="font-body text-text-muted text-sm">{s.label}</p>
                 </div>
               ))}
@@ -194,13 +194,13 @@ export default function AboutPage() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href="/free-audit"
-              className="inline-flex items-center justify-center gap-2 bg-green-primary hover:bg-green-deep text-dark-base font-heading font-semibold px-8 py-4 rounded-md transition-all duration-200 hover:scale-[1.02]"
+              className="inline-flex items-center justify-center gap-2 bg-purple-primary hover:bg-purple-dark text-dark-base font-heading font-semibold px-8 py-4 rounded-md transition-all duration-200 hover:scale-[1.02]"
             >
               Get My Free Audit →
             </Link>
             <Link
               href="/contact"
-              className="inline-flex items-center justify-center gap-2 border border-dark-border text-text-primary hover:border-green-primary/40 font-heading font-semibold px-8 py-4 rounded-md transition-all duration-200"
+              className="inline-flex items-center justify-center gap-2 border border-dark-border text-text-primary hover:border-purple-primary/40 font-heading font-semibold px-8 py-4 rounded-md transition-all duration-200"
             >
               Send a Message
             </Link>

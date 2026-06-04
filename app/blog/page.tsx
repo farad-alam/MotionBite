@@ -42,13 +42,13 @@ export default function BlogPage() {
 
         {/* Header */}
         <div className="max-w-2xl mb-14">
-          <span className="inline-flex items-center gap-2 bg-green-primary/10 border border-green-primary/20 text-green-primary text-xs font-body px-3 py-1.5 rounded-full mb-4">
-            <span className="w-1.5 h-1.5 rounded-full bg-green-primary" />
+          <span className="inline-flex items-center gap-2 bg-purple-primary/10 border border-purple-primary/20 text-purple-primary text-xs font-body px-3 py-1.5 rounded-full mb-4">
+            <span className="w-1.5 h-1.5 rounded-full bg-purple-primary" />
             Free Resources
           </span>
           <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-text-primary leading-tight mb-4">
             Web Tips for{' '}
-            <span className="text-green-primary">Small Businesses</span>
+            <span className="text-purple-primary">Small Businesses</span>
           </h1>
           <p className="font-body text-text-muted text-lg leading-relaxed">
             Practical guides on web design, SEO, and conversion — written for business owners, not developers.
@@ -62,8 +62,8 @@ export default function BlogPage() {
               key={tag}
               className={`font-body text-xs px-3 py-1.5 rounded-full border cursor-default transition-colors ${
                 tag === 'All'
-                  ? 'bg-green-primary/10 border-green-primary/30 text-green-primary'
-                  : 'border-dark-border text-text-muted hover:border-green-primary/30 hover:text-green-primary'
+                  ? 'bg-purple-primary/10 border-purple-primary/30 text-purple-primary'
+                  : 'border-dark-border text-text-muted hover:border-purple-primary/30 hover:text-purple-primary'
               }`}
             >
               {tag}
@@ -74,13 +74,13 @@ export default function BlogPage() {
         {/* Featured post */}
         <Link
           href={`/blog/${featured.slug}`}
-          className="group block bg-dark-card rounded-2xl overflow-hidden glow-border hover:border-green-primary/30 transition-all duration-300 mb-10"
+          className="group block bg-dark-card rounded-2xl overflow-hidden glow-border hover:border-purple-primary/30 transition-all duration-300 mb-10"
         >
           <div className="grid grid-cols-1 lg:grid-cols-2">
             {/* Image placeholder */}
-            <div className="relative h-56 lg:h-auto bg-gradient-to-br from-green-primary/10 to-dark-base flex items-center justify-center">
+            <div className="relative h-56 lg:h-auto bg-gradient-to-br from-purple-primary/10 to-dark-base flex items-center justify-center">
               <div className="text-center px-8">
-                <div className="w-16 h-16 rounded-xl bg-green-primary/10 border border-green-primary/20 flex items-center justify-center text-2xl mx-auto mb-3">
+                <div className="w-16 h-16 rounded-xl bg-purple-primary/10 border border-purple-primary/20 flex items-center justify-center text-2xl mx-auto mb-3">
                   📝
                 </div>
                 <span className="font-body text-text-muted text-sm">Featured Article</span>
@@ -89,20 +89,20 @@ export default function BlogPage() {
             {/* Content */}
             <div className="p-8 lg:p-10 flex flex-col justify-center">
               <div className="flex items-center gap-3 mb-4">
-                <span className="bg-green-primary/10 border border-green-primary/20 text-green-primary text-xs font-body px-2.5 py-1 rounded-full">
+                <span className="bg-purple-primary/10 border border-purple-primary/20 text-purple-primary text-xs font-body px-2.5 py-1 rounded-full">
                   {featured.tag}
                 </span>
                 <span className="text-text-muted text-xs font-body">{featured.readTime}</span>
               </div>
-              <h2 className="font-heading text-2xl md:text-3xl font-bold text-text-primary group-hover:text-green-primary transition-colors duration-200 mb-3 leading-snug">
+              <h2 className="font-heading text-2xl md:text-3xl font-bold text-text-primary group-hover:text-purple-primary transition-colors duration-200 mb-3 leading-snug">
                 {featured.title}
               </h2>
               <p className="font-body text-text-muted text-sm leading-relaxed mb-6">
                 {featured.excerpt}
               </p>
               <div className="flex items-center gap-2">
-                <span className="text-green-primary font-body text-sm font-semibold">Read article</span>
-                <span className="text-green-primary text-sm group-hover:translate-x-1 transition-transform duration-200">→</span>
+                <span className="text-purple-primary font-body text-sm font-semibold">Read article</span>
+                <span className="text-purple-primary text-sm group-hover:translate-x-1 transition-transform duration-200">→</span>
               </div>
             </div>
           </div>
@@ -114,11 +114,11 @@ export default function BlogPage() {
             <Link
               key={post.slug}
               href={`/blog/${post.slug}`}
-              className="group block bg-dark-card rounded-xl overflow-hidden glow-border hover:border-green-primary/30 transition-all duration-300 hover:-translate-y-0.5 flex flex-col"
+              className="group block bg-dark-card rounded-xl overflow-hidden glow-border hover:border-purple-primary/30 transition-all duration-300 hover:-translate-y-0.5 flex flex-col"
             >
               {/* Image area */}
-              <div className="h-40 bg-gradient-to-br from-green-primary/5 to-dark-base flex items-center justify-center border-b border-dark-border">
-                <div className="w-12 h-12 rounded-lg bg-green-primary/10 border border-green-primary/20 flex items-center justify-center text-xl">
+              <div className="h-40 bg-gradient-to-br from-purple-primary/5 to-dark-base flex items-center justify-center border-b border-dark-border">
+                <div className="w-12 h-12 rounded-lg bg-purple-primary/10 border border-purple-primary/20 flex items-center justify-center text-xl">
                   {post.tag === 'SEO' ? '🔍' :
                    post.tag === 'Restaurant' ? '🍽️' :
                    post.tag === 'Pricing' ? '💰' :
@@ -132,12 +132,12 @@ export default function BlogPage() {
               {/* Content */}
               <div className="p-5 flex flex-col flex-1">
                 <div className="flex items-center gap-2 mb-3">
-                  <span className="bg-green-primary/10 border border-green-primary/20 text-green-primary text-xs font-body px-2 py-0.5 rounded-full">
+                  <span className="bg-purple-primary/10 border border-purple-primary/20 text-purple-primary text-xs font-body px-2 py-0.5 rounded-full">
                     {post.tag}
                   </span>
                   <span className="text-text-muted text-xs font-body">{post.readTime}</span>
                 </div>
-                <h3 className="font-heading text-lg font-bold text-text-primary group-hover:text-green-primary transition-colors duration-200 mb-2 leading-snug flex-1">
+                <h3 className="font-heading text-lg font-bold text-text-primary group-hover:text-purple-primary transition-colors duration-200 mb-2 leading-snug flex-1">
                   {post.title}
                 </h3>
                 <p className="font-body text-text-muted text-xs leading-relaxed mb-4 line-clamp-2">
@@ -147,7 +147,7 @@ export default function BlogPage() {
                   <span className="font-body text-xs text-text-muted">
                     {new Date(post.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
                   </span>
-                  <span className="text-green-primary text-sm group-hover:translate-x-1 transition-transform duration-200">→</span>
+                  <span className="text-purple-primary text-sm group-hover:translate-x-1 transition-transform duration-200">→</span>
                 </div>
               </div>
             </Link>
@@ -164,7 +164,7 @@ export default function BlogPage() {
           </p>
           <Link
             href="/free-audit"
-            className="inline-flex items-center gap-2 bg-green-primary hover:bg-green-deep text-dark-base font-heading font-semibold px-6 py-3 rounded-md transition-colors duration-200"
+            className="inline-flex items-center gap-2 bg-purple-primary hover:bg-purple-dark text-dark-base font-heading font-semibold px-6 py-3 rounded-md transition-colors duration-200"
           >
             Get My Free Audit →
           </Link>

@@ -32,7 +32,7 @@ const cardVariants = {
 
 export default function Problem() {
   return (
-    <section className="bg-light-bg section-padding">
+    <section className="bg-dark-base section-padding">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -41,7 +41,7 @@ export default function Problem() {
           transition={{ duration: 0.6 }}
           className="text-center mb-14"
         >
-          <h2 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-text-inverse leading-tight">
+          <h2 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-text-primary leading-tight">
             Most Small Business Websites{' '}
             <span className="text-state-error">Don&apos;t Work.</span>
             <br />Here&apos;s Why.
@@ -59,11 +59,11 @@ export default function Problem() {
             <motion.div
               key={i}
               variants={cardVariants}
-              className="bg-white rounded-lg p-8 border-l-4 border-state-error shadow-sm"
+              className="bg-dark-card rounded-lg p-8 border-l-4 border-state-error glow-border shadow-md-dark"
             >
               <div className="text-2xl mb-4">{p.icon}</div>
-              <h3 className="font-heading text-xl font-bold text-text-inverse mb-3">{p.title}</h3>
-              <p className="font-body text-sm text-gray-500 leading-relaxed">{p.desc}</p>
+              <h3 className="font-heading text-xl font-bold text-text-primary mb-3">{p.title}</h3>
+              <p className="font-body text-sm text-text-muted leading-relaxed">{p.desc}</p>
             </motion.div>
           ))}
         </motion.div>
@@ -73,10 +73,10 @@ export default function Problem() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className="text-center font-heading text-2xl md:text-3xl font-bold text-text-inverse mt-14"
+          className="text-center font-heading text-2xl md:text-3xl font-bold text-text-primary mt-14"
         >
           That&apos;s exactly why{' '}
-          <span className="text-green-primary">MotionBite</span> exists.
+          <span className="text-purple-primary">MotionBite</span> exists.
         </motion.p>
       </div>
     </section>

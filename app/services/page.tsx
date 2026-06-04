@@ -138,13 +138,13 @@ export default function ServicesPage() {
       <section className="pt-32 pb-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="max-w-3xl">
-            <span className="inline-flex items-center gap-2 bg-green-primary/10 border border-green-primary/20 text-green-primary text-xs font-body px-3 py-1.5 rounded-full mb-6">
-              <span className="w-1.5 h-1.5 rounded-full bg-green-primary animate-pulse" />
+            <span className="inline-flex items-center gap-2 bg-purple-primary/10 border border-purple-primary/20 text-purple-primary text-xs font-body px-3 py-1.5 rounded-full mb-6">
+              <span className="w-1.5 h-1.5 rounded-full bg-purple-primary animate-pulse" />
               Web Design & Development
             </span>
             <h1 className="font-heading text-5xl md:text-6xl lg:text-7xl font-bold text-text-primary leading-tight mb-6">
               Websites That{' '}
-              <span className="text-green-primary">Win Online</span>
+              <span className="text-purple-primary">Win Online</span>
             </h1>
             <p className="font-body text-text-muted text-lg md:text-xl leading-relaxed mb-8 max-w-2xl">
               Three clear packages built around where your business is right now — from your first online presence to a full growth engine.
@@ -152,13 +152,13 @@ export default function ServicesPage() {
             <div className="flex flex-wrap gap-4">
               <Link
                 href="/free-audit"
-                className="inline-flex items-center gap-2 bg-green-primary hover:bg-green-deep text-dark-base font-heading font-semibold px-6 py-3 rounded-md transition-all duration-200 hover:scale-[1.02]"
+                className="inline-flex items-center gap-2 bg-purple-primary hover:bg-purple-dark text-dark-base font-heading font-semibold px-6 py-3 rounded-md transition-all duration-200 hover:scale-[1.02]"
               >
                 Get Your Free Audit →
               </Link>
               <Link
                 href="/pricing"
-                className="inline-flex items-center gap-2 border border-dark-border text-text-primary hover:border-green-primary/40 font-heading font-semibold px-6 py-3 rounded-md transition-all duration-200"
+                className="inline-flex items-center gap-2 border border-dark-border text-text-primary hover:border-purple-primary/40 font-heading font-semibold px-6 py-3 rounded-md transition-all duration-200"
               >
                 See Full Pricing
               </Link>
@@ -175,12 +175,12 @@ export default function ServicesPage() {
               <div
                 key={s.id}
                 className={`relative bg-dark-card rounded-2xl p-8 glow-border flex flex-col ${
-                  s.popular ? 'ring-1 ring-green-primary/30' : ''
+                  s.popular ? 'ring-1 ring-purple-primary/30' : ''
                 }`}
               >
                 {s.popular && (
                   <div className="absolute -top-3.5 left-1/2 -translate-x-1/2">
-                    <span className="bg-green-primary text-dark-base font-heading font-bold text-xs px-4 py-1 rounded-full">
+                    <span className="bg-purple-primary text-dark-base font-heading font-bold text-xs px-4 py-1 rounded-full">
                       ⭐ Most Popular
                     </span>
                   </div>
@@ -188,7 +188,7 @@ export default function ServicesPage() {
                 <div className="text-4xl mb-4">{s.icon}</div>
                 <h2 className="font-heading text-2xl font-bold text-text-primary mb-1">{s.name}</h2>
                 <p className="font-body text-text-muted text-sm mb-4">{s.tagline}</p>
-                <p className="font-body text-text-muted text-sm leading-relaxed mb-6 border-l-2 border-green-primary/20 pl-3">
+                <p className="font-body text-text-muted text-sm leading-relaxed mb-6 border-l-2 border-purple-primary/20 pl-3">
                   {s.description}
                 </p>
 
@@ -196,7 +196,7 @@ export default function ServicesPage() {
                 <ul className="space-y-2.5 mb-6 flex-1">
                   {s.features.map((f, i) => (
                     <li key={i} className="flex items-start gap-2 text-text-muted text-sm font-body">
-                      <span className="text-green-primary mt-0.5 shrink-0">✓</span>
+                      <span className="text-purple-primary mt-0.5 shrink-0">✓</span>
                       {f}
                     </li>
                   ))}
@@ -210,7 +210,7 @@ export default function ServicesPage() {
                   <ul className="space-y-1">
                     {s.suitable.map((item, i) => (
                       <li key={i} className="font-body text-xs text-text-muted flex items-start gap-1.5">
-                        <span className="text-green-primary/60 mt-0.5">→</span>
+                        <span className="text-purple-primary/60 mt-0.5">→</span>
                         {item}
                       </li>
                     ))}
@@ -218,13 +218,13 @@ export default function ServicesPage() {
                 </div>
 
                 <div className="border-t border-dark-border pt-6">
-                  <p className="font-heading text-2xl font-bold text-green-primary mb-4">{s.price}</p>
+                  <p className="font-heading text-2xl font-bold text-purple-primary mb-4">{s.price}</p>
                   <Link
                     href={s.ctaHref}
                     className={`block text-center font-heading font-semibold py-3 rounded-md transition-all duration-200 ${
                       s.popular
-                        ? 'bg-green-primary hover:bg-green-deep text-dark-base'
-                        : 'border border-dark-border text-text-primary hover:border-green-primary/40'
+                        ? 'bg-purple-primary hover:bg-purple-dark text-dark-base'
+                        : 'border border-dark-border text-text-primary hover:border-purple-primary/40'
                     }`}
                   >
                     {s.cta} →
@@ -236,7 +236,7 @@ export default function ServicesPage() {
 
           <p className="text-center font-body text-text-muted text-sm mt-8">
             Not sure which fits?{' '}
-            <Link href="/free-audit" className="text-green-primary hover:underline">
+            <Link href="/free-audit" className="text-purple-primary hover:underline">
               Book a free 30-minute consultation →
             </Link>
           </p>
@@ -257,7 +257,7 @@ export default function ServicesPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {process.map((step, i) => (
               <div key={i} className="bg-dark-base rounded-xl p-6 glow-border">
-                <span className="font-heading text-4xl font-bold text-green-primary/30 block mb-4">{step.n}</span>
+                <span className="font-heading text-4xl font-bold text-purple-primary/30 block mb-4">{step.n}</span>
                 <h3 className="font-heading text-lg font-bold text-text-primary mb-2">{step.title}</h3>
                 <p className="font-body text-text-muted text-sm leading-relaxed">{step.desc}</p>
               </div>
@@ -274,7 +274,7 @@ export default function ServicesPage() {
           </h2>
           <div className="space-y-4">
             {faqs.map((item, i) => (
-              <div key={i} className="bg-dark-card rounded-xl p-6 glow-border border-l-2 border-green-primary/30">
+              <div key={i} className="bg-dark-card rounded-xl p-6 glow-border border-l-2 border-purple-primary/30">
                 <h3 className="font-heading text-base font-bold text-text-primary mb-2">{item.q}</h3>
                 <p className="font-body text-text-muted text-sm leading-relaxed">{item.a}</p>
               </div>
@@ -294,7 +294,7 @@ export default function ServicesPage() {
           </p>
           <Link
             href="/free-audit"
-            className="inline-flex items-center gap-2 bg-green-primary hover:bg-green-deep text-dark-base font-heading font-semibold px-8 py-4 rounded-md transition-all duration-200 hover:scale-[1.02]"
+            className="inline-flex items-center gap-2 bg-purple-primary hover:bg-purple-dark text-dark-base font-heading font-semibold px-8 py-4 rounded-md transition-all duration-200 hover:scale-[1.02]"
           >
             Book My Free Audit →
           </Link>

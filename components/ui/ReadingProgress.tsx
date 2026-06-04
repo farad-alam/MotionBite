@@ -8,7 +8,7 @@ export default function ReadingProgress() {
   return (
     <div className="fixed top-0 left-0 right-0 z-[60] h-0.5 bg-dark-border">
       <div
-        className="h-full bg-green-primary transition-none"
+        className="h-full bg-purple-primary transition-none"
         style={{ width: `${progress}%` }}
         role="progressbar"
         aria-valuenow={progress}

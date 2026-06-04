@@ -19,7 +19,7 @@ export default function PrivacyPage() {
           <h2 className="font-heading text-2xl text-text-primary mt-8">How We Use It</h2>
           <p>We use your information solely to respond to your enquiry, deliver the audit you requested, and improve our services. We do not sell or share your data with third parties.</p>
           <h2 className="font-heading text-2xl text-text-primary mt-8">Contact</h2>
-          <p>Questions? Email us at <a href="mailto:hello@motionbite.com" className="text-green-primary hover:underline">hello@motionbite.com</a>.</p>
+          <p>Questions? Email us at <a href="mailto:hello@motionbite.com" className="text-purple-primary hover:underline">hello@motionbite.com</a>.</p>
         </div>
       </div>
     </div>

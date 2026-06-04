@@ -51,25 +51,25 @@ export default function AuditForm() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 items-start">
             {/* Left */}
             <motion.div initial={{ opacity: 0, x: -30 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.6 }}>
-              <span className="inline-flex items-center gap-2 bg-green-primary/10 border border-green-primary/20 text-green-primary text-xs font-body px-3 py-1.5 rounded-full mb-6">
+              <span className="inline-flex items-center gap-2 bg-purple-primary/10 border border-purple-primary/20 text-purple-primary text-xs font-body px-3 py-1.5 rounded-full mb-6">
                 Free 30-Minute Website Audit
               </span>
               <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-text-primary leading-tight mb-6">
                 Find Out Exactly Why Your Website{' '}
-                <span className="text-green-primary">Isn&apos;t Converting</span>
+                <span className="text-purple-primary">Isn&apos;t Converting</span>
               </h1>
               <p className="font-body text-text-muted text-lg leading-relaxed mb-8">
                 We&apos;ll review your site (or your competitors&apos;) and tell you specifically what&apos;s costing you customers — for free, no pitch, no obligation.
               </p>
               <div className="flex flex-wrap gap-5">
                 <div className="flex items-center gap-2 text-text-muted text-sm font-body">
-                  <span className="text-green-primary">★★★★★</span> 50+ audits delivered
+                  <span className="text-purple-primary">★★★★★</span> 50+ audits delivered
                 </div>
                 <div className="flex items-center gap-2 text-text-muted text-sm font-body">
-                  <span className="text-green-primary">✓</span> No spam, ever
+                  <span className="text-purple-primary">✓</span> No spam, ever
                 </div>
                 <div className="flex items-center gap-2 text-text-muted text-sm font-body">
-                  <span className="text-green-primary">⚡</span> Reply within 24 hours
+                  <span className="text-purple-primary">⚡</span> Reply within 24 hours
                 </div>
               </div>
             </motion.div>
@@ -86,7 +86,7 @@ export default function AuditForm() {
                         type="text"
                         value={form.name}
                         onChange={(e) => setForm({ ...form, name: e.target.value })}
-                        className={`w-full bg-dark-base border rounded-md px-4 py-3 text-text-primary font-body text-sm placeholder-text-muted/40 outline-none focus:border-green-primary transition-colors ${errors.name ? 'border-state-error' : 'border-dark-border'}`}
+                        className={`w-full bg-dark-base border rounded-md px-4 py-3 text-text-primary font-body text-sm placeholder-text-muted/40 outline-none focus:border-purple-primary transition-colors ${errors.name ? 'border-state-error' : 'border-dark-border'}`}
                         placeholder="John Smith"
                       />
                       {errors.name && <p className="text-state-error text-xs mt-1 font-body">{errors.name}</p>}
@@ -97,7 +97,7 @@ export default function AuditForm() {
                         type="email"
                         value={form.email}
                         onChange={(e) => setForm({ ...form, email: e.target.value })}
-                        className={`w-full bg-dark-base border rounded-md px-4 py-3 text-text-primary font-body text-sm placeholder-text-muted/40 outline-none focus:border-green-primary transition-colors ${errors.email ? 'border-state-error' : 'border-dark-border'}`}
+                        className={`w-full bg-dark-base border rounded-md px-4 py-3 text-text-primary font-body text-sm placeholder-text-muted/40 outline-none focus:border-purple-primary transition-colors ${errors.email ? 'border-state-error' : 'border-dark-border'}`}
                         placeholder="john@yourcompany.com"
                       />
                       {errors.email && <p className="text-state-error text-xs mt-1 font-body">{errors.email}</p>}
@@ -108,7 +108,7 @@ export default function AuditForm() {
                         type="url"
                         value={form.website}
                         onChange={(e) => setForm({ ...form, website: e.target.value })}
-                        className="w-full bg-dark-base border border-dark-border rounded-md px-4 py-3 text-text-primary font-body text-sm placeholder-text-muted/40 outline-none focus:border-green-primary transition-colors"
+                        className="w-full bg-dark-base border border-dark-border rounded-md px-4 py-3 text-text-primary font-body text-sm placeholder-text-muted/40 outline-none focus:border-purple-primary transition-colors"
                         placeholder="https://yoursite.com  (or leave blank)"
                       />
                     </div>
@@ -117,7 +117,7 @@ export default function AuditForm() {
                       <select
                         value={form.challenge}
                         onChange={(e) => setForm({ ...form, challenge: e.target.value })}
-                        className={`w-full bg-dark-base border rounded-md px-4 py-3 text-text-primary font-body text-sm outline-none focus:border-green-primary transition-colors ${errors.challenge ? 'border-state-error' : 'border-dark-border'}`}
+                        className={`w-full bg-dark-base border rounded-md px-4 py-3 text-text-primary font-body text-sm outline-none focus:border-purple-primary transition-colors ${errors.challenge ? 'border-state-error' : 'border-dark-border'}`}
                       >
                         <option value="" disabled>Select your situation...</option>
                         {challenges.map((c) => (
@@ -128,7 +128,7 @@ export default function AuditForm() {
                     </div>
                     <button
                       type="submit"
-                      className="w-full bg-green-primary hover:bg-green-deep text-dark-base font-heading font-bold py-4 rounded-md transition-all duration-200 hover:scale-[1.01] text-base"
+                      className="w-full bg-purple-primary hover:bg-purple-dark text-dark-base font-heading font-bold py-4 rounded-md transition-all duration-200 hover:scale-[1.01] text-base"
                     >
                       Book My Free Audit →
                     </button>
@@ -140,7 +140,7 @@ export default function AuditForm() {
                   animate={{ opacity: 1, scale: 1 }}
                   className="bg-dark-card rounded-2xl p-10 glow-border text-center"
                 >
-                  <div className="w-16 h-16 rounded-full bg-green-primary/10 border border-green-primary/20 flex items-center justify-center text-3xl mx-auto mb-5">✓</div>
+                  <div className="w-16 h-16 rounded-full bg-purple-primary/10 border border-purple-primary/20 flex items-center justify-center text-3xl mx-auto mb-5">✓</div>
                   <h3 className="font-heading text-2xl font-bold text-text-primary mb-3">You&apos;re booked!</h3>
                   <p className="font-body text-text-muted text-sm leading-relaxed">
                     We&apos;ll review your site and send a recorded video walkthrough + written report within 24 hours.
@@ -182,8 +182,8 @@ export default function AuditForm() {
               { n: '3', t: 'You get the report', d: 'A recorded video walkthrough + written summary — free.' },
             ].map((s) => (
               <div key={s.n} className="flex items-start gap-5 text-left">
-                <div className="w-10 h-10 rounded-full bg-green-primary/10 border border-green-primary/20 flex items-center justify-center shrink-0">
-                  <span className="font-heading text-green-primary font-bold text-sm">{s.n}</span>
+                <div className="w-10 h-10 rounded-full bg-purple-primary/10 border border-purple-primary/20 flex items-center justify-center shrink-0">
+                  <span className="font-heading text-purple-primary font-bold text-sm">{s.n}</span>
                 </div>
                 <div>
                   <h3 className="font-heading text-lg font-bold text-text-primary">{s.t}</h3>

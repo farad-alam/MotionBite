@@ -47,7 +47,7 @@ export const portfolioItems: PortfolioItem[] = [
     industry: 'Fashion Retail',
     result: '2x increase in online inquiries',
     tags: ['Next.js', 'E-commerce', 'SEO'],
-    image: '/images/portfolio/yashfeen.jpg',
+    image: '/images/portfolio/vechile-thumbnail.png',
     video: '/videos/portfolio/vechile.mp4',
     href: '/portfolio/yashfeen-boutique',
     challenge:

@@ -72,14 +72,18 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
 
         {/* Hero visual */}
         <div className="bg-dark-card rounded-2xl glow-border aspect-[16/7] flex items-center justify-center mb-12 overflow-hidden relative">
-          <div className="text-center">
-            <div className="w-24 h-24 rounded-2xl bg-green-primary/10 border border-green-primary/20 flex items-center justify-center text-4xl mx-auto mb-4">
-              {item.industry === 'Restaurant' ? '🍽️' :
-               item.industry === 'Fashion Retail' ? '👗' : '💼'}
+          {item.image ? (
+            <img src={item.image} alt={item.name} className="absolute inset-0 w-full h-full object-cover" />
+          ) : (
+            <div className="text-center relative z-10">
+              <div className="w-24 h-24 rounded-2xl bg-green-primary/10 border border-green-primary/20 flex items-center justify-center text-4xl mx-auto mb-4">
+                {item.industry === 'Restaurant' ? '🍽️' :
+                 item.industry === 'Fashion Retail' ? '👗' : '💼'}
+              </div>
+              <p className="font-heading text-2xl font-bold text-text-primary">{item.name}</p>
+              <p className="font-body text-text-muted text-sm">{item.industry}</p>
             </div>
-            <p className="font-heading text-2xl font-bold text-text-primary">{item.name}</p>
-            <p className="font-body text-text-muted text-sm">{item.industry}</p>
-          </div>
+          )}
         </div>
 
         {/* Case study content */}

@@ -23,7 +23,7 @@ export const portfolioItems: PortfolioItem[] = [
     industry: 'Restaurant & Hospitality',
     result: 'Multi-menu restaurant site live in under 2 weeks',
     tags: ['Next.js', 'Framer Motion', 'CSS Modules'],
-    image: '/images/portfolio/papa-roma.png',
+    image: '/images/portfolio/papa-roma.webp',
     video: '/videos/portfolio/papa-roma.mp4',
     href: '/portfolio/papa-roma',
     challenge:
@@ -47,13 +47,13 @@ export const portfolioItems: PortfolioItem[] = [
     industry: 'Travel & Pilgrimage',
     result: 'Hajj enquiries doubled in the first season after launch',
     tags: ['Next.js', 'Framer Motion', 'SEO'],
-    image: '/images/portfolio/baitullah-musafir.png',
+    image: '/images/portfolio/baitullah-musafir.webp',
     video: '/videos/portfolio/baitullah-musafir.mp4',
     href: '/portfolio/baitullah-musafir',
     challenge:
       "Baitullah Musafir was a Hajj & Umrah travel agency with no digital presence. Prospective pilgrims searching online for Hajj packages from Bangladesh couldn't find them. With three package tiers and years of experience, the agency had no way to showcase its value or provide pre-departure guidance to registered pilgrims.",
     solution:
-      'We built a complete Bengali-language Hajj travel website on Next.js with animated package cards across three tiers (Economy ৳5.5L, Standard ৳6.75L, VIP ৳8.5L), a comprehensive Hajj guide, step-by-step training pages, duas sections, a dedicated women\'s guide, downloadable documents, FAQ, and a WhatsApp-integrated contact form — all with Framer Motion animations for a polished, trustworthy feel.',
+      "We built a complete Bengali-language Hajj travel website on Next.js with animated package cards across three tiers (Economy ৳5.5L, Standard ৳6.75L, VIP ৳8.5L), a comprehensive Hajj guide, step-by-step training pages, duas sections, a dedicated women's guide, downloadable documents, FAQ, and a WhatsApp-integrated contact form — all with Framer Motion animations for a polished, trustworthy feel.",
     results: [
       'Complete 12-page Hajj agency website built and deployed within 3 weeks',
       'All three package tiers presented clearly with pricing — removing the need for an initial sales call',
@@ -71,7 +71,7 @@ export const portfolioItems: PortfolioItem[] = [
     industry: 'Automotive Tech',
     result: 'Page 1 Google ranking for GPS tracker searches within 30 days',
     tags: ['Next.js', 'TypeScript', 'Tailwind CSS'],
-    image: '/images/portfolio/bismillah-auto.png',
+    image: '/images/portfolio/bismillah-auto.webp',
     video: '/videos/portfolio/bismillah-auto.mp4',
     href: '/portfolio/bismillah-auto',
     challenge:
@@ -95,7 +95,7 @@ export const portfolioItems: PortfolioItem[] = [
     industry: 'Fitness & Wellness',
     result: 'Unified digital hub for a 7-location gym chain',
     tags: ['Next.js', 'TypeScript', 'Framer Motion'],
-    image: '/images/portfolio/fitlife-bd.png',
+    image: '/images/portfolio/fitlife-bd.webp',
     video: '/videos/portfolio/fitlife.mp4',
     href: '/portfolio/fitlife-bd',
     challenge:
@@ -119,7 +119,7 @@ export const portfolioItems: PortfolioItem[] = [
     industry: 'Digital Marketing Agency',
     result: 'Premium agency site built to Awwwards-tier quality',
     tags: ['Next.js', 'GSAP', 'Tailwind CSS'],
-    image: '/images/portfolio/reach-logic.png',
+    image: '/images/portfolio/reach-logic.webp',
     video: '/videos/portfolio/reach-logic.mp4',
     href: '/portfolio/reach-logic',
     challenge:
@@ -129,8 +129,8 @@ export const portfolioItems: PortfolioItem[] = [
     results: [
       'Complete brand-aligned website delivered at Awwwards / CSS Design Awards quality standard',
       'Bounce rate dropped significantly as scroll animations kept visitors engaged through every section',
-      'High-value client enquiries increased — site now matches the agency\'s premium market positioning',
-      'GSAP particle hero made the site a talking point — shared in the agency\'s own client case studies',
+      "High-value client enquiries increased — site now matches the agency's premium market positioning",
+      "GSAP particle hero made the site a talking point — shared in the agency's own client case studies",
     ],
     testimonial:
       "We sell premium marketing but our old site looked like a free template. MotionBite built something we're genuinely proud to show prospects. The animations and overall craft make exactly the right impression.",
@@ -143,7 +143,7 @@ export const portfolioItems: PortfolioItem[] = [
     industry: 'Automotive Services',
     result: 'WhatsApp leads flowing from day one of launch',
     tags: ['Next.js', 'TypeScript', 'Framer Motion'],
-    image: '/images/portfolio/saudi-garej.png',
+    image: '/images/portfolio/saudi-garej.webp',
     video: '/videos/portfolio/saudi-garej.mp4',
     href: '/portfolio/saudi-garej',
     challenge:
@@ -154,7 +154,7 @@ export const portfolioItems: PortfolioItem[] = [
       'Bilingual Arabic/English website reaching both local and expat customers from day one',
       'WhatsApp contact button driving inbound enquiries within days of launch',
       'Free car wash offer featured prominently — reported increase in oil change bookings',
-      'Local SEO foundations in place for car service searches in the garage\'s area',
+      "Local SEO foundations in place for car service searches in the garage's area",
     ],
     testimonial:
       'The website made us look like a proper business. Arabic and English customers both find us on Google now, and the WhatsApp button brings in new customers every day.',
@@ -167,13 +167,13 @@ export const portfolioItems: PortfolioItem[] = [
     industry: 'SaaS / Social Media',
     result: 'Full social scheduling SaaS shipped with automated publishing',
     tags: ['Next.js', 'TypeScript', 'Prisma'],
-    image: '/images/portfolio/omatic-social.png',
+    image: '/images/portfolio/omatic-social.webp',
     video: '/videos/portfolio/omatic-social.mp4',
     href: '/portfolio/omatic-social',
     challenge:
       'The client needed a complete social media content management platform — not just a posting tool, but a full SaaS with Instagram-connected scheduling, calendar-based planning, draft management, and automated cron-job publishing. Existing tools were too expensive or too limited for their target users.',
     solution:
-      'We built a full-stack SaaS on Next.js with TypeScript and Prisma, featuring an Instagram-like post creation UI, a dashboard with calendar view showing scheduled/published/draft/failed post statuses, Instagram account connection, bulk scheduling with per-post date/time control, automated cron-based publishing, and a phone-preview mode that renders posts exactly as they appear on a user\'s Instagram profile.',
+      "We built a full-stack SaaS on Next.js with TypeScript and Prisma, featuring an Instagram-like post creation UI, a dashboard with calendar view showing scheduled/published/draft/failed post statuses, Instagram account connection, bulk scheduling with per-post date/time control, automated cron-based publishing, and a phone-preview mode that renders posts exactly as they appear on a user's Instagram profile.",
     results: [
       'Complete social media scheduling SaaS built and deployed end-to-end',
       'Automated cron-based publishing running without manual intervention',
@@ -191,11 +191,11 @@ export const portfolioItems: PortfolioItem[] = [
     industry: 'Fitness & Wellness',
     result: 'Membership sign-ups increased within weeks of launch',
     tags: ['Next.js', 'Tailwind CSS', 'Framer Motion'],
-    image: '/images/portfolio/muscle-flex.png',
+    image: '/images/portfolio/muscle-flex.webp',
     video: '/videos/portfolio/muscle-flex-gym.mp4',
     href: '/portfolio/muscle-flex',
     challenge:
-      "Muscle Flex Gym was relying entirely on word-of-mouth and walk-in traffic to grow their membership base. They had no website, no way to showcase their facilities, and no online presence to capture people searching for a gym in their area. Potential members were choosing competitors simply because they could find them online.",
+      'Muscle Flex Gym was relying entirely on word-of-mouth and walk-in traffic to grow their membership base. They had no website, no way to showcase their facilities, and no online presence to capture people searching for a gym in their area. Potential members were choosing competitors simply because they could find them online.',
     solution:
       'We built a high-energy gym website with Framer Motion animations, a facilities showcase with photography, membership plan comparison, trainer profiles, a transformation gallery, class schedule, and a WhatsApp-integrated sign-up CTA. The site was built mobile-first on Next.js with Tailwind CSS and optimised for local gym searches from day one.',
     results: [
@@ -215,7 +215,7 @@ export const portfolioItems: PortfolioItem[] = [
     industry: 'Healthcare & Diagnostics',
     result: 'Professional diagnostic lab site with online appointment booking',
     tags: ['Next.js', 'Tailwind CSS', 'SEO'],
-    image: '/images/portfolio/pethygene-lab.png',
+    image: '/images/portfolio/pethygene-lab.webp',
     video: '/videos/portfolio/pethygenelab.mp4',
     href: '/portfolio/pethygene-lab',
     challenge:

@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import Image from 'next/image'
 import { portfolioItems } from '@/data/portfolio'
 import { notFound } from 'next/navigation'
 
@@ -71,17 +72,22 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
         </div>
 
         {/* Hero visual */}
-        <div className="bg-dark-card rounded-2xl glow-border aspect-[16/7] flex items-center justify-center mb-12 overflow-hidden relative">
+        <div className="rounded-2xl glow-border aspect-[16/7] mb-12 overflow-hidden relative">
           {item.image ? (
-            <img src={item.image} alt={item.name} className="absolute inset-0 w-full h-full object-cover" />
+            <Image
+              src={item.image}
+              alt={item.name}
+              fill
+              sizes="(max-width: 768px) 100vw, 896px"
+              priority
+              className="object-cover"
+            />
           ) : (
-            <div className="text-center relative z-10">
-              <div className="w-24 h-24 rounded-2xl bg-purple-primary/10 border border-purple-primary/20 flex items-center justify-center text-4xl mx-auto mb-4">
-                {item.industry === 'Restaurant' ? '🍽️' :
-                 item.industry === 'Fashion Retail' ? '👗' : '💼'}
+            <div className="bg-dark-card w-full h-full flex items-center justify-center">
+              <div className="text-center">
+                <div className="w-24 h-24 rounded-2xl bg-purple-primary/10 border border-purple-primary/20 flex items-center justify-center text-4xl mx-auto mb-4">💼</div>
+                <p className="font-heading text-2xl font-bold text-text-primary">{item.name}</p>
               </div>
-              <p className="font-heading text-2xl font-bold text-text-primary">{item.name}</p>
-              <p className="font-body text-text-muted text-sm">{item.industry}</p>
             </div>
           )}
         </div>
@@ -168,17 +174,31 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
           <div>
             <h3 className="font-heading text-xl font-bold text-text-primary mb-6">More Projects</h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {otherProjects.map((p) => (
+              {otherProjects.slice(0, 4).map((p) => (
                 <Link
                   key={p.slug}
                   href={p.href}
-                  className="block bg-dark-card rounded-xl p-5 glow-border hover:border-purple-primary/30 transition-all duration-200 group"
+                  className="block bg-dark-card rounded-xl overflow-hidden glow-border hover:border-purple-primary/30 transition-all duration-200 group"
                 >
-                  <p className="font-body text-xs text-purple-primary mb-1">{p.industry}</p>
-                  <h4 className="font-heading text-base font-bold text-text-primary group-hover:text-purple-primary transition-colors mb-2">
-                    {p.name}
-                  </h4>
-                  <p className="font-body text-xs text-text-muted">{p.result}</p>
+                  {/* Thumbnail */}
+                  {p.image && (
+                    <div className="relative aspect-video w-full overflow-hidden">
+                      <Image
+                        src={p.image}
+                        alt={p.name}
+                        fill
+                        sizes="(max-width: 640px) 100vw, 50vw"
+                        className="object-cover transition-transform duration-500 group-hover:scale-105"
+                      />
+                    </div>
+                  )}
+                  <div className="p-4">
+                    <p className="font-body text-xs text-purple-primary mb-1">{p.industry}</p>
+                    <h4 className="font-heading text-base font-bold text-text-primary group-hover:text-purple-primary transition-colors mb-2">
+                      {p.name}
+                    </h4>
+                    <p className="font-body text-xs text-text-muted">{p.result}</p>
+                  </div>
                 </Link>
               ))}
             </div>

@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
-import Link from 'next/link'
 import { portfolioItems } from '@/data/portfolio'
+import LazyVideoCard from '@/components/ui/LazyVideoCard'
 
 export const metadata: Metadata = {
   title: 'Portfolio — Websites That Worked | MotionBite',
@@ -54,66 +54,8 @@ export default function PortfolioPage() {
       {/* Case studies - Hover Reveal Layout */}
       <section className="px-4 sm:px-6 lg:px-8 pb-24">
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
-          {portfolioItems.map((item) => (
-            <Link 
-              key={item.id} 
-              href={item.href}
-              className="group relative block aspect-video rounded-3xl overflow-hidden bg-dark-base shadow-xl hover:shadow-2xl hover:shadow-purple-primary/10 transition-all duration-500 cursor-pointer"
-            >
-              {/* Video/Image Background */}
-              {item.video ? (
-                <video
-                  src={item.video}
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                  poster={item.image}
-                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                />
-              ) : (
-                <img 
-                  src={item.image} 
-                  alt={item.name} 
-                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" 
-                />
-              )}
-
-              {/* Dark Overlay - Appears on Hover */}
-              <div className="absolute inset-0 bg-dark-base/85 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              
-              {/* Overlay Content - Slides up on Hover */}
-              <div className="absolute inset-0 p-8 md:p-10 flex flex-col justify-end">
-                <div className="transform translate-y-12 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 delay-75">
-                  
-                  {/* Title & Industry */}
-                  <div className="flex items-center gap-4 mb-6">
-                    <div className="w-12 h-12 rounded-xl bg-purple-primary/20 text-2xl flex items-center justify-center shrink-0">
-                       {item.industry === 'Restaurant' ? '🍽️' : item.industry === 'Fashion Retail' ? '👗' : '💼'}
-                    </div>
-                    <div>
-                      <h2 className="font-heading text-2xl md:text-3xl font-bold text-white leading-tight">{item.name}</h2>
-                      <p className="font-body text-xs text-purple-primary uppercase tracking-widest mt-1">{item.industry}</p>
-                    </div>
-                  </div>
-
-                  {/* High Impact Result */}
-                  <div className="bg-dark-card/60 border border-purple-primary/30 rounded-xl p-5 mb-8 backdrop-blur-md shadow-lg">
-                    <p className="text-[10px] font-body text-text-muted uppercase tracking-wider mb-2 flex items-center gap-1.5">
-                       <span className="w-1.5 h-1.5 rounded-full bg-purple-primary animate-pulse" /> Massive Impact
-                    </p>
-                    <p className="font-heading text-xl md:text-2xl font-bold text-purple-primary leading-tight">{item.result}</p>
-                  </div>
-
-                  {/* CTA Text */}
-                  <div className="inline-flex items-center gap-3 text-white font-heading font-semibold tracking-wide hover:text-purple-primary transition-colors">
-                    Read Full Case Study 
-                    <span className="text-purple-primary text-xl transform group-hover:translate-x-1 transition-transform duration-300">→</span>
-                  </div>
-
-                </div>
-              </div>
-            </Link>
+          {portfolioItems.map((item, index) => (
+            <LazyVideoCard key={item.id} item={item} priority={index < 2} />
           ))}
         </div>
       </section>

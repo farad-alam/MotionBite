@@ -23,7 +23,7 @@ export const portfolioItems: PortfolioItem[] = [
     industry: 'Restaurant & Hospitality',
     result: 'Multi-menu restaurant site live in under 2 weeks',
     tags: ['Next.js', 'Framer Motion', 'CSS Modules'],
-    image: '/images/portfolio/papa-roma.jpg',
+    image: '/images/portfolio/papa-roma.png',
     video: '/videos/portfolio/papa-roma.mp4',
     href: '/portfolio/papa-roma',
     challenge:
@@ -47,7 +47,7 @@ export const portfolioItems: PortfolioItem[] = [
     industry: 'Travel & Pilgrimage',
     result: 'Hajj enquiries doubled in the first season after launch',
     tags: ['Next.js', 'Framer Motion', 'SEO'],
-    image: '/images/portfolio/baitullah-musafir.jpg',
+    image: '/images/portfolio/baitullah-musafir.png',
     video: '/videos/portfolio/baitullah-musafir.mp4',
     href: '/portfolio/baitullah-musafir',
     challenge:
@@ -71,7 +71,7 @@ export const portfolioItems: PortfolioItem[] = [
     industry: 'Automotive Tech',
     result: 'Page 1 Google ranking for GPS tracker searches within 30 days',
     tags: ['Next.js', 'TypeScript', 'Tailwind CSS'],
-    image: '/images/portfolio/bismillah-auto.jpg',
+    image: '/images/portfolio/bismillah-auto.png',
     video: '/videos/portfolio/bismillah-auto.mp4',
     href: '/portfolio/bismillah-auto',
     challenge:
@@ -95,7 +95,7 @@ export const portfolioItems: PortfolioItem[] = [
     industry: 'Fitness & Wellness',
     result: 'Unified digital hub for a 7-location gym chain',
     tags: ['Next.js', 'TypeScript', 'Framer Motion'],
-    image: '/images/portfolio/fitlife-bd.jpg',
+    image: '/images/portfolio/fitlife-bd.png',
     video: '/videos/portfolio/fitlife.mp4',
     href: '/portfolio/fitlife-bd',
     challenge:
@@ -119,7 +119,7 @@ export const portfolioItems: PortfolioItem[] = [
     industry: 'Digital Marketing Agency',
     result: 'Premium agency site built to Awwwards-tier quality',
     tags: ['Next.js', 'GSAP', 'Tailwind CSS'],
-    image: '/images/portfolio/reach-logic.jpg',
+    image: '/images/portfolio/reach-logic.png',
     video: '/videos/portfolio/reach-logic.mp4',
     href: '/portfolio/reach-logic',
     challenge:
@@ -143,7 +143,7 @@ export const portfolioItems: PortfolioItem[] = [
     industry: 'Automotive Services',
     result: 'WhatsApp leads flowing from day one of launch',
     tags: ['Next.js', 'TypeScript', 'Framer Motion'],
-    image: '/images/portfolio/saudi-garej.jpg',
+    image: '/images/portfolio/saudi-garej.png',
     video: '/videos/portfolio/saudi-garej.mp4',
     href: '/portfolio/saudi-garej',
     challenge:
@@ -167,7 +167,7 @@ export const portfolioItems: PortfolioItem[] = [
     industry: 'SaaS / Social Media',
     result: 'Full social scheduling SaaS shipped with automated publishing',
     tags: ['Next.js', 'TypeScript', 'Prisma'],
-    image: '/images/portfolio/omatic-social.jpg',
+    image: '/images/portfolio/omatic-social.png',
     video: '/videos/portfolio/omatic-social.mp4',
     href: '/portfolio/omatic-social',
     challenge:
@@ -191,7 +191,7 @@ export const portfolioItems: PortfolioItem[] = [
     industry: 'Fitness & Wellness',
     result: 'Membership sign-ups increased within weeks of launch',
     tags: ['Next.js', 'Tailwind CSS', 'Framer Motion'],
-    image: '/images/portfolio/muscle-flex.jpg',
+    image: '/images/portfolio/muscle-flex.png',
     video: '/videos/portfolio/muscle-flex-gym.mp4',
     href: '/portfolio/muscle-flex',
     challenge:
@@ -215,7 +215,7 @@ export const portfolioItems: PortfolioItem[] = [
     industry: 'Healthcare & Diagnostics',
     result: 'Professional diagnostic lab site with online appointment booking',
     tags: ['Next.js', 'Tailwind CSS', 'SEO'],
-    image: '/images/portfolio/pethygene-lab.jpg',
+    image: '/images/portfolio/pethygene-lab.png',
     video: '/videos/portfolio/pethygenelab.mp4',
     href: '/portfolio/pethygene-lab',
     challenge:

@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { portfolioItems } from '@/data/portfolio'
+import Link from 'next/link'
 import LazyVideoCard from '@/components/ui/LazyVideoCard'
 
 export const metadata: Metadata = {

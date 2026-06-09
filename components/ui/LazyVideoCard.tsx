@@ -1,13 +1,12 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { useRef, useState } from 'react'
 import Link from 'next/link'
-import Image from 'next/image'
 import { PortfolioItem } from '@/data/portfolio'
 
 interface LazyVideoCardProps {
   item: PortfolioItem
-  /** Pass true for the first two cards so they load eagerly (above the fold) */
+  /** First two cards load their image eagerly (above the fold) */
   priority?: boolean
 }
 
@@ -27,56 +26,44 @@ const industryIcon = (industry: string) => {
 }
 
 export default function LazyVideoCard({ item, priority = false }: LazyVideoCardProps) {
-  const containerRef = useRef<HTMLAnchorElement>(null)
-  const [videoSrc, setVideoSrc] = useState<string | undefined>(
-    // Priority (above-fold) cards load immediately
-    priority ? item.video : undefined
-  )
+  const videoRef = useRef<HTMLVideoElement>(null)
+  // Video src is only set when the user hovers — never on page load
+  const [videoSrc, setVideoSrc] = useState<string | undefined>(undefined)
 
-  useEffect(() => {
-    // Priority cards are already loaded — skip observer
-    if (priority || !item.video) return
+  const handleMouseEnter = () => {
+    if (!videoSrc && item.video) {
+      setVideoSrc(item.video)
+    }
+    // If the video element is already in DOM, try to play it
+    videoRef.current?.play().catch(() => {})
+  }
 
-    const el = containerRef.current
-    if (!el) return
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries[0].isIntersecting) {
-          setVideoSrc(item.video)
-          observer.disconnect()
-        }
-      },
-      // Start loading 300px before the card enters view
-      { rootMargin: '300px', threshold: 0 }
-    )
-
-    observer.observe(el)
-    return () => observer.disconnect()
-  }, [item.video, priority])
+  const handleMouseLeave = () => {
+    videoRef.current?.pause()
+  }
 
   return (
     <Link
-      ref={containerRef}
       href={item.href}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
       className="group relative block aspect-video rounded-3xl overflow-hidden bg-dark-base shadow-xl hover:shadow-2xl hover:shadow-purple-primary/10 transition-all duration-500 cursor-pointer"
     >
-      {/* ── Poster / Fallback image (Next.js Image for WebP/AVIF + lazy) ── */}
-      <Image
+      {/* ── Poster image — plain img tag is fastest for local images ── */}
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
         src={item.image}
         alt={item.name}
-        fill
-        sizes="(max-width: 768px) 100vw, 50vw"
-        priority={priority}
-        className="object-cover transition-transform duration-700 group-hover:scale-110"
-        style={{ zIndex: 0 }}
+        loading={priority ? 'eager' : 'lazy'}
+        decoding="async"
+        className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 z-0"
       />
 
-      {/* ── Video (lazy src) — sits on top of the poster once loaded ── */}
+      {/* ── Video — src only set on first hover, plays on each hover ── */}
       {item.video && (
         <video
-          src={videoSrc}
-          autoPlay
+          ref={videoRef}
+          src={videoSrc}      // undefined until first hover → zero network cost on load
           muted
           loop
           playsInline
@@ -85,10 +72,10 @@ export default function LazyVideoCard({ item, priority = false }: LazyVideoCardP
         />
       )}
 
-      {/* Dark Overlay - Appears on Hover */}
+      {/* Dark Overlay on Hover */}
       <div className="absolute inset-0 bg-dark-base/85 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-[2]" />
 
-      {/* Overlay Content - Slides up on Hover */}
+      {/* Overlay Content */}
       <div className="absolute inset-0 p-8 md:p-10 flex flex-col justify-end z-[3]">
         <div className="transform translate-y-12 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 delay-75">
 
@@ -103,7 +90,7 @@ export default function LazyVideoCard({ item, priority = false }: LazyVideoCardP
             </div>
           </div>
 
-          {/* High Impact Result */}
+          {/* Result */}
           <div className="bg-dark-card/60 border border-purple-primary/30 rounded-xl p-5 mb-8 backdrop-blur-md shadow-lg">
             <p className="text-[10px] font-body text-text-muted uppercase tracking-wider mb-2 flex items-center gap-1.5">
               <span className="w-1.5 h-1.5 rounded-full bg-purple-primary animate-pulse" /> Massive Impact

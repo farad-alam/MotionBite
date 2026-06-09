@@ -117,7 +117,7 @@ export default function Footer() {
             {/* First "O" Container */}
             <div className="relative w-[10vw] h-[12.5vw] max-w-[150px] max-h-[185px] rounded-[3vw] xl:rounded-[36px] overflow-hidden bg-dark-card mx-[0.5vw] shrink-0 self-center">
                <img
-                 src="/images/portfolio/founder-1.png"
+                 src="/images/portfolio/founder-1.webp"
                  alt="Founder 1"
                  className="absolute inset-0 w-full h-full object-cover object-top saturate-150"
                />
@@ -132,7 +132,7 @@ export default function Footer() {
             {/* Second "O" Container */}
             <div className="relative w-[10vw] h-[12.5vw] max-w-[150px] max-h-[185px] rounded-[3vw] xl:rounded-[36px] overflow-hidden bg-dark-card mx-[0.5vw] shrink-0 self-center">
                <img
-                 src="/images/portfolio/founder-2.png"
+                 src="/images/portfolio/founder-2.webp"
                  alt="Founder 2"
                  className="absolute inset-0 w-full h-full object-cover object-top saturate-150"
                />

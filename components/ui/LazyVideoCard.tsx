@@ -1,12 +1,12 @@
 'use client'
 
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { PortfolioItem } from '@/data/portfolio'
 
 interface LazyVideoCardProps {
   item: PortfolioItem
-  /** First two cards load their image eagerly (above the fold) */
+  /** First two cards load their image and video eagerly (above the fold) */
   priority?: boolean
 }
 
@@ -26,27 +26,39 @@ const industryIcon = (industry: string) => {
 }
 
 export default function LazyVideoCard({ item, priority = false }: LazyVideoCardProps) {
-  const videoRef = useRef<HTMLVideoElement>(null)
-  // Video src is only set when the user hovers — never on page load
-  const [videoSrc, setVideoSrc] = useState<string | undefined>(undefined)
+  const containerRef = useRef<HTMLAnchorElement>(null)
+  
+  // If it's priority, load video src immediately. Otherwise, wait until it scrolls into view.
+  const [videoSrc, setVideoSrc] = useState<string | undefined>(
+    priority ? item.video : undefined
+  )
 
-  const handleMouseEnter = () => {
-    if (!videoSrc && item.video) {
-      setVideoSrc(item.video)
-    }
-    // If the video element is already in DOM, try to play it
-    videoRef.current?.play().catch(() => {})
-  }
+  useEffect(() => {
+    // If priority, we already have the src, no need to observe
+    if (priority || !item.video) return
 
-  const handleMouseLeave = () => {
-    videoRef.current?.pause()
-  }
+    const el = containerRef.current
+    if (!el) return
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          setVideoSrc(item.video)
+          observer.disconnect()
+        }
+      },
+      // Start loading the video slightly before it comes into view
+      { rootMargin: '200px', threshold: 0 }
+    )
+
+    observer.observe(el)
+    return () => observer.disconnect()
+  }, [item.video, priority])
 
   return (
     <Link
+      ref={containerRef}
       href={item.href}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
       className="group relative block aspect-video rounded-3xl overflow-hidden bg-dark-base shadow-xl hover:shadow-2xl hover:shadow-purple-primary/10 transition-all duration-500 cursor-pointer"
     >
       {/* ── Poster image — plain img tag is fastest for local images ── */}
@@ -59,11 +71,11 @@ export default function LazyVideoCard({ item, priority = false }: LazyVideoCardP
         className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 z-0"
       />
 
-      {/* ── Video — src only set on first hover, plays on each hover ── */}
+      {/* ── Video — autoplays continuously once loaded via IntersectionObserver ── */}
       {item.video && (
         <video
-          ref={videoRef}
-          src={videoSrc}      // undefined until first hover → zero network cost on load
+          src={videoSrc}
+          autoPlay
           muted
           loop
           playsInline
@@ -72,7 +84,7 @@ export default function LazyVideoCard({ item, priority = false }: LazyVideoCardP
         />
       )}
 
-      {/* Dark Overlay on Hover */}
+      {/* Dark Overlay on Hover (text overlay will cover the playing video) */}
       <div className="absolute inset-0 bg-dark-base/85 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-[2]" />
 
       {/* Overlay Content */}

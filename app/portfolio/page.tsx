@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { portfolioItems } from '@/data/portfolio'
 import Link from 'next/link'
 import LazyVideoCard from '@/components/ui/LazyVideoCard'
+import WhatsAppCTA from '@/components/sections/WhatsAppCTA'
 
 export const metadata: Metadata = {
   title: 'Portfolio — Websites That Worked | MotionBite',
@@ -60,6 +61,9 @@ export default function PortfolioPage() {
           ))}
         </div>
       </section>
+
+      {/* WhatsApp CTA */}
+      <WhatsAppCTA phoneNumber="8801991410183" />
 
       {/* Final Exit CTA */}
       <section className="section-padding px-4 sm:px-6 lg:px-8">

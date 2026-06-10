@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import ContactForm from './ContactForm'
+import { siteData } from '@/data/site'
 
 export const metadata: Metadata = {
   title: 'Contact MotionBite | Free Web Design & Development Consultation',
@@ -33,19 +34,19 @@ const contactDetails = [
   {
     icon: '📧',
     label: 'Email',
-    value: 'hello@motionbite.com',
-    href: 'mailto:hello@motionbite.com',
+    value: siteData.contact.email,
+    href: `mailto:${siteData.contact.email}`,
   },
   {
     icon: '⚡',
     label: 'Response Time',
-    value: 'Within 24 hours',
+    value: siteData.contact.responseTime,
     href: null,
   },
   {
     icon: '🌍',
     label: 'Working Hours',
-    value: 'Mon–Fri, 9am–6pm (GMT+6)',
+    value: siteData.contact.workingHours,
     href: null,
   },
 ]
@@ -145,7 +146,7 @@ export default function ContactPage() {
                 <h2 className="font-heading text-sm font-bold text-text-primary mb-4 uppercase tracking-wider">Follow Along</h2>
                 <div className="flex gap-3">
                   <a
-                    href="https://linkedin.com"
+                    href={siteData.socials.linkedin}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="w-10 h-10 rounded-lg bg-dark-base border border-dark-border flex items-center justify-center text-text-muted hover:text-purple-primary hover:border-purple-primary/30 transition-all duration-200"
@@ -154,7 +155,7 @@ export default function ContactPage() {
                     in
                   </a>
                   <a
-                    href="https://instagram.com"
+                    href={siteData.socials.instagram}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="w-10 h-10 rounded-lg bg-dark-base border border-dark-border flex items-center justify-center text-text-muted hover:text-purple-primary hover:border-purple-primary/30 transition-all duration-200 text-sm"

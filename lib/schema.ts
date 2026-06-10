@@ -1,3 +1,5 @@
+import { siteData } from '@/data/site'
+
 export const organizationSchema = {
   '@context': 'https://schema.org',
   '@type': 'ProfessionalService',
@@ -5,10 +7,12 @@ export const organizationSchema = {
   url: 'https://motionbite.com',
   logo: 'https://motionbite.com/logo.png',
   description: 'Web design and development agency for small businesses and restaurants. Fast, professional websites designed and built end to end — delivered in 14 days.',
-  email: 'hello@motionbite.com',
+  email: siteData.contact.email,
   sameAs: [
-    'https://www.linkedin.com/company/motionbite',
-    'https://www.instagram.com/motionbite',
+    siteData.socials.linkedin,
+    siteData.socials.instagram,
+    siteData.socials.twitter,
+    siteData.socials.youtube,
   ],
   hasOfferCatalog: {
     '@type': 'OfferCatalog',

@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { siteData } from '@/data/site'
 
 export const metadata: Metadata = {
   title: 'Terms of Service | MotionBite',
@@ -23,7 +24,7 @@ export default function TermsPage() {
           <h2 className="font-heading text-2xl text-text-primary mt-8">Intellectual Property</h2>
           <p>Upon full payment, you own all final deliverables. MotionBite retains the right to display completed work in our portfolio.</p>
           <h2 className="font-heading text-2xl text-text-primary mt-8">Contact</h2>
-          <p>Questions? Email <a href="mailto:hello@motionbite.com" className="text-purple-primary hover:underline">hello@motionbite.com</a>.</p>
+          <p>Questions? Email <a href={`mailto:${siteData.contact.email}`} className="text-purple-primary hover:underline">{siteData.contact.email}</a>.</p>
         </div>
       </div>
     </div>

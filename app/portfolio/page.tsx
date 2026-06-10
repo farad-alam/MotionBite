@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { portfolioItems } from '@/data/portfolio'
+import { siteData } from '@/data/site'
 import Link from 'next/link'
 import LazyVideoCard from '@/components/ui/LazyVideoCard'
 import WhatsAppCTA from '@/components/sections/WhatsAppCTA'
@@ -63,7 +64,7 @@ export default function PortfolioPage() {
       </section>
 
       {/* WhatsApp CTA */}
-      <WhatsAppCTA phoneNumber="8801991410183" />
+      <WhatsAppCTA phoneNumber={siteData.contact.phone} />
 
       {/* Final Exit CTA */}
       <section className="section-padding px-4 sm:px-6 lg:px-8">

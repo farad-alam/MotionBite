@@ -4,39 +4,7 @@ import { useRef } from 'react'
 import Link from 'next/link'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
-
-const projects = [
-  {
-    id: 1,
-    client: 'Stripe Partners',
-    category: 'Fintech / Web Design',
-    title: 'Redefining Digital Payments',
-    challenge: 'Stripe Partners needed a modern web presence that communicated absolute trust while feeling incredibly fast and cutting-edge.',
-    impact: 'Increased user engagement by 45% and reduced bounce rate to an all-time low of 12%.',
-    bgColor: 'bg-[#0a0a0f]',
-    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=2000'
-  },
-  {
-    id: 2,
-    client: 'Aura Health',
-    category: 'Healthcare / SaaS',
-    title: 'Mindfulness Meets AI',
-    challenge: 'Aura struggled to visually differentiate their AI-driven approach in a crowded wellness market without feeling overly sterile.',
-    impact: 'Helped secure Series B funding by delivering a polished, investor-ready web application in just 3 weeks.',
-    bgColor: 'bg-[#12121a]',
-    image: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&q=80&w=2000'
-  },
-  {
-    id: 3,
-    client: 'Nexus Architecture',
-    category: 'Architecture / Branding',
-    title: 'Building the Future',
-    challenge: 'Nexus had breathtaking physical structures but a dated website that completely failed to capture the monumental scale of their work.',
-    impact: 'Generated a 300% increase in high-ticket inbound leads within the first quarter post-launch.',
-    bgColor: 'bg-[#181824]',
-    image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=2000'
-  }
-]
+import { portfolioItems } from '@/data/portfolio'
 
 export default function Portfolio() {
   const containerRef = useRef<HTMLDivElement>(null)
@@ -44,6 +12,9 @@ export default function Portfolio() {
     target: containerRef,
     offset: ["start start", "end end"]
   })
+
+  // Take top 3 items for the homepage
+  const featuredProjects = portfolioItems.slice(0, 3)
 
   return (
     <section ref={containerRef} className="bg-[#060608] relative z-10 w-full">
@@ -69,17 +40,21 @@ export default function Portfolio() {
 
         {/* Stacked Cards Container */}
         <div className="flex flex-col relative w-full pb-[10vh]">
-          {projects.map((project, index) => {
+          {featuredProjects.map((project, index) => {
             // Calculate dynamic scale and opacity based on scroll position
             // Each card scales down slightly as the user scrolls past it to reveal the next
-            const targetScale = 1 - ( (projects.length - index) * 0.05 );
+            const targetScale = 1 - ( (featuredProjects.length - index) * 0.05 );
             
+            // Assign a background color based on index to keep the premium feel
+            const bgColors = ['bg-[#0a0a0f]', 'bg-[#12121a]', 'bg-[#181824]']
+            const bgColor = bgColors[index % bgColors.length]
+
             return (
               <Card 
                 key={project.id} 
-                project={project} 
+                project={{...project, bgColor}} 
                 index={index} 
-                total={projects.length}
+                total={featuredProjects.length}
                 progress={scrollYProgress}
                 targetScale={targetScale}
               />
@@ -146,27 +121,27 @@ function Card({ project, index, total, progress, targetScale }: {
           <div>
             <div className="flex items-center gap-4 mb-8">
               <span className="bg-white/10 text-white border border-white/20 px-4 py-1.5 rounded-full text-sm font-medium backdrop-blur-md">
-                {project.category}
+                {project.industry}
               </span>
-              <span className="text-text-muted font-medium text-sm">{project.client}</span>
+              <span className="text-text-muted font-medium text-sm">{project.name}</span>
             </div>
             
             <h3 className="font-heading font-black text-4xl md:text-6xl text-white leading-tight mb-8">
-              {project.title}
+              {project.result}
             </h3>
 
             <div className="space-y-8 max-w-lg">
               <div>
                 <h4 className="text-purple-primary font-bold text-sm uppercase tracking-wider mb-2">The Challenge</h4>
-                <p className="text-text-muted text-base md:text-lg leading-relaxed">
+                <p className="text-text-muted text-base md:text-lg leading-relaxed line-clamp-3">
                   {project.challenge}
                 </p>
               </div>
               
               <div>
-                <h4 className="text-emerald-400 font-bold text-sm uppercase tracking-wider mb-2">The Impact</h4>
-                <p className="text-white text-base md:text-lg leading-relaxed font-medium">
-                  {project.impact}
+                <h4 className="text-emerald-400 font-bold text-sm uppercase tracking-wider mb-2">The Solution</h4>
+                <p className="text-white text-base md:text-lg leading-relaxed font-medium line-clamp-3">
+                  {project.solution}
                 </p>
               </div>
             </div>
@@ -174,7 +149,7 @@ function Card({ project, index, total, progress, targetScale }: {
 
           <div className="mt-8">
             <Link 
-              href="/portfolio" 
+              href={project.href} 
               className="inline-flex items-center gap-3 text-white border-b border-white/30 hover:border-white pb-1 transition-colors group"
             >
               <span className="font-semibold text-lg">Read full case study</span>
@@ -189,7 +164,7 @@ function Card({ project, index, total, progress, targetScale }: {
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img 
             src={project.image} 
-            alt={project.title}
+            alt={project.name}
             className="w-full h-full object-cover transform hover:scale-105 transition-transform duration-[1.5s] ease-[0.16,1,0.3,1]"
           />
         </div>

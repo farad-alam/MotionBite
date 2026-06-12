@@ -19,9 +19,9 @@ export default function HomePage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema(faqItems)) }}
       />
       <Hero />
+      <Portfolio />
       <Services />
       <Process />
-      <Portfolio />
       <Testimonials />
       <WhyUs />
 

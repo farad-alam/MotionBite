@@ -4,7 +4,7 @@ export const siteData = {
   url: 'https://motionbite.com',
   contact: {
     email: 'hello@motionbite.com',
-    phone: '8801991410183', // WhatsApp number
+    phone: '8801406466559', // WhatsApp number
     responseTime: 'Within 24 hours',
     workingHours: 'Mon–Fri, 9am–6pm (GMT+6)',
   },

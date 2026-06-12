@@ -7,6 +7,7 @@ import { organizationSchema } from '@/lib/schema'
 import NavbarWrapper from '@/components/layout/NavbarWrapper'
 import FooterWrapper from '@/components/layout/FooterWrapper'
 import CrispProvider from '@/components/providers/CrispProvider'
+import LenisProvider from '@/components/providers/LenisProvider'
 
 const redHatDisplay = Red_Hat_Display({
   subsets: ['latin'],
@@ -38,11 +39,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       <body>
-        <NavbarWrapper />
-        <main>{children}</main>
-        <FooterWrapper />
-        <Analytics />
-        <CrispProvider />
+        <LenisProvider>
+          <NavbarWrapper />
+          <main>{children}</main>
+          <FooterWrapper />
+          <Analytics />
+          <CrispProvider />
+        </LenisProvider>
       </body>
     </html>
   )

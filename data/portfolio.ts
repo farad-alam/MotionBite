@@ -10,6 +10,7 @@ export type PortfolioItem = {
   challenge: string
   solution: string
   results: string[]
+  metrics?: { label: string; value: string }[]
   testimonial?: string
   clientName?: string
   video?: string
@@ -36,6 +37,10 @@ export const portfolioItems: PortfolioItem[] = [
       'Online reservation form generating 20+ enquiries per week within 60 days of launch',
       'Google Business Profile impressions up 180% in the first month',
     ],
+    metrics: [
+      { label: 'Timeline', value: '2 Weeks' },
+      { label: 'Google Rank', value: 'Page 1' },
+    ],
     testimonial:
       'We had zero online presence before MotionBite. Now we rank on Google, diners browse our full menu before visiting, and reservations come through the website every day. Exactly what we needed.',
     clientName: 'Nizhum, Owner — Papa Roma Food Engineering',
@@ -60,6 +65,10 @@ export const portfolioItems: PortfolioItem[] = [
       'Pilgrims can now access Hajj guides, duas, and training materials directly on the site',
       'WhatsApp enquiries from the site doubled package sign-ups in the first Hajj season',
     ],
+    metrics: [
+      { label: 'Pages Built', value: '12' },
+      { label: 'Enquiries', value: '2×' },
+    ],
     testimonial:
       'Families research Hajj for months before booking. Having a professional site with our packages, guides, and duas built their trust before they even contacted us. Our enquiries doubled in the first season.',
     clientName: 'Management Team — Baitullah Musafir',
@@ -83,6 +92,10 @@ export const portfolioItems: PortfolioItem[] = [
       'Rich results (star ratings, price) appearing in Google search within 2 weeks',
       'WhatsApp enquiries from the site converting at 35% in the first month',
       'First online sales channel established — no longer reliant solely on walk-in customers',
+    ],
+    metrics: [
+      { label: 'Ranking', value: '30 Days' },
+      { label: 'Conversion', value: '35%' },
     ],
     testimonial:
       'Before the website, nobody could find us online. Now customers from across Chapainawabganj contact us through the site before even visiting the shop. The Google visibility alone paid for the site in the first month.',

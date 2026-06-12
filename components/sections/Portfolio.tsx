@@ -4,7 +4,14 @@ import { useRef } from 'react'
 import Link from 'next/link'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
-import { portfolioItems } from '@/data/portfolio'
+import { portfolioItems, PortfolioItem } from '@/data/portfolio'
+
+// Define the custom styles for the featured projects
+const projectStyles: Record<string, { bg: string, accent: string }> = {
+  'papa-roma':         { bg: 'bg-[#0D0A08]', accent: '#FF6B35' },
+  'baitullah-musafir': { bg: 'bg-[#080D0A]', accent: '#00A878' },
+  'bismillah-auto':    { bg: 'bg-[#080A0D]', accent: '#0066FF' },
+}
 
 export default function Portfolio() {
   const containerRef = useRef<HTMLDivElement>(null)
@@ -18,7 +25,7 @@ export default function Portfolio() {
 
   return (
     <section ref={containerRef} className="bg-[#060608] relative z-10 w-full">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32">
+      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-32">
         
         {/* Header */}
         <div className="flex flex-col md:flex-row items-end justify-between mb-24 gap-8">
@@ -41,18 +48,15 @@ export default function Portfolio() {
         {/* Stacked Cards Container */}
         <div className="flex flex-col relative w-full pb-[10vh]">
           {featuredProjects.map((project, index) => {
-            // Calculate dynamic scale and opacity based on scroll position
-            // Each card scales down slightly as the user scrolls past it to reveal the next
-            const targetScale = 1 - ( (featuredProjects.length - index) * 0.05 );
-            
-            // Assign a background color based on index to keep the premium feel
-            const bgColors = ['bg-[#0a0a0f]', 'bg-[#12121a]', 'bg-[#181824]']
-            const bgColor = bgColors[index % bgColors.length]
+            // Target scale is very subtle, just 0.98 per level of depth
+            const targetScale = 1 - ( (featuredProjects.length - index) * 0.02 );
+            const style = projectStyles[project.slug] || { bg: 'bg-[#0D0D11]', accent: '#6b46c1' }
 
             return (
               <Card 
                 key={project.id} 
-                project={{...project, bgColor}} 
+                project={project} 
+                style={style}
                 index={index} 
                 total={featuredProjects.length}
                 progress={scrollYProgress}
@@ -84,9 +88,10 @@ export default function Portfolio() {
   )
 }
 
-// Individual Card Component to handle isolated scroll transforms
-function Card({ project, index, total, progress, targetScale }: { 
-  project: any, 
+// Individual Card Component
+function Card({ project, style, index, total, progress, targetScale }: { 
+  project: PortfolioItem, 
+  style: { bg: string, accent: string },
   index: number, 
   total: number, 
   progress: any,
@@ -94,80 +99,139 @@ function Card({ project, index, total, progress, targetScale }: {
 }) {
   const cardRef = useRef<HTMLDivElement>(null)
   
-  // Create a localized progress specifically for THIS card's exit animation
-  // It starts fading/scaling when it hits the top and the NEXT card starts covering it
   const { scrollYProgress } = useScroll({
     target: cardRef,
     offset: ["start start", "end start"]
   })
 
-  // Scale down and fade out slightly as it goes up
+  // Subtle scale down for depth
   const scale = useTransform(scrollYProgress, [0, 1], [1, targetScale])
-  const opacity = useTransform(scrollYProgress, [0, 1], [1, 0.5])
-  const filter = useTransform(scrollYProgress, [0, 1], ["blur(0px)", "blur(10px)"])
+
+  // Top offset so the cards peek from under each other
+  // e.g. Card 0 stops at 40px, Card 1 stops at 100px, etc.
+  const stickyTop = 40 + (index * 60)
+
+  // Get first letter of client name for avatar
+  const clientInitial = project.clientName ? project.clientName.charAt(0) : 'C'
+  const clientNameParts = project.clientName ? project.clientName.split('—') : []
+  const clientRole = clientNameParts[0] || 'Client'
+  const clientCompany = clientNameParts[1] || project.name
 
   return (
     <div 
       ref={cardRef} 
-      className="sticky top-0 h-screen flex items-center justify-center w-full origin-top"
-      style={{ paddingTop: `calc(5vh + ${index * 20}px)` }} // Slight offset so they stack visibly at the top
+      className="sticky flex items-start justify-center w-full origin-top mb-10 md:mb-0"
+      style={{ top: `${stickyTop}px`, height: 'min(90vh, 800px)' }}
     >
       <motion.div 
-        style={{ scale, opacity, filter }}
-        className={`w-full h-[85vh] md:h-[80vh] ${project.bgColor} rounded-[40px] border border-white/5 overflow-hidden flex flex-col md:flex-row relative shadow-[0_-20px_50px_rgba(0,0,0,0.5)]`}
+        style={{ scale }}
+        className={`w-full h-full ${style.bg} rounded-[32px] md:rounded-[40px] border border-white/5 overflow-hidden flex flex-col md:flex-row shadow-[0_-10px_40px_rgba(0,0,0,0.8)]`}
       >
-        {/* Content Side */}
-        <div className="w-full md:w-1/2 p-8 md:p-16 flex flex-col justify-between h-full relative z-20 bg-gradient-to-r from-black/60 to-transparent md:bg-none">
-          <div>
-            <div className="flex items-center gap-4 mb-8">
-              <span className="bg-white/10 text-white border border-white/20 px-4 py-1.5 rounded-full text-sm font-medium backdrop-blur-md">
-                {project.industry}
-              </span>
-              <span className="text-text-muted font-medium text-sm">{project.name}</span>
-            </div>
-            
-            <h3 className="font-heading font-black text-4xl md:text-6xl text-white leading-tight mb-8">
-              {project.result}
-            </h3>
-
-            <div className="space-y-8 max-w-lg">
-              <div>
-                <h4 className="text-purple-primary font-bold text-sm uppercase tracking-wider mb-2">The Challenge</h4>
-                <p className="text-text-muted text-base md:text-lg leading-relaxed line-clamp-3">
-                  {project.challenge}
-                </p>
-              </div>
-              
-              <div>
-                <h4 className="text-emerald-400 font-bold text-sm uppercase tracking-wider mb-2">The Solution</h4>
-                <p className="text-white text-base md:text-lg leading-relaxed font-medium line-clamp-3">
-                  {project.solution}
-                </p>
-              </div>
-            </div>
+        {/* LEFT PANEL (45%) */}
+        <div className="w-full md:w-[45%] p-8 md:p-12 lg:p-16 flex flex-col h-full relative z-20">
+          
+          {/* Breadcrumb / Category */}
+          <div className="mb-6">
+            <span className="font-serif italic text-white/60 text-lg md:text-xl">
+              {project.industry}
+            </span>
           </div>
+          
+          {/* Headline */}
+          <h3 className="font-heading font-black text-3xl md:text-5xl lg:text-6xl text-white leading-[1.1] mb-6">
+            {project.result}
+          </h3>
 
-          <div className="mt-8">
-            <Link 
-              href={project.href} 
-              className="inline-flex items-center gap-3 text-white border-b border-white/30 hover:border-white pb-1 transition-colors group"
-            >
-              <span className="font-semibold text-lg">Read full case study</span>
-              <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform" />
-            </Link>
-          </div>
+          {/* Short description */}
+          <p className="text-text-muted text-base lg:text-lg leading-relaxed line-clamp-3 mb-10 max-w-lg">
+            {project.challenge}
+          </p>
+
+          {/* Metrics Block */}
+          {project.metrics && project.metrics.length > 0 && (
+            <div className="flex gap-8 md:gap-16 mb-auto">
+              {project.metrics.map((metric, i) => (
+                <div key={i}>
+                  <p className="text-white/50 text-xs md:text-sm uppercase tracking-wider font-semibold mb-2">{metric.label}</p>
+                  <p className="text-white font-heading font-bold text-2xl md:text-4xl">{metric.value}</p>
+                </div>
+              ))}
+            </div>
+          )}
+
+          {/* Bottom Attribution Pill */}
+          <Link 
+            href={project.href}
+            className="mt-8 group flex items-center justify-between bg-white/5 hover:bg-white/10 border border-white/10 rounded-full p-2 pr-6 transition-colors duration-300"
+          >
+            <div className="flex items-center gap-4">
+              <div 
+                className="w-12 h-12 rounded-full flex items-center justify-center text-white font-bold text-xl"
+                style={{ backgroundColor: style.accent }}
+              >
+                {clientInitial}
+              </div>
+              <div className="flex flex-col">
+                <span className="text-white font-semibold text-sm">{clientRole.trim()}</span>
+                <span className="text-white/50 text-xs">{clientCompany?.trim() || project.name}</span>
+              </div>
+            </div>
+            <ArrowRight className="w-5 h-5 text-white/50 group-hover:text-white group-hover:translate-x-1 transition-all" />
+          </Link>
+          
         </div>
 
-        {/* Image Side */}
-        <div className="absolute md:relative w-full md:w-1/2 h-full top-0 left-0 z-10 md:z-20 pointer-events-none md:pointer-events-auto">
-          <div className="absolute inset-0 bg-black/40 md:bg-transparent md:bg-gradient-to-l from-transparent to-[#12121a]/80 z-10" />
+        {/* RIGHT PANEL (55%) - "Background Echo" with Mockup */}
+        <div 
+          className="hidden md:block w-full md:w-[55%] h-full relative z-10 overflow-hidden"
+          style={{ 
+            backgroundColor: style.accent,
+            backgroundImage: `repeating-linear-gradient(
+              90deg,
+              transparent,
+              transparent 40px,
+              rgba(0,0,0,0.06) 40px,
+              rgba(0,0,0,0.06) 80px
+            )`
+          }}
+        >
+          {/* The mock-up device frame (CSS perspective) */}
+          <div className="absolute inset-0 flex items-center justify-center p-12">
+            <div 
+              className="w-full h-[120%] bg-[#0a0a0a] rounded-3xl overflow-hidden shadow-2xl relative transform transition-transform duration-1000 group-hover:scale-105"
+              style={{
+                transform: 'perspective(1200px) rotateY(-8deg) rotateX(4deg) translateZ(0) scale(1.1) translateX(5%)',
+                boxShadow: '-20px 30px 60px rgba(0,0,0,0.5)'
+              }}
+            >
+              {/* Fake browser bar */}
+              <div className="w-full h-8 bg-[#1a1a1a] flex items-center px-4 gap-2 absolute top-0 left-0 z-20">
+                <div className="w-2.5 h-2.5 rounded-full bg-[#ff5f56]" />
+                <div className="w-2.5 h-2.5 rounded-full bg-[#ffbd2e]" />
+                <div className="w-2.5 h-2.5 rounded-full bg-[#27c93f]" />
+              </div>
+              
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img 
+                src={project.image} 
+                alt={project.name}
+                className="w-full h-full object-cover object-top pt-8"
+              />
+            </div>
+          </div>
+        </div>
+        
+        {/* MOBILE IMAGE ONLY (hidden on md) */}
+        <div className="md:hidden w-full h-[30vh] relative overflow-hidden order-first">
+          <div className="absolute inset-0 bg-black/40 z-10" />
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img 
             src={project.image} 
             alt={project.name}
-            className="w-full h-full object-cover transform hover:scale-105 transition-transform duration-[1.5s] ease-[0.16,1,0.3,1]"
+            className="w-full h-full object-cover"
           />
         </div>
+
       </motion.div>
     </div>
   )

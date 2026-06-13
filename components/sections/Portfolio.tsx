@@ -128,7 +128,7 @@ function Card({ project, style, index, total, progress, targetScale }: {
   return (
     <div 
       ref={cardRef} 
-      className="sticky flex items-start justify-center w-full origin-top mb-10 md:mb-0"
+      className="sticky flex items-start justify-center w-full origin-top mb-[10vh] md:mb-[15vh]"
       style={{ top: `${stickyTop}px`, height: cardHeight, minHeight: '550px', maxHeight: '750px' }}
     >
       <motion.div 
@@ -136,7 +136,7 @@ function Card({ project, style, index, total, progress, targetScale }: {
         className={`w-full h-full ${style.bg} rounded-[32px] md:rounded-[40px] border border-white/5 overflow-hidden flex flex-col md:flex-row shadow-[0_-10px_40px_rgba(0,0,0,0.8)]`}
       >
         {/* LEFT PANEL (45%) */}
-        <div className="w-full md:w-[45%] p-6 md:p-10 flex flex-col h-full relative z-20 overflow-y-auto overflow-x-hidden no-scrollbar">
+        <div className="w-full md:w-[45%] p-6 md:p-10 flex flex-col h-full relative z-20">
           
           {/* Breadcrumb / Category */}
           <div className="mb-6">

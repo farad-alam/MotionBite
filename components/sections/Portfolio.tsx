@@ -9,6 +9,9 @@ import { portfolioItems, PortfolioItem } from '@/data/portfolio'
 // Define the custom styles for the featured projects
 const projectStyles: Record<string, { bg: string, accent: string }> = {
   'papa-roma':         { bg: 'bg-[#0D0A08]', accent: '#FF6B35' },
+  'reach-logic':       { bg: 'bg-[#0A080D]', accent: '#9D4EDD' },
+  'muscle-flex':       { bg: 'bg-[#0D0D08]', accent: '#FFB703' },
+  'saudi-garej':       { bg: 'bg-[#041221]', accent: '#0066FF' },
   'baitullah-musafir': { bg: 'bg-[#080D0A]', accent: '#00A878' },
   'bismillah-auto':    { bg: 'bg-[#080A0D]', accent: '#0066FF' },
 }
@@ -20,8 +23,8 @@ export default function Portfolio() {
     offset: ["start start", "end end"]
   })
 
-  // Take top 3 items for the homepage
-  const featuredProjects = portfolioItems.slice(0, 3)
+  // Take top 4 items for the homepage
+  const featuredProjects = portfolioItems.slice(0, 4)
 
   return (
     <section ref={containerRef} className="bg-[#060608] relative z-10 w-full">
@@ -181,44 +184,14 @@ function Card({ project, style, index, total, progress, targetScale }: {
           
         </div>
 
-        {/* RIGHT PANEL (55%) - "Background Echo" with Mockup */}
-        <div 
-          className="hidden md:block w-full md:w-[55%] h-full relative z-10 overflow-hidden"
-          style={{ 
-            backgroundColor: style.accent,
-            backgroundImage: `repeating-linear-gradient(
-              90deg,
-              transparent,
-              transparent 40px,
-              rgba(0,0,0,0.06) 40px,
-              rgba(0,0,0,0.06) 80px
-            )`
-          }}
-        >
-          {/* The mock-up device frame (CSS perspective) */}
-          <div className="absolute inset-0 flex items-center justify-center p-12">
-            <div 
-              className="w-full h-[120%] bg-[#0a0a0a] rounded-3xl overflow-hidden shadow-2xl relative transform transition-transform duration-1000 group-hover:scale-105"
-              style={{
-                transform: 'perspective(1200px) rotateY(-8deg) rotateX(4deg) translateZ(0) scale(1.1) translateX(5%)',
-                boxShadow: '-20px 30px 60px rgba(0,0,0,0.5)'
-              }}
-            >
-              {/* Fake browser bar */}
-              <div className="w-full h-8 bg-[#1a1a1a] flex items-center px-4 gap-2 absolute top-0 left-0 z-20">
-                <div className="w-2.5 h-2.5 rounded-full bg-[#ff5f56]" />
-                <div className="w-2.5 h-2.5 rounded-full bg-[#ffbd2e]" />
-                <div className="w-2.5 h-2.5 rounded-full bg-[#27c93f]" />
-              </div>
-              
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img 
-                src={project.image} 
-                alt={project.name}
-                className="w-full h-full object-cover object-top pt-8"
-              />
-            </div>
-          </div>
+        {/* RIGHT PANEL (55%) - Integrated Mockup Image */}
+        <div className="hidden md:block w-full md:w-[55%] h-full relative z-10 overflow-hidden bg-black/20 border-l border-white/5">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img 
+            src={project.image} 
+            alt={project.name}
+            className="w-full h-full object-cover transform transition-transform duration-1000 group-hover:scale-105"
+          />
         </div>
         
         {/* MOBILE IMAGE ONLY (hidden on md) */}

@@ -8,12 +8,12 @@ import { portfolioItems, PortfolioItem } from '@/data/portfolio'
 
 // Define the custom styles for the featured projects
 const projectStyles: Record<string, { bg: string, accent: string }> = {
-  'papa-roma':         { bg: 'bg-[#0D0A08]', accent: '#FF6B35' },
-  'reach-logic':       { bg: 'bg-[#0A080D]', accent: '#9D4EDD' },
-  'muscle-flex':       { bg: 'bg-[#0D0D08]', accent: '#FFB703' },
-  'saudi-garej':       { bg: 'bg-[#041221]', accent: '#0066FF' },
-  'baitullah-musafir': { bg: 'bg-[#080D0A]', accent: '#00A878' },
-  'bismillah-auto':    { bg: 'bg-[#080A0D]', accent: '#0066FF' },
+  'papa-roma':         { bg: 'bg-[#2A1110]', accent: '#E63946' }, // Warm dark red
+  'reach-logic':       { bg: 'bg-[#0B211A]', accent: '#00B48A' }, // Deep teal/green
+  'muscle-flex':       { bg: 'bg-[#2B0F12]', accent: '#D90429' }, // Dark red
+  'saudi-garej':       { bg: 'bg-[#0A1A30]', accent: '#0066FF' }, // Dark blue
+  'baitullah-musafir': { bg: 'bg-[#0B2416]', accent: '#00A878' },
+  'bismillah-auto':    { bg: 'bg-[#0A1A30]', accent: '#0066FF' },
 }
 
 export default function Portfolio() {
@@ -185,23 +185,22 @@ function Card({ project, style, index, total, progress, targetScale }: {
         </div>
 
         {/* RIGHT PANEL (55%) - Integrated Mockup Image */}
-        <div className="hidden md:block w-full md:w-[55%] h-full relative z-10 overflow-hidden bg-black/20 border-l border-white/5">
+        <div className="hidden md:block w-full md:w-[55%] h-full relative z-10 overflow-hidden bg-black/40 border-l border-white/5 flex items-center justify-center p-6 lg:p-12">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img 
             src={project.image} 
             alt={project.name}
-            className="w-full h-full object-cover transform transition-transform duration-1000 group-hover:scale-105"
+            className="max-w-full max-h-full object-contain transform transition-transform duration-1000 group-hover:scale-105 rounded-2xl md:rounded-[32px] shadow-2xl"
           />
         </div>
         
         {/* MOBILE IMAGE ONLY (hidden on md) */}
-        <div className="md:hidden w-full h-[30vh] relative overflow-hidden order-first">
-          <div className="absolute inset-0 bg-black/40 z-10" />
+        <div className="md:hidden w-full h-[35vh] relative overflow-hidden order-first bg-black/40 flex items-center justify-center p-4">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img 
             src={project.image} 
             alt={project.name}
-            className="w-full h-full object-cover"
+            className="max-w-full max-h-full object-contain rounded-xl shadow-xl"
           />
         </div>
 

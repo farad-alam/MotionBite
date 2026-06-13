@@ -83,9 +83,9 @@ export default function Footer() {
           </div>
 
           {/* Box 2: Services */}
-          <div className="xl:col-span-3 bg-dark-card border border-dark-border rounded-3xl p-8 md:p-12 flex flex-col justify-between min-h-[320px] transition-colors duration-500 hover:border-purple-primary/30">
+          <div className="xl:col-span-3 bg-dark-card border border-dark-border rounded-3xl p-8 md:p-12 flex flex-col min-h-[320px] transition-colors duration-500 hover:border-purple-primary/30">
             <h4 className="font-heading text-text-primary text-sm font-bold uppercase tracking-widest mb-12">Services</h4>
-            <ul className="space-y-4 mt-auto">
+            <ul className="space-y-4">
               {servicesLinks.map((l, i) => (
                 <li key={i}>
                   <Link href={l.href} className="text-text-muted hover:text-purple-primary text-lg font-heading font-semibold transition-colors duration-200 block">
@@ -97,9 +97,9 @@ export default function Footer() {
           </div>
 
           {/* Box 3: Info/Legal */}
-          <div className="xl:col-span-3 bg-dark-card border border-dark-border rounded-3xl p-8 md:p-12 flex flex-col justify-between min-h-[320px] transition-colors duration-500 hover:border-purple-primary/30">
+          <div className="xl:col-span-3 bg-dark-card border border-dark-border rounded-3xl p-8 md:p-12 flex flex-col min-h-[320px] transition-colors duration-500 hover:border-purple-primary/30">
             <h4 className="font-heading text-text-primary text-sm font-bold uppercase tracking-widest mb-12">Information</h4>
-            <ul className="space-y-4 mt-auto">
+            <ul className="space-y-4">
               {legalLinks.map((l) => (
                 <li key={l.href}>
                   <Link href={l.href} className="text-text-muted hover:text-purple-primary text-lg font-heading font-semibold transition-colors duration-200 block">

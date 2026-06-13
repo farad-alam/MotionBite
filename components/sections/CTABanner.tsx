@@ -49,6 +49,15 @@ export default function CTABanner() {
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full px-4">
+            <Link
+              href="/start-project"
+              className="group relative inline-flex items-center justify-center gap-4 bg-white text-dark-base font-body font-bold text-lg px-8 sm:px-10 py-5 rounded-full overflow-hidden transition-transform duration-300 hover:scale-105 shadow-[0_0_40px_rgba(125,64,255,0.3)] hover:shadow-[0_0_60px_rgba(125,64,255,0.5)] w-full sm:w-auto"
+            >
+              <div className="absolute inset-0 bg-purple-primary translate-y-[100%] group-hover:translate-y-0 transition-transform duration-500 ease-out z-0" />
+              <span className="relative z-10 group-hover:text-white transition-colors duration-300">Start Your Project</span>
+              <span className="relative z-10 group-hover:text-white transition-colors duration-300 transform group-hover:translate-x-1">→</span>
+            </Link>
+
             <a
               href="https://wa.me/8801406466559"
               target="_blank"
@@ -61,15 +70,6 @@ export default function CTABanner() {
               </svg>
               <span className="relative z-10">WhatsApp Us</span>
             </a>
-
-            <Link
-              href="/start-project"
-              className="group relative inline-flex items-center justify-center gap-4 bg-white text-dark-base font-body font-bold text-lg px-8 sm:px-10 py-5 rounded-full overflow-hidden transition-transform duration-300 hover:scale-105 shadow-[0_0_40px_rgba(125,64,255,0.3)] hover:shadow-[0_0_60px_rgba(125,64,255,0.5)] w-full sm:w-auto"
-            >
-              <div className="absolute inset-0 bg-purple-primary translate-y-[100%] group-hover:translate-y-0 transition-transform duration-500 ease-out z-0" />
-              <span className="relative z-10 group-hover:text-white transition-colors duration-300">Start Your Project</span>
-              <span className="relative z-10 group-hover:text-white transition-colors duration-300 transform group-hover:translate-x-1">→</span>
-            </Link>
           </div>
         </motion.div>
       </div>

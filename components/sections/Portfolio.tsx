@@ -136,7 +136,7 @@ function Card({ project, style, index, total, progress, targetScale }: {
         className={`w-full h-full ${style.bg} rounded-[32px] md:rounded-[40px] border border-white/5 overflow-hidden flex flex-col md:flex-row shadow-[0_-10px_40px_rgba(0,0,0,0.8)]`}
       >
         {/* LEFT PANEL (45%) */}
-        <div className="w-full md:w-[45%] p-6 md:p-10 flex flex-col h-full relative z-20">
+        <div className="w-full md:w-[45%] p-6 md:p-10 flex flex-col h-full relative z-20 overflow-y-auto overflow-x-hidden scrollbar-hide">
           
           {/* Breadcrumb / Category */}
           <div className="mb-6">

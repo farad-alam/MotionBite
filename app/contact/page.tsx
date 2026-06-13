@@ -155,13 +155,13 @@ export default function ContactPage() {
                     in
                   </a>
                   <a
-                    href={siteData.socials.instagram}
+                    href={siteData.socials.facebook}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="w-10 h-10 rounded-lg bg-dark-base border border-dark-border flex items-center justify-center text-text-muted hover:text-purple-primary hover:border-purple-primary/30 transition-all duration-200 text-sm"
-                    aria-label="Instagram"
+                    aria-label="Facebook"
                   >
-                    IG
+                    FB
                   </a>
                 </div>
               </div>

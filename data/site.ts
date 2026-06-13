@@ -4,14 +4,15 @@ export const siteData = {
   url: 'https://motionbite.com',
   contact: {
     email: 'hello@motionbite.com',
-    phone: '8801406466559', // WhatsApp number
+    phone: '+8801406466559',
+    address: '1st Floor, Afroza Tower, Uposhohor Newmarket, Rajshahi-6202, Bangladesh',
     responseTime: 'Within 24 hours',
     workingHours: 'Mon–Fri, 9am–6pm (GMT+6)',
   },
   socials: {
-    instagram: 'https://www.instagram.com/motionbite',
-    twitter: 'https://twitter.com/motionbite',
-    linkedin: 'https://www.linkedin.com/company/motionbite',
-    youtube: 'https://youtube.com/@motionbite',
+    facebook: 'https://facebook.com/MotionBiteit',
+    twitter: 'https://x.com/motionbiteit',
+    linkedin: 'https://www.linkedin.com/company/motionbiteit/',
+    youtube: 'https://www.youtube.com/@MotionBiteit',
   }
 }

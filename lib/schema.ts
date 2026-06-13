@@ -10,7 +10,7 @@ export const organizationSchema = {
   email: siteData.contact.email,
   sameAs: [
     siteData.socials.linkedin,
-    siteData.socials.instagram,
+    siteData.socials.facebook,
     siteData.socials.twitter,
     siteData.socials.youtube,
   ],

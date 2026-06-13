@@ -185,7 +185,7 @@ function Card({ project, style, index, total, progress, targetScale }: {
         </div>
 
         {/* RIGHT PANEL (55%) - Integrated Mockup Image */}
-        <div className="hidden md:block w-full md:w-[55%] h-full relative z-10 overflow-hidden bg-black/40 border-l border-white/5 flex items-center justify-center p-6 lg:p-12">
+        <div className="hidden md:flex w-full md:w-[55%] h-full relative z-10 overflow-hidden bg-black/40 border-l border-white/5 items-center justify-center p-6 lg:p-12">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img 
             src={project.image} 

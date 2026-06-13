@@ -2,11 +2,11 @@ import Link from 'next/link'
 import Image from 'next/image'
 
 interface WhatsAppCTAProps {
-  // Pass the full phone number with country code, e.g., '1234567890'
+  // Pass the full phone number with country code, e.g., '8801406466559'
   phoneNumber?: string
 }
 
-export default function WhatsAppCTA({ phoneNumber = '1234567890' }: WhatsAppCTAProps) {
+export default function WhatsAppCTA({ phoneNumber = '8801406466559' }: WhatsAppCTAProps) {
   const waLink = `https://wa.me/${phoneNumber}`
   const qrCodeUrl = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(waLink)}&bgcolor=111111&color=00C896`
 

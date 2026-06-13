@@ -44,4 +44,7 @@ export const defaultMetadata: Metadata = {
     follow: true,
     googleBot: { index: true, follow: true, 'max-image-preview': 'large' },
   },
+  verification: {
+    google: 'OEUfSm3Lf_5Zzg6nD-r2q9ROuakMKJUnsbhU3-hnhYI',
+  },
 }

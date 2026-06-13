@@ -139,33 +139,36 @@ function Card({ project, style, index, total, progress, targetScale }: {
         <div className="w-full md:w-[45%] p-6 md:p-10 flex flex-col h-full relative z-20 overflow-y-auto overflow-x-hidden scrollbar-hide">
           
           {/* Breadcrumb / Category */}
-          <div className="mb-6">
-            <span className="font-serif italic text-white/60 text-lg md:text-xl">
+          <div className="mb-3">
+            <span className="font-serif italic text-white/60 text-base md:text-lg">
               {project.industry}
             </span>
           </div>
           
           {/* Headline */}
-          <h3 className="font-heading font-black text-3xl md:text-5xl lg:text-6xl text-white leading-[1.1] mb-6">
+          <h3 className="font-heading font-black text-2xl md:text-4xl lg:text-5xl text-white leading-[1.1] mb-4">
             {project.result}
           </h3>
 
           {/* Short description */}
-          <p className="text-text-muted text-base lg:text-lg leading-relaxed line-clamp-3 mb-10 max-w-lg">
+          <p className="text-text-muted text-sm lg:text-base leading-relaxed line-clamp-2 mb-6 max-w-lg">
             {project.challenge}
           </p>
 
           {/* Metrics Block */}
           {project.metrics && project.metrics.length > 0 && (
-            <div className="flex gap-8 md:gap-16 mb-auto">
+            <div className="flex gap-6 md:gap-12 mb-4">
               {project.metrics.map((metric, i) => (
                 <div key={i}>
-                  <p className="text-white/50 text-xs md:text-sm uppercase tracking-wider font-semibold mb-2">{metric.label}</p>
-                  <p className="text-white font-heading font-bold text-2xl md:text-4xl">{metric.value}</p>
+                  <p className="text-white/50 text-xs uppercase tracking-wider font-semibold mb-1">{metric.label}</p>
+                  <p className="text-white font-heading font-bold text-xl md:text-3xl">{metric.value}</p>
                 </div>
               ))}
             </div>
           )}
+
+          {/* Spacer — pushes pill to bottom */}
+          <div className="flex-1" />
 
           {/* Bottom Attribution Pill */}
           <Link 

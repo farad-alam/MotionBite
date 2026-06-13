@@ -5,7 +5,7 @@ import { motion } from 'framer-motion'
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-[#060608] pt-24">
+    <section id="hero-section" className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-[#060608] pt-24">
 
       {/* ── BACKGROUND WAVES ── */}
 

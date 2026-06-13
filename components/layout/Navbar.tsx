@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
 
@@ -13,11 +13,38 @@ const links = [
 ]
 
 export default function Navbar() {
-  const [scrolled, setScrolled] = useState(false)
-  const [menuOpen, setMenuOpen] = useState(false)
+  const [scrolled, setScrolled]   = useState(false)   // hero has been scrolled past
+  const [visible, setVisible]     = useState(true)    // whether the navbar is shown
+  const [menuOpen, setMenuOpen]   = useState(false)
+  const lastScrollY               = useRef(0)
+  const heroHeight                = useRef(0)
 
   useEffect(() => {
-    const handler = () => setScrolled(window.scrollY > 30)
+    // Measure the hero section height once on mount
+    const hero = document.getElementById('hero-section')
+    if (hero) heroHeight.current = hero.offsetHeight
+
+    const handler = () => {
+      const y = window.scrollY
+      const pastHero = y > (heroHeight.current || window.innerHeight * 0.8)
+
+      setScrolled(pastHero)
+
+      if (!pastHero) {
+        // Still inside the hero — always show the navbar
+        setVisible(true)
+      } else {
+        // Past the hero: hide when scrolling down, show when scrolling up
+        if (y > lastScrollY.current + 5) {
+          setVisible(false)   // scrolling down → slide up and hide
+        } else if (y < lastScrollY.current - 5) {
+          setVisible(true)    // scrolling up → slide back down
+        }
+      }
+
+      lastScrollY.current = y
+    }
+
     window.addEventListener('scroll', handler, { passive: true })
     return () => window.removeEventListener('scroll', handler)
   }, [])
@@ -28,8 +55,8 @@ export default function Navbar() {
       <header className="fixed top-0 left-0 right-0 z-50 flex justify-center pt-5 px-4">
         <motion.div
           initial={{ opacity: 0, y: -16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+          animate={{ opacity: visible ? 1 : 0, y: visible ? 0 : -80 }}
+          transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
           className={`
             w-full max-w-4xl flex items-center justify-between
             px-4 py-2.5

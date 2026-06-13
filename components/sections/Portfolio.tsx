@@ -111,8 +111,13 @@ function Card({ project, style, index, total, progress, targetScale }: {
   const scale = useTransform(scrollYProgress, [0, 1], [1, targetScale])
 
   // Top offset so the cards peek from under each other
-  // e.g. Card 0 stops at 40px, Card 1 stops at 100px, etc.
-  const stickyTop = 40 + (index * 60)
+  const peekAmount = 40
+  const stickyTop = 30 + (index * peekAmount)
+  
+  // Calculate dynamic height based on the maximum possible top offset
+  // This guarantees even the last card doesn't get pushed off the bottom of the screen.
+  const maxStickyTop = 30 + ((total - 1) * peekAmount)
+  const cardHeight = `calc(100vh - ${maxStickyTop + 40}px)`
 
   // Get first letter of client name for avatar
   const clientInitial = project.clientName ? project.clientName.charAt(0) : 'C'
@@ -124,14 +129,14 @@ function Card({ project, style, index, total, progress, targetScale }: {
     <div 
       ref={cardRef} 
       className="sticky flex items-start justify-center w-full origin-top mb-10 md:mb-0"
-      style={{ top: `${stickyTop}px`, height: 'min(90vh, 800px)' }}
+      style={{ top: `${stickyTop}px`, height: cardHeight, minHeight: '550px', maxHeight: '750px' }}
     >
       <motion.div 
         style={{ scale }}
         className={`w-full h-full ${style.bg} rounded-[32px] md:rounded-[40px] border border-white/5 overflow-hidden flex flex-col md:flex-row shadow-[0_-10px_40px_rgba(0,0,0,0.8)]`}
       >
         {/* LEFT PANEL (45%) */}
-        <div className="w-full md:w-[45%] p-8 md:p-12 lg:p-16 flex flex-col h-full relative z-20">
+        <div className="w-full md:w-[45%] p-6 md:p-10 flex flex-col h-full relative z-20 overflow-y-auto overflow-x-hidden no-scrollbar">
           
           {/* Breadcrumb / Category */}
           <div className="mb-6">

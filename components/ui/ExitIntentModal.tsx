@@ -44,16 +44,16 @@ export default function ExitIntentModal() {
                 Wait — before you go
               </h3>
               <p className="font-body text-text-muted text-sm leading-relaxed mb-6">
-                Get a free 30-minute website audit. We&apos;ll tell you exactly what&apos;s costing you customers online — no pitch, no strings.
+                Get a free 30-minute website consultation. We&apos;ll tell you exactly what&apos;s costing you customers online — no pitch, no strings.
               </p>
 
               <Link
-                href="/free-audit"
+                href="/free-consultation"
                 onClick={dismiss}
                 className="block w-full text-center text-white font-heading font-bold py-3.5 rounded-md transition-all duration-200 mb-3"
                 style={{ backgroundColor: '#712EFF', boxShadow: 'rgba(255,255,255,0.72) 0px 2px 3px 0px inset' }}
               >
-                Get My Free Audit →
+                Book My Free Consultation →
               </Link>
               <button onClick={dismiss} className="font-body text-text-muted text-xs hover:text-text-primary transition-colors">
                 No thanks, I&apos;ll pass

@@ -44,7 +44,7 @@ const pricingDetails = [
       '10-day delivery',
     ],
     cta: 'Get Started',
-    ctaHref: '/free-audit',
+    ctaHref: '/free-consultation',
   },
   {
     ...services[1],
@@ -59,7 +59,7 @@ const pricingDetails = [
       '14-day delivery',
     ],
     cta: 'Get Started',
-    ctaHref: '/free-audit',
+    ctaHref: '/free-consultation',
   },
   {
     ...services[2],
@@ -74,7 +74,7 @@ const pricingDetails = [
       'Priority delivery',
     ],
     cta: "Let's Talk",
-    ctaHref: '/free-audit',
+    ctaHref: '/free-consultation',
   },
 ]
 
@@ -148,7 +148,7 @@ export default function PricingPage() {
 
           <p className="text-center text-text-muted text-sm font-body mt-8">
             Not sure which fits?{' '}
-            <Link href="/free-audit" className="text-purple-primary hover:underline">
+            <Link href="/free-consultation" className="text-purple-primary hover:underline">
               Get a free consultation →
             </Link>
           </p>
@@ -180,7 +180,7 @@ export default function PricingPage() {
           </h2>
           <p className="font-body text-text-muted mb-8">Free consultation. No commitment.</p>
           <Link
-            href="/free-audit"
+            href="/free-consultation"
             className="inline-flex items-center gap-2 bg-purple-primary hover:bg-purple-dark text-dark-base font-heading font-bold px-8 py-4 rounded-md transition-all duration-200"
           >
             Book My Free Audit →

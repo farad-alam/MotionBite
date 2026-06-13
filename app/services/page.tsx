@@ -51,7 +51,7 @@ const services = [
     ],
     suitable: ['New businesses launching online', 'Local shops and restaurants with no website', 'Businesses replacing an old, broken site'],
     cta: 'Get Started',
-    ctaHref: '/free-audit',
+    ctaHref: '/free-consultation',
     popular: false,
   },
   {
@@ -76,7 +76,7 @@ const services = [
     ],
     suitable: ['Established businesses wanting more Google traffic', 'Restaurants and shops competing in a crowded market', 'Businesses whose current site has low conversion rate'],
     cta: 'Get Started',
-    ctaHref: '/free-audit',
+    ctaHref: '/free-consultation',
     popular: true,
   },
   {
@@ -100,7 +100,7 @@ const services = [
     ],
     suitable: ['Businesses needing e-commerce or booking systems', 'Brands wanting Awwwards-level design quality', 'Web applications and custom portals'],
     cta: "Let's Talk",
-    ctaHref: '/free-audit',
+    ctaHref: '/free-consultation',
     popular: false,
   },
 ]
@@ -151,7 +151,7 @@ export default function ServicesPage() {
             </p>
             <div className="flex flex-wrap gap-4">
               <Link
-                href="/free-audit"
+                href="/free-consultation"
                 className="inline-flex items-center gap-2 bg-purple-primary hover:bg-purple-dark text-dark-base font-heading font-semibold px-6 py-3 rounded-md transition-all duration-200 hover:scale-[1.02]"
               >
                 Get Your Free Audit →
@@ -236,7 +236,7 @@ export default function ServicesPage() {
 
           <p className="text-center font-body text-text-muted text-sm mt-8">
             Not sure which fits?{' '}
-            <Link href="/free-audit" className="text-purple-primary hover:underline">
+            <Link href="/free-consultation" className="text-purple-primary hover:underline">
               Book a free 30-minute consultation →
             </Link>
           </p>
@@ -293,7 +293,7 @@ export default function ServicesPage() {
             Get a free 30-minute website audit. We will tell you what to fix, which package fits, and what results to expect.
           </p>
           <Link
-            href="/free-audit"
+            href="/free-consultation"
             className="inline-flex items-center gap-2 bg-purple-primary hover:bg-purple-dark text-dark-base font-heading font-semibold px-8 py-4 rounded-md transition-all duration-200 hover:scale-[1.02]"
           >
             Book My Free Audit →

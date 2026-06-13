@@ -133,7 +133,7 @@ export default function ContactPage() {
                   Book a free 30-minute website audit. We will review your current site (or your competitors&apos;) and tell you specifically what to fix.
                 </p>
                 <Link
-                  href="/free-audit"
+                  href="/free-consultation"
                   className="block w-full text-center bg-purple-primary hover:bg-purple-dark text-dark-base font-heading font-semibold py-3 rounded-md transition-all duration-200 text-sm"
                 >
                   Book My Free Audit →

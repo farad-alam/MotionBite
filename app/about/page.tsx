@@ -193,7 +193,7 @@ export default function AboutPage() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
-              href="/free-audit"
+              href="/free-consultation"
               className="inline-flex items-center justify-center gap-2 bg-purple-primary hover:bg-purple-dark text-dark-base font-heading font-semibold px-8 py-4 rounded-md transition-all duration-200 hover:scale-[1.02]"
             >
               Get My Free Audit →

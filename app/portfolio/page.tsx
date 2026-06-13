@@ -83,7 +83,7 @@ export default function PortfolioPage() {
               We are currently accepting new projects. Start with a free audit — we will show you exactly what your current site is missing, no strings attached.
             </p>
             <Link
-              href="/free-audit"
+              href="/free-consultation"
               className="inline-flex items-center justify-center gap-3 bg-purple-primary hover:bg-purple-dark text-dark-base font-heading text-lg font-bold px-8 py-4 md:py-5 rounded-xl transition-all duration-300 hover:scale-[1.02] shadow-[0_0_30px_-10px_rgba(0,200,150,0.5)]"
             >
               Get My Free Audit <span className="text-xl">→</span>

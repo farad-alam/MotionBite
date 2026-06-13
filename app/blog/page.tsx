@@ -163,7 +163,7 @@ export default function BlogPage() {
             We will review your site and tell you exactly what is holding it back — for free.
           </p>
           <Link
-            href="/free-audit"
+            href="/free-consultation"
             className="inline-flex items-center gap-2 bg-purple-primary hover:bg-purple-dark text-dark-base font-heading font-semibold px-6 py-3 rounded-md transition-colors duration-200"
           >
             Get My Free Audit →

@@ -93,10 +93,10 @@ export default function Navbar() {
           {/* Desktop CTA */}
           <div className="hidden md:flex items-center shrink-0">
             <Link
-              href="/free-audit"
+              href="/free-consultation"
               className="text-text-primary font-body font-semibold text-sm px-4 py-2 rounded-xl border border-white/20 transition-all duration-200 hover:bg-white/10 hover:border-white/30"
             >
-              Get Free Audit
+              Get a Free Demo
             </Link>
           </div>
 
@@ -144,12 +144,12 @@ export default function Navbar() {
             ))}
 
             <Link
-              href="/free-audit"
+              href="/free-consultation"
               onClick={() => setMenuOpen(false)}
               className="text-white font-body font-bold text-base px-8 py-3.5 rounded-xl mt-4 transition-all duration-200"
               style={{ backgroundColor: '#712EFF', boxShadow: 'rgba(255,255,255,0.72) 0px 2px 3px 0px inset' }}
             >
-              Get Free Audit
+              Get a Free Demo
             </Link>
           </motion.div>
         )}
@@ -158,11 +158,11 @@ export default function Navbar() {
       {/* ── MOBILE BOTTOM STICKY CTA ── */}
       <div className={`fixed bottom-0 left-0 right-0 z-30 md:hidden bg-dark-base/95 backdrop-blur-md border-t border-dark-border px-4 py-3 transition-transform duration-200 ${menuOpen ? 'translate-y-full' : 'translate-y-0'}`}>
         <Link
-          href="/free-audit"
+          href="/free-consultation"
           className="block w-full text-center text-white font-body font-semibold text-sm py-3 rounded-xl transition-all duration-200"
           style={{ backgroundColor: '#712EFF', boxShadow: 'rgba(255,255,255,0.72) 0px 2px 3px 0px inset' }}
         >
-          Get Free Audit →
+          Get a Free Demo →
         </Link>
       </div>
     </>

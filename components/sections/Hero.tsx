@@ -106,16 +106,16 @@ export default function Hero() {
           className="flex flex-col sm:flex-row items-center justify-center gap-4"
         >
           <Link
-            href="/free-audit"
+            href="/free-consultation"
             className="inline-flex items-center justify-center gap-2 bg-white text-[#0A0A0A] font-body font-bold text-sm px-7 py-3.5 rounded-full transition-all duration-200 hover:bg-purple-light hover:scale-[1.03] shadow-lg"
           >
-            Get In Touch
+            Book a Free Call
           </Link>
           <Link
             href="/portfolio"
             className="inline-flex items-center justify-center gap-2 bg-white/10 border border-white/15 backdrop-blur-sm text-text-primary font-body font-semibold text-sm px-7 py-3.5 rounded-full transition-all duration-200 hover:bg-white/15 hover:scale-[1.03]"
           >
-            Portfolio
+            See Our Work
           </Link>
         </motion.div>
       </div>

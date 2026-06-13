@@ -1,11 +1,10 @@
 import Link from 'next/link'
 import { siteData } from '@/data/site'
 
-const navigationLinks = [
-  { href: '/services', label: 'Services' },
-  { href: '/portfolio', label: 'Portfolio' },
-  { href: '/pricing', label: 'Pricing' },
-  { href: '/about', label: 'About' },
+const servicesLinks = [
+  { href: '/services', label: 'Web Design' },
+  { href: '/services', label: 'Development' },
+  { href: '/services', label: 'Software Development' },
 ]
 
 const legalLinks = [
@@ -83,12 +82,12 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Box 2: Navigation */}
+          {/* Box 2: Services */}
           <div className="xl:col-span-3 bg-dark-card border border-dark-border rounded-3xl p-8 md:p-12 flex flex-col justify-between min-h-[320px] transition-colors duration-500 hover:border-purple-primary/30">
-            <h4 className="font-heading text-text-primary text-sm font-bold uppercase tracking-widest mb-12">Navigation</h4>
+            <h4 className="font-heading text-text-primary text-sm font-bold uppercase tracking-widest mb-12">Services</h4>
             <ul className="space-y-4 mt-auto">
-              {navigationLinks.map((l) => (
-                <li key={l.href}>
+              {servicesLinks.map((l, i) => (
+                <li key={i}>
                   <Link href={l.href} className="text-text-muted hover:text-purple-primary text-lg font-heading font-semibold transition-colors duration-200 block">
                     {l.label}
                   </Link>

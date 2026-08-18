@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Script from 'next/script'
 import { Red_Hat_Display, Outfit, Playfair_Display } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/react'
 import '@/styles/globals.css'
@@ -43,6 +44,16 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <NavbarWrapper />
           <main>{children}</main>
           <FooterWrapper />
+          <Script src="https://www.googletagmanager.com/gtag/js?id=G-4MZ7PGKCX1" strategy="afterInteractive" />
+          <Script id="google-analytics" strategy="afterInteractive">
+            {`
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){window.dataLayer.push(arguments);}
+              gtag('js', new Date());
+
+              gtag('config', 'G-4MZ7PGKCX1');
+            `}
+          </Script>
           <Analytics />
           <CrispProvider />
         </LenisProvider>

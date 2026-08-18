@@ -94,7 +94,7 @@ export default function Hero() {
           transition={{ duration: 0.6, delay: 0.65 }}
           className="font-body text-text-muted text-base md:text-lg max-w-xl mx-auto leading-relaxed mb-10"
         >
-          We build websites that feel <strong className="text-text-primary font-semibold">crafted</strong>, not rushed — for small businesses who{' '}
+          We build websites that feel <strong className="text-text-primary font-semibold">crafted</strong>, not rushed — for businesses who{' '}
           <strong className="text-text-primary font-semibold">care about results.</strong>
         </motion.p>
 

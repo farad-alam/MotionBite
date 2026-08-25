@@ -46,12 +46,16 @@ export const articleSchema = ({
   slug,
   datePublished,
   dateModified,
+  keywords,
+  image,
 }: {
   title: string
   description: string
   slug: string
   datePublished: string
   dateModified?: string
+  keywords?: string[]
+  image?: string
 }) => ({
   '@context': 'https://schema.org',
   '@type': 'Article',
@@ -60,6 +64,8 @@ export const articleSchema = ({
   url: `https://motionbite.com/blog/${slug}`,
   datePublished,
   dateModified: dateModified || datePublished,
+  ...(keywords && keywords.length > 0 ? { keywords: keywords.join(', ') } : {}),
+  ...(image ? { image: { '@type': 'ImageObject', url: image, width: 1200, height: 630 } } : {}),
   author: { '@type': 'Organization', name: 'MotionBite', url: 'https://motionbite.com' },
   publisher: {
     '@type': 'Organization',

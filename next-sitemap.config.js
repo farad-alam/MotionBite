@@ -2,8 +2,12 @@
 module.exports = {
   siteUrl: process.env.SITE_URL || 'https://motionbite.com',
   generateRobotsTxt: true,
-  exclude: ['/free-audit'],
+  exclude: ['/free-audit', '/studio', '/studio/*', '/api/*'],
   robotsTxtOptions: {
     additionalSitemaps: [],
+    policies: [
+      { userAgent: '*', allow: '/' },
+      { userAgent: '*', disallow: ['/studio', '/api'] },
+    ],
   },
 }

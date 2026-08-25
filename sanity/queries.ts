@@ -1,0 +1,108 @@
+import { client } from './client'
+
+// ─────────────────────────────────────────────
+// Types
+// ─────────────────────────────────────────────
+
+export type SanityPost = {
+  _id: string
+  title: string
+  slug: { current: string }
+  excerpt: string
+  mainImage?: {
+    asset: { _ref: string }
+    alt: string
+  }
+  category?: { title: string; slug?: { current: string } }
+  keywords?: string[]
+  publishedAt: string
+  updatedAt?: string
+  readTime?: string
+  body?: SanityBlock[]
+  faqItems?: { question: string; answer: string }[]
+  canonicalUrl?: string
+  related?: SanityPostCard[]
+}
+
+export type SanityPostCard = {
+  title: string
+  slug: { current: string }
+  excerpt: string
+  mainImage?: { asset: { _ref: string }; alt: string }
+  category?: { title: string }
+  publishedAt: string
+  readTime?: string
+}
+
+export type SanityBlock = {
+  _type: string
+  _key: string
+  [key: string]: unknown
+}
+
+// ─────────────────────────────────────────────
+// Listing page query — minimal fields for fast load
+// ─────────────────────────────────────────────
+
+export async function getAllPosts(): Promise<SanityPostCard[]> {
+  return client.fetch(
+    `*[_type == "post"] | order(publishedAt desc) {
+      title,
+      slug,
+      excerpt,
+      mainImage { asset, alt },
+      "category": category->{ title },
+      publishedAt,
+      "readTime": round(length(pt::text(body)) / 1500) + " min read"
+    }`,
+    {},
+    { next: { revalidate: 60 } }
+  )
+}
+
+// ─────────────────────────────────────────────
+// All slugs — for generateStaticParams
+// ─────────────────────────────────────────────
+
+export async function getAllPostSlugs(): Promise<string[]> {
+  const results = await client.fetch<{ slug: { current: string } }[]>(
+    `*[_type == "post"]{ slug }`,
+    {},
+    { cache: 'no-store' }
+  )
+  return results.map((r) => r.slug.current)
+}
+
+// ─────────────────────────────────────────────
+// Single post — full fields for article page
+// ─────────────────────────────────────────────
+
+export async function getPost(slug: string): Promise<SanityPost | null> {
+  return client.fetch(
+    `*[_type == "post" && slug.current == $slug][0] {
+      _id,
+      title,
+      slug,
+      excerpt,
+      mainImage { asset, alt },
+      "category": category->{ title, slug },
+      keywords,
+      publishedAt,
+      updatedAt,
+      "readTime": round(length(pt::text(body)) / 1500) + " min read",
+      body,
+      faqItems,
+      canonicalUrl,
+      "related": *[_type == "post" && category._ref == ^.category._ref && slug.current != $slug][0..1] {
+        title,
+        slug,
+        excerpt,
+        "category": category->{ title },
+        publishedAt,
+        "readTime": round(length(pt::text(body)) / 1500) + " min read"
+      }
+    }`,
+    { slug },
+    { next: { revalidate: 60 } }
+  )
+}

@@ -2,6 +2,7 @@ import { defineConfig } from 'sanity'
 import { structureTool } from 'sanity/structure'
 import { postSchema } from './sanity/schemas/post'
 import { categorySchema } from './sanity/schemas/category'
+import { authorSchema } from './sanity/schemas/author'
 
 export default defineConfig({
   basePath: '/studio',
@@ -19,12 +20,15 @@ export default defineConfig({
               .title('Blog Posts')
               .child(S.documentTypeList('post').title('Blog Posts')),
             S.listItem()
+              .title('Authors')
+              .child(S.documentTypeList('author').title('Authors')),
+            S.listItem()
               .title('Categories')
               .child(S.documentTypeList('category').title('Categories')),
           ]),
     }),
   ],
   schema: {
-    types: [postSchema, categorySchema],
+    types: [postSchema, authorSchema, categorySchema],
   },
 })

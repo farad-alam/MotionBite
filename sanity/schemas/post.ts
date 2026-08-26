@@ -52,6 +52,14 @@ export const postSchema = defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
+      name: 'author',
+      title: 'Author',
+      type: 'reference',
+      to: [{ type: 'author' }],
+      description: 'Select the person who wrote this article. Create authors under the Authors section.',
+      validation: (rule) => rule.required(),
+    }),
+    defineField({
       name: 'keywords',
       title: 'Keywords',
       type: 'array',

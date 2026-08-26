@@ -33,7 +33,9 @@ export async function generateMetadata({
     title: post.title,
     description: post.excerpt,
     keywords: post.keywords ?? [],
-    authors: [{ name: 'MotionBite', url: 'https://motionbite.com' }],
+    authors: post.author
+      ? [{ name: `${post.author.firstName} ${post.author.lastName}`.trim(), url: `https://motionbite.com/authors/${post.author.slug.current}` }]
+      : [{ name: 'MotionBite', url: 'https://motionbite.com' }],
     alternates: {
       canonical: post.canonicalUrl ?? `https://motionbite.com/blog/${post.slug.current}`,
     },
@@ -44,7 +46,9 @@ export async function generateMetadata({
       url: `https://motionbite.com/blog/${post.slug.current}`,
       publishedTime: post.publishedAt,
       modifiedTime: post.updatedAt ?? post.publishedAt,
-      authors: ['MotionBite'],
+      authors: post.author
+        ? [`${post.author.firstName} ${post.author.lastName}`.trim()]
+        : ['MotionBite'],
       tags: post.keywords ?? [],
       ...(ogImage ? { images: [{ url: ogImage, width: 1200, height: 630 }] } : {}),
     },
@@ -78,6 +82,11 @@ export default async function BlogPostPage({
     ? urlFor(post.mainImage).width(1200).height(630).format('webp').url()
     : undefined
 
+  // Build author avatar URL for JSON-LD
+  const authorAvatarUrl = post.author?.avatar?.asset
+    ? urlFor(post.author.avatar).width(200).height(200).format('webp').url()
+    : undefined
+
   // JSON-LD schemas
   const articleJsonLd = articleSchema({
     title: post.title,
@@ -88,6 +97,8 @@ export default async function BlogPostPage({
     keywords: post.keywords,
     image: ogImage,
     wordCount: post.wordCount,
+    author: post.author,
+    authorAvatarUrl,
   })
 
   const breadcrumbJsonLd = {
@@ -190,7 +201,7 @@ export default async function BlogPostPage({
             )}
 
             {/* Author E-E-A-T box */}
-            <AuthorBox />
+            <AuthorBox author={post.author} />
 
             {/* Social Share */}
             <ShareButtons title={post.title} slug={post.slug.current} />

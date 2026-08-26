@@ -1,4 +1,5 @@
 import { siteData } from '@/data/site'
+import type { SanityAuthor } from '@/sanity/queries'
 
 export const organizationSchema = {
   '@context': 'https://schema.org',
@@ -6,7 +7,8 @@ export const organizationSchema = {
   name: 'MotionBite',
   url: 'https://motionbite.com',
   logo: 'https://motionbite.com/logo.png',
-  description: 'Web design and development agency for small businesses and restaurants. Fast, professional websites designed and built end to end — delivered in 14 days.',
+  description:
+    'Web design and development agency for small businesses and restaurants. Fast, professional websites designed and built end to end — delivered in 14 days.',
   email: siteData.contact.email,
   sameAs: [
     siteData.socials.linkedin,
@@ -40,6 +42,33 @@ export const organizationSchema = {
   },
 }
 
+// ─────────────────────────────────────────────
+// Build a Person JSON-LD node from a SanityAuthor
+// ─────────────────────────────────────────────
+
+function buildPersonNode(author: SanityAuthor, avatarUrl?: string) {
+  const name = `${author.firstName} ${author.lastName}`.trim()
+  const sameAs = [author.linkedin, author.twitter, author.website, author.facebook].filter(Boolean)
+  return {
+    '@type': 'Person',
+    name,
+    url: `https://motionbite.com/authors/${author.slug.current}`,
+    ...(author.jobTitle ? { jobTitle: author.jobTitle } : {}),
+    ...(author.shortBio ? { description: author.shortBio } : {}),
+    ...(avatarUrl
+      ? { image: { '@type': 'ImageObject', url: avatarUrl } }
+      : {}),
+    ...(author.expertiseAreas && author.expertiseAreas.length > 0
+      ? { knowsAbout: author.expertiseAreas }
+      : {}),
+    ...(sameAs.length > 0 ? { sameAs } : {}),
+  }
+}
+
+// ─────────────────────────────────────────────
+// BlogPosting / Article schema
+// ─────────────────────────────────────────────
+
 export const articleSchema = ({
   title,
   description,
@@ -49,6 +78,8 @@ export const articleSchema = ({
   keywords,
   image,
   wordCount,
+  author,
+  authorAvatarUrl,
 }: {
   title: string
   description: string
@@ -58,6 +89,8 @@ export const articleSchema = ({
   keywords?: string[]
   image?: string
   wordCount?: number
+  author?: SanityAuthor
+  authorAvatarUrl?: string
 }) => ({
   '@context': 'https://schema.org',
   '@type': 'BlogPosting',
@@ -73,17 +106,15 @@ export const articleSchema = ({
   ...(keywords && keywords.length > 0 ? { keywords: keywords.join(', ') } : {}),
   ...(image ? { image: { '@type': 'ImageObject', url: image, width: 1200, height: 630 } } : {}),
   ...(wordCount ? { wordCount } : {}),
-  author: {
-    '@type': 'Organization',
-    name: 'MotionBite',
-    url: 'https://motionbite.com',
-    logo: { '@type': 'ImageObject', url: 'https://motionbite.com/logo.png' },
-    sameAs: [
-      'https://www.linkedin.com/company/motionbiteit/',
-      'https://x.com/motionbiteit',
-      'https://www.facebook.com/MotionBiteit',
-    ],
-  },
+  // Use real Person if author exists, fall back to Organization
+  author: author
+    ? buildPersonNode(author, authorAvatarUrl)
+    : {
+        '@type': 'Organization',
+        name: 'MotionBite',
+        url: 'https://motionbite.com',
+        logo: { '@type': 'ImageObject', url: 'https://motionbite.com/logo.png' },
+      },
   publisher: {
     '@type': 'Organization',
     name: 'MotionBite',
@@ -91,6 +122,24 @@ export const articleSchema = ({
     logo: { '@type': 'ImageObject', url: 'https://motionbite.com/logo.png' },
   },
 })
+
+// ─────────────────────────────────────────────
+// Person schema — for the /authors/[slug] page
+// ─────────────────────────────────────────────
+
+export const personSchema = (author: SanityAuthor, avatarUrl?: string) => ({
+  '@context': 'https://schema.org',
+  ...buildPersonNode(author, avatarUrl),
+  worksFor: {
+    '@type': 'Organization',
+    name: 'MotionBite',
+    url: 'https://motionbite.com',
+  },
+})
+
+// ─────────────────────────────────────────────
+// FAQ schema
+// ─────────────────────────────────────────────
 
 export const faqSchema = (items: { question: string; answer: string }[]) => ({
   '@context': 'https://schema.org',

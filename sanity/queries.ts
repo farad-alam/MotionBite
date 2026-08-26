@@ -4,6 +4,22 @@ import { client } from './client'
 // Types
 // ─────────────────────────────────────────────
 
+export type SanityAuthor = {
+  firstName: string
+  lastName: string
+  slug: { current: string }
+  avatar?: { asset: { _ref: string }; alt: string }
+  jobTitle?: string
+  shortBio?: string
+  fullBio?: SanityBlock[]
+  expertiseAreas?: string[]
+  yearsExperience?: number
+  linkedin?: string
+  twitter?: string
+  facebook?: string
+  website?: string
+}
+
 export type SanityPost = {
   _id: string
   title: string
@@ -14,6 +30,7 @@ export type SanityPost = {
     alt: string
   }
   category?: { title: string; slug?: { current: string } }
+  author?: SanityAuthor
   keywords?: string[]
   publishedAt: string
   updatedAt?: string
@@ -31,6 +48,7 @@ export type SanityPostCard = {
   excerpt: string
   mainImage?: { asset: { _ref: string }; alt: string }
   category?: { title: string }
+  author?: Pick<SanityAuthor, 'firstName' | 'lastName' | 'slug' | 'avatar'>
   publishedAt: string
   readTime?: string
 }
@@ -40,6 +58,27 @@ export type SanityBlock = {
   _key: string
   [key: string]: unknown
 }
+
+// ─────────────────────────────────────────────
+// Author GROQ fragment (reused in multiple queries)
+// ─────────────────────────────────────────────
+
+const AUTHOR_FIELDS = `
+  "author": author->{
+    firstName,
+    lastName,
+    slug,
+    avatar { asset, alt },
+    jobTitle,
+    shortBio,
+    expertiseAreas,
+    yearsExperience,
+    linkedin,
+    twitter,
+    facebook,
+    website
+  }
+`
 
 // ─────────────────────────────────────────────
 // Listing page query — minimal fields for fast load
@@ -53,6 +92,7 @@ export async function getAllPosts(): Promise<SanityPostCard[]> {
       excerpt,
       mainImage { asset, alt },
       "category": category->{ title },
+      "author": author->{ firstName, lastName, slug, avatar { asset, alt } },
       publishedAt,
       "readTime": round(length(pt::text(body)) / 1500) + " min read"
     }`,
@@ -62,7 +102,7 @@ export async function getAllPosts(): Promise<SanityPostCard[]> {
 }
 
 // ─────────────────────────────────────────────
-// All slugs — for generateStaticParams
+// All post slugs — for generateStaticParams
 // ─────────────────────────────────────────────
 
 export async function getAllPostSlugs(): Promise<string[]> {
@@ -87,6 +127,7 @@ export async function getPost(slug: string): Promise<SanityPost | null> {
       excerpt,
       mainImage { asset, alt },
       "category": category->{ title, slug },
+      ${AUTHOR_FIELDS},
       keywords,
       publishedAt,
       updatedAt,
@@ -99,6 +140,59 @@ export async function getPost(slug: string): Promise<SanityPost | null> {
         title,
         slug,
         excerpt,
+        "category": category->{ title },
+        publishedAt,
+        "readTime": round(length(pt::text(body)) / 1500) + " min read"
+      }
+    }`,
+    { slug },
+    { next: { revalidate: 60 } }
+  )
+}
+
+// ─────────────────────────────────────────────
+// All author slugs — for generateStaticParams on /authors/[slug]
+// ─────────────────────────────────────────────
+
+export async function getAllAuthorSlugs(): Promise<string[]> {
+  const results = await client.fetch<{ slug: { current: string } }[]>(
+    `*[_type == "author"]{ slug }`,
+    {},
+    { cache: 'no-store' }
+  )
+  return results.map((r) => r.slug.current)
+}
+
+// ─────────────────────────────────────────────
+// Single author + all their posts — for /authors/[slug]
+// ─────────────────────────────────────────────
+
+export type SanityAuthorWithPosts = SanityAuthor & {
+  fullBio?: SanityBlock[]
+  posts: SanityPostCard[]
+}
+
+export async function getAuthor(slug: string): Promise<SanityAuthorWithPosts | null> {
+  return client.fetch(
+    `*[_type == "author" && slug.current == $slug][0] {
+      firstName,
+      lastName,
+      slug,
+      avatar { asset, alt },
+      jobTitle,
+      shortBio,
+      fullBio,
+      expertiseAreas,
+      yearsExperience,
+      linkedin,
+      twitter,
+      facebook,
+      website,
+      "posts": *[_type == "post" && references(^._id)] | order(publishedAt desc) {
+        title,
+        slug,
+        excerpt,
+        mainImage { asset, alt },
         "category": category->{ title },
         publishedAt,
         "readTime": round(length(pt::text(body)) / 1500) + " min read"

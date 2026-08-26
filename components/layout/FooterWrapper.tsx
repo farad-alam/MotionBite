@@ -8,6 +8,6 @@ const HIDDEN_ROUTES = ['/free-consultation', '/start-project', '/studio']
 
 export default function FooterWrapper() {
   const pathname = usePathname()
-  if (HIDDEN_ROUTES.some((r) => pathname.startsWith(r))) return null
+  if (pathname && HIDDEN_ROUTES.some((r) => pathname.startsWith(r))) return null
   return <Footer />
 }

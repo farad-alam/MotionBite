@@ -4,6 +4,7 @@ import { postSchema } from './sanity/schemas/post'
 import { categorySchema } from './sanity/schemas/category'
 
 export default defineConfig({
+  basePath: '/studio',
   name: 'motionbite',
   title: 'MotionBite Blog Studio',
   projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID!,

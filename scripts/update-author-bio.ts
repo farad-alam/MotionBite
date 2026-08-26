@@ -30,7 +30,7 @@ function para(text: string) {
 
 const FULL_BIO = [
   para(
-    "I'm Farad Alam Foisal, founder and CEO of MotionBite — a web design and development agency based in Rajshahi, Bangladesh. I've spent the last 6+ years helping businesses and restaurant owners across South Asia and globally build websites that don't just look good, but actually rank on Google and convert visitors into paying customers."
+    "I'm Farad Alam Foisal, founder and CEO of MotionBite — a web design and development agency based in Rajshahi, Bangladesh. I've spent the last 6+ years helping businesses across South Asia and globally build websites that don't just look good, but actually rank on Google and convert visitors into paying customers. From dental clinics and fitness gyms to e-commerce stores, vehicle repair shops, and travel agencies, I've worked across diverse industries to build digital experiences that drive real revenue."
   ),
   para(
     "My work sits at the intersection of web design, conversion optimisation, and SEO. I specialise in building fast, modern websites using Next.js and React — the same technology stack used by companies like Netflix and Airbnb — delivered to business owners at a price that makes sense for their budget. Every site I build is engineered from day one to load in under 2 seconds, pass Google's Core Web Vitals, and be indexed correctly by search engines."

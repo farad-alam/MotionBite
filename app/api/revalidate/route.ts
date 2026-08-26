@@ -10,7 +10,7 @@ export async function POST(req: NextRequest) {
 
   try {
     const body = await req.json()
-    const slug: string | undefined = body?.slug?.current
+    const slug: string | undefined = typeof body?.slug === 'string' ? body.slug : body?.slug?.current
 
     // Always revalidate the listing page
     revalidatePath('/blog', 'page')

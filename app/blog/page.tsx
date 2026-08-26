@@ -121,7 +121,7 @@ export default async function BlogPage() {
           className="group block bg-dark-card rounded-2xl overflow-hidden glow-border hover:border-purple-primary/30 transition-all duration-300 mb-10"
         >
           <div className="grid grid-cols-1 lg:grid-cols-2">
-            <div className="relative h-56 lg:h-auto bg-gradient-to-br from-purple-primary/10 to-dark-base">
+            <div className="relative aspect-[16/10] lg:aspect-auto lg:h-auto bg-gradient-to-br from-purple-primary/10 to-dark-base">
               <PostImage post={featured} className="saturate-[0.85] group-hover:saturate-100 transition-all duration-500" />
             </div>
             <div className="p-8 lg:p-10 flex flex-col justify-center">
@@ -136,12 +136,36 @@ export default async function BlogPage() {
               <h2 className="font-heading text-2xl md:text-3xl font-bold text-text-primary group-hover:text-purple-primary transition-colors duration-200 mb-3 leading-snug">
                 {featured.title}
               </h2>
-              <p className="font-body text-text-muted text-sm leading-relaxed mb-6">
+              <p className="font-body text-text-muted text-sm leading-relaxed mb-8">
                 {featured.excerpt}
               </p>
-              <div className="flex items-center gap-2">
-                <span className="text-purple-primary font-body text-sm font-semibold">Read article</span>
-                <span className="text-purple-primary text-sm group-hover:translate-x-1 transition-transform duration-200">→</span>
+              
+              <div className="flex items-center justify-between mt-auto">
+                {featured.author && (
+                  <div className="flex items-center gap-3">
+                    {featured.author.avatar?.asset ? (
+                      <Image
+                        src={urlFor(featured.author.avatar).width(64).height(64).format('webp').url()}
+                        alt={featured.author.firstName}
+                        width={32}
+                        height={32}
+                        className="rounded-full object-cover border border-dark-border"
+                      />
+                    ) : (
+                      <div className="w-8 h-8 rounded-full bg-purple-primary/10 border border-purple-primary/20 flex items-center justify-center text-xs font-heading font-bold text-purple-primary">
+                        {featured.author.firstName[0]}
+                      </div>
+                    )}
+                    <span className="font-body text-sm font-medium text-text-primary">
+                      {featured.author.firstName} {featured.author.lastName}
+                    </span>
+                  </div>
+                )}
+                
+                <div className="flex items-center gap-2">
+                  <span className="text-purple-primary font-body text-sm font-semibold hidden sm:inline">Read article</span>
+                  <span className="text-purple-primary text-sm group-hover:translate-x-1 transition-transform duration-200">→</span>
+                </div>
               </div>
             </div>
           </div>
@@ -155,7 +179,7 @@ export default async function BlogPage() {
               href={`/blog/${post.slug.current}`}
               className="group block bg-dark-card rounded-xl overflow-hidden glow-border hover:border-purple-primary/30 transition-all duration-300 hover:-translate-y-0.5 flex flex-col"
             >
-              <div className="relative h-40 bg-gradient-to-br from-purple-primary/5 to-dark-base border-b border-dark-border overflow-hidden">
+              <div className="relative aspect-video bg-gradient-to-br from-purple-primary/5 to-dark-base border-b border-dark-border overflow-hidden">
                 {post.mainImage?.asset ? (
                   <Image
                     src={urlFor(post.mainImage).width(600).height(320).format('webp').url()}
@@ -184,14 +208,41 @@ export default async function BlogPage() {
                 <h3 className="font-heading text-lg font-bold text-text-primary group-hover:text-purple-primary transition-colors duration-200 mb-2 leading-snug flex-1">
                   {post.title}
                 </h3>
-                <p className="font-body text-text-muted text-xs leading-relaxed mb-4 line-clamp-2">
+                <p className="font-body text-text-muted text-xs leading-relaxed mb-6 line-clamp-2">
                   {post.excerpt}
                 </p>
-                <div className="flex items-center justify-between mt-auto">
-                  <span className="font-body text-xs text-text-muted">
-                    {formatDate(post.publishedAt)}
-                  </span>
-                  <span className="text-purple-primary text-sm group-hover:translate-x-1 transition-transform duration-200">→</span>
+                
+                <div className="flex items-center justify-between mt-auto pt-4 border-t border-dark-border/40">
+                  {post.author ? (
+                    <div className="flex items-center gap-2.5">
+                      {post.author.avatar?.asset ? (
+                        <Image
+                          src={urlFor(post.author.avatar).width(48).height(48).format('webp').url()}
+                          alt={post.author.firstName}
+                          width={24}
+                          height={24}
+                          className="rounded-full object-cover border border-dark-border"
+                        />
+                      ) : (
+                        <div className="w-6 h-6 rounded-full bg-purple-primary/10 border border-purple-primary/20 flex items-center justify-center text-[10px] font-heading font-bold text-purple-primary">
+                          {post.author.firstName[0]}
+                        </div>
+                      )}
+                      <span className="font-body text-xs text-text-primary font-medium">
+                        {post.author.firstName} {post.author.lastName}
+                      </span>
+                    </div>
+                  ) : (
+                    <span className="font-body text-xs text-text-muted">
+                      {formatDate(post.publishedAt)}
+                    </span>
+                  )}
+                  
+                  {post.author && (
+                    <span className="font-body text-[11px] text-text-muted">
+                      {formatDate(post.publishedAt)}
+                    </span>
+                  )}
                 </div>
               </div>
             </Link>

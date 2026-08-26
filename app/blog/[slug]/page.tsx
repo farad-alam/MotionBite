@@ -156,8 +156,6 @@ export default async function BlogPostPage({
               {post.title}
             </h1>
 
-            {/* Author E-E-A-T box */}
-            <AuthorBox />
 
             {/* Excerpt */}
             <p className="font-body text-text-muted text-lg leading-relaxed mb-8 border-l-2 border-purple-primary/40 pl-4">
@@ -190,6 +188,9 @@ export default async function BlogPostPage({
                 <PortableText value={post.body} />
               </div>
             )}
+
+            {/* Author E-E-A-T box */}
+            <AuthorBox />
 
             {/* Social Share */}
             <ShareButtons title={post.title} slug={post.slug.current} />

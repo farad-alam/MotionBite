@@ -4,7 +4,7 @@ export const client = createClient({
   projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID!,
   dataset: process.env.NEXT_PUBLIC_SANITY_DATASET ?? 'production',
   apiVersion: '2024-08-01',
-  useCdn: true, // CDN for fast reads on public pages
+  useCdn: false, // Set to false so we bypass Sanity's cache since Next.js handles caching
 })
 
 // Server-side client with write token — used ONLY in server actions/API routes

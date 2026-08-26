@@ -16,8 +16,8 @@ export async function POST(req: NextRequest) {
     revalidatePath('/blog', 'page')
 
     if (slug) {
-      // Revalidate the specific article page
-      revalidatePath(`/blog/${slug}`, 'page')
+      // Revalidate the specific article URL (omit 'page' type to revalidate literal URL path)
+      revalidatePath(`/blog/${slug}`)
     }
 
     return NextResponse.json({ revalidated: true, now: Date.now() })

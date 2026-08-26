@@ -1,6 +1,6 @@
 export const siteData = {
   name: 'MotionBite',
-  description: 'We build fast, professional websites for small businesses. Delivered in 14 days, built to convert.',
+  description: 'We build fast, professional websites for businesses. Delivered in 14 days, built to convert.',
   url: 'https://motionbite.com',
   contact: {
     email: 'hello@motionbite.com',

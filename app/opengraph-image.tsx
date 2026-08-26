@@ -86,7 +86,7 @@ export default function OGImage() {
 
         {/* Subline */}
         <div style={{ fontSize: '24px', color: '#8A9E94', maxWidth: '700px', marginBottom: '48px', lineHeight: 1.4 }}>
-          Fast, professional websites for small businesses — delivered in 14 days.
+          Fast, professional websites for businesses — delivered in 14 days.
         </div>
 
         {/* Trust bar */}

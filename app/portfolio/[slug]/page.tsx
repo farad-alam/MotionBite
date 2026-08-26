@@ -18,7 +18,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     keywords: [
       `${item.industry.toLowerCase()} website design and development`,
       'web design and development case study',
-      'small business website design and development results',
+      'business website design and development results',
       'website redesign and development results',
       'MotionBite portfolio',
     ],

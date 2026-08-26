@@ -7,30 +7,30 @@ import { urlFor } from '@/sanity/image'
 export const revalidate = 60
 
 export const metadata: Metadata = {
-  title: 'Web Design & Development Blog for Small Businesses | MotionBite',
+  title: 'Web Design & Development Blog for Businesses | MotionBite',
   description:
-    'Practical guides on web design, web development, SEO, and digital strategy for small businesses and restaurants. Free expert advice from the MotionBite team.',
+    'Practical guides on web design, web development, SEO, and digital strategy for businesses and restaurants. Free expert advice from the MotionBite team.',
   keywords: [
-    'web design and development tips for small businesses',
-    'small business web development guide',
+    'web design and development tips for businesses',
+    'business web development guide',
     'website design and development advice',
     'restaurant website tips',
     'how to improve website conversions',
     'web design and development blog',
-    'small business website development tips',
+    'business website development tips',
   ],
   openGraph: {
     type: 'website',
-    title: 'Web Design & Development Blog for Small Businesses | MotionBite',
+    title: 'Web Design & Development Blog for Businesses | MotionBite',
     description:
-      'Practical guides on web design, web development, and SEO for small businesses. Free expert advice from the MotionBite team.',
+      'Practical guides on web design, web development, and SEO for businesses. Free expert advice from the MotionBite team.',
     url: 'https://motionbite.com/blog',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Web Design & Development Blog for Small Businesses | MotionBite',
+    title: 'Web Design & Development Blog for Businesses | MotionBite',
     description:
-      'Practical guides on web design, web development, and SEO for small businesses. Free expert advice from the MotionBite team.',
+      'Practical guides on web design, web development, and SEO for businesses. Free expert advice from the MotionBite team.',
   },
 }
 
@@ -92,7 +92,7 @@ export default async function BlogPage() {
           </span>
           <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-text-primary leading-tight mb-4">
             Web Tips for{' '}
-            <span className="text-purple-primary">Small Businesses</span>
+            <span className="text-purple-primary">Businesses</span>
           </h1>
           <p className="font-body text-text-muted text-lg leading-relaxed">
             Practical guides on web design, SEO, and conversion — written for business owners, not developers.

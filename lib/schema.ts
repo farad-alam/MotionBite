@@ -8,7 +8,7 @@ export const organizationSchema = {
   url: 'https://motionbite.com',
   logo: 'https://motionbite.com/logo.png',
   description:
-    'Web design and development agency for small businesses and restaurants. Fast, professional websites designed and built end to end — delivered in 14 days.',
+    'Web design and development agency for businesses and restaurants. Fast, professional websites designed and built end to end — delivered in 14 days.',
   email: siteData.contact.email,
   sameAs: [
     siteData.socials.linkedin,

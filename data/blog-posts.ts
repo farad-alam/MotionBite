@@ -17,7 +17,7 @@ export type BlogPost = {
 export const blogPosts: BlogPost[] = [
   {
     slug: 'signs-small-business-needs-new-website',
-    title: '5 Signs Your Small Business Needs a New Website',
+    title: '5 Signs Your Business Needs a New Website',
     excerpt: "If your site is slow, looks outdated, or isn't generating leads — it's costing you money every day.",
     tag: 'Web Design',
     readTime: '4 min read',
@@ -25,7 +25,7 @@ export const blogPosts: BlogPost[] = [
     image: '/images/blog/signs-new-website.jpg',
     sections: [
       {
-        body: "If your website isn't bringing in customers, it's probably losing them. Most small business owners know their site \"isn't great\" but don't know exactly what to fix. Here are the five clearest signs you need a new one.",
+        body: "If your website isn't bringing in customers, it's probably losing them. Most business owners know their site \"isn't great\" but don't know exactly what to fix. Here are the five clearest signs you need a new one.",
       },
       {
         heading: 'Your Website Takes More Than 3 Seconds to Load',
@@ -55,7 +55,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: 'how-much-does-small-business-website-cost',
-    title: 'How Much Does a Small Business Website Cost? (Honest 2026 Guide)',
+    title: 'How Much Does a Business Website Cost? (Honest 2026 Guide)',
     excerpt: "From $300 templates to $20,000 custom builds — here's what you actually get at each price point.",
     tag: 'Pricing',
     readTime: '6 min read',
@@ -79,7 +79,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         heading: 'Large Agency ($8,000–$50,000+)',
-        body: 'Top-tier agencies charge this for brand strategy, UX research, custom design systems, and complex functionality. Unless you are a scaling e-commerce brand or enterprise business, this is overkill for most small businesses.',
+        body: 'Top-tier agencies charge this for brand strategy, UX research, custom design systems, and complex functionality. Unless you are a scaling e-commerce brand or enterprise business, this is overkill for most businesses.',
       },
       {
         heading: 'The Hidden Cost of Cheap',
@@ -90,14 +90,14 @@ export const blogPosts: BlogPost[] = [
   {
     slug: 'why-google-cant-find-your-business',
     title: "Why Google Can't Find Your Business (And How to Fix It)",
-    excerpt: "Most small business websites are invisible to Google. Here are the 5 most common reasons — and the fixes.",
+    excerpt: "Most business websites are invisible to Google. Here are the 5 most common reasons — and the fixes.",
     tag: 'SEO',
     readTime: '5 min read',
     date: '2026-04-28',
     image: '/images/blog/google-seo.jpg',
     sections: [
       {
-        body: "Most small business websites are essentially invisible to Google. Not because the business is bad — but because nobody told the owner what Google actually needs. Here are the five most common reasons, and what to do about each one.",
+        body: "Most business websites are essentially invisible to Google. Not because the business is bad — but because nobody told the owner what Google actually needs. Here are the five most common reasons, and what to do about each one.",
       },
       {
         heading: "You Don't Have a Google Business Profile",
@@ -113,7 +113,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         heading: "You're Missing the Right Words",
-        body: 'Google matches search queries to web pages. If your website does not contain the exact words people search for — "restaurant in [city]", "web designer for small business" — it cannot rank for them. Every page needs a clear H1 heading, descriptive paragraphs, and page titles that include your target keyword.',
+        body: 'Google matches search queries to web pages. If your website does not contain the exact words people search for — "restaurant in [city]", "web designer for business" — it cannot rank for them. Every page needs a clear H1 heading, descriptive paragraphs, and page titles that include your target keyword.',
       },
       {
         heading: 'No Other Sites Link to You',
@@ -165,7 +165,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: 'small-business-seo-get-found-google',
-    title: 'Small Business SEO: How to Get Found on Google Without Paying for Ads',
+    title: 'Business SEO: How to Get Found on Google Without Paying for Ads',
     excerpt: 'Paid ads stop the moment you stop paying. Organic SEO delivers free traffic month after month. Here is how to start.',
     tag: 'SEO',
     readTime: '5 min read',
@@ -173,7 +173,7 @@ export const blogPosts: BlogPost[] = [
     image: '/images/blog/seo-guide.jpg',
     sections: [
       {
-        body: 'Paid ads stop working the moment you stop paying. SEO — getting your website to rank organically — keeps delivering traffic for free, month after month. Here is how small businesses can build real Google visibility without a marketing budget.',
+        body: 'Paid ads stop working the moment you stop paying. SEO — getting your website to rank organically — keeps delivering traffic for free, month after month. Here is how businesses can build real Google visibility without a marketing budget.',
       },
       {
         heading: 'Start With Your Google Business Profile',
@@ -185,7 +185,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         heading: 'Each Page Should Target One Topic',
-        body: 'Most small business websites have everything crammed into one homepage with no dedicated service pages. Create a separate page for each service you offer. Each page should have a clear H1 heading with the keyword, 300+ words of relevant content, and a call to action.',
+        body: 'Most business websites have everything crammed into one homepage with no dedicated service pages. Create a separate page for each service you offer. Each page should have a clear H1 heading with the keyword, 300+ words of relevant content, and a call to action.',
       },
       {
         heading: 'Write One Helpful Blog Post Per Month',
@@ -227,7 +227,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         heading: 'The Bottom Line',
-        body: 'For most small businesses: you need a full website as your permanent foundation, and you can add landing pages on top for specific promotions. Starting with just a landing page limits your SEO potential and can make your business look less established. A proper website from $1,500 is the right first move.',
+        body: 'For most businesses: you need a full website as your permanent foundation, and you can add landing pages on top for specific promotions. Starting with just a landing page limits your SEO potential and can make your business look less established. A proper website from $1,500 is the right first move.',
       },
     ],
   },
@@ -339,15 +339,15 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: '7-pages-every-small-business-needs',
-    title: 'The 7 Pages Every Small Business Website Must Have',
-    excerpt: 'A lot of small business websites are missing pages customers expect to find. Without them, visitors leave confused — and confusion kills conversions.',
+    title: 'The 7 Pages Every Business Website Must Have',
+    excerpt: 'A lot of business websites are missing pages customers expect to find. Without them, visitors leave confused — and confusion kills conversions.',
     tag: 'Web Design',
     readTime: '4 min read',
     date: '2026-02-20',
     image: '/images/blog/7-pages.jpg',
     sections: [
       {
-        body: 'A lot of small business websites are missing pages that customers expect to find. Without them, visitors leave confused — and confusion kills conversions. Here are the seven pages that should be on every small business website.',
+        body: 'A lot of business websites are missing pages that customers expect to find. Without them, visitors leave confused — and confusion kills conversions. Here are the seven pages that should be on every business website.',
       },
       {
         heading: '1. Homepage',
@@ -415,15 +415,15 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: 'how-to-write-perfect-homepage',
-    title: 'How to Write the Perfect Homepage (Small Business Edition)',
-    excerpt: 'Your homepage is your best salesperson — and most small business homepages say everything except what customers need to hear.',
+    title: 'How to Write the Perfect Homepage (Business Edition)',
+    excerpt: 'Your homepage is your best salesperson — and most business homepages say everything except what customers need to hear.',
     tag: 'Copywriting',
     readTime: '4 min read',
     date: '2026-01-25',
     image: '/images/blog/homepage-copy.jpg',
     sections: [
       {
-        body: "Your homepage is your best salesperson — and most small business homepages say everything except what customers need to hear. Here is how to write copy that keeps visitors reading, builds trust, and converts them into enquiries.",
+        body: "Your homepage is your best salesperson — and most business homepages say everything except what customers need to hear. Here is how to write copy that keeps visitors reading, builds trust, and converts them into enquiries.",
       },
       {
         heading: 'Lead With What You Do for Them',

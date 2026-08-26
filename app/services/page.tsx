@@ -2,31 +2,31 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 
 export const metadata: Metadata = {
-  title: 'Web Design & Development Services for Small Businesses | MotionBite',
+  title: 'Web Design & Development Services for Businesses | MotionBite',
   description:
-    'Professional web design and development for small businesses and restaurants. Starter Site from $1,500, Growth Package from $3,500. Design and code delivered in 14 days.',
+    'Professional web design and development for businesses and restaurants. Starter Site from $1,500, Growth Package from $3,500. Design and code delivered in 14 days.',
   keywords: [
     'web design and development services',
-    'web design and development for small businesses',
-    'small business web design and development',
+    'web design and development for businesses',
+    'business web design and development',
     'restaurant website design and development',
     'professional website development agency',
     'affordable web design and development packages',
-    'custom web development for small business',
+    'custom web development for business',
     'web development 14 day delivery',
   ],
   openGraph: {
     type: 'website',
-    title: 'Web Design & Development Services for Small Businesses | MotionBite',
+    title: 'Web Design & Development Services for Businesses | MotionBite',
     description:
-      'Professional web design and development for small businesses. Starter Site from $1,500. Design and code, delivered in 14 days.',
+      'Professional web design and development for businesses. Starter Site from $1,500. Design and code, delivered in 14 days.',
     url: 'https://motionbite.com/services',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Web Design & Development Services for Small Businesses | MotionBite',
+    title: 'Web Design & Development Services for Businesses | MotionBite',
     description:
-      'Professional web design and development for small businesses. Starter Site from $1,500. Design and code, delivered in 14 days.',
+      'Professional web design and development for businesses. Starter Site from $1,500. Design and code, delivered in 14 days.',
   },
 }
 
@@ -38,7 +38,7 @@ const services = [
     tagline: 'Your business, online in 10 days',
     price: 'From $1,500',
     description:
-      'Everything a small business or restaurant needs to launch a credible, fast, mobile-ready website — without the complexity or the wait.',
+      'Everything a business or restaurant needs to launch a credible, fast, mobile-ready website — without the complexity or the wait.',
     features: [
       'Up to 5 pages (Home, About, Services, Contact + 1 more)',
       'Mobile-first responsive design',

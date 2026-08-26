@@ -8,28 +8,28 @@ import WhatsAppCTA from '@/components/sections/WhatsAppCTA'
 export const metadata: Metadata = {
   title: 'Portfolio — Websites That Worked | MotionBite',
   description:
-    'Real websites built for small businesses and restaurants. Reservations up 3x, inquiries doubled, bounce rate down 40%. View the full case studies.',
+    'Real websites built for businesses and restaurants. Reservations up 3x, inquiries doubled, bounce rate down 40%. View the full case studies.',
   keywords: [
     'web design and development portfolio',
-    'small business website examples',
+    'business website examples',
     'restaurant web design and development portfolio',
     'website design and development case studies',
     'web design and development results',
     'before and after website redesign',
-    'small business web development examples',
+    'business web development examples',
   ],
   openGraph: {
     type: 'website',
     title: 'Portfolio — Websites That Worked | MotionBite',
     description:
-      'Real websites designed and developed for small businesses and restaurants. Reservations up 3x, inquiries doubled. View the full case studies.',
+      'Real websites designed and developed for businesses and restaurants. Reservations up 3x, inquiries doubled. View the full case studies.',
     url: 'https://motionbite.com/portfolio',
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Portfolio — Websites That Worked | MotionBite',
     description:
-      'Real websites designed and developed for small businesses and restaurants. Reservations up 3x, inquiries doubled. View the full case studies.',
+      'Real websites designed and developed for businesses and restaurants. Reservations up 3x, inquiries doubled. View the full case studies.',
   },
 }
 

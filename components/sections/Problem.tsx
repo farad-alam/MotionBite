@@ -42,7 +42,7 @@ export default function Problem() {
           className="text-center mb-14"
         >
           <h2 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-text-primary leading-tight">
-            Most Small Business Websites{' '}
+            Most Business Websites{' '}
             <span className="text-state-error">Don&apos;t Work.</span>
             <br />Here&apos;s Why.
           </h2>

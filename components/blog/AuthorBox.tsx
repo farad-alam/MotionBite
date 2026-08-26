@@ -20,7 +20,7 @@ export default function AuthorBox({ author }: AuthorBoxProps) {
             MotionBite Team
           </p>
           <p className="font-body text-text-muted text-xs leading-relaxed mb-2">
-            Web design &amp; development agency helping small businesses and restaurants get found
+            Web design &amp; development agency helping businesses and restaurants get found
             online. We build fast, professional websites — delivered in 14 days.
           </p>
           <div className="flex items-center gap-3">

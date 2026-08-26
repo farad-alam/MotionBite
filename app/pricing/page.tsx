@@ -10,10 +10,10 @@ export const metadata: Metadata = {
     'web design and development cost',
     'website design and development pricing',
     'how much does web design and development cost',
-    'small business website packages',
+    'business website packages',
     'affordable web design and development pricing',
     'web design and development packages and prices',
-    'website development cost for small business',
+    'website development cost for business',
     'web design developer pricing',
   ],
   openGraph: {

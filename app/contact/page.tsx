@@ -6,12 +6,12 @@ import { siteData } from '@/data/site'
 export const metadata: Metadata = {
   title: 'Contact MotionBite | Free Web Design & Development Consultation',
   description:
-    'Contact MotionBite for a free web design and development consultation. We reply within 24 hours. Small business websites from $1,500, delivered in 14 days.',
+    'Contact MotionBite for a free web design and development consultation. We reply within 24 hours. Business websites from $1,500, delivered in 14 days.',
   keywords: [
     'contact web design and development agency',
     'get a website design and development quote',
     'free web design consultation',
-    'hire web designer and developer for small business',
+    'hire web designer and developer for business',
     'web design and development enquiry',
     'MotionBite contact',
   ],

@@ -4,27 +4,27 @@ import Link from 'next/link'
 export const metadata: Metadata = {
   title: 'About MotionBite | Web Design & Development Agency',
   description:
-    'MotionBite is a web design and development agency for small businesses and restaurants. We handle design and code end to end — fast delivery, transparent pricing.',
+    'MotionBite is a web design and development agency for businesses and restaurants. We handle design and code end to end — fast delivery, transparent pricing.',
   keywords: [
     'web design and development agency',
-    'small business web design and development agency',
+    'business web design and development agency',
     'about MotionBite',
     'affordable web design and development team',
-    'website design and development company for small businesses',
+    'website design and development company for businesses',
     'professional web design developer agency',
   ],
   openGraph: {
     type: 'website',
     title: 'About MotionBite | Web Design & Development Agency',
     description:
-      'MotionBite is a web design and development agency for small businesses and restaurants. Design and code end to end — fast delivery, transparent pricing.',
+      'MotionBite is a web design and development agency for businesses and restaurants. Design and code end to end — fast delivery, transparent pricing.',
     url: 'https://motionbite.com/about',
   },
   twitter: {
     card: 'summary_large_image',
     title: 'About MotionBite | Web Design & Development Agency',
     description:
-      'MotionBite is a web design and development agency for small businesses and restaurants. Design and code end to end — fast delivery, transparent pricing.',
+      'MotionBite is a web design and development agency for businesses and restaurants. Design and code end to end — fast delivery, transparent pricing.',
   },
 }
 
@@ -56,8 +56,8 @@ const values = [
   },
   {
     icon: '🌍',
-    title: 'Built for Small Businesses',
-    desc: 'We chose to specialise in small businesses because that is where a great website makes the biggest difference. A $1,500 investment can change the trajectory of a small business. That matters to us.',
+    title: 'Built for Businesses',
+    desc: 'We chose to specialise in businesses because that is where a great website makes the biggest difference. A $1,500 investment can change the trajectory of a business. That matters to us.',
   },
 ]
 
@@ -94,7 +94,7 @@ export default function AboutPage() {
                 <span className="text-purple-primary">Underdogs</span>
               </h1>
               <p className="font-body text-text-muted text-lg leading-relaxed mb-6">
-                Small businesses and restaurants compete online against brands with huge marketing budgets. MotionBite exists to level that playing field — by building websites that perform at the same level as those big budgets, for a fraction of the price.
+                Businesses and restaurants compete online against brands with huge marketing budgets. MotionBite exists to level that playing field — by building websites that perform at the same level as those big budgets, for a fraction of the price.
               </p>
               <p className="font-body text-text-muted text-base leading-relaxed">
                 We are a lean team of designers and developers who chose to specialise in one thing: websites that win business for small companies. No bloated processes, no junior-team handoffs, no disappearing after launch.
@@ -168,7 +168,7 @@ export default function AboutPage() {
               Our Tech Stack
             </h2>
             <p className="font-body text-text-muted text-sm max-w-lg mx-auto">
-              The same tools used by Vercel, Linear, and Loom — applied to small business websites for performance that large agencies rarely deliver.
+              The same tools used by Vercel, Linear, and Loom — applied to business websites for performance that large agencies rarely deliver.
             </p>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-3 gap-4">

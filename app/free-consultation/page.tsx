@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import ConsultationForm from './ConsultationForm'
 
 export const metadata: Metadata = {
-  title: 'Free 30-Min Website Consultation for Small Businesses | MotionBite',
+  title: 'Free 30-Min Website Consultation for Businesses | MotionBite',
   description:
     "Book a free 30-minute consultation. We'll review your website, identify what's costing you customers, and give you a clear action plan — no pitch, no strings.",
   keywords: [
@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     'free web design consultation',
     'free website review',
     'website strategy consultation',
-    'free website analysis for small business',
+    'free website analysis for business',
     'free web design and development consultation',
     'book free consultation',
   ],

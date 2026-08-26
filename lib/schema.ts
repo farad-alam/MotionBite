@@ -48,6 +48,7 @@ export const articleSchema = ({
   dateModified,
   keywords,
   image,
+  wordCount,
 }: {
   title: string
   description: string
@@ -56,9 +57,14 @@ export const articleSchema = ({
   dateModified?: string
   keywords?: string[]
   image?: string
+  wordCount?: number
 }) => ({
   '@context': 'https://schema.org',
-  '@type': 'Article',
+  '@type': 'BlogPosting',
+  mainEntityOfPage: {
+    '@type': 'WebPage',
+    '@id': `https://motionbite.com/blog/${slug}`,
+  },
   headline: title,
   description,
   url: `https://motionbite.com/blog/${slug}`,
@@ -66,7 +72,18 @@ export const articleSchema = ({
   dateModified: dateModified || datePublished,
   ...(keywords && keywords.length > 0 ? { keywords: keywords.join(', ') } : {}),
   ...(image ? { image: { '@type': 'ImageObject', url: image, width: 1200, height: 630 } } : {}),
-  author: { '@type': 'Organization', name: 'MotionBite', url: 'https://motionbite.com' },
+  ...(wordCount ? { wordCount } : {}),
+  author: {
+    '@type': 'Organization',
+    name: 'MotionBite',
+    url: 'https://motionbite.com',
+    logo: { '@type': 'ImageObject', url: 'https://motionbite.com/logo.png' },
+    sameAs: [
+      'https://www.linkedin.com/company/motionbiteit/',
+      'https://x.com/motionbiteit',
+      'https://www.facebook.com/MotionBiteit',
+    ],
+  },
   publisher: {
     '@type': 'Organization',
     name: 'MotionBite',

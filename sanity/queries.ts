@@ -18,6 +18,7 @@ export type SanityPost = {
   publishedAt: string
   updatedAt?: string
   readTime?: string
+  wordCount?: number
   body?: SanityBlock[]
   faqItems?: { question: string; answer: string }[]
   canonicalUrl?: string
@@ -90,6 +91,7 @@ export async function getPost(slug: string): Promise<SanityPost | null> {
       publishedAt,
       updatedAt,
       "readTime": round(length(pt::text(body)) / 1500) + " min read",
+      "wordCount": length(string::split(pt::text(body), " ")),
       body,
       faqItems,
       canonicalUrl,

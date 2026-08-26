@@ -5,15 +5,34 @@ import Image from 'next/image'
 import { urlFor } from './image'
 import { SanityBlock } from './queries'
 
+// Converts heading text to a URL-safe anchor id
+function slugify(text: unknown): string {
+  if (!text) return ''
+  const str = Array.isArray(text)
+    ? text.map((t) => (typeof t === 'string' ? t : (t as { text?: string })?.text ?? '')).join('')
+    : String(text)
+  return str
+    .toLowerCase()
+    .replace(/[^a-z0-9\s-]/g, '')
+    .trim()
+    .replace(/\s+/g, '-')
+}
+
 const components: PortableTextComponents = {
   block: {
-    h2: ({ children }) => (
-      <h2 className="font-heading text-2xl md:text-3xl font-bold text-text-primary mt-12 mb-4 leading-snug">
+    h2: ({ children, value }) => (
+      <h2
+        id={slugify((value?.children as { text?: string }[] | undefined)?.map((c) => c?.text))}
+        className="font-heading text-2xl md:text-3xl font-bold text-text-primary mt-12 mb-4 leading-snug scroll-mt-28"
+      >
         {children}
       </h2>
     ),
-    h3: ({ children }) => (
-      <h3 className="font-heading text-xl md:text-2xl font-bold text-text-primary mt-10 mb-3 leading-snug">
+    h3: ({ children, value }) => (
+      <h3
+        id={slugify((value?.children as { text?: string }[] | undefined)?.map((c) => c?.text))}
+        className="font-heading text-xl md:text-2xl font-bold text-text-primary mt-10 mb-3 leading-snug scroll-mt-28"
+      >
         {children}
       </h3>
     ),

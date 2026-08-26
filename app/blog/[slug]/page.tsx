@@ -6,6 +6,9 @@ import { getAllPostSlugs, getPost } from '@/sanity/queries'
 import { urlFor } from '@/sanity/image'
 import { PortableText } from '@/sanity/portableText'
 import ReadingProgress from '@/components/ui/ReadingProgress'
+import AuthorBox from '@/components/blog/AuthorBox'
+import TableOfContents from '@/components/blog/TableOfContents'
+import ShareButtons from '@/components/blog/ShareButtons'
 import { articleSchema, faqSchema } from '@/lib/schema'
 
 export async function generateStaticParams() {
@@ -84,6 +87,7 @@ export default async function BlogPostPage({
     dateModified: post.updatedAt ?? post.publishedAt,
     keywords: post.keywords,
     image: ogImage,
+    wordCount: post.wordCount,
   })
 
   const breadcrumbJsonLd = {
@@ -111,118 +115,144 @@ export default async function BlogPostPage({
 
       <ReadingProgress />
 
-      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Back link */}
-        <Link href="/blog" className="text-purple-primary text-sm font-body hover:underline mb-8 inline-block">
-          ← Back to Blog
-        </Link>
+      {/* ── Outer wrapper: article + optional TOC sidebar ── */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex gap-12 justify-center">
 
-        {/* Meta */}
-        <div className="flex items-center gap-3 mb-4 flex-wrap">
-          {post.category && (
-            <span className="bg-purple-primary/10 border border-purple-primary/20 text-purple-primary text-xs font-body px-2.5 py-1 rounded-full">
-              {post.category.title}
-            </span>
+          {/* ── TOC sidebar (desktop only, hidden if no headings) ── */}
+          {post.body && post.body.length > 0 && (
+            <TableOfContents body={post.body} />
           )}
-          {post.readTime && (
-            <span className="text-text-muted text-xs font-body">{post.readTime}</span>
-          )}
-          <span className="text-text-muted text-xs font-body">
-            {formatDate(post.publishedAt)}
-          </span>
-          {post.updatedAt && post.updatedAt !== post.publishedAt && (
-            <span className="text-text-muted text-xs font-body italic">
-              Updated {formatDate(post.updatedAt)}
-            </span>
-          )}
-        </div>
 
-        {/* Title */}
-        <h1 className="font-heading text-4xl md:text-5xl font-bold text-text-primary leading-tight mb-6">
-          {post.title}
-        </h1>
+          {/* ── Main article column ── */}
+          <div className="w-full max-w-3xl min-w-0">
+            {/* Back link */}
+            <Link href="/blog" className="text-purple-primary text-sm font-body hover:underline mb-8 inline-block">
+              ← Back to Blog
+            </Link>
 
-        {/* Excerpt */}
-        <p className="font-body text-text-muted text-lg leading-relaxed mb-8 border-l-2 border-purple-primary/40 pl-4">
-          {post.excerpt}
-        </p>
+            {/* Meta */}
+            <div className="flex items-center gap-3 mb-4 flex-wrap">
+              {post.category && (
+                <span className="bg-purple-primary/10 border border-purple-primary/20 text-purple-primary text-xs font-body px-2.5 py-1 rounded-full">
+                  {post.category.title}
+                </span>
+              )}
+              {post.readTime && (
+                <span className="text-text-muted text-xs font-body">{post.readTime}</span>
+              )}
+              <span className="text-text-muted text-xs font-body">
+                {formatDate(post.publishedAt)}
+              </span>
+              {post.updatedAt && post.updatedAt !== post.publishedAt && (
+                <span className="text-text-muted text-xs font-body italic">
+                  Updated {formatDate(post.updatedAt)}
+                </span>
+              )}
+            </div>
 
-        {/* Cover Image */}
-        {post.mainImage?.asset && (
-          <div className="relative w-full aspect-video rounded-xl overflow-hidden border border-dark-border mb-12">
-            <Image
-              src={urlFor(post.mainImage).width(900).height(506).format('webp').url()}
-              alt={post.mainImage.alt ?? post.title}
-              fill
-              className="object-cover"
-              priority
-            />
-          </div>
-        )}
+            {/* Title */}
+            <h1 className="font-heading text-4xl md:text-5xl font-bold text-text-primary leading-tight mb-6">
+              {post.title}
+            </h1>
 
-        {/* Article Body (Portable Text) */}
-        {post.body && post.body.length > 0 && (
-          <div className="mb-12">
-            <PortableText value={post.body} />
-          </div>
-        )}
+            {/* Author E-E-A-T box */}
+            <AuthorBox />
 
-        {/* FAQ Section */}
-        {post.faqItems && post.faqItems.length > 0 && (
-          <div className="mb-12">
-            <h2 className="font-heading text-2xl font-bold text-text-primary mb-6">
-              Frequently Asked Questions
-            </h2>
-            <div className="space-y-4">
-              {post.faqItems.map((item, i) => (
-                <div key={i} className="bg-dark-card border border-dark-border rounded-xl p-6">
-                  <h3 className="font-heading font-semibold text-text-primary mb-2">{item.question}</h3>
-                  <p className="font-body text-text-muted text-sm leading-relaxed">{item.answer}</p>
+            {/* Excerpt */}
+            <p className="font-body text-text-muted text-lg leading-relaxed mb-8 border-l-2 border-purple-primary/40 pl-4">
+              {post.excerpt}
+            </p>
+
+            {/* Cover Image */}
+            {post.mainImage?.asset && (
+              <div className="relative w-full aspect-video rounded-xl overflow-hidden border border-dark-border mb-8">
+                <Image
+                  src={urlFor(post.mainImage).width(900).height(506).format('webp').url()}
+                  alt={post.mainImage.alt ?? post.title}
+                  fill
+                  className="object-cover"
+                  priority
+                />
+              </div>
+            )}
+
+            {/* Mobile TOC (rendered inside article column on small screens) */}
+            {post.body && post.body.length > 0 && (
+              <div className="xl:hidden">
+                <TableOfContents body={post.body} />
+              </div>
+            )}
+
+            {/* Article Body (Portable Text) */}
+            {post.body && post.body.length > 0 && (
+              <div className="mb-12">
+                <PortableText value={post.body} />
+              </div>
+            )}
+
+            {/* Social Share */}
+            <ShareButtons title={post.title} slug={post.slug.current} />
+
+            {/* FAQ Section */}
+            {post.faqItems && post.faqItems.length > 0 && (
+              <div className="mb-12">
+                <h2 className="font-heading text-2xl font-bold text-text-primary mb-6">
+                  Frequently Asked Questions
+                </h2>
+                <div className="space-y-4">
+                  {post.faqItems.map((item, i) => (
+                    <div key={i} className="bg-dark-card border border-dark-border rounded-xl p-6">
+                      <h3 className="font-heading font-semibold text-text-primary mb-2">{item.question}</h3>
+                      <p className="font-body text-text-muted text-sm leading-relaxed">{item.answer}</p>
+                    </div>
+                  ))}
                 </div>
-              ))}
-            </div>
-          </div>
-        )}
+              </div>
+            )}
 
-        {/* CTA box */}
-        <div className="mt-12 bg-dark-card rounded-xl p-8 glow-border text-center">
-          <p className="font-heading text-xl font-bold text-text-primary mb-2">
-            Ready to grow your business online?
-          </p>
-          <p className="font-body text-text-muted text-sm mb-6">
-            Get a free 30-minute consultation — we will tell you exactly what to improve.
-          </p>
-          <Link
-            href="/free-consultation"
-            className="inline-flex items-center gap-2 bg-purple-primary hover:bg-purple-dark text-dark-base font-heading font-semibold px-6 py-3 rounded-md transition-colors duration-200"
-          >
-            Book My Free Consultation →
-          </Link>
+            {/* CTA box */}
+            <div className="mt-12 bg-dark-card rounded-xl p-8 glow-border text-center">
+              <p className="font-heading text-xl font-bold text-text-primary mb-2">
+                Ready to grow your business online?
+              </p>
+              <p className="font-body text-text-muted text-sm mb-6">
+                Get a free 30-minute consultation — we will tell you exactly what to improve.
+              </p>
+              <Link
+                href="/free-consultation"
+                className="inline-flex items-center gap-2 bg-purple-primary hover:bg-purple-dark text-dark-base font-heading font-semibold px-6 py-3 rounded-md transition-colors duration-200"
+              >
+                Book My Free Consultation →
+              </Link>
+            </div>
+
+            {/* Related posts */}
+            {post.related && post.related.length > 0 && (
+              <div className="mt-16">
+                <h3 className="font-heading text-xl font-bold text-text-primary mb-6">Related Articles</h3>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  {post.related.map((r) => (
+                    <Link
+                      key={r.slug.current}
+                      href={`/blog/${r.slug.current}`}
+                      className="block bg-dark-card rounded-xl p-5 glow-border hover:border-purple-primary/30 transition-all duration-200 group"
+                    >
+                      <span className="text-xs font-body text-purple-primary mb-2 block">
+                        {r.category?.title}
+                      </span>
+                      <h4 className="font-heading text-sm font-semibold text-text-primary group-hover:text-purple-primary transition-colors leading-snug mb-2">
+                        {r.title}
+                      </h4>
+                      <span className="text-xs font-body text-text-muted">{r.readTime}</span>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+
         </div>
-
-        {/* Related posts */}
-        {post.related && post.related.length > 0 && (
-          <div className="mt-16">
-            <h3 className="font-heading text-xl font-bold text-text-primary mb-6">Related Articles</h3>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {post.related.map((r) => (
-                <Link
-                  key={r.slug.current}
-                  href={`/blog/${r.slug.current}`}
-                  className="block bg-dark-card rounded-xl p-5 glow-border hover:border-purple-primary/30 transition-all duration-200 group"
-                >
-                  <span className="text-xs font-body text-purple-primary mb-2 block">
-                    {r.category?.title}
-                  </span>
-                  <h4 className="font-heading text-sm font-semibold text-text-primary group-hover:text-purple-primary transition-colors leading-snug mb-2">
-                    {r.title}
-                  </h4>
-                  <span className="text-xs font-body text-text-muted">{r.readTime}</span>
-                </Link>
-              ))}
-            </div>
-          </div>
-        )}
       </div>
     </div>
   )

@@ -1,7 +1,7 @@
 import { ImageResponse } from 'next/og'
 
 export const runtime = 'edge'
-export const alt = 'MotionBite — We Build Websites That Mean Business'
+export const alt = 'MotionBite - We Build Websites That Mean Business'
 export const size = { width: 1200, height: 630 }
 export const contentType = 'image/png'
 
@@ -72,7 +72,7 @@ export default function OGImage() {
             </div>
           </div>
           <span style={{ fontSize: '32px', fontWeight: 700, color: '#f8fafc', letterSpacing: '0.5px' }}>
-            Motion<span style={{ color: '#712EFF' }}>Bite</span>
+            MotionBite
           </span>
         </div>
 
@@ -88,13 +88,12 @@ export default function OGImage() {
             marginBottom: '24px',
           }}
         >
-          We Build Websites That Mean{' '}
-          <span style={{ color: '#712EFF' }}>Business</span>
+          We Build Websites That Mean Business
         </div>
 
         {/* Subline */}
         <div style={{ fontSize: '26px', color: '#94a3b8', maxWidth: '750px', marginBottom: '56px', lineHeight: 1.4 }}>
-          Fast, professional websites for growing businesses — designed, developed, and delivered in 14 days.
+          Fast, professional websites for growing businesses - designed, developed, and delivered in 14 days.
         </div>
 
         {/* Trust bar */}
@@ -121,8 +120,6 @@ export default function OGImage() {
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  fontSize: '14px',
-                  fontWeight: 'bold',
                 }}
               >
                 <svg

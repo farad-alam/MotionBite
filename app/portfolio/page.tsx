@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     title: 'Portfolio — Websites That Worked | MotionBite',
     description:
       'Real websites designed and developed for businesses and restaurants. Reservations up 3x, inquiries doubled. View the full case studies.',
-    url: 'https://motionbite.com/portfolio',
+    url: 'https://www.motionbite.com/portfolio',
     images: ['/opengraph-image'],
   },
   twitter: {

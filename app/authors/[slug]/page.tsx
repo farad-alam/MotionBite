@@ -38,7 +38,7 @@ export async function generateMetadata({
       type: 'profile',
       title: `${fullName} | MotionBite Blog`,
       description,
-      url: `https://motionbite.com/authors/${slug}`,
+      url: `https://www.motionbite.com/authors/${slug}`,
       ...(avatarUrl ? { images: [{ url: avatarUrl, width: 400, height: 400 }] } : {}),
     },
     twitter: {
@@ -48,7 +48,7 @@ export async function generateMetadata({
       ...(avatarUrl ? { images: [avatarUrl] } : {}),
     },
     alternates: {
-      canonical: `https://motionbite.com/authors/${slug}`,
+      canonical: `https://www.motionbite.com/authors/${slug}`,
     },
   }
 }
@@ -84,13 +84,13 @@ export default async function AuthorPage({
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://motionbite.com' },
-      { '@type': 'ListItem', position: 2, name: 'Blog', item: 'https://motionbite.com/blog' },
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.motionbite.com' },
+      { '@type': 'ListItem', position: 2, name: 'Blog', item: 'https://www.motionbite.com/blog' },
       {
         '@type': 'ListItem',
         position: 3,
         name: fullName,
-        item: `https://motionbite.com/authors/${slug}`,
+        item: `https://www.motionbite.com/authors/${slug}`,
       },
     ],
   }

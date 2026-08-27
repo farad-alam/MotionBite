@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     title: 'Contact MotionBite | Free Web Design & Development Consultation',
     description:
       'Contact MotionBite for a free web design and development consultation. We reply within 24 hours. Websites from $1,500.',
-    url: 'https://motionbite.com/contact',
+    url: 'https://www.motionbite.com/contact',
     images: ['/opengraph-image'],
   },
   twitter: {

@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     title: 'Web Design & Development Services for Businesses | MotionBite',
     description:
       'Professional web design and development for businesses. Starter Site from $1,500. Design and code, delivered in 14 days.',
-    url: 'https://motionbite.com/services',
+    url: 'https://www.motionbite.com/services',
     images: ['/opengraph-image'],
   },
   twitter: {

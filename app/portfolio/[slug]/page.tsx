@@ -26,7 +26,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       type: 'website',
       title: `${item.name} Case Study | MotionBite Portfolio`,
       description: `How MotionBite helped ${item.name} achieve: ${item.result}. Full case study.`,
-      url: `https://motionbite.com/portfolio/${item.slug}`,
+      url: `https://www.motionbite.com/portfolio/${item.slug}`,
       images: ['/opengraph-image'],
     },
     twitter: {

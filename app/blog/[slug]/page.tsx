@@ -34,16 +34,16 @@ export async function generateMetadata({
     description: post.excerpt,
     keywords: post.keywords ?? [],
     authors: post.author
-      ? [{ name: `${post.author.firstName} ${post.author.lastName}`.trim(), url: `https://motionbite.com/authors/${post.author.slug.current}` }]
-      : [{ name: 'MotionBite', url: 'https://motionbite.com' }],
+      ? [{ name: `${post.author.firstName} ${post.author.lastName}`.trim(), url: `https://www.motionbite.com/authors/${post.author.slug.current}` }]
+      : [{ name: 'MotionBite', url: 'https://www.motionbite.com' }],
     alternates: {
-      canonical: post.canonicalUrl ?? `https://motionbite.com/blog/${post.slug.current}`,
+      canonical: post.canonicalUrl ?? `https://www.motionbite.com/blog/${post.slug.current}`,
     },
     openGraph: {
       type: 'article',
       title: post.title,
       description: post.excerpt,
-      url: `https://motionbite.com/blog/${post.slug.current}`,
+      url: `https://www.motionbite.com/blog/${post.slug.current}`,
       publishedTime: post.publishedAt,
       modifiedTime: post.updatedAt ?? post.publishedAt,
       authors: post.author
@@ -109,9 +109,9 @@ export default async function BlogPostPage({
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://motionbite.com' },
-      { '@type': 'ListItem', position: 2, name: 'Blog', item: 'https://motionbite.com/blog' },
-      { '@type': 'ListItem', position: 3, name: post.title, item: `https://motionbite.com/blog/${post.slug.current}` },
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.motionbite.com' },
+      { '@type': 'ListItem', position: 2, name: 'Blog', item: 'https://www.motionbite.com/blog' },
+      { '@type': 'ListItem', position: 3, name: post.title, item: `https://www.motionbite.com/blog/${post.slug.current}` },
     ],
   }
 

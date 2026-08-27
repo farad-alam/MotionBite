@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     title: 'Web Design & Development Pricing — From $1,500 | MotionBite',
     description:
       'Transparent web design and development pricing. Starter Site from $1,500, Growth Package from $3,500, Premium Build from $6,000. No hidden fees.',
-    url: 'https://motionbite.com/pricing',
+    url: 'https://www.motionbite.com/pricing',
     images: ['/opengraph-image'],
   },
   twitter: {

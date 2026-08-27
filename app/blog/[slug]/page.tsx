@@ -132,7 +132,7 @@ export default async function BlogPostPage({
 
           {/* ── TOC sidebar (desktop only, hidden if no headings) ── */}
           {post.body && post.body.length > 0 && (
-            <TableOfContents body={post.body} />
+            <TableOfContents body={post.body} variant="desktop" />
           )}
 
           {/* ── Main article column ── */}
@@ -189,7 +189,7 @@ export default async function BlogPostPage({
             {/* Mobile TOC (rendered inside article column on small screens) */}
             {post.body && post.body.length > 0 && (
               <div className="xl:hidden">
-                <TableOfContents body={post.body} />
+                <TableOfContents body={post.body} variant="mobile" />
               </div>
             )}
 

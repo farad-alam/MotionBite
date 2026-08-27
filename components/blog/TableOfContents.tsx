@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { SanityBlock } from '@/sanity/queries'
 
 interface TocItem {
@@ -35,6 +35,7 @@ interface TableOfContentsProps {
 export default function TableOfContents({ body }: TableOfContentsProps) {
   const [activeId, setActiveId] = useState<string>('')
   const [isOpen, setIsOpen] = useState(false)
+  const navRef = useRef<HTMLDivElement>(null)
   const items = extractHeadings(body)
 
   // Highlight the currently visible heading
@@ -88,34 +89,55 @@ export default function TableOfContents({ body }: TableOfContentsProps) {
         </div>
       </aside>
 
-      {/* ── Mobile collapsible TOC ── */}
+      {/* ── Mobile collapsible TOC (shown inside article column on non-xl) ── */}
       <div className="xl:hidden mb-8 bg-dark-card border border-dark-border rounded-xl overflow-hidden">
         <button
           onClick={() => setIsOpen((v) => !v)}
           className="w-full flex items-center justify-between px-5 py-4 font-heading text-sm font-semibold text-text-primary"
           aria-expanded={isOpen}
+          aria-controls="mobile-toc-nav"
         >
-          <span>Contents</span>
+          <span className="flex items-center gap-2">
+            {/* List icon */}
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <line x1="8" y1="6" x2="21" y2="6" />
+              <line x1="8" y1="12" x2="21" y2="12" />
+              <line x1="8" y1="18" x2="21" y2="18" />
+              <line x1="3" y1="6" x2="3.01" y2="6" />
+              <line x1="3" y1="12" x2="3.01" y2="12" />
+              <line x1="3" y1="18" x2="3.01" y2="18" />
+            </svg>
+            Contents
+          </span>
           <span
             className={`text-purple-primary transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`}
+            aria-hidden="true"
           >
             ▾
           </span>
         </button>
-        {isOpen && (
+
+        {/* Animated expand/collapse */}
+        <div
+          id="mobile-toc-nav"
+          ref={navRef}
+          className={`overflow-hidden transition-all duration-300 ease-in-out ${
+            isOpen ? 'max-h-[600px] opacity-100' : 'max-h-0 opacity-0'
+          }`}
+        >
           <nav
             aria-label="Table of contents"
             className="px-5 pb-4 border-t border-dark-border"
           >
-            <ul className="mt-3 space-y-2">
+            <ul className="mt-3 space-y-0.5">
               {items.map((item) => (
                 <li key={item.id}>
                   <a
                     href={`#${item.id}`}
                     onClick={() => setIsOpen(false)}
-                    className={`block font-body text-sm text-text-muted hover:text-purple-primary transition-colors ${
-                      item.level === 'h3' ? 'pl-4' : 'pl-0'
-                    }`}
+                    className={`flex items-center font-body text-sm text-text-muted hover:text-purple-primary transition-colors py-2.5 border-l-2 ${
+                      item.level === 'h3' ? 'pl-5 border-dark-border/40' : 'pl-3 border-dark-border'
+                    } ${activeId === item.id ? 'text-purple-primary border-purple-primary' : ''}`}
                   >
                     {item.text}
                   </a>
@@ -123,7 +145,7 @@ export default function TableOfContents({ body }: TableOfContentsProps) {
               ))}
             </ul>
           </nav>
-        )}
+        </div>
       </div>
     </>
   )

@@ -24,7 +24,7 @@ export default function ShareButtons({ title, slug }: ShareButtonsProps) {
   }
 
   return (
-    <div className="flex items-center gap-3 my-10 py-6 border-t border-b border-dark-border">
+    <div className="flex flex-wrap items-center gap-x-3 gap-y-2 my-10 py-6 border-t border-b border-dark-border">
       <span className="font-body text-xs text-text-muted mr-1">Share:</span>
 
       {/* Twitter / X */}

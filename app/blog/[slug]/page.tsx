@@ -163,7 +163,7 @@ export default async function BlogPostPage({
             </div>
 
             {/* Title */}
-            <h1 className="font-heading text-4xl md:text-5xl font-bold text-text-primary leading-tight mb-6">
+            <h1 className="font-heading text-3xl sm:text-4xl md:text-5xl font-bold text-text-primary leading-tight mb-6">
               {post.title}
             </h1>
 
@@ -175,7 +175,7 @@ export default async function BlogPostPage({
 
             {/* Cover Image */}
             {post.mainImage?.asset && (
-              <div className="relative w-full aspect-video rounded-xl overflow-hidden border border-dark-border mb-8">
+              <div className="relative w-full aspect-video max-h-[280px] sm:max-h-none rounded-xl overflow-hidden border border-dark-border mb-8">
                 <Image
                   src={urlFor(post.mainImage).width(900).height(506).format('webp').url()}
                   alt={post.mainImage.alt ?? post.title}
@@ -224,7 +224,7 @@ export default async function BlogPostPage({
             )}
 
             {/* CTA box */}
-            <div className="mt-12 bg-dark-card rounded-xl p-8 glow-border text-center">
+            <div className="mt-12 bg-dark-card rounded-xl p-6 sm:p-8 glow-border text-center">
               <p className="font-heading text-xl font-bold text-text-primary mb-2">
                 Ready to grow your business online?
               </p>

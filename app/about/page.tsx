@@ -19,14 +19,14 @@ export const metadata: Metadata = {
     description:
       'MotionBite is a web design and development agency for businesses and restaurants. Design and code end to end — fast delivery, transparent pricing.',
     url: 'https://www.motionbite.com/about',
-    images: ['/opengraph-image'],
+    images: ['/opengraph-image?v=3'],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'About MotionBite | Web Design & Development Agency',
     description:
       'MotionBite is a web design and development agency for businesses and restaurants. Design and code end to end — fast delivery, transparent pricing.',
-    images: ['/opengraph-image'],
+    images: ['/opengraph-image?v=3'],
   },
 }
 

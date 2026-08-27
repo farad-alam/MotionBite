@@ -25,14 +25,14 @@ export const metadata: Metadata = {
     description:
       'Practical guides on web design, web development, and SEO for businesses. Free expert advice from the MotionBite team.',
     url: 'https://www.motionbite.com/blog',
-    images: ['/opengraph-image'],
+    images: ['/opengraph-image?v=3'],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Web Design & Development Blog for Businesses | MotionBite',
     description:
       'Practical guides on web design, web development, and SEO for businesses. Free expert advice from the MotionBite team.',
-    images: ['/opengraph-image'],
+    images: ['/opengraph-image?v=3'],
   },
 }
 

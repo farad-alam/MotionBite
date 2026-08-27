@@ -27,13 +27,13 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       title: `${item.name} Case Study | MotionBite Portfolio`,
       description: `How MotionBite helped ${item.name} achieve: ${item.result}. Full case study.`,
       url: `https://www.motionbite.com/portfolio/${item.slug}`,
-      images: ['/opengraph-image'],
+      images: ['/opengraph-image?v=3'],
     },
     twitter: {
       card: 'summary_large_image',
       title: `${item.name} Case Study | MotionBite Portfolio`,
       description: `How MotionBite helped ${item.name} achieve: ${item.result}.`,
-      images: ['/opengraph-image'],
+      images: ['/opengraph-image?v=3'],
     },
   }
 }

@@ -21,14 +21,14 @@ export const metadata: Metadata = {
     description:
       'Contact MotionBite for a free web design and development consultation. We reply within 24 hours. Websites from $1,500.',
     url: 'https://www.motionbite.com/contact',
-    images: ['/opengraph-image'],
+    images: ['/opengraph-image?v=3'],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Contact MotionBite | Free Web Design & Development Consultation',
     description:
       'Contact MotionBite for a free web design and development consultation. We reply within 24 hours. Websites from $1,500.',
-    images: ['/opengraph-image'],
+    images: ['/opengraph-image?v=3'],
   },
 }
 

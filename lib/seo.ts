@@ -34,7 +34,7 @@ export const defaultMetadata: Metadata = {
       'MotionBite builds fast, professional websites for businesses and restaurants — design and development end to end. Delivered in 14 days.',
     images: [
       {
-        url: '/opengraph-image',
+        url: '/opengraph-image?v=3',
         width: 1200,
         height: 630,
         alt: 'MotionBite — Web Design & Development for Businesses',
@@ -46,7 +46,7 @@ export const defaultMetadata: Metadata = {
     title: 'Web Design & Development for Businesses | MotionBite',
     description:
       'MotionBite builds fast, professional websites for businesses and restaurants — design and development end to end. Delivered in 14 days.',
-    images: ['/opengraph-image'],
+    images: ['/opengraph-image?v=3'],
   },
   robots: {
     index: true,

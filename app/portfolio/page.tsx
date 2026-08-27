@@ -24,14 +24,14 @@ export const metadata: Metadata = {
     description:
       'Real websites designed and developed for businesses and restaurants. Reservations up 3x, inquiries doubled. View the full case studies.',
     url: 'https://www.motionbite.com/portfolio',
-    images: ['/opengraph-image'],
+    images: ['/opengraph-image?v=3'],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Portfolio — Websites That Worked | MotionBite',
     description:
       'Real websites designed and developed for businesses and restaurants. Reservations up 3x, inquiries doubled. View the full case studies.',
-    images: ['/opengraph-image'],
+    images: ['/opengraph-image?v=3'],
   },
 }
 

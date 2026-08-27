@@ -24,16 +24,16 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     ],
     openGraph: {
       type: 'website',
-      title: `${item.name  images: ['/opengraph-image'],
-  } Case Study | MotionBite Portfolio`,
+      title: `${item.name} Case Study | MotionBite Portfolio`,
       description: `How MotionBite helped ${item.name} achieve: ${item.result}. Full case study.`,
       url: `https://motionbite.com/portfolio/${item.slug}`,
+      images: ['/opengraph-image'],
     },
     twitter: {
       card: 'summary_large_image',
-      title: `${item.name  images: ['/opengraph-image'],
-  } Case Study | MotionBite Portfolio`,
+      title: `${item.name} Case Study | MotionBite Portfolio`,
       description: `How MotionBite helped ${item.name} achieve: ${item.result}.`,
+      images: ['/opengraph-image'],
     },
   }
 }

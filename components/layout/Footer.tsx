@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import { siteData } from '@/data/site'
 
 const servicesLinks = [
@@ -48,9 +49,15 @@ export default function Footer() {
           {/* Box 1: MotionBite Info */}
           <div className="xl:col-span-5 bg-dark-card border border-dark-border rounded-3xl p-8 md:p-12 flex flex-col justify-between min-h-[320px] transition-colors duration-500 hover:border-purple-primary/30">
             <div>
-              <Link href="/" className="inline-flex items-center gap-3 mb-6">
-                <div className="w-12 h-12 rounded-xl bg-purple-primary flex items-center justify-center shadow-[0_0_20px_rgba(125,64,255,0.3)]">
-                  <span className="font-heading font-bold text-dark-base text-xl">MB</span>
+              <Link href="/" className="inline-flex items-center gap-4 mb-6">
+                <div className="w-16 h-16 rounded-2xl bg-white flex items-center justify-center overflow-hidden p-[5px] shadow-[0_0_20px_rgba(255,255,255,0.08)] shrink-0">
+                  <Image 
+                    src="/logo.jpg" 
+                    alt="MotionBite Logo" 
+                    width={100} 
+                    height={100} 
+                    className="w-full h-full object-contain"
+                  />
                 </div>
                 <span className="font-heading text-3xl font-bold text-text-primary">
                   Motion<span className="text-purple-primary">Bite</span>

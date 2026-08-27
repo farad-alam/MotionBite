@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
 
 const links = [
@@ -68,11 +69,18 @@ export default function Navbar() {
           `}
         >
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2.5 shrink-0">
-            <div className="w-8 h-8 rounded-lg bg-purple-primary flex items-center justify-center" style={{ boxShadow: 'rgba(255,255,255,0.3) 0px 1px 2px inset' }}>
-              <span className="font-heading font-bold text-white text-xs">MB</span>
+          <Link href="/" className="flex items-center gap-3 shrink-0">
+            <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-[10px] bg-white flex items-center justify-center overflow-hidden p-[3px] shrink-0" style={{ boxShadow: 'rgba(255,255,255,0.2) 0px 1px 3px inset' }}>
+              <Image 
+                src="/logo.jpg" 
+                alt="MotionBite" 
+                width={80} 
+                height={80} 
+                className="w-full h-full object-contain"
+                priority
+              />
             </div>
-            <span className="font-heading text-base font-semibold text-text-primary tracking-wide">
+            <span className="font-heading text-base font-semibold text-text-primary tracking-wide hidden sm:block">
               Motion<span className="text-purple-primary">Bite</span>
             </span>
           </Link>

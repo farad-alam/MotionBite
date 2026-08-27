@@ -32,12 +32,21 @@ export const defaultMetadata: Metadata = {
     title: 'Web Design & Development for Businesses | MotionBite',
     description:
       'MotionBite builds fast, professional websites for businesses and restaurants — design and development end to end. Delivered in 14 days.',
+    images: [
+      {
+        url: '/opengraph-image',
+        width: 1200,
+        height: 630,
+        alt: 'MotionBite — Web Design & Development for Businesses',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Web Design & Development for Businesses | MotionBite',
     description:
       'MotionBite builds fast, professional websites for businesses and restaurants — design and development end to end. Delivered in 14 days.',
+    images: ['/opengraph-image'],
   },
   robots: {
     index: true,

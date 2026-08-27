@@ -16,7 +16,7 @@ export default function OGImage() {
           flexDirection: 'column',
           alignItems: 'flex-start',
           justifyContent: 'center',
-          backgroundColor: '#0A0F0D',
+          backgroundColor: '#0f0f12',
           padding: '80px',
           position: 'relative',
         }}
@@ -30,7 +30,7 @@ export default function OGImage() {
             width: '500px',
             height: '500px',
             borderRadius: '50%',
-            background: 'rgba(0, 200, 150, 0.06)',
+            background: 'rgba(113, 46, 255, 0.08)',
           }}
         />
         <div
@@ -41,68 +41,92 @@ export default function OGImage() {
             width: '300px',
             height: '300px',
             borderRadius: '50%',
-            background: 'rgba(0, 200, 150, 0.04)',
+            background: 'rgba(113, 46, 255, 0.05)',
           }}
         />
 
         {/* Logo row */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '48px' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '48px' }}>
           <div
             style={{
-              width: '48px',
-              height: '48px',
-              borderRadius: '10px',
-              backgroundColor: '#00C896',
+              width: '56px',
+              height: '56px',
+              borderRadius: '12px',
+              backgroundColor: '#fff',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              fontSize: '20px',
-              fontWeight: 700,
-              color: '#0A0F0D',
+              boxShadow: '0 4px 20px rgba(113, 46, 255, 0.2)',
             }}
           >
-            MB
+            {/* The MB mark in purple */}
+            <div
+              style={{
+                fontSize: '24px',
+                fontWeight: 800,
+                color: '#712EFF',
+                letterSpacing: '-1px',
+              }}
+            >
+              MB
+            </div>
           </div>
-          <span style={{ fontSize: '28px', fontWeight: 600, color: '#F0F5F2', letterSpacing: '0.5px' }}>
-            Motion<span style={{ color: '#00C896' }}>Bite</span>
+          <span style={{ fontSize: '32px', fontWeight: 700, color: '#f8fafc', letterSpacing: '0.5px' }}>
+            Motion<span style={{ color: '#712EFF' }}>Bite</span>
           </span>
         </div>
 
         {/* Headline */}
         <div
           style={{
-            fontSize: '72px',
+            fontSize: '76px',
             fontWeight: 700,
-            color: '#F0F5F2',
+            color: '#f8fafc',
             lineHeight: 1.05,
-            letterSpacing: '-1px',
+            letterSpacing: '-1.5px',
             maxWidth: '900px',
             marginBottom: '24px',
           }}
         >
           We Build Websites That Mean{' '}
-          <span style={{ color: '#00C896' }}>Business</span>
+          <span style={{ color: '#712EFF' }}>Business</span>
         </div>
 
         {/* Subline */}
-        <div style={{ fontSize: '24px', color: '#8A9E94', maxWidth: '700px', marginBottom: '48px', lineHeight: 1.4 }}>
-          Fast, professional websites for businesses — delivered in 14 days.
+        <div style={{ fontSize: '26px', color: '#94a3b8', maxWidth: '750px', marginBottom: '56px', lineHeight: 1.4 }}>
+          Fast, professional websites for growing businesses — designed, developed, and delivered in 14 days.
         </div>
 
         {/* Trust bar */}
-        <div style={{ display: 'flex', gap: '32px' }}>
-          {['50+ Websites Launched', '14-Day Delivery', '100% Satisfaction'].map((item) => (
+        <div style={{ display: 'flex', gap: '40px' }}>
+          {['Results-Driven Design', '14-Day Delivery', 'SEO Optimized'].map((item) => (
             <div
               key={item}
               style={{
                 display: 'flex',
                 alignItems: 'center',
-                gap: '8px',
-                fontSize: '16px',
-                color: '#8A9E94',
+                gap: '12px',
+                fontSize: '18px',
+                color: '#cbd5e1',
+                fontWeight: 500,
               }}
             >
-              <span style={{ color: '#00C896', fontSize: '14px' }}>✓</span>
+              <div
+                style={{
+                  width: '24px',
+                  height: '24px',
+                  borderRadius: '50%',
+                  backgroundColor: 'rgba(113, 46, 255, 0.15)',
+                  color: '#712EFF',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  fontSize: '14px',
+                  fontWeight: 'bold',
+                }}
+              >
+                ✓
+              </div>
               {item}
             </div>
           ))}

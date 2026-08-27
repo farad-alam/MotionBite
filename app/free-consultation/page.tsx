@@ -20,12 +20,14 @@ export const metadata: Metadata = {
     description:
       "Book a free 30-minute consultation. We'll review your website and give you a clear action plan — no pitch, no strings.",
     url: 'https://motionbite.com/free-consultation',
+    images: ['/opengraph-image'],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Free 30-Min Website Consultation | MotionBite',
     description:
       "Book a free 30-minute consultation. We'll review your website and give you a clear action plan — no pitch, no strings.",
+    images: ['/opengraph-image'],
   },
 }
 

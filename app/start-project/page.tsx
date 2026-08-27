@@ -18,12 +18,14 @@ export const metadata: Metadata = {
     description:
       'Ready to start your project? Tell us about your business, budget, and timeline. We\'ll get back to you within 24 hours to map out your success.',
     url: 'https://motionbite.com/start-project',
+    images: ['/opengraph-image'],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Start Your Web Design Project | MotionBite',
     description:
       'Ready to start your project? Tell us about your business, budget, and timeline. We\'ll get back to you within 24 hours to map out your success.',
+    images: ['/opengraph-image'],
   },
 }
 

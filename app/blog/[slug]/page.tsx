@@ -50,13 +50,17 @@ export async function generateMetadata({
         ? [`${post.author.firstName} ${post.author.lastName}`.trim()]
         : ['MotionBite'],
       tags: post.keywords ?? [],
-      ...(ogImage ? { images: [{ url: ogImage, width: 1200, height: 630 }] } : {}),
+      images: [
+        ogImage 
+          ? { url: ogImage, width: 1200, height: 630, alt: post.title } 
+          : { url: `/blog/${post.slug.current}/opengraph-image`, width: 1200, height: 630, alt: post.title }
+      ],
     },
     twitter: {
       card: 'summary_large_image',
       title: post.title,
       description: post.excerpt,
-      ...(ogImage ? { images: [ogImage] } : {}),
+      images: [ogImage || `/blog/${post.slug.current}/opengraph-image`],
     },
   }
 }

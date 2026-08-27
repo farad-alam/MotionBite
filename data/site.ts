@@ -1,7 +1,7 @@
 export const siteData = {
   name: 'MotionBite',
   description: 'We build fast, professional websites for businesses. Delivered in 14 days, built to convert.',
-  url: 'https://motionbite.com',
+  url: 'https://www.motionbite.com',
   contact: {
     email: 'hello@motionbite.com',
     phone: '+8801406466559',

@@ -38,6 +38,7 @@ export const metadata: Metadata = {
 export default function PortfolioPage() {
   return (
     <div className="min-h-screen bg-dark-base">
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: `{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.motionbite.com"},{"@type":"ListItem","position":2,"name":"Portfolio","item":"https://www.motionbite.com/portfolio"}]}` }} />
       {/* Header */}
       <section className="pt-32 pb-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto text-center">

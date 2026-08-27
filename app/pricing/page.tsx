@@ -90,6 +90,7 @@ const pricingFaq = [
 export default function PricingPage() {
   return (
     <div className="min-h-screen bg-dark-base pt-20">
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: `{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.motionbite.com"},{"@type":"ListItem","position":2,"name":"Pricing","item":"https://www.motionbite.com/pricing"}]}` }} />
       {/* Header */}
       <section className="section-padding">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">

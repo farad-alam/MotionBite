@@ -1,15 +1,33 @@
 import { siteData } from '@/data/site'
 import type { SanityAuthor } from '@/sanity/queries'
 
+const BASE = siteData.url // https://www.motionbite.com
+
 export const organizationSchema = {
   '@context': 'https://schema.org',
   '@type': 'ProfessionalService',
   name: 'MotionBite',
-  url: 'https://motionbite.com',
-  logo: 'https://motionbite.com/logo.png',
+  url: BASE,
+  logo: `${BASE}/logo.jpg`,
+  image: `${BASE}/logo.jpg`,
   description:
     'Web design and development agency for businesses and restaurants. Fast, professional websites designed and built end to end — delivered in 14 days.',
   email: siteData.contact.email,
+  telephone: siteData.contact.phone,
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: '1st Floor, Afroza Tower, Uposhohor Newmarket',
+    addressLocality: 'Rajshahi',
+    postalCode: '6202',
+    addressCountry: 'BD',
+  },
+  openingHoursSpecification: {
+    '@type': 'OpeningHoursSpecification',
+    dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+    opens: '09:00',
+    closes: '18:00',
+  },
+  priceRange: '$$',
   sameAs: [
     siteData.socials.linkedin,
     siteData.socials.facebook,
@@ -52,7 +70,7 @@ function buildPersonNode(author: SanityAuthor, avatarUrl?: string) {
   return {
     '@type': 'Person',
     name,
-    url: `https://motionbite.com/authors/${author.slug.current}`,
+    url: `${BASE}/authors/${author.slug.current}`,
     ...(author.jobTitle ? { jobTitle: author.jobTitle } : {}),
     ...(author.shortBio ? { description: author.shortBio } : {}),
     ...(avatarUrl
@@ -96,30 +114,29 @@ export const articleSchema = ({
   '@type': 'BlogPosting',
   mainEntityOfPage: {
     '@type': 'WebPage',
-    '@id': `https://motionbite.com/blog/${slug}`,
+    '@id': `${BASE}/blog/${slug}`,
   },
   headline: title,
   description,
-  url: `https://motionbite.com/blog/${slug}`,
+  url: `${BASE}/blog/${slug}`,
   datePublished,
   dateModified: dateModified || datePublished,
   ...(keywords && keywords.length > 0 ? { keywords: keywords.join(', ') } : {}),
   ...(image ? { image: { '@type': 'ImageObject', url: image, width: 1200, height: 630 } } : {}),
   ...(wordCount ? { wordCount } : {}),
-  // Use real Person if author exists, fall back to Organization
   author: author
     ? buildPersonNode(author, authorAvatarUrl)
     : {
         '@type': 'Organization',
         name: 'MotionBite',
-        url: 'https://motionbite.com',
-        logo: { '@type': 'ImageObject', url: 'https://motionbite.com/logo.png' },
+        url: BASE,
+        logo: { '@type': 'ImageObject', url: `${BASE}/logo.jpg` },
       },
   publisher: {
     '@type': 'Organization',
     name: 'MotionBite',
-    url: 'https://motionbite.com',
-    logo: { '@type': 'ImageObject', url: 'https://motionbite.com/logo.png' },
+    url: BASE,
+    logo: { '@type': 'ImageObject', url: `${BASE}/logo.jpg` },
   },
 })
 
@@ -133,7 +150,7 @@ export const personSchema = (author: SanityAuthor, avatarUrl?: string) => ({
   worksFor: {
     '@type': 'Organization',
     name: 'MotionBite',
-    url: 'https://motionbite.com',
+    url: BASE,
   },
 })
 
@@ -149,4 +166,51 @@ export const faqSchema = (items: { question: string; answer: string }[]) => ({
     name: item.question,
     acceptedAnswer: { '@type': 'Answer', text: item.answer },
   })),
+})
+
+// ─────────────────────────────────────────────
+// BreadcrumbList schema
+// ─────────────────────────────────────────────
+
+export const breadcrumbSchema = (
+  crumbs: { name: string; path: string }[]
+) => ({
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: crumbs.map((crumb, i) => ({
+    '@type': 'ListItem',
+    position: i + 1,
+    name: crumb.name,
+    item: `${BASE}${crumb.path}`,
+  })),
+})
+
+// ─────────────────────────────────────────────
+// WebPage schema — for static pages
+// ─────────────────────────────────────────────
+
+export const webPageSchema = ({
+  name,
+  description,
+  path,
+}: {
+  name: string
+  description: string
+  path: string
+}) => ({
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  name,
+  description,
+  url: `${BASE}${path}`,
+  isPartOf: {
+    '@type': 'WebSite',
+    name: 'MotionBite',
+    url: BASE,
+  },
+  publisher: {
+    '@type': 'Organization',
+    name: 'MotionBite',
+    url: BASE,
+  },
 })

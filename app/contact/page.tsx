@@ -71,6 +71,7 @@ const faqs = [
 export default function ContactPage() {
   return (
     <div className="min-h-screen bg-dark-base">
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: `{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.motionbite.com"},{"@type":"ListItem","position":2,"name":"Contact","item":"https://www.motionbite.com/contact"}]}` }} />
       {/* Header */}
       <section className="pt-32 pb-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">

@@ -70,13 +70,13 @@ export default function Navbar() {
         >
           {/* Logo */}
           <Link href="/" className="flex items-center gap-3 shrink-0">
-            <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-[10px] bg-white flex items-center justify-center overflow-hidden p-[3px] shrink-0" style={{ boxShadow: 'rgba(255,255,255,0.2) 0px 1px 3px inset' }}>
+            <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-white flex items-center justify-center overflow-hidden shrink-0 border border-white/20" style={{ boxShadow: 'rgba(255,255,255,0.2) 0px 1px 3px inset' }}>
               <Image 
                 src="/logo.jpg" 
                 alt="MotionBite" 
                 width={80} 
                 height={80} 
-                className="w-full h-full object-contain"
+                className="w-full h-full object-cover scale-125"
                 priority
               />
             </div>

@@ -7,7 +7,7 @@ import { client } from './client'
 export type SanitySiteSettings = {
   seoTitle?: string
   seoDescription?: string
-  seoKeywords?: string[]
+  seoKeywords?: string
   seoImage?: { asset: { _ref: string }; alt: string }
 }
 

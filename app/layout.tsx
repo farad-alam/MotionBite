@@ -41,7 +41,9 @@ export async function generateMetadata(): Promise<Metadata> {
 
   const title = settings?.seoTitle || 'Web Design & Development for Businesses | MotionBite'
   const description = settings?.seoDescription || defaultMetadata.description
-  const keywords = settings?.seoKeywords?.length ? settings.seoKeywords : defaultMetadata.keywords
+  const keywords = settings?.seoKeywords?.trim().length
+    ? settings.seoKeywords.split(',').map((k: string) => k.trim())
+    : defaultMetadata.keywords
   
   let ogImage = defaultMetadata.openGraph?.images
   if (settings?.seoImage?.asset) {

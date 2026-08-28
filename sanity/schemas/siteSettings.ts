@@ -23,9 +23,9 @@ export const siteSettingsSchema = defineType({
     defineField({
       name: 'seoKeywords',
       title: 'SEO Keywords',
-      type: 'array',
-      of: [{ type: 'string' }],
-      description: 'Keywords that describe the overall website focus.',
+      type: 'text',
+      rows: 2,
+      description: 'Keywords that describe the overall website focus. Separate them with commas.',
     }),
     defineField({
       name: 'seoImage',

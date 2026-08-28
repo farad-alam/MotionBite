@@ -9,18 +9,18 @@ export const defaultMetadata: Metadata = {
     template: '%s | MotionBite',
   },
   description:
-    'MotionBite builds fast, professional websites for businesses and restaurants — design and development handled end to end. Delivered in 14 days. Get your free audit today.',
+    'MotionBite builds fast, high-converting websites for businesses, startups, and agencies — design and development handled end to end. Delivered in 14 days. Get your free audit today.',
   keywords: [
     'web design and development for businesses',
-    'web design for businesses',
-    'web development for businesses',
-    'website design and development agency',
+    'custom web development agency',
+    'website design for startups',
+    'high-converting business websites',
     'affordable web design and development',
-    'restaurant website design and development',
+    'B2B web design agency',
     'custom web development for business',
-    'business web design agency',
     'professional website development',
     'fast website design and development',
+    'digital agency web development',
   ],
   authors: [{ name: 'MotionBite' }],
   creator: 'MotionBite',
@@ -31,7 +31,7 @@ export const defaultMetadata: Metadata = {
     siteName: 'MotionBite',
     title: 'Web Design & Development for Businesses | MotionBite',
     description:
-      'MotionBite builds fast, professional websites for businesses and restaurants — design and development end to end. Delivered in 14 days.',
+      'MotionBite builds fast, high-converting websites for businesses, startups, and agencies — design and development end to end. Delivered in 14 days.',
     images: [
       {
         url: '/opengraph-image?v=3',
@@ -45,7 +45,7 @@ export const defaultMetadata: Metadata = {
     card: 'summary_large_image',
     title: 'Web Design & Development for Businesses | MotionBite',
     description:
-      'MotionBite builds fast, professional websites for businesses and restaurants — design and development end to end. Delivered in 14 days.',
+      'MotionBite builds fast, high-converting websites for businesses, startups, and agencies — design and development end to end. Delivered in 14 days.',
     images: ['/opengraph-image?v=3'],
   },
   robots: {

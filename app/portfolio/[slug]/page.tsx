@@ -20,7 +20,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
   const title = item.seoTitle || `${item.name} Case Study | MotionBite Portfolio`
   const description = item.seoDescription || `How MotionBite helped ${item.name} — a ${item.industry} business — achieve: ${item.result}. Read the full web design case study.`
-  const thumbnailUrl = urlFor(item.thumbnail).width(1200).height(630).format('webp').url()
+  const thumbnailUrl = item.thumbnail ? urlFor(item.thumbnail).width(1200).height(630).format('webp').url() : 'https://www.motionbite.com/opengraph-image.png'
 
   return {
     title,
@@ -34,7 +34,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       title,
       description,
       url: `https://www.motionbite.com/portfolio/${item.slug.current}`,
-      images: [{ url: thumbnailUrl, width: 1200, height: 630, alt: item.thumbnail.alt }],
+      images: [{ url: thumbnailUrl, width: 1200, height: 630, alt: item.thumbnail?.alt || item.name }],
     },
     twitter: {
       card: 'summary_large_image',
@@ -51,7 +51,7 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
   if (!item) notFound()
 
   const otherProjects = (await getPortfolioProjects()).filter((p) => p.slug.current !== slug).slice(0, 4)
-  const thumbnailUrl = urlFor(item.thumbnail).width(1600).height(700).format('webp').url()
+  const thumbnailUrl = item.thumbnail ? urlFor(item.thumbnail).width(1600).height(700).format('webp').url() : '/opengraph-image.png'
 
   // Structured data
   const breadcrumbSchema = {
@@ -151,7 +151,7 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
         <div className="rounded-2xl glow-border aspect-[16/7] mb-12 overflow-hidden relative">
           <Image
             src={thumbnailUrl}
-            alt={item.thumbnail.alt}
+            alt={item.thumbnail?.alt || item.name}
             fill
             sizes="(max-width: 768px) 100vw, 896px"
             priority
@@ -268,7 +268,7 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
             <h3 className="font-heading text-xl font-bold text-text-primary mb-6">More Projects</h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {otherProjects.map((p) => {
-                const pThumb = urlFor(p.thumbnail).width(600).height(340).format('webp').url()
+                const pThumb = p.thumbnail ? urlFor(p.thumbnail).width(600).height(340).format('webp').url() : '/opengraph-image.png'
                 return (
                   <Link
                     key={p.slug.current}
@@ -278,7 +278,7 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
                     <div className="relative aspect-video w-full overflow-hidden">
                       <Image
                         src={pThumb}
-                        alt={p.thumbnail.alt}
+                        alt={p.thumbnail?.alt || p.name}
                         fill
                         sizes="(max-width: 640px) 100vw, 50vw"
                         className="object-cover transition-transform duration-500 group-hover:scale-105"

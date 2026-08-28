@@ -33,7 +33,7 @@ const industryIcon = (industry: string) => {
 
 export default function SanityVideoCard({ project, priority = false }: SanityVideoCardProps) {
   const containerRef = useRef<HTMLAnchorElement>(null)
-  const thumbnailUrl = urlFor(project.thumbnail).width(800).height(450).format('webp').url()
+  const thumbnailUrl = project.thumbnail ? urlFor(project.thumbnail).width(800).height(450).format('webp').url() : '/opengraph-image.png'
   const videoSrcInitial = priority ? project.demoVideo?.secure_url : undefined
   const [videoSrc, setVideoSrc] = useState<string | undefined>(videoSrcInitial)
 
@@ -63,7 +63,7 @@ export default function SanityVideoCard({ project, priority = false }: SanityVid
       {/* Thumbnail */}
       <Image
         src={thumbnailUrl}
-        alt={project.thumbnail.alt}
+        alt={project.thumbnail?.alt || project.name}
         fill
         sizes="(max-width: 768px) 100vw, 50vw"
         priority={priority}

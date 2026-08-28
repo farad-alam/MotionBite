@@ -42,12 +42,9 @@ export async function generateMetadata(): Promise<Metadata> {
   const title = settings?.seoTitle || 'Web Design & Development for Businesses | MotionBite'
   const description = settings?.seoDescription || defaultMetadata.description
   
-  let keywords = defaultMetadata.keywords
-  if (Array.isArray(settings?.seoKeywords) && settings.seoKeywords.length > 0) {
-    keywords = settings.seoKeywords
-  } else if (typeof settings?.seoKeywords === 'string' && settings.seoKeywords.trim().length > 0) {
-    keywords = settings.seoKeywords.split(',').map((k: string) => k.trim())
-  }
+  const keywords = typeof settings?.seoKeywords === 'string' && settings.seoKeywords.trim().length > 0
+    ? settings.seoKeywords.split(',').map((k: string) => k.trim())
+    : defaultMetadata.keywords
   
   let ogImage = defaultMetadata.openGraph?.images
   if (settings?.seoImage?.asset) {

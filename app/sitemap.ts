@@ -41,11 +41,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     console.error('Sitemap: failed to fetch blog posts from Sanity', e)
   }
 
-  // Fetch portfolio items from Sanity
+  // Fetch portfolio projects from Sanity
   let portfolioRoutes: MetadataRoute.Sitemap = []
   try {
     const items = await client.fetch<{ slug: string; _updatedAt: string }[]>(
-      `*[_type == "portfolioItem"] | order(_createdAt desc) {
+      `*[_type == "portfolioProject" && status == "published"] | order(order asc) {
         "slug": slug.current,
         _updatedAt
       }`,
@@ -56,10 +56,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       url: `${BASE}/portfolio/${item.slug}`,
       lastModified: new Date(item._updatedAt),
       changeFrequency: 'monthly' as const,
-      priority: 0.6,
+      priority: 0.75,
     }))
   } catch (e) {
-    console.error('Sitemap: failed to fetch portfolio items from Sanity', e)
+    console.error('Sitemap: failed to fetch portfolio projects from Sanity', e)
   }
 
   return [...staticRoutes, ...blogRoutes, ...portfolioRoutes]

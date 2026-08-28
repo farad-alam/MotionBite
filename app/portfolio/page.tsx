@@ -1,28 +1,31 @@
 import type { Metadata } from 'next'
-import { portfolioItems } from '@/data/portfolio'
-import { siteData } from '@/data/site'
 import Link from 'next/link'
-import LazyVideoCard from '@/components/ui/LazyVideoCard'
+import { getPortfolioProjects } from '@/sanity/queries'
+import { siteData } from '@/data/site'
+import SanityVideoCard from '@/components/ui/SanityVideoCard'
 import WhatsAppCTA from '@/components/sections/WhatsAppCTA'
+
+export const revalidate = 60
 
 export const metadata: Metadata = {
   title: 'Portfolio — Websites That Worked | MotionBite',
   description:
-    'Real websites built for businesses and restaurants. Reservations up 3x, inquiries doubled, bounce rate down 40%. View the full case studies.',
+    'Real websites built for businesses, startups, and agencies. Page 1 Google rankings, enquiries doubled, bounce rate down 40%. View the full case studies.',
   keywords: [
     'web design and development portfolio',
     'business website examples',
-    'restaurant web design and development portfolio',
     'website design and development case studies',
     'web design and development results',
     'before and after website redesign',
-    'business web development examples',
+    'agency web development examples',
+    'startup website design portfolio',
   ],
+  alternates: { canonical: 'https://www.motionbite.com/portfolio' },
   openGraph: {
     type: 'website',
     title: 'Portfolio — Websites That Worked | MotionBite',
     description:
-      'Real websites designed and developed for businesses and restaurants. Reservations up 3x, inquiries doubled. View the full case studies.',
+      'Real websites designed and developed for businesses, startups, and agencies. Page 1 Google rankings, enquiries doubled. View the full case studies.',
     url: 'https://www.motionbite.com/portfolio',
     images: ['/opengraph-image?v=3'],
   },
@@ -30,15 +33,38 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Portfolio — Websites That Worked | MotionBite',
     description:
-      'Real websites designed and developed for businesses and restaurants. Reservations up 3x, inquiries doubled. View the full case studies.',
+      'Real websites designed and developed for businesses, startups, and agencies. Page 1 Google rankings, enquiries doubled. View the full case studies.',
     images: ['/opengraph-image?v=3'],
   },
 }
 
-export default function PortfolioPage() {
+export default async function PortfolioPage() {
+  const projects = await getPortfolioProjects()
+
+  const itemListSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    name: 'MotionBite Portfolio',
+    url: 'https://www.motionbite.com/portfolio',
+    itemListElement: projects.map((p, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      name: p.name,
+      url: `https://www.motionbite.com/portfolio/${p.slug.current}`,
+    })),
+  }
+
   return (
     <div className="min-h-screen bg-dark-base">
-    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: `{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.motionbite.com"},{"@type":"ListItem","position":2,"name":"Portfolio","item":"https://www.motionbite.com/portfolio"}]}` }} />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify({ '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [{ '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.motionbite.com' }, { '@type': 'ListItem', position: 2, name: 'Portfolio', item: 'https://www.motionbite.com/portfolio' }] }) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListSchema) }}
+      />
+
       {/* Header */}
       <section className="pt-32 pb-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto text-center">
@@ -57,11 +83,11 @@ export default function PortfolioPage() {
         </div>
       </section>
 
-      {/* Case studies - Hover Reveal Layout */}
+      {/* Case studies grid */}
       <section className="px-4 sm:px-6 lg:px-8 pb-24">
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
-          {portfolioItems.map((item, index) => (
-            <LazyVideoCard key={item.id} item={item} priority={index < 2} />
+          {projects.map((project, index) => (
+            <SanityVideoCard key={project._id} project={project} priority={index < 2} />
           ))}
         </div>
       </section>
@@ -73,7 +99,6 @@ export default function PortfolioPage() {
       <section className="section-padding px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto text-center bg-gradient-to-b from-dark-card to-dark-base border border-purple-primary/20 rounded-3xl p-10 md:p-16 glow-border relative overflow-hidden shadow-2xl">
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-1/2 bg-purple-primary/5 blur-[100px] rounded-full pointer-events-none" />
-          
           <div className="relative z-10">
             <div className="w-16 h-16 rounded-2xl bg-purple-primary/10 border border-purple-primary/20 flex items-center justify-center text-3xl mx-auto mb-8 shadow-inner">
               🚀

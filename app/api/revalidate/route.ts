@@ -19,11 +19,18 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ revalidated: true, type: _type, now: Date.now() })
     }
 
-    // Always revalidate the listing page
-    revalidatePath('/blog', 'page')
+    // If a portfolio project changed, revalidate listing + detail page
+    if (_type === 'portfolioProject') {
+      revalidatePath('/portfolio', 'page')
+      if (slug) {
+        revalidatePath(`/portfolio/${slug}`)
+      }
+      return NextResponse.json({ revalidated: true, type: _type, slug, now: Date.now() })
+    }
 
+    // Blog: always revalidate the listing page
+    revalidatePath('/blog', 'page')
     if (slug) {
-      // Revalidate the specific article URL (omit 'page' type to revalidate literal URL path)
       revalidatePath(`/blog/${slug}`)
     }
 

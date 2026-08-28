@@ -11,6 +11,39 @@ export type SanitySiteSettings = {
   seoImage?: { asset: { _ref: string }; alt: string }
 }
 
+export type CloudinaryAsset = {
+  public_id: string
+  secure_url: string
+  format: string
+  resource_type: string
+}
+
+export type SanityPortfolioProject = {
+  _id: string
+  name: string
+  slug: { current: string }
+  status: 'published' | 'draft'
+  industry: string
+  services?: string[]
+  result: string
+  liveUrl?: string
+  deliveryDays?: number
+  completedAt?: string
+  order?: number
+  thumbnail: { asset: { _ref: string }; alt: string }
+  demoVideo?: CloudinaryAsset
+  youtubeUrl?: string
+  challenge: string
+  solution: string
+  results: string[]
+  metrics?: { label: string; value: string }[]
+  testimonial?: string
+  clientName?: string
+  seoTitle?: string
+  seoDescription?: string
+  seoKeywords?: string
+}
+
 
 export type SanityAuthor = {
   firstName: string
@@ -224,6 +257,56 @@ export async function getSiteSettings(): Promise<SanitySiteSettings | null> {
       seoImage { asset, alt }
     }`,
     {},
+    { next: { revalidate: 60 } }
+  )
+}
+
+// ─────────────────────────────────────────────
+// Portfolio Queries
+// ─────────────────────────────────────────────
+
+const PORTFOLIO_FIELDS = `
+  _id,
+  name,
+  slug,
+  status,
+  industry,
+  services,
+  result,
+  liveUrl,
+  deliveryDays,
+  completedAt,
+  order,
+  thumbnail { asset, alt },
+  demoVideo,
+  youtubeUrl,
+  challenge,
+  solution,
+  results,
+  metrics,
+  testimonial,
+  clientName,
+  seoTitle,
+  seoDescription,
+  seoKeywords
+`
+
+export async function getPortfolioProjects(): Promise<SanityPortfolioProject[]> {
+  return client.fetch(
+    `*[_type == "portfolioProject" && status == "published"] | order(order asc, completedAt desc) {
+      ${PORTFOLIO_FIELDS}
+    }`,
+    {},
+    { next: { revalidate: 60 } }
+  )
+}
+
+export async function getPortfolioProject(slug: string): Promise<SanityPortfolioProject | null> {
+  return client.fetch(
+    `*[_type == "portfolioProject" && slug.current == $slug][0] {
+      ${PORTFOLIO_FIELDS}
+    }`,
+    { slug },
     { next: { revalidate: 60 } }
   )
 }

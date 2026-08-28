@@ -1,0 +1,275 @@
+import { defineType, defineField } from 'sanity'
+
+const INDUSTRY_OPTIONS = [
+  { title: 'Restaurant & Hospitality', value: 'Restaurant & Hospitality' },
+  { title: 'Fitness & Wellness', value: 'Fitness & Wellness' },
+  { title: 'Healthcare & Diagnostics', value: 'Healthcare & Diagnostics' },
+  { title: 'Digital Marketing Agency', value: 'Digital Marketing Agency' },
+  { title: 'SaaS / Social Media', value: 'SaaS / Social Media' },
+  { title: 'Automotive Services', value: 'Automotive Services' },
+  { title: 'Automotive Tech', value: 'Automotive Tech' },
+  { title: 'Travel & Pilgrimage', value: 'Travel & Pilgrimage' },
+  { title: 'E-Commerce / Retail', value: 'E-Commerce / Retail' },
+  { title: 'Education', value: 'Education' },
+  { title: 'Real Estate', value: 'Real Estate' },
+  { title: 'Finance & Legal', value: 'Finance & Legal' },
+  { title: 'Non-Profit / NGO', value: 'Non-Profit / NGO' },
+  { title: 'Other', value: 'Other' },
+]
+
+const SERVICE_OPTIONS = [
+  { title: 'Web Design', value: 'Web Design' },
+  { title: 'Web Development', value: 'Web Development' },
+  { title: 'SEO', value: 'SEO' },
+  { title: 'Branding', value: 'Branding' },
+  { title: 'UI/UX Design', value: 'UI/UX Design' },
+  { title: 'Full-Stack Development', value: 'Full-Stack Development' },
+  { title: 'E-Commerce', value: 'E-Commerce' },
+  { title: 'CMS Integration', value: 'CMS Integration' },
+  { title: 'Performance Optimisation', value: 'Performance Optimisation' },
+  { title: 'Local SEO', value: 'Local SEO' },
+  { title: 'Bilingual / RTL', value: 'Bilingual / RTL' },
+  { title: 'Booking System', value: 'Booking System' },
+]
+
+export const portfolioProjectSchema = defineType({
+  name: 'portfolioProject',
+  title: 'Portfolio Project',
+  type: 'document',
+  groups: [
+    { name: 'core', title: '📌 Core Info', default: true },
+    { name: 'media', title: '🖼️ Media' },
+    { name: 'caseStudy', title: '📝 Case Study' },
+    { name: 'seo', title: '🔍 SEO' },
+  ],
+  fields: [
+    // ── Core Info ──────────────────────────────────────────
+    defineField({
+      name: 'name',
+      title: 'Client / Project Name',
+      type: 'string',
+      group: 'core',
+      validation: (r) => r.required(),
+    }),
+    defineField({
+      name: 'slug',
+      title: 'Slug (URL)',
+      type: 'slug',
+      options: { source: 'name', maxLength: 96 },
+      group: 'core',
+      description: 'Auto-generated URL. Click "Generate".',
+      validation: (r) => r.required(),
+    }),
+    defineField({
+      name: 'status',
+      title: 'Status',
+      type: 'string',
+      group: 'core',
+      options: {
+        list: [
+          { title: '✅ Published', value: 'published' },
+          { title: '🚧 Draft', value: 'draft' },
+        ],
+        layout: 'radio',
+      },
+      initialValue: 'published',
+      validation: (r) => r.required(),
+    }),
+    defineField({
+      name: 'industry',
+      title: 'Industry',
+      type: 'string',
+      group: 'core',
+      options: { list: INDUSTRY_OPTIONS },
+      validation: (r) => r.required(),
+    }),
+    defineField({
+      name: 'services',
+      title: 'Services Provided',
+      type: 'array',
+      of: [{ type: 'string' }],
+      group: 'core',
+      options: { list: SERVICE_OPTIONS, layout: 'grid' },
+      description: 'Select all services that were part of this project.',
+    }),
+    defineField({
+      name: 'result',
+      title: 'Headline Result',
+      type: 'string',
+      group: 'core',
+      description: 'One punchy line shown on the listing card. e.g. "Page 1 Google in 30 Days"',
+      validation: (r) => r.required().max(80),
+    }),
+    defineField({
+      name: 'liveUrl',
+      title: 'Live Site URL',
+      type: 'url',
+      group: 'core',
+      description: 'The actual live website we built. Shown as a "Visit Live Site" button.',
+    }),
+    defineField({
+      name: 'deliveryDays',
+      title: 'Delivery Time (days)',
+      type: 'number',
+      group: 'core',
+      description: 'How many days to deliver this project? e.g. 14',
+    }),
+    defineField({
+      name: 'completedAt',
+      title: 'Completed Date',
+      type: 'date',
+      group: 'core',
+      description: 'When was this project delivered? Used for sorting and Google freshness.',
+    }),
+    defineField({
+      name: 'order',
+      title: 'Display Order',
+      type: 'number',
+      group: 'core',
+      description: 'Lower number = shown first. Use 1, 2, 3...',
+    }),
+
+    // ── Media ──────────────────────────────────────────────
+    defineField({
+      name: 'thumbnail',
+      title: 'Thumbnail Image',
+      type: 'image',
+      group: 'media',
+      options: { hotspot: true },
+      description: 'Main image for the listing card & detail page hero. Recommended: 1280×720 (16:9). Always add alt text.',
+      fields: [
+        defineField({
+          name: 'alt',
+          title: 'Alt Text',
+          type: 'string',
+          validation: (r) => r.required(),
+        }),
+      ],
+      validation: (r) => r.required(),
+    }),
+    defineField({
+      name: 'demoVideo',
+      title: 'Demo Video (Cloudinary)',
+      type: 'cloudinary.asset',
+      group: 'media',
+      description: 'Upload an MP4 demo clip here. Powers the hover-autoplay on the listing card.',
+    }),
+    defineField({
+      name: 'youtubeUrl',
+      title: 'YouTube Video URL (optional)',
+      type: 'url',
+      group: 'media',
+      description: 'If set, this YouTube video is shown on the detail page. If empty, the Cloudinary video is shown instead.',
+    }),
+
+    // ── Case Study ─────────────────────────────────────────
+    defineField({
+      name: 'challenge',
+      title: 'The Challenge',
+      type: 'text',
+      rows: 4,
+      group: 'caseStudy',
+      description: 'What problem did the client face before coming to MotionBite?',
+      validation: (r) => r.required(),
+    }),
+    defineField({
+      name: 'solution',
+      title: 'What We Built',
+      type: 'text',
+      rows: 4,
+      group: 'caseStudy',
+      description: 'Describe what MotionBite built/designed for this client.',
+      validation: (r) => r.required(),
+    }),
+    defineField({
+      name: 'results',
+      title: 'Results (bullet list)',
+      type: 'array',
+      of: [{ type: 'string' }],
+      group: 'caseStudy',
+      description: 'List of outcomes. Each item becomes a bullet point.',
+      validation: (r) => r.required().min(2),
+    }),
+    defineField({
+      name: 'metrics',
+      title: 'Key Metrics',
+      type: 'array',
+      group: 'caseStudy',
+      description: 'Up to 4 stat boxes shown prominently on the detail page. e.g. Label: "Conversion", Value: "35%"',
+      of: [
+        {
+          type: 'object',
+          fields: [
+            defineField({ name: 'label', title: 'Label', type: 'string', validation: (r) => r.required() }),
+            defineField({ name: 'value', title: 'Value', type: 'string', validation: (r) => r.required() }),
+          ],
+          preview: {
+            select: { title: 'label', subtitle: 'value' },
+          },
+        },
+      ],
+      validation: (r) => r.max(4),
+    }),
+    defineField({
+      name: 'testimonial',
+      title: 'Client Testimonial',
+      type: 'text',
+      rows: 3,
+      group: 'caseStudy',
+      description: 'The client quote shown on the case study page.',
+    }),
+    defineField({
+      name: 'clientName',
+      title: 'Client Name & Title',
+      type: 'string',
+      group: 'caseStudy',
+      description: 'e.g. "Nizhum, Owner — Papa Roma Food Engineering"',
+    }),
+
+    // ── SEO ────────────────────────────────────────────────
+    defineField({
+      name: 'seoTitle',
+      title: 'SEO Title (optional override)',
+      type: 'string',
+      group: 'seo',
+      description: 'Overrides the auto-generated title tag. Keep under 60 characters.',
+      validation: (r) => r.max(60).warning('Longer titles get cut off in Google search results'),
+    }),
+    defineField({
+      name: 'seoDescription',
+      title: 'SEO Description (optional override)',
+      type: 'text',
+      rows: 2,
+      group: 'seo',
+      description: 'Overrides the auto-generated meta description. Keep under 160 characters.',
+      validation: (r) => r.max(160).warning('Longer descriptions get cut off in Google search results'),
+    }),
+    defineField({
+      name: 'seoKeywords',
+      title: 'SEO Keywords',
+      type: 'text',
+      rows: 2,
+      group: 'seo',
+      description: 'Comma-separated keywords for this project. e.g. "gym website design, fitness web development"',
+    }),
+  ],
+  preview: {
+    select: {
+      title: 'name',
+      subtitle: 'industry',
+      media: 'thumbnail',
+    },
+  },
+  orderings: [
+    {
+      title: 'Display Order',
+      name: 'orderAsc',
+      by: [{ field: 'order', direction: 'asc' }],
+    },
+    {
+      title: 'Completed Date (newest first)',
+      name: 'completedAtDesc',
+      by: [{ field: 'completedAt', direction: 'desc' }],
+    },
+  ],
+})

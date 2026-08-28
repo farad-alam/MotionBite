@@ -28,7 +28,55 @@ const playfairDisplay = Playfair_Display({
   display: 'swap',
 })
 
-export const metadata: Metadata = defaultMetadata
+import { getSiteSettings } from '@/sanity/queries'
+import { urlFor } from '@/sanity/image'
+
+export async function generateMetadata(): Promise<Metadata> {
+  let settings = null
+  try {
+    settings = await getSiteSettings()
+  } catch (error) {
+    console.error('Error fetching site settings for metadata:', error)
+  }
+
+  const title = settings?.seoTitle || 'Web Design & Development for Businesses | MotionBite'
+  const description = settings?.seoDescription || defaultMetadata.description
+  const keywords = settings?.seoKeywords?.length ? settings.seoKeywords : defaultMetadata.keywords
+  
+  let ogImage = defaultMetadata.openGraph?.images
+  if (settings?.seoImage?.asset) {
+    ogImage = [
+      {
+        url: urlFor(settings.seoImage).width(1200).height(630).format('webp').url(),
+        width: 1200,
+        height: 630,
+        alt: settings.seoImage.alt || title,
+      },
+    ]
+  }
+
+  return {
+    ...defaultMetadata,
+    title: {
+      default: title,
+      template: '%s | MotionBite',
+    },
+    description,
+    keywords,
+    openGraph: {
+      ...defaultMetadata.openGraph,
+      title,
+      description: description as string,
+      images: ogImage as any,
+    },
+    twitter: {
+      ...defaultMetadata.twitter,
+      title,
+      description: description as string,
+      images: ogImage as any,
+    },
+  }
+}
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (

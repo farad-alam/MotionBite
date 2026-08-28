@@ -4,6 +4,14 @@ import { client } from './client'
 // Types
 // ─────────────────────────────────────────────
 
+export type SanitySiteSettings = {
+  seoTitle?: string
+  seoDescription?: string
+  seoKeywords?: string[]
+  seoImage?: { asset: { _ref: string }; alt: string }
+}
+
+
 export type SanityAuthor = {
   firstName: string
   lastName: string
@@ -199,6 +207,23 @@ export async function getAuthor(slug: string): Promise<SanityAuthorWithPosts | n
       }
     }`,
     { slug },
+    { next: { revalidate: 60 } }
+  )
+}
+
+// ─────────────────────────────────────────────
+// Site Settings Queries
+// ─────────────────────────────────────────────
+
+export async function getSiteSettings(): Promise<SanitySiteSettings | null> {
+  return client.fetch(
+    `*[_type == "siteSettings"][0] {
+      seoTitle,
+      seoDescription,
+      seoKeywords,
+      seoImage { asset, alt }
+    }`,
+    {},
     { next: { revalidate: 60 } }
   )
 }

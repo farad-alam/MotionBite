@@ -151,7 +151,7 @@ export async function getAllPostSlugs(): Promise<string[]> {
   const results = await client.fetch<{ slug: { current: string } }[]>(
     `*[_type == "post"]{ slug }`,
     {},
-    { cache: 'no-store' }
+    { next: { revalidate: 3600 } } // 1 hour — slug list only needed fresh at build/ISR cycle
   )
   return results.map((r) => r.slug.current)
 }
@@ -202,7 +202,7 @@ export async function getAllAuthorSlugs(): Promise<string[]> {
   const results = await client.fetch<{ slug: { current: string } }[]>(
     `*[_type == "author"]{ slug }`,
     {},
-    { cache: 'no-store' }
+    { next: { revalidate: 3600 } } // 1 hour — slug list only needed fresh at build/ISR cycle
   )
   return results.map((r) => r.slug.current)
 }

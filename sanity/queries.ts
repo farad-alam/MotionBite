@@ -1,3 +1,4 @@
+import { cache } from 'react'
 import { client } from './client'
 
 // ─────────────────────────────────────────────
@@ -159,7 +160,9 @@ export async function getAllPostSlugs(): Promise<string[]> {
 // Single post — full fields for article page
 // ─────────────────────────────────────────────
 
-export async function getPost(slug: string): Promise<SanityPost | null> {
+// Wrapped with React cache() so generateMetadata() and the page component
+// share one fetch result per render — eliminates the duplicate Sanity call.
+export const getPost = cache(async (slug: string): Promise<SanityPost | null> => {
   return client.fetch(
     `*[_type == "post" && slug.current == $slug][0] {
       _id,
@@ -189,7 +192,7 @@ export async function getPost(slug: string): Promise<SanityPost | null> {
     { slug },
     { next: { revalidate: 60 } }
   )
-}
+})
 
 // ─────────────────────────────────────────────
 // All author slugs — for generateStaticParams on /authors/[slug]
@@ -213,7 +216,8 @@ export type SanityAuthorWithPosts = SanityAuthor & {
   posts: SanityPostCard[]
 }
 
-export async function getAuthor(slug: string): Promise<SanityAuthorWithPosts | null> {
+// Wrapped with React cache() — generateMetadata() and AuthorPage share one fetch.
+export const getAuthor = cache(async (slug: string): Promise<SanityAuthorWithPosts | null> => {
   return client.fetch(
     `*[_type == "author" && slug.current == $slug][0] {
       firstName,
@@ -242,7 +246,7 @@ export async function getAuthor(slug: string): Promise<SanityAuthorWithPosts | n
     { slug },
     { next: { revalidate: 60 } }
   )
-}
+})
 
 // ─────────────────────────────────────────────
 // Site Settings Queries
@@ -301,12 +305,30 @@ export async function getPortfolioProjects(): Promise<SanityPortfolioProject[]> 
   )
 }
 
-export async function getPortfolioProject(slug: string): Promise<SanityPortfolioProject | null> {
+// Wrapped with React cache() — generateMetadata() and CaseStudyPage share one fetch.
+export const getPortfolioProject = cache(async (slug: string): Promise<SanityPortfolioProject | null> => {
   return client.fetch(
     `*[_type == "portfolioProject" && slug.current == $slug][0] {
       ${PORTFOLIO_FIELDS}
     }`,
     { slug },
+    { next: { revalidate: 60 } }
+  )
+})
+
+// Fetches up to 4 related projects in GROQ (filtered + limited server-side).
+// Replaces the old pattern: getPortfolioProjects().filter(...).slice(0, 4)
+// which fetched ALL projects and discarded most of the payload in JS.
+export async function getRelatedPortfolioProjects(
+  excludeSlug: string
+): Promise<SanityPortfolioProject[]> {
+  return client.fetch(
+    `*[_type == "portfolioProject" && status == "published" && slug.current != $excludeSlug]
+      | order(order asc, completedAt desc)
+      [0..3] {
+        ${PORTFOLIO_FIELDS}
+      }`,
+    { excludeSlug },
     { next: { revalidate: 60 } }
   )
 }

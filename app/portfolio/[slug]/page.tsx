@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import Image from 'next/image'
 import { notFound } from 'next/navigation'
-import { getPortfolioProjects, getPortfolioProject } from '@/sanity/queries'
+import { getPortfolioProjects, getPortfolioProject, getRelatedPortfolioProjects } from '@/sanity/queries'
 import { urlFor } from '@/sanity/image'
 import YouTubeEmbed from '@/components/ui/YouTubeEmbed'
 
@@ -50,7 +50,7 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
   const item = await getPortfolioProject(slug)
   if (!item) notFound()
 
-  const otherProjects = (await getPortfolioProjects()).filter((p) => p.slug.current !== slug).slice(0, 4)
+  const otherProjects = await getRelatedPortfolioProjects(slug)
   const thumbnailUrl = item.thumbnail ? urlFor(item.thumbnail).width(1600).height(700).format('webp').url() : '/opengraph-image.png'
 
   // Structured data

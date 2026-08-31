@@ -4,6 +4,7 @@ export const runtime = 'edge'
 export const alt = 'MotionBite - We Build Websites That Mean Business'
 export const size = { width: 1200, height: 630 }
 export const contentType = 'image/png'
+export const revalidate = 86400 // Cache for 24 hours — OG image content is static
 
 export default function OGImage() {
   return new ImageResponse(

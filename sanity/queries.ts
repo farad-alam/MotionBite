@@ -257,7 +257,7 @@ export async function getSiteSettings(): Promise<SanitySiteSettings | null> {
       seoImage { asset, alt }
     }`,
     {},
-    { next: { revalidate: 60 } }
+    { next: { revalidate: 86400 } } // 24 hours — global SEO settings rarely change; webhook handles instant updates
   )
 }
 

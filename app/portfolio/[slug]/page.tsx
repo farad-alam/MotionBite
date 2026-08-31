@@ -6,7 +6,7 @@ import { getPortfolioProjects, getPortfolioProject, getRelatedPortfolioProjects 
 import { urlFor } from '@/sanity/image'
 import YouTubeEmbed from '@/components/ui/YouTubeEmbed'
 
-export const revalidate = 60
+export const revalidate = 300
 
 export async function generateStaticParams() {
   const projects = await getPortfolioProjects()

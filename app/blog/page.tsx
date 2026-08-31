@@ -4,7 +4,7 @@ import Image from 'next/image'
 import { getAllPosts, type SanityPostCard } from '@/sanity/queries'
 import { urlFor } from '@/sanity/image'
 
-export const revalidate = 60
+export const revalidate = 300
 
 export const metadata: Metadata = {
   title: 'Web Design & Development Blog for Businesses | MotionBite',

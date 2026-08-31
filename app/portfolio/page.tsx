@@ -5,7 +5,7 @@ import { siteData } from '@/data/site'
 import SanityVideoCard from '@/components/ui/SanityVideoCard'
 import WhatsAppCTA from '@/components/sections/WhatsAppCTA'
 
-export const revalidate = 60
+export const revalidate = 300
 
 export const metadata: Metadata = {
   title: 'Portfolio — Websites That Worked | MotionBite',

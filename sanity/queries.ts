@@ -139,7 +139,7 @@ export async function getAllPosts(): Promise<SanityPostCard[]> {
       "readTime": round(length(pt::text(body)) / 1500) + " min read"
     }`,
     {},
-    { next: { revalidate: 60 } }
+    { next: { revalidate: 300 } }
   )
 }
 
@@ -190,7 +190,7 @@ export const getPost = cache(async (slug: string): Promise<SanityPost | null> =>
       }
     }`,
     { slug },
-    { next: { revalidate: 60 } }
+    { next: { revalidate: 300 } }
   )
 })
 
@@ -244,7 +244,7 @@ export const getAuthor = cache(async (slug: string): Promise<SanityAuthorWithPos
       }
     }`,
     { slug },
-    { next: { revalidate: 60 } }
+    { next: { revalidate: 300 } }
   )
 })
 
@@ -301,7 +301,7 @@ export async function getPortfolioProjects(): Promise<SanityPortfolioProject[]> 
       ${PORTFOLIO_FIELDS}
     }`,
     {},
-    { next: { revalidate: 60 } }
+    { next: { revalidate: 300 } }
   )
 }
 
@@ -312,7 +312,7 @@ export const getPortfolioProject = cache(async (slug: string): Promise<SanityPor
       ${PORTFOLIO_FIELDS}
     }`,
     { slug },
-    { next: { revalidate: 60 } }
+    { next: { revalidate: 300 } }
   )
 })
 
@@ -329,6 +329,6 @@ export async function getRelatedPortfolioProjects(
         ${PORTFOLIO_FIELDS}
       }`,
     { excludeSlug },
-    { next: { revalidate: 60 } }
+    { next: { revalidate: 300 } }
   )
 }

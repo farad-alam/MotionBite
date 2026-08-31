@@ -7,7 +7,7 @@ import { urlFor } from '@/sanity/image'
 import { PortableText } from '@/sanity/portableText'
 import { personSchema } from '@/lib/schema'
 
-export const revalidate = 60
+export const revalidate = 300
 
 export async function generateStaticParams() {
   const slugs = await getAllAuthorSlugs()

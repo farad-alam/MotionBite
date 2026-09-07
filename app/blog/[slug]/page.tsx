@@ -53,14 +53,14 @@ export async function generateMetadata({
       images: [
         ogImage 
           ? { url: ogImage, width: 1200, height: 630, alt: post.title } 
-          : { url: `/blog/${post.slug.current}/opengraph-image`, width: 1200, height: 630, alt: post.title }
+          : { url: 'https://www.motionbite.com/opengraph-image.png', width: 1200, height: 630, alt: post.title }
       ],
     },
     twitter: {
       card: 'summary_large_image',
       title: post.title,
       description: post.excerpt,
-      images: [ogImage || `/blog/${post.slug.current}/opengraph-image`],
+      images: [ogImage || 'https://www.motionbite.com/opengraph-image.png'],
     },
   }
 }

@@ -11,6 +11,8 @@ import TableOfContents from '@/components/blog/TableOfContents'
 import ShareButtons from '@/components/blog/ShareButtons'
 import { articleSchema, faqSchema } from '@/lib/schema'
 
+export const revalidate = false
+
 export async function generateStaticParams() {
   const slugs = await getAllPostSlugs()
   return slugs.map((slug) => ({ slug }))

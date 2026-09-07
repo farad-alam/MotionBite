@@ -4,7 +4,7 @@ import Image from 'next/image'
 import { getAllPosts, type SanityPostCard } from '@/sanity/queries'
 import { urlFor } from '@/sanity/image'
 
-export const revalidate = 300
+export const revalidate = false
 
 export const metadata: Metadata = {
   title: 'Web Design & Development Blog for Businesses | MotionBite',
@@ -25,14 +25,14 @@ export const metadata: Metadata = {
     description:
       'Practical guides on web design, web development, and SEO for businesses. Free expert advice from the MotionBite team.',
     url: 'https://www.motionbite.com/blog',
-    images: ['/opengraph-image?v=3'],
+    images: ['https://www.motionbite.com/opengraph-image.png'],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Web Design & Development Blog for Businesses | MotionBite',
     description:
       'Practical guides on web design, web development, and SEO for businesses. Free expert advice from the MotionBite team.',
-    images: ['/opengraph-image?v=3'],
+    images: ['https://www.motionbite.com/opengraph-image.png'],
   },
 }
 

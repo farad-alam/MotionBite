@@ -139,7 +139,7 @@ export async function getAllPosts(): Promise<SanityPostCard[]> {
       "readTime": round(length(pt::text(body)) / 1500) + " min read"
     }`,
     {},
-    { next: { revalidate: 300 } }
+    { next: { tags: ['posts'] } }
   )
 }
 
@@ -151,7 +151,7 @@ export async function getAllPostSlugs(): Promise<string[]> {
   const results = await client.fetch<{ slug: { current: string } }[]>(
     `*[_type == "post"]{ slug }`,
     {},
-    { next: { revalidate: 3600 } } // 1 hour — slug list only needed fresh at build/ISR cycle
+    { next: { tags: ['posts'] } }
   )
   return results.map((r) => r.slug.current)
 }
@@ -190,7 +190,7 @@ export const getPost = cache(async (slug: string): Promise<SanityPost | null> =>
       }
     }`,
     { slug },
-    { next: { revalidate: 300 } }
+    { next: { tags: ['posts'] } }
   )
 })
 
@@ -202,7 +202,7 @@ export async function getAllAuthorSlugs(): Promise<string[]> {
   const results = await client.fetch<{ slug: { current: string } }[]>(
     `*[_type == "author"]{ slug }`,
     {},
-    { next: { revalidate: 3600 } } // 1 hour — slug list only needed fresh at build/ISR cycle
+    { next: { tags: ['authors'] } }
   )
   return results.map((r) => r.slug.current)
 }
@@ -244,7 +244,7 @@ export const getAuthor = cache(async (slug: string): Promise<SanityAuthorWithPos
       }
     }`,
     { slug },
-    { next: { revalidate: 300 } }
+    { next: { tags: ['authors'] } }
   )
 })
 
@@ -261,7 +261,7 @@ export async function getSiteSettings(): Promise<SanitySiteSettings | null> {
       seoImage { asset, alt }
     }`,
     {},
-    { next: { revalidate: 86400 } } // 24 hours — global SEO settings rarely change; webhook handles instant updates
+    { next: { tags: ['siteSettings'] } }
   )
 }
 
@@ -301,7 +301,7 @@ export async function getPortfolioProjects(): Promise<SanityPortfolioProject[]> 
       ${PORTFOLIO_FIELDS}
     }`,
     {},
-    { next: { revalidate: 300 } }
+    { next: { tags: ['portfolio'] } }
   )
 }
 
@@ -312,7 +312,7 @@ export const getPortfolioProject = cache(async (slug: string): Promise<SanityPor
       ${PORTFOLIO_FIELDS}
     }`,
     { slug },
-    { next: { revalidate: 300 } }
+    { next: { tags: ['portfolio'] } }
   )
 })
 
@@ -329,6 +329,6 @@ export async function getRelatedPortfolioProjects(
         ${PORTFOLIO_FIELDS}
       }`,
     { excludeSlug },
-    { next: { revalidate: 300 } }
+    { next: { tags: ['portfolio'] } }
   )
 }

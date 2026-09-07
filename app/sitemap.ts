@@ -29,7 +29,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         updatedAt
       }`,
       {},
-      { next: { revalidate: 3600 } }
+      { next: { tags: ['posts'] } }
     )
     blogRoutes = posts.map((post) => ({
       url: `${BASE}/blog/${post.slug}`,
@@ -50,7 +50,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         _updatedAt
       }`,
       {},
-      { next: { revalidate: 3600 } }
+      { next: { tags: ['portfolio'] } }
     )
     portfolioRoutes = items.map((item) => ({
       url: `${BASE}/portfolio/${item.slug}`,

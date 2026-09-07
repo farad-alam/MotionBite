@@ -1,4 +1,4 @@
-import type { Metadata } from 'next'
+﻿import type { Metadata } from 'next'
 import ProjectForm from './ProjectForm'
 
 export const metadata: Metadata = {
@@ -18,14 +18,14 @@ export const metadata: Metadata = {
     description:
       'Ready to start your project? Tell us about your business, budget, and timeline. We\'ll get back to you within 24 hours to map out your success.',
     url: 'https://www.motionbite.com/start-project',
-    images: ['/opengraph-image?v=3'],
+    images: ['https://www.motionbite.com/opengraph-image.png'],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Start Your Web Design Project | MotionBite',
     description:
       'Ready to start your project? Tell us about your business, budget, and timeline. We\'ll get back to you within 24 hours to map out your success.',
-    images: ['/opengraph-image?v=3'],
+    images: ['https://www.motionbite.com/opengraph-image.png'],
   },
 }
 

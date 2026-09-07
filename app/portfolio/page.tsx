@@ -5,7 +5,7 @@ import { siteData } from '@/data/site'
 import SanityVideoCard from '@/components/ui/SanityVideoCard'
 import WhatsAppCTA from '@/components/sections/WhatsAppCTA'
 
-export const revalidate = 300
+export const revalidate = false
 
 export const metadata: Metadata = {
   title: 'Portfolio — Websites That Worked | MotionBite',
@@ -27,14 +27,14 @@ export const metadata: Metadata = {
     description:
       'Real websites designed and developed for businesses, startups, and agencies. Page 1 Google rankings, enquiries doubled. View the full case studies.',
     url: 'https://www.motionbite.com/portfolio',
-    images: ['/opengraph-image?v=3'],
+    images: ['https://www.motionbite.com/opengraph-image.png'],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Portfolio — Websites That Worked | MotionBite',
     description:
       'Real websites designed and developed for businesses, startups, and agencies. Page 1 Google rankings, enquiries doubled. View the full case studies.',
-    images: ['/opengraph-image?v=3'],
+    images: ['https://www.motionbite.com/opengraph-image.png'],
   },
 }
 

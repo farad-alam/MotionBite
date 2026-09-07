@@ -1,4 +1,4 @@
-import type { Metadata } from 'next'
+﻿import type { Metadata } from 'next'
 import Link from 'next/link'
 import ContactForm from './ContactForm'
 import { siteData } from '@/data/site'
@@ -21,32 +21,32 @@ export const metadata: Metadata = {
     description:
       'Contact MotionBite for a free web design and development consultation. We reply within 24 hours. Websites from $1,500.',
     url: 'https://www.motionbite.com/contact',
-    images: ['/opengraph-image?v=3'],
+    images: ['https://www.motionbite.com/opengraph-image.png'],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Contact MotionBite | Free Web Design & Development Consultation',
     description:
       'Contact MotionBite for a free web design and development consultation. We reply within 24 hours. Websites from $1,500.',
-    images: ['/opengraph-image?v=3'],
+    images: ['https://www.motionbite.com/opengraph-image.png'],
   },
 }
 
 const contactDetails = [
   {
-    icon: '📧',
+    icon: 'ðŸ“§',
     label: 'Email',
     value: siteData.contact.email,
     href: `mailto:${siteData.contact.email}`,
   },
   {
-    icon: '⚡',
+    icon: 'âš¡',
     label: 'Response Time',
     value: siteData.contact.responseTime,
     href: null,
   },
   {
-    icon: '🌍',
+    icon: 'ðŸŒ',
     label: 'Working Hours',
     value: siteData.contact.workingHours,
     href: null,
@@ -64,7 +64,7 @@ const faqs = [
   },
   {
     q: 'Can I book directly without messaging first?',
-    a: 'Yes — use the "Get Free Audit" link to fill in the audit form and we will schedule a call. No back-and-forth needed.',
+    a: 'Yes â€” use the "Get Free Audit" link to fill in the audit form and we will schedule a call. No back-and-forth needed.',
   },
 ]
 
@@ -139,7 +139,7 @@ export default function ContactPage() {
                   href="/free-consultation"
                   className="block w-full text-center bg-purple-primary hover:bg-purple-dark text-dark-base font-heading font-semibold py-3 rounded-md transition-all duration-200 text-sm"
                 >
-                  Book My Free Audit →
+                  Book My Free Audit â†’
                 </Link>
                 <p className="font-body text-text-muted text-xs text-center mt-2">Free. No commitment.</p>
               </div>

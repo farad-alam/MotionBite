@@ -1,9 +1,9 @@
-import Link from 'next/link'
+﻿import Link from 'next/link'
 import { services } from '@/data/services'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Web Design & Development Pricing — From $1,500 | MotionBite',
+  title: 'Web Design & Development Pricing â€” From $1,500 | MotionBite',
   description:
     'Transparent web design and development pricing with no hidden fees. Starter Site from $1,500, Growth Package from $3,500, Premium Build from $6,000.',
   keywords: [
@@ -18,18 +18,18 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     type: 'website',
-    title: 'Web Design & Development Pricing — From $1,500 | MotionBite',
+    title: 'Web Design & Development Pricing â€” From $1,500 | MotionBite',
     description:
       'Transparent web design and development pricing. Starter Site from $1,500, Growth Package from $3,500, Premium Build from $6,000. No hidden fees.',
     url: 'https://www.motionbite.com/pricing',
-    images: ['/opengraph-image?v=3'],
+    images: ['https://www.motionbite.com/opengraph-image.png'],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Web Design & Development Pricing — From $1,500 | MotionBite',
+    title: 'Web Design & Development Pricing â€” From $1,500 | MotionBite',
     description:
       'Transparent web design and development pricing. Starter Site from $1,500, Growth Package from $3,500. No hidden fees.',
-    images: ['/opengraph-image?v=3'],
+    images: ['https://www.motionbite.com/opengraph-image.png'],
   },
 }
 
@@ -83,7 +83,7 @@ const pricingDetails = [
 const pricingFaq = [
   { q: 'Are these one-time fees or monthly?', a: 'One-time project fees. Optional monthly care plans (hosting support, updates, small content changes) are available separately.' },
   { q: "What's included in the care plan?", a: 'Hosting support, security updates, uptime monitoring, and small content changes (text, images). Quoted based on scope.' },
-  { q: 'Can I upgrade my package later?', a: 'Yes — you can always upgrade. We credit what you already paid toward the higher tier.' },
+  { q: 'Can I upgrade my package later?', a: 'Yes â€” you can always upgrade. We credit what you already paid toward the higher tier.' },
   { q: 'Do you offer payment plans?', a: 'Yes. 50% upfront, 50% on launch. We can discuss other arrangements for larger projects.' },
 ]
 
@@ -116,7 +116,7 @@ export default function PricingPage() {
                 {pkg.popular && (
                   <div className="absolute -top-3 left-1/2 -translate-x-1/2">
                     <span className="bg-purple-primary text-dark-base font-heading font-bold text-xs px-4 py-1 rounded-full">
-                      ⭐ Most Popular
+                      â­ Most Popular
                     </span>
                   </div>
                 )}
@@ -129,7 +129,7 @@ export default function PricingPage() {
                 <ul className="space-y-3 mb-8 flex-1">
                   {pkg.fullFeatures.map((f) => (
                     <li key={f} className="flex items-start gap-2.5 text-text-muted text-sm font-body">
-                      <span className="text-purple-primary mt-0.5 shrink-0">✓</span>
+                      <span className="text-purple-primary mt-0.5 shrink-0">âœ“</span>
                       {f}
                     </li>
                   ))}
@@ -143,7 +143,7 @@ export default function PricingPage() {
                       : 'border border-dark-border text-text-primary hover:border-purple-primary/40'
                   }`}
                 >
-                  {pkg.cta} →
+                  {pkg.cta} â†’
                 </Link>
               </div>
             ))}
@@ -152,7 +152,7 @@ export default function PricingPage() {
           <p className="text-center text-text-muted text-sm font-body mt-8">
             Not sure which fits?{' '}
             <Link href="/free-consultation" className="text-purple-primary hover:underline">
-              Get a free consultation →
+              Get a free consultation â†’
             </Link>
           </p>
         </div>
@@ -186,7 +186,7 @@ export default function PricingPage() {
             href="/free-consultation"
             className="inline-flex items-center gap-2 bg-purple-primary hover:bg-purple-dark text-dark-base font-heading font-bold px-8 py-4 rounded-md transition-all duration-200"
           >
-            Book My Free Audit →
+            Book My Free Audit â†’
           </Link>
         </div>
       </section>

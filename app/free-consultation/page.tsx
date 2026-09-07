@@ -1,10 +1,10 @@
-import type { Metadata } from 'next'
+﻿import type { Metadata } from 'next'
 import ConsultationForm from './ConsultationForm'
 
 export const metadata: Metadata = {
   title: 'Free 30-Min Website Consultation for Businesses | MotionBite',
   description:
-    "Book a free 30-minute consultation. We'll review your website, identify what's costing you customers, and give you a clear action plan — no pitch, no strings.",
+    "Book a free 30-minute consultation. We'll review your website, identify what's costing you customers, and give you a clear action plan â€” no pitch, no strings.",
   keywords: [
     'free website consultation',
     'free web design consultation',
@@ -18,16 +18,16 @@ export const metadata: Metadata = {
     type: 'website',
     title: 'Free 30-Min Website Consultation | MotionBite',
     description:
-      "Book a free 30-minute consultation. We'll review your website and give you a clear action plan — no pitch, no strings.",
+      "Book a free 30-minute consultation. We'll review your website and give you a clear action plan â€” no pitch, no strings.",
     url: 'https://www.motionbite.com/free-consultation',
-    images: ['/opengraph-image?v=3'],
+    images: ['https://www.motionbite.com/opengraph-image.png'],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Free 30-Min Website Consultation | MotionBite',
     description:
-      "Book a free 30-minute consultation. We'll review your website and give you a clear action plan — no pitch, no strings.",
-    images: ['/opengraph-image?v=3'],
+      "Book a free 30-minute consultation. We'll review your website and give you a clear action plan â€” no pitch, no strings.",
+    images: ['https://www.motionbite.com/opengraph-image.png'],
   },
 }
 

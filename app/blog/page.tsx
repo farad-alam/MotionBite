@@ -7,7 +7,8 @@ import { urlFor } from '@/sanity/image'
 export const revalidate = false
 
 export const metadata: Metadata = {
-  title: 'Web Design & Development Blog for Businesses | MotionBite',
+  alternates: { canonical: '/blog' },
+  title: 'Web Design & SEO Blog',
   description:
     'Practical guides on web design, web development, SEO, and digital strategy for businesses and restaurants. Free expert advice from the MotionBite team.',
   keywords: [
@@ -21,7 +22,7 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     type: 'website',
-    title: 'Web Design & Development Blog for Businesses | MotionBite',
+    title: 'Web Design & SEO Blog | MotionBite',
     description:
       'Practical guides on web design, web development, and SEO for businesses. Free expert advice from the MotionBite team.',
     url: 'https://www.motionbite.com/blog',
@@ -29,7 +30,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Web Design & Development Blog for Businesses | MotionBite',
+    title: 'Web Design & SEO Blog | MotionBite',
     description:
       'Practical guides on web design, web development, and SEO for businesses. Free expert advice from the MotionBite team.',
     images: ['https://www.motionbite.com/opengraph-image.png'],

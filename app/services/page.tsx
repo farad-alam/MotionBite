@@ -2,7 +2,8 @@
 import Link from 'next/link'
 
 export const metadata: Metadata = {
-  title: 'Web Design & Development Services for Businesses | MotionBite',
+  alternates: { canonical: '/services' },
+  title: 'Web Design & Development Services',
   description:
     'Professional web design and development for businesses and restaurants. Starter Site from $1,500, Growth Package from $3,500. Design and code delivered in 14 days.',
   keywords: [
@@ -17,7 +18,7 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     type: 'website',
-    title: 'Web Design & Development Services for Businesses | MotionBite',
+    title: 'Web Design & Development Services | MotionBite',
     description:
       'Professional web design and development for businesses. Starter Site from $1,500. Design and code, delivered in 14 days.',
     url: 'https://www.motionbite.com/services',
@@ -25,7 +26,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Web Design & Development Services for Businesses | MotionBite',
+    title: 'Web Design & Development Services | MotionBite',
     description:
       'Professional web design and development for businesses. Starter Site from $1,500. Design and code, delivered in 14 days.',
     images: ['https://www.motionbite.com/opengraph-image.png'],
@@ -40,7 +41,7 @@ const services = [
     tagline: 'Your business, online in 10 days',
     price: 'From $1,500',
     description:
-      'Everything a business or restaurant needs to launch a credible, fast, mobile-ready website â€” without the complexity or the wait.',
+      'Everything a business or restaurant needs to launch a credible, fast, mobile-ready website — without the complexity or the wait.',
     features: [
       'Up to 5 pages (Home, About, Services, Contact + 1 more)',
       'Mobile-first responsive design',
@@ -63,12 +64,12 @@ const services = [
     tagline: 'Built to rank, built to convert',
     price: 'From $3,500',
     description:
-      'A full web presence engineered for Google visibility and lead generation â€” the package most established businesses choose when they want to grow online seriously.',
+      'A full web presence engineered for Google visibility and lead generation — the package most established businesses choose when they want to grow online seriously.',
     features: [
       'Up to 10 pages',
       'Advanced on-page SEO strategy',
       'Blog setup (ready for content)',
-      'Performance optimised â€” 90+ Lighthouse score',
+      'Performance optimised — 90+ Lighthouse score',
       'Google Analytics 4 integration',
       'Schema.org structured data (rich snippets)',
       'Open Graph / social share images',
@@ -88,7 +89,7 @@ const services = [
     tagline: 'Custom web app or advanced site',
     price: 'From $6,000',
     description:
-      'For businesses that need something bespoke â€” custom functionality, e-commerce, interactive experiences, or a web application. Built to scale.',
+      'For businesses that need something bespoke — custom functionality, e-commerce, interactive experiences, or a web application. Built to scale.',
     features: [
       'Unlimited pages',
       'Custom features and functionality',
@@ -108,8 +109,8 @@ const services = [
 ]
 
 const process = [
-  { n: '01', title: 'Discovery Call', desc: 'We spend 30 minutes understanding your business, competitors, and goals. No forms to fill in first â€” just a conversation.' },
-  { n: '02', title: 'Design Mockup', desc: 'Within 48 hours of your call, you receive a real design mockup in your brand â€” not wireframes, not mood boards.' },
+  { n: '01', title: 'Discovery Call', desc: 'We spend 30 minutes understanding your business, competitors, and goals. No forms to fill in first — just a conversation.' },
+  { n: '02', title: 'Design Mockup', desc: 'Within 48 hours of your call, you receive a real design mockup in your brand — not wireframes, not mood boards.' },
   { n: '03', title: 'Build & Review', desc: 'We build with daily updates. You have access to the live preview at every stage. No surprises.' },
   { n: '04', title: 'Launch & Handover', desc: 'We deploy, connect your domain, verify everything works, and hand over full access. Done.' },
 ]
@@ -121,7 +122,7 @@ const faqs = [
   },
   {
     q: 'Do you offer ongoing maintenance?',
-    a: 'Yes â€” optional monthly care plans cover hosting support, security updates, and small content changes. Ask about this when you book your audit.',
+    a: 'Yes — optional monthly care plans cover hosting support, security updates, and small content changes. Ask about this when you book your audit.',
   },
   {
     q: 'Can I upgrade my package later?',
@@ -129,7 +130,7 @@ const faqs = [
   },
   {
     q: 'What platform do you build on?',
-    a: 'We build primarily on Next.js hosted on Vercel â€” the fastest, most SEO-friendly stack available. For clients who need a CMS, we integrate Contentful or Sanity.',
+    a: 'We build primarily on Next.js hosted on Vercel — the fastest, most SEO-friendly stack available. For clients who need a CMS, we integrate Contentful or Sanity.',
   },
 ]
 
@@ -150,7 +151,7 @@ export default function ServicesPage() {
               <span className="text-purple-primary">Win Online</span>
             </h1>
             <p className="font-body text-text-muted text-lg md:text-xl leading-relaxed mb-8 max-w-2xl">
-              Three clear packages built around where your business is right now â€” from your first online presence to a full growth engine.
+              Three clear packages built around where your business is right now — from your first online presence to a full growth engine.
             </p>
             <div className="flex flex-wrap gap-4">
               <Link
@@ -184,7 +185,7 @@ export default function ServicesPage() {
                 {s.popular && (
                   <div className="absolute -top-3.5 left-1/2 -translate-x-1/2">
                     <span className="bg-purple-primary text-dark-base font-heading font-bold text-xs px-4 py-1 rounded-full">
-                      â­ Most Popular
+                      ⭐ Most Popular
                     </span>
                   </div>
                 )}
@@ -199,7 +200,7 @@ export default function ServicesPage() {
                 <ul className="space-y-2.5 mb-6 flex-1">
                   {s.features.map((f, i) => (
                     <li key={i} className="flex items-start gap-2 text-text-muted text-sm font-body">
-                      <span className="text-purple-primary mt-0.5 shrink-0">âœ“</span>
+                      <span className="text-purple-primary mt-0.5 shrink-0">✓</span>
                       {f}
                     </li>
                   ))}

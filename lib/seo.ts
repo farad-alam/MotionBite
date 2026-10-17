@@ -3,7 +3,7 @@ import type { Metadata } from 'next'
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.motionbite.com'
 
 export const defaultMetadata: Metadata = {
-  metadataBase: new URL(BASE_URL),
+  metadataBase: new URL('https://www.motionbite.com'),
   title: {
     default: 'Web Design & Development for Businesses | MotionBite',
     template: '%s | MotionBite',

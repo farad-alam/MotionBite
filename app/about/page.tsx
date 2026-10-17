@@ -2,9 +2,10 @@
 import Link from 'next/link'
 
 export const metadata: Metadata = {
-  title: 'About MotionBite | Web Design & Development Agency',
+  alternates: { canonical: '/about' },
+  title: 'About MotionBite – Our Web Design Team',
   description:
-    'MotionBite is a web design and development agency for businesses and restaurants. We handle design and code end to end â€” fast delivery, transparent pricing.',
+    'MotionBite is a web design and development agency for businesses and restaurants. We handle design and code end to end — fast delivery, transparent pricing.',
   keywords: [
     'web design and development agency',
     'business web design and development agency',
@@ -15,17 +16,17 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     type: 'website',
-    title: 'About MotionBite | Web Design & Development Agency',
+    title: 'About MotionBite – Our Web Design Team | MotionBite',
     description:
-      'MotionBite is a web design and development agency for businesses and restaurants. Design and code end to end â€” fast delivery, transparent pricing.',
+      'MotionBite is a web design and development agency for businesses and restaurants. Design and code end to end — fast delivery, transparent pricing.',
     url: 'https://www.motionbite.com/about',
     images: ['https://www.motionbite.com/opengraph-image.png'],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'About MotionBite | Web Design & Development Agency',
+    title: 'About MotionBite – Our Web Design Team | MotionBite',
     description:
-      'MotionBite is a web design and development agency for businesses and restaurants. Design and code end to end â€” fast delivery, transparent pricing.',
+      'MotionBite is a web design and development agency for businesses and restaurants. Design and code end to end — fast delivery, transparent pricing.',
     images: ['https://www.motionbite.com/opengraph-image.png'],
   },
 }
@@ -34,7 +35,7 @@ const values = [
   {
     icon: 'âš¡',
     title: 'Speed Without Shortcuts',
-    desc: '14 days is the promise. It works because we build with focus â€” not by cutting corners. Every shortcut shows up later, so we do not take them.',
+    desc: '14 days is the promise. It works because we build with focus — not by cutting corners. Every shortcut shows up later, so we do not take them.',
   },
   {
     icon: 'ðŸŽ¯',
@@ -44,17 +45,17 @@ const values = [
   {
     icon: 'ðŸ’¬',
     title: 'No Guessing Games',
-    desc: 'Clients should never have to chase us for updates. We communicate proactively â€” daily during builds, same-day on revisions. You always know exactly what is happening.',
+    desc: 'Clients should never have to chase us for updates. We communicate proactively — daily during builds, same-day on revisions. You always know exactly what is happening.',
   },
   {
     icon: 'ðŸ“ˆ',
     title: 'Built for Business Results',
-    desc: 'We are not a design studio. We are a business results studio that uses design as the tool. The measure of success is enquiries, reservations, and revenue â€” not awards.',
+    desc: 'We are not a design studio. We are a business results studio that uses design as the tool. The measure of success is enquiries, reservations, and revenue — not awards.',
   },
   {
     icon: 'ðŸ”’',
     title: 'Satisfaction Guaranteed',
-    desc: "We do not close a project until you are genuinely happy with it. That is not a policy â€” it is how we work. No business owner should pay for something they don't love.",
+    desc: "We do not close a project until you are genuinely happy with it. That is not a policy — it is how we work. No business owner should pay for something they don't love.",
   },
   {
     icon: 'ðŸŒ',
@@ -97,7 +98,7 @@ export default function AboutPage() {
                 <span className="text-purple-primary">Underdogs</span>
               </h1>
               <p className="font-body text-text-muted text-lg leading-relaxed mb-6">
-                Businesses and restaurants compete online against brands with huge marketing budgets. MotionBite exists to level that playing field â€” by building websites that perform at the same level as those big budgets, for a fraction of the price.
+                Businesses and restaurants compete online against brands with huge marketing budgets. MotionBite exists to level that playing field — by building websites that perform at the same level as those big budgets, for a fraction of the price.
               </p>
               <p className="font-body text-text-muted text-base leading-relaxed">
                 We are a lean team of designers and developers who chose to specialise in one thing: websites that win business for small companies. No bloated processes, no junior-team handoffs, no disappearing after launch.
@@ -125,7 +126,7 @@ export default function AboutPage() {
           </h2>
           <div className="space-y-5 font-body text-text-muted leading-relaxed">
             <p>
-              We have seen the same problem too many times: a great local restaurant, a brilliant boutique, a skilled tradesperson â€” with a website so bad it is actively costing them customers. Not because the business owner does not care. Because nobody told them what a website should actually do, or built one that did it.
+              We have seen the same problem too many times: a great local restaurant, a brilliant boutique, a skilled tradesperson — with a website so bad it is actively costing them customers. Not because the business owner does not care. Because nobody told them what a website should actually do, or built one that did it.
             </p>
             <p>
               At the same time, the agencies that could fix it charged $15,000 and took 3 months. The cheap freelancers delivered something that looked worse than the problem. And the DIY tools created sites that were slow, unranked, and invisible to Google.
@@ -171,7 +172,7 @@ export default function AboutPage() {
               Our Tech Stack
             </h2>
             <p className="font-body text-text-muted text-sm max-w-lg mx-auto">
-              The same tools used by Vercel, Linear, and Loom â€” applied to business websites for performance that large agencies rarely deliver.
+              The same tools used by Vercel, Linear, and Loom — applied to business websites for performance that large agencies rarely deliver.
             </p>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
@@ -192,7 +193,7 @@ export default function AboutPage() {
             Ready to Work Together?
           </h2>
           <p className="font-body text-text-muted text-sm mb-8 max-w-md mx-auto">
-            Start with a free 30-minute website audit. No commitment, no pitch â€” just an honest assessment of what your site needs.
+            Start with a free 30-minute website audit. No commitment, no pitch — just an honest assessment of what your site needs.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link

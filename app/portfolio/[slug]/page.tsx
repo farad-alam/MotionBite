@@ -28,7 +28,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     keywords: item.seoKeywords
       ? item.seoKeywords.split(',').map((k) => k.trim())
       : [`${item.industry.toLowerCase()} website design`, 'web design case study', 'MotionBite portfolio'],
-    alternates: { canonical: `https://www.motionbite.com/portfolio/${item.slug.current}` },
+    alternates: { canonical: `/portfolio/${item.slug.current}` },
     openGraph: {
       type: 'article',
       title,

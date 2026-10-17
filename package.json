@@ -6,8 +6,7 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint .",
-    "postbuild": "next-sitemap"
+    "lint": "eslint ."
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",
@@ -20,7 +19,6 @@
     "lucide-react": "^1.17.0",
     "next": "16.2.6",
     "next-sanity": "^13.3.3",
-    "next-sitemap": "^4.2.3",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "sanity": "^6.11.0",

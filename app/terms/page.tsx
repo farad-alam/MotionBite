@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { siteData } from '@/data/site'
 
 export const metadata: Metadata = {
+  alternates: { canonical: '/terms' },
   title: 'Terms of Service | MotionBite',
   description: 'MotionBite terms of service — our policies for web design and development engagements.',
   robots: { index: false, follow: false },

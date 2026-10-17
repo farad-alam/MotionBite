@@ -4,6 +4,7 @@ import ContactForm from './ContactForm'
 import { siteData } from '@/data/site'
 
 export const metadata: Metadata = {
+  alternates: { canonical: '/contact' },
   title: 'Contact MotionBite | Free Web Design & Development Consultation',
   description:
     'Contact MotionBite for a free web design and development consultation. We reply within 24 hours. Business websites from $1,500, delivered in 14 days.',
@@ -64,7 +65,7 @@ const faqs = [
   },
   {
     q: 'Can I book directly without messaging first?',
-    a: 'Yes â€” use the "Get Free Audit" link to fill in the audit form and we will schedule a call. No back-and-forth needed.',
+    a: 'Yes — use the "Get Free Audit" link to fill in the audit form and we will schedule a call. No back-and-forth needed.',
   },
 ]
 

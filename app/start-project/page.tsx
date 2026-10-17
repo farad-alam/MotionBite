@@ -2,6 +2,7 @@
 import ProjectForm from './ProjectForm'
 
 export const metadata: Metadata = {
+  alternates: { canonical: '/start-project' },
   title: 'Start Your Web Design Project | MotionBite',
   description:
     'Ready to start your project? Tell us about your business, budget, and timeline. We\'ll get back to you within 24 hours to map out your success.',

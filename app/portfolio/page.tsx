@@ -8,7 +8,7 @@ import WhatsAppCTA from '@/components/sections/WhatsAppCTA'
 export const revalidate = false
 
 export const metadata: Metadata = {
-  title: 'Portfolio — Websites That Worked | MotionBite',
+  title: 'Web Design Portfolio & Case Studies',
   description:
     'Real websites built for businesses, startups, and agencies. Page 1 Google rankings, enquiries doubled, bounce rate down 40%. View the full case studies.',
   keywords: [
@@ -20,10 +20,10 @@ export const metadata: Metadata = {
     'agency web development examples',
     'startup website design portfolio',
   ],
-  alternates: { canonical: 'https://www.motionbite.com/portfolio' },
+  alternates: { canonical: '/portfolio' },
   openGraph: {
     type: 'website',
-    title: 'Portfolio — Websites That Worked | MotionBite',
+    title: 'Web Design Portfolio & Case Studies | MotionBite',
     description:
       'Real websites designed and developed for businesses, startups, and agencies. Page 1 Google rankings, enquiries doubled. View the full case studies.',
     url: 'https://www.motionbite.com/portfolio',
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Portfolio — Websites That Worked | MotionBite',
+    title: 'Web Design Portfolio & Case Studies | MotionBite',
     description:
       'Real websites designed and developed for businesses, startups, and agencies. Page 1 Google rankings, enquiries doubled. View the full case studies.',
     images: ['https://www.motionbite.com/opengraph-image.png'],

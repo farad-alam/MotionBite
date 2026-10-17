@@ -13,6 +13,11 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       {
+        source: '/blog/what-makes-restaurant-website-work',
+        destination: '/blog',
+        permanent: true,
+      },
+      {
         source: '/:path*',
         has: [{ type: 'host', value: 'motion-bite.vercel.app' }],
         destination: 'https://www.motionbite.com/:path*',

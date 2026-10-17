@@ -13,6 +13,12 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       {
+        source: '/:path*',
+        has: [{ type: 'host', value: 'motion-bite.vercel.app' }],
+        destination: 'https://www.motionbite.com/:path*',
+        permanent: true,
+      },
+      {
         source: '/free-audit',
         destination: '/free-consultation',
         permanent: true,

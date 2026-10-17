@@ -145,7 +145,7 @@ export default function Footer() {
             <div className="relative w-[10vw] h-[12.5vw] max-w-[150px] max-h-[185px] rounded-[3vw] xl:rounded-[36px] overflow-hidden bg-dark-card mx-[0.5vw] shrink-0 self-center">
                <img
                  src="/images/portfolio/founder-1.webp"
-                 alt="Founder 1"
+                 alt="Ahmodullah - Founder MotionBIte"
                  className="absolute inset-0 w-full h-full object-cover object-top saturate-150"
                />
                <div className="absolute inset-0 shadow-[inset_0_0_15px_rgba(0,0,0,0.8)] pointer-events-none rounded-[3vw] xl:rounded-[36px]" />
@@ -160,7 +160,7 @@ export default function Footer() {
             <div className="relative w-[10vw] h-[12.5vw] max-w-[150px] max-h-[185px] rounded-[3vw] xl:rounded-[36px] overflow-hidden bg-dark-card mx-[0.5vw] shrink-0 self-center">
                <img
                  src="/images/portfolio/founder-2.webp"
-                 alt="Founder 2"
+                 alt="Farad Alam- Co - Founder MotionBIte"
                  className="absolute inset-0 w-full h-full object-cover object-top saturate-150"
                />
                <div className="absolute inset-0 shadow-[inset_0_0_15px_rgba(0,0,0,0.8)] pointer-events-none rounded-[3vw] xl:rounded-[36px]" />

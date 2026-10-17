@@ -121,11 +121,11 @@ export default function WhyUs() {
             <div className="text-sm font-semibold text-text-charcoal/50 uppercase tracking-widest mt-2 mb-2 w-full text-left">Client Satisfaction</div>
             <div className="flex -space-x-3 mt-4">
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img className="w-12 h-12 rounded-full border-2 border-[#F3F1F9]" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80" alt="" />
+              <img className="w-12 h-12 rounded-full border-2 border-[#F3F1F9]" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80" alt="Happy MotionBite client avatar 1" />
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img className="w-12 h-12 rounded-full border-2 border-[#F3F1F9]" src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=100&q=80" alt="" />
+              <img className="w-12 h-12 rounded-full border-2 border-[#F3F1F9]" src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=100&q=80" alt="Happy MotionBite client avatar 2" />
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img className="w-12 h-12 rounded-full border-2 border-[#F3F1F9]" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=100&q=80" alt="" />
+              <img className="w-12 h-12 rounded-full border-2 border-[#F3F1F9]" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=100&q=80" alt="Happy MotionBite client avatar 3" />
             </div>
           </motion.div>
 

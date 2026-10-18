@@ -6,6 +6,7 @@ const BASE = siteData.url // https://www.motionbite.com
 export const organizationSchema = {
   '@context': 'https://schema.org',
   '@type': 'ProfessionalService',
+  '@id': `${BASE}/#organization`,
   name: 'MotionBite',
   url: BASE,
   logo: `${BASE}/logo.jpg`,
@@ -214,3 +215,70 @@ export const webPageSchema = ({
     url: BASE,
   },
 })
+
+// ─────────────────────────────────────────────
+// Landing page schema (WP2). By schemaType:
+//  Service -> Service with provider @id; Report -> Article; others -> plain type.
+// No AggregateRating, Review or priced offers on landing pages.
+// ─────────────────────────────────────────────
+
+export const landingPageSchema = ({
+  schemaType,
+  name,
+  description,
+  path,
+  areaServed,
+  datePublished,
+  dateModified,
+  image,
+  author,
+  authorAvatarUrl,
+}: {
+  schemaType: 'Service' | 'WebPage' | 'CollectionPage' | 'Report'
+  name: string
+  description: string
+  path: string
+  areaServed?: string[]
+  datePublished?: string
+  dateModified?: string
+  image?: string
+  author?: SanityAuthor | null
+  authorAvatarUrl?: string
+}) => {
+  const url = `${BASE}${path}`
+  const org = { '@id': `${BASE}/#organization` }
+  if (schemaType === 'Service') {
+    return {
+      '@context': 'https://schema.org',
+      '@type': 'Service',
+      name,
+      description,
+      url,
+      ...(areaServed && areaServed.length > 0 ? { areaServed } : {}),
+      provider: org,
+    }
+  }
+  if (schemaType === 'Report') {
+    return {
+      '@context': 'https://schema.org',
+      '@type': 'Article',
+      headline: name,
+      description,
+      url,
+      mainEntityOfPage: { '@type': 'WebPage', '@id': url },
+      ...(datePublished ? { datePublished } : {}),
+      dateModified: dateModified || datePublished,
+      ...(image ? { image: { '@type': 'ImageObject', url: image } } : {}),
+      author: author ? buildPersonNode(author, authorAvatarUrl) : { '@type': 'Organization', '@id': org['@id'], name: 'MotionBite' },
+      publisher: org,
+    }
+  }
+  return {
+    '@context': 'https://schema.org',
+    '@type': schemaType,
+    name,
+    description,
+    url,
+    isPartOf: { '@type': 'WebSite', url: BASE },
+  }
+}

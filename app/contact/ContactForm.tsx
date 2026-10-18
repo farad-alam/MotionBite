@@ -2,6 +2,9 @@
 
 import { useState } from 'react'
 import { motion } from 'framer-motion'
+import Honeypot from '@/components/forms/Honeypot'
+import SubmitError from '@/components/forms/SubmitError'
+import { submitLead } from '@/lib/lead-client'
 
 const subjects = [
   'I want a new website',
@@ -15,6 +18,10 @@ export default function ContactForm() {
   const [form, setForm] = useState({ name: '', email: '', subject: '', message: '' })
   const [errors, setErrors] = useState<Record<string, string>>({})
   const [submitted, setSubmitted] = useState(false)
+  const [sending, setSending] = useState(false)
+  const [submitError, setSubmitError] = useState<string | null>(null)
+  const [hp, setHp] = useState('')
+  const [startedAt] = useState(() => Date.now())
 
   const validate = () => {
     const e: Record<string, string> = {}
@@ -25,11 +32,26 @@ export default function ContactForm() {
     return e
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    if (sending) return
     const errs = validate()
     if (Object.keys(errs).length) { setErrors(errs); return }
-    setSubmitted(true)
+    setErrors({})
+    setSubmitError(null)
+    setSending(true)
+    const result = await submitLead({
+      source: 'contact',
+      name: form.name,
+      email: form.email,
+      fields: { subject: form.subject, message: form.message },
+      hp,
+      startedAt,
+    })
+    setSending(false)
+    if (result.ok) { setSubmitted(true); return }
+    if (result.fieldErrors) setErrors(result.fieldErrors)
+    setSubmitError(result.message ?? '')
   }
 
   if (submitted) {
@@ -55,6 +77,7 @@ export default function ContactForm() {
     <div className="bg-dark-card rounded-2xl p-8 glow-border">
       <h2 className="font-heading text-xl font-bold text-text-primary mb-6">Send a Message</h2>
       <form onSubmit={handleSubmit} className="space-y-5" noValidate>
+        <Honeypot value={hp} onChange={setHp} />
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
           <div>
             <label className="block font-body text-text-muted text-sm mb-1.5">Your Name</label>
@@ -101,17 +124,21 @@ export default function ContactForm() {
             value={form.message}
             onChange={(e) => setForm({ ...form, message: e.target.value })}
             rows={5}
+            maxLength={4000}
             className={`w-full bg-dark-base border rounded-md px-4 py-3 text-text-primary font-body text-sm placeholder-text-muted/40 outline-none focus:border-purple-primary transition-colors resize-none ${errors.message ? 'border-state-error' : 'border-dark-border'}`}
             placeholder="Tell us about your business and what you need..."
           />
           {errors.message && <p className="text-state-error text-xs mt-1 font-body">{errors.message}</p>}
         </div>
 
+        {submitError !== null && <SubmitError message={submitError || undefined} />}
+
         <button
           type="submit"
-          className="w-full bg-purple-primary hover:bg-purple-dark text-dark-base font-heading font-bold py-4 rounded-md transition-all duration-200 hover:scale-[1.01] text-base"
+          disabled={sending}
+          className="w-full bg-purple-primary hover:bg-purple-dark text-dark-base font-heading font-bold py-4 rounded-md transition-all duration-200 hover:scale-[1.01] text-base disabled:opacity-60 disabled:cursor-not-allowed"
         >
-          Send Message →
+          {sending ? 'Sending...' : 'Send Message →'}
         </button>
       </form>
     </div>

@@ -3,6 +3,9 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
+import Honeypot from '@/components/forms/Honeypot'
+import SubmitError from '@/components/forms/SubmitError'
+import { submitLead } from '@/lib/lead-client'
 
 const projectTypes = [
   "New Website",
@@ -28,6 +31,10 @@ const timelines = [
 
 export default function ProjectForm() {
   const [submitted, setSubmitted] = useState(false)
+  const [sending, setSending] = useState(false)
+  const [submitError, setSubmitError] = useState<string | null>(null)
+  const [hp, setHp] = useState('')
+  const [startedAt] = useState(() => Date.now())
   const [form, setForm] = useState({ 
     name: '', 
     email: '', 
@@ -50,11 +57,32 @@ export default function ProjectForm() {
     return e
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    if (sending) return
     const errs = validate()
     if (Object.keys(errs).length) { setErrors(errs); return }
-    setSubmitted(true)
+    setErrors({})
+    setSubmitError(null)
+    setSending(true)
+    const result = await submitLead({
+      source: 'start-project',
+      name: form.name,
+      email: form.email,
+      fields: {
+        company: form.company,
+        projectType: form.projectType,
+        budget: form.budget,
+        timeline: form.timeline,
+        description: form.description,
+      },
+      hp,
+      startedAt,
+    })
+    setSending(false)
+    if (result.ok) { setSubmitted(true); return }
+    if (result.fieldErrors) setErrors(result.fieldErrors)
+    setSubmitError(result.message ?? '')
   }
 
   return (
@@ -70,7 +98,7 @@ export default function ProjectForm() {
             Start Your <span className="text-purple-primary">Project</span>
           </h1>
           <p className="font-body text-text-muted text-lg mb-12 max-w-2xl">
-            Tell us about what you want to build. We'll review your requirements and get back to you within 24 hours to discuss the next steps.
+            Tell us about what you want to build. We&apos;ll review your requirements and get back to you within 24 hours to discuss the next steps.
           </p>
         </motion.div>
 
@@ -78,6 +106,7 @@ export default function ProjectForm() {
           {!submitted ? (
             <div className="bg-dark-card rounded-3xl p-6 sm:p-10 glow-border">
               <form onSubmit={handleSubmit} className="space-y-8" noValidate>
+                <Honeypot value={hp} onChange={setHp} />
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
@@ -166,6 +195,7 @@ export default function ProjectForm() {
                   <label className="block font-body text-text-muted text-sm mb-2">Project Description *</label>
                   <textarea
                     rows={4}
+                    maxLength={4000}
                     value={form.description}
                     onChange={(e) => setForm({ ...form, description: e.target.value })}
                     className={`w-full bg-dark-base border rounded-xl px-4 py-3.5 text-text-primary font-body text-sm placeholder-text-muted/40 outline-none focus:border-purple-primary transition-colors resize-none ${errors.description ? 'border-state-error' : 'border-dark-border'}`}
@@ -174,12 +204,15 @@ export default function ProjectForm() {
                   {errors.description && <p className="text-state-error text-xs mt-1.5 font-body">{errors.description}</p>}
                 </div>
 
+                {submitError !== null && <SubmitError message={submitError || undefined} />}
+
                 <div className="pt-2">
                   <button
                     type="submit"
-                    className="w-full sm:w-auto bg-purple-primary hover:bg-purple-dark text-dark-base font-heading font-bold px-10 py-4 rounded-xl transition-all duration-200 hover:scale-[1.02] text-lg shadow-[0_0_30px_rgba(125,64,255,0.3)]"
+                    disabled={sending}
+                    className="disabled:opacity-60 disabled:cursor-not-allowed w-full sm:w-auto bg-purple-primary hover:bg-purple-dark text-dark-base font-heading font-bold px-10 py-4 rounded-xl transition-all duration-200 hover:scale-[1.02] text-lg shadow-[0_0_30px_rgba(125,64,255,0.3)]"
                   >
-                    Send My Project Brief →
+                    {sending ? 'Sending...' : 'Send My Project Brief →'}
                   </button>
                 </div>
               </form>

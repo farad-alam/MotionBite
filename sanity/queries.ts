@@ -128,7 +128,7 @@ const AUTHOR_FIELDS = `
 
 export async function getAllPosts(): Promise<SanityPostCard[]> {
   return client.fetch(
-    `*[_type == "post"] | order(publishedAt desc) {
+    `*[_type == "post" && coalesce(language, "en") == "en"] | order(publishedAt desc) {
       title,
       slug,
       excerpt,
@@ -149,7 +149,7 @@ export async function getAllPosts(): Promise<SanityPostCard[]> {
 
 export async function getAllPostSlugs(): Promise<string[]> {
   const results = await client.fetch<{ slug: { current: string } }[]>(
-    `*[_type == "post"]{ slug }`,
+    `*[_type == "post" && coalesce(language, "en") == "en"]{ slug }`,
     {},
     { next: { tags: ['posts'] } }
   )
@@ -164,7 +164,7 @@ export async function getAllPostSlugs(): Promise<string[]> {
 // share one fetch result per render — eliminates the duplicate Sanity call.
 export const getPost = cache(async (slug: string): Promise<SanityPost | null> => {
   return client.fetch(
-    `*[_type == "post" && slug.current == $slug][0] {
+    `*[_type == "post" && coalesce(language, "en") == "en" && slug.current == $slug][0] {
       _id,
       title,
       slug,
@@ -180,7 +180,7 @@ export const getPost = cache(async (slug: string): Promise<SanityPost | null> =>
       body,
       faqItems,
       canonicalUrl,
-      "related": *[_type == "post" && category._ref == ^.category._ref && slug.current != $slug][0..1] {
+      "related": *[_type == "post" && coalesce(language, "en") == "en" && category._ref == ^.category._ref && slug.current != $slug][0..1] {
         title,
         slug,
         excerpt,
@@ -233,7 +233,7 @@ export const getAuthor = cache(async (slug: string): Promise<SanityAuthorWithPos
       twitter,
       facebook,
       website,
-      "posts": *[_type == "post" && references(^._id)] | order(publishedAt desc) {
+      "posts": *[_type == "post" && coalesce(language, "en") == "en" && references(^._id)] | order(publishedAt desc) {
         title,
         slug,
         excerpt,

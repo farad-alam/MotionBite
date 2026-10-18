@@ -44,7 +44,27 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ revalidated: true, type: _type, slug, now: Date.now() })
     }
 
-    // ─── post (default) ─────────────────────────────────────────────────
+    // ─── landingPage ────────────────────────────────────────────────────
+    // Landing page published, edited, unpublished or deleted — purge the
+    // landingPages tag (pages, hubs, hreflang lookups) and refresh the sitemap.
+    if (_type === 'landingPage') {
+      revalidateTag('landingPages', PURGE)
+      revalidatePath('/sitemap.xml')
+      return NextResponse.json({ revalidated: true, type: _type, slug, now: Date.now() })
+    }
+
+    // ─── unknown / missing type ─────────────────────────────────────────
+    // Delete events can arrive without _type. Purge both content tags and
+    // the sitemap instead of assuming the document was a post.
+    if (_type !== 'post') {
+      revalidateTag('posts', PURGE)
+      revalidateTag('landingPages', PURGE)
+      revalidatePath('/sitemap.xml')
+      revalidatePath('/', 'layout')
+      return NextResponse.json({ revalidated: true, type: _type ?? 'unknown', slug, now: Date.now() })
+    }
+
+    // ─── post ─────────────────────────────────────────────────
     // Blog post published or updated — purge posts tag (covers blog listing,
     // individual post pages, and the slug list used by generateStaticParams),
     // refresh the sitemap so new posts appear, and touch the homepage layout
@@ -53,7 +73,7 @@ export async function POST(req: NextRequest) {
     revalidatePath('/sitemap.xml')
     revalidatePath('/', 'layout')
 
-    return NextResponse.json({ revalidated: true, type: _type ?? 'post', slug, now: Date.now() })
+    return NextResponse.json({ revalidated: true, type: _type, slug, now: Date.now() })
   } catch {
     return NextResponse.json({ message: 'Error revalidating' }, { status: 500 })
   }

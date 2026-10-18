@@ -144,7 +144,7 @@ export default function PricingPage() {
                       : 'border border-dark-border text-text-primary hover:border-purple-primary/40'
                   }`}
                 >
-                  {pkg.cta} â†’
+                  {pkg.cta} →
                 </Link>
               </div>
             ))}
@@ -153,7 +153,7 @@ export default function PricingPage() {
           <p className="text-center text-text-muted text-sm font-body mt-8">
             Not sure which fits?{' '}
             <Link href="/free-consultation" className="text-purple-primary hover:underline">
-              Get a free consultation â†’
+              Get a free consultation →
             </Link>
           </p>
         </div>
@@ -187,7 +187,7 @@ export default function PricingPage() {
             href="/free-consultation"
             className="inline-flex items-center gap-2 bg-purple-primary hover:bg-purple-dark text-dark-base font-heading font-bold px-8 py-4 rounded-md transition-all duration-200"
           >
-            Book My Free Audit â†’
+            Book My Free Audit →
           </Link>
         </div>
       </section>

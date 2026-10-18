@@ -33,32 +33,32 @@ export const metadata: Metadata = {
 
 const values = [
   {
-    icon: 'âš¡',
+    icon: '⚡',
     title: 'Speed Without Shortcuts',
     desc: '14 days is the promise. It works because we build with focus — not by cutting corners. Every shortcut shows up later, so we do not take them.',
   },
   {
-    icon: 'ðŸŽ¯',
+    icon: '🎯',
     title: 'Conversion First',
     desc: 'Beautiful is necessary but not sufficient. Every design decision has to earn its place by driving the visitor toward an action. If it looks great but does not convert, it gets changed.',
   },
   {
-    icon: 'ðŸ’¬',
+    icon: '💬',
     title: 'No Guessing Games',
     desc: 'Clients should never have to chase us for updates. We communicate proactively — daily during builds, same-day on revisions. You always know exactly what is happening.',
   },
   {
-    icon: 'ðŸ“ˆ',
+    icon: '📈',
     title: 'Built for Business Results',
     desc: 'We are not a design studio. We are a business results studio that uses design as the tool. The measure of success is enquiries, reservations, and revenue — not awards.',
   },
   {
-    icon: 'ðŸ”’',
+    icon: '🔒',
     title: 'Satisfaction Guaranteed',
     desc: "We do not close a project until you are genuinely happy with it. That is not a policy — it is how we work. No business owner should pay for something they don't love.",
   },
   {
-    icon: 'ðŸŒ',
+    icon: '🌍',
     title: 'Built for Businesses',
     desc: 'We chose to specialise in businesses because that is where a great website makes the biggest difference. A $1,500 investment can change the trajectory of a business. That matters to us.',
   },
@@ -200,7 +200,7 @@ export default function AboutPage() {
               href="/free-consultation"
               className="inline-flex items-center justify-center gap-2 bg-purple-primary hover:bg-purple-dark text-dark-base font-heading font-semibold px-8 py-4 rounded-md transition-all duration-200 hover:scale-[1.02]"
             >
-              Get My Free Audit â†’
+              Get My Free Audit →
             </Link>
             <Link
               href="/contact"

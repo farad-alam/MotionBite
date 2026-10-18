@@ -1,4 +1,4 @@
-﻿import type { Metadata } from 'next'
+import type { Metadata } from 'next'
 import ConsultationForm from './ConsultationForm'
 
 export const metadata: Metadata = {

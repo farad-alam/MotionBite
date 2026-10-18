@@ -76,6 +76,13 @@ export const portfolioProjectSchema = defineType({
       validation: (r) => r.required(),
     }),
     defineField({
+      name: 'clientCountry',
+      title: 'Client country',
+      type: 'string',
+      group: 'core',
+      description: 'Optional. English country name, e.g. United Arab Emirates.',
+    }),
+    defineField({
       name: 'industry',
       title: 'Industry',
       type: 'string',

@@ -36,7 +36,7 @@ export const metadata: Metadata = {
 const services = [
   {
     id: 'starter',
-    icon: 'âš¡',
+    icon: '⚡',
     name: 'Starter Site',
     tagline: 'Your business, online in 10 days',
     price: 'From $1,500',
@@ -59,7 +59,7 @@ const services = [
   },
   {
     id: 'growth',
-    icon: 'ðŸš€',
+    icon: '🚀',
     name: 'Growth Package',
     tagline: 'Built to rank, built to convert',
     price: 'From $3,500',
@@ -84,7 +84,7 @@ const services = [
   },
   {
     id: 'premium',
-    icon: 'ðŸ”¥',
+    icon: '🔥',
     name: 'Premium Build',
     tagline: 'Custom web app or advanced site',
     price: 'From $6,000',
@@ -158,7 +158,7 @@ export default function ServicesPage() {
                 href="/free-consultation"
                 className="inline-flex items-center gap-2 bg-purple-primary hover:bg-purple-dark text-dark-base font-heading font-semibold px-6 py-3 rounded-md transition-all duration-200 hover:scale-[1.02]"
               >
-                Get Your Free Audit â†’
+                Get Your Free Audit →
               </Link>
               <Link
                 href="/pricing"
@@ -214,7 +214,7 @@ export default function ServicesPage() {
                   <ul className="space-y-1">
                     {s.suitable.map((item, i) => (
                       <li key={i} className="font-body text-xs text-text-muted flex items-start gap-1.5">
-                        <span className="text-purple-primary/60 mt-0.5">â†’</span>
+                        <span className="text-purple-primary/60 mt-0.5">→</span>
                         {item}
                       </li>
                     ))}
@@ -231,7 +231,7 @@ export default function ServicesPage() {
                         : 'border border-dark-border text-text-primary hover:border-purple-primary/40'
                     }`}
                   >
-                    {s.cta} â†’
+                    {s.cta} →
                   </Link>
                 </div>
               </div>
@@ -241,7 +241,7 @@ export default function ServicesPage() {
           <p className="text-center font-body text-text-muted text-sm mt-8">
             Not sure which fits?{' '}
             <Link href="/free-consultation" className="text-purple-primary hover:underline">
-              Book a free 30-minute consultation â†’
+              Book a free 30-minute consultation →
             </Link>
           </p>
         </div>
@@ -300,7 +300,7 @@ export default function ServicesPage() {
             href="/free-consultation"
             className="inline-flex items-center gap-2 bg-purple-primary hover:bg-purple-dark text-dark-base font-heading font-semibold px-8 py-4 rounded-md transition-all duration-200 hover:scale-[1.02]"
           >
-            Book My Free Audit â†’
+            Book My Free Audit →
           </Link>
           <p className="font-body text-text-muted text-xs mt-4">Free. No commitment. Reply within 24 hours.</p>
         </div>

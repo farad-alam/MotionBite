@@ -35,19 +35,19 @@ export const metadata: Metadata = {
 
 const contactDetails = [
   {
-    icon: 'ðŸ“§',
+    icon: '📧',
     label: 'Email',
     value: siteData.contact.email,
     href: `mailto:${siteData.contact.email}`,
   },
   {
-    icon: 'âš¡',
+    icon: '⚡',
     label: 'Response Time',
     value: siteData.contact.responseTime,
     href: null,
   },
   {
-    icon: 'ðŸŒ',
+    icon: '🌍',
     label: 'Working Hours',
     value: siteData.contact.workingHours,
     href: null,
@@ -140,7 +140,7 @@ export default function ContactPage() {
                   href="/free-consultation"
                   className="block w-full text-center bg-purple-primary hover:bg-purple-dark text-dark-base font-heading font-semibold py-3 rounded-md transition-all duration-200 text-sm"
                 >
-                  Book My Free Audit â†’
+                  Book My Free Audit →
                 </Link>
                 <p className="font-body text-text-muted text-xs text-center mt-2">Free. No commitment.</p>
               </div>

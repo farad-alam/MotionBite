@@ -1,10 +1,43 @@
 import { defineType, defineField } from 'sanity'
+import { portableTextBodyMembers } from './portableTextBody'
+import { isUniquePerLanguage, warnIfFuture, HREFLANG_OPTIONS } from '../lib/validation'
 
 export const postSchema = defineType({
   name: 'post',
   title: 'Blog Post',
   type: 'document',
   fields: [
+    defineField({
+      name: 'language',
+      title: 'Language',
+      type: 'string',
+      options: {
+        list: [
+          { title: 'English', value: 'en' },
+          { title: 'Arabic (العربية)', value: 'ar' },
+        ],
+        layout: 'radio',
+      },
+      initialValue: 'en',
+      description: 'Existing posts without a value are treated as English.',
+      validation: (rule) => rule.required(),
+    }),
+    defineField({
+      name: 'translationOf',
+      title: 'Translation of (English post)',
+      type: 'reference',
+      to: [{ type: 'post' }],
+      description: 'The English twin of this Arabic post. Used for hreflang.',
+      hidden: ({ document }) => document?.language !== 'ar',
+    }),
+    defineField({
+      name: 'hreflang',
+      title: 'hreflang value',
+      type: 'string',
+      options: { list: HREFLANG_OPTIONS },
+      initialValue: 'ar',
+      hidden: ({ document }) => document?.language !== 'ar',
+    }),
     defineField({
       name: 'title',
       title: 'Title',
@@ -16,8 +49,8 @@ export const postSchema = defineType({
       name: 'slug',
       title: 'Slug',
       type: 'slug',
-      options: { source: 'title', maxLength: 96 },
-      description: 'Auto-generated URL path. Click Generate.',
+      options: { source: 'title', maxLength: 96, isUnique: isUniquePerLanguage },
+      description: 'Auto-generated URL path. Click Generate. Must be unique within the post language.',
       validation: (rule) => rule.required(),
     }),
     defineField({
@@ -71,7 +104,7 @@ export const postSchema = defineType({
       name: 'publishedAt',
       title: 'Published At',
       type: 'datetime',
-      validation: (rule) => rule.required(),
+      validation: (rule) => [rule.required(), warnIfFuture(rule)],
     }),
     defineField({
       name: 'updatedAt',
@@ -83,62 +116,7 @@ export const postSchema = defineType({
       name: 'body',
       title: 'Article Body',
       type: 'array',
-      of: [
-        {
-          type: 'block',
-          styles: [
-            { title: 'Normal', value: 'normal' },
-            { title: 'H2', value: 'h2' },
-            { title: 'H3', value: 'h3' },
-            { title: 'H4', value: 'h4' },
-            { title: 'Quote', value: 'blockquote' },
-          ],
-          marks: {
-            decorators: [
-              { title: 'Bold', value: 'strong' },
-              { title: 'Italic', value: 'em' },
-            ],
-            annotations: [
-              {
-                name: 'link',
-                type: 'object',
-                title: 'Link',
-                fields: [
-                  {
-                    name: 'href',
-                    type: 'string',
-                    title: 'URL',
-                    validation: (rule) => rule.required(),
-                  },
-                  {
-                    name: 'blank',
-                    type: 'boolean',
-                    title: 'Open in new tab',
-                    initialValue: false,
-                  },
-                ],
-              },
-            ],
-          },
-        },
-        {
-          type: 'image',
-          options: { hotspot: true },
-          fields: [
-            {
-              name: 'alt',
-              type: 'string',
-              title: 'Alt Text',
-              validation: (rule) => rule.required(),
-            },
-            {
-              name: 'caption',
-              type: 'string',
-              title: 'Caption (optional)',
-            },
-          ],
-        },
-      ],
+      of: portableTextBodyMembers,
     }),
     defineField({
       name: 'faqItems',

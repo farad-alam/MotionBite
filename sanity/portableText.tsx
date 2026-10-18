@@ -83,6 +83,47 @@ const components: PortableTextComponents = {
     ),
   },
   types: {
+    table: ({ value }) => {
+      const rows = ((value?.rows ?? []) as { _key?: string; cells?: string[] }[]).filter(
+        (r) => Array.isArray(r?.cells)
+      )
+      if (rows.length === 0) return null
+      const hasHeader = Boolean(value?.hasHeader)
+      const header = hasHeader ? rows[0] : null
+      const bodyRows = hasHeader ? rows.slice(1) : rows
+      return (
+        <div className="my-8 overflow-x-auto">
+          <table className="w-full border-collapse font-body text-sm text-text-muted text-start">
+            {header && (
+              <thead>
+                <tr className="border-b border-dark-border">
+                  {header.cells!.map((cell, i) => (
+                    <th
+                      key={i}
+                      scope="col"
+                      className="px-4 py-3 text-start font-semibold text-text-primary whitespace-nowrap"
+                    >
+                      {cell}
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+            )}
+            <tbody>
+              {bodyRows.map((row, ri) => (
+                <tr key={row._key ?? ri} className="border-b border-dark-border/60">
+                  {row.cells!.map((cell, ci) => (
+                    <td key={ci} className="px-4 py-3 text-start align-top">
+                      {cell}
+                    </td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )
+    },
     image: ({ value }) => {
       if (!value?.asset) return null
       return (

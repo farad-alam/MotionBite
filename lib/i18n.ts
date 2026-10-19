@@ -38,6 +38,9 @@ export const dict = {
     allRightsReserved: 'All Rights Reserved.',
     blogTitle: 'Blog',
     blogDescription: 'Practical guides on web design and SEO for business owners.',
+    notFoundTitle: 'Page not found',
+    notFoundBody: 'The page you are looking for does not exist or has moved.',
+    backHome: 'Back to home',
   },
   ar: {
     home: 'الرئيسية',
@@ -69,6 +72,9 @@ export const dict = {
     allRightsReserved: 'جميع الحقوق محفوظة.',
     blogTitle: 'المدونة',
     blogDescription: 'أدلة عملية حول تصميم المواقع وتحسين الظهور في محركات البحث لأصحاب الأعمال.',
+    notFoundTitle: 'الصفحة غير موجودة', // extra proposal (404 page)
+    notFoundBody: 'الصفحة التي تبحث عنها غير موجودة أو تم نقلها.', // extra proposal (404 page)
+    backHome: 'العودة إلى الرئيسية', // extra proposal (404 page)
   },
 } as const
 

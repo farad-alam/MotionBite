@@ -1,6 +1,8 @@
 import type { NextConfig } from 'next'
 
 const nextConfig: NextConfig = {
+  // app/global-not-found.tsx: a real 404 page for unmatched URLs (two root layouts).
+  experimental: { globalNotFound: true },
   images: {
     formats: ['image/avif', 'image/webp'],
     remotePatterns: [

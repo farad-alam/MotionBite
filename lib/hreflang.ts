@@ -91,7 +91,7 @@ export const getTwinTable = cache(async (): Promise<TwinTable> => {
   const pairs: TwinPair[] = []
   let rows: Row[] = []
   try {
-    rows = await client.fetch<Row[]>(PAIRS_QUERY, {}, { next: { tags: [LANDING_TAG, 'posts'] } })
+    rows = await client.fetch<Row[]>(PAIRS_QUERY, {}, { cache: 'force-cache', next: { tags: [LANDING_TAG, 'posts'] } })
   } catch (e) {
     console.error('hreflang: failed to load translation pairs', e)
     return { byPath, pairs }

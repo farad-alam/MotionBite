@@ -1,6 +1,10 @@
 import { revalidateTag, revalidatePath } from 'next/cache'
 import { type NextRequest, NextResponse } from 'next/server'
 
+// The sitemap renders per request and reads tagged, cached Sanity queries, so
+// purging the content tags below refreshes it too (revalidatePath('/sitemap.xml')
+// never cleared the prerendered sitemap on Vercel and is no longer needed).
+//
 // In Next.js 16, revalidateTag requires a second `profile` argument.
 // Passing { expire: 0 } ensures the tag is purged immediately (no TTL).
 const PURGE: { expire: number } = { expire: 0 }
@@ -28,10 +32,9 @@ export async function POST(req: NextRequest) {
 
     // ─── portfolioProject ───────────────────────────────────────────────
     // Portfolio content changed — purge portfolio tag (covers listing page,
-    // detail pages, and related projects queries) and refresh the sitemap.
+    // detail pages, and related projects queries), which also refreshes the sitemap.
     if (_type === 'portfolioProject') {
       revalidateTag('portfolio', PURGE)
-      revalidatePath('/sitemap.xml')
       return NextResponse.json({ revalidated: true, type: _type, slug, now: Date.now() })
     }
 
@@ -46,20 +49,19 @@ export async function POST(req: NextRequest) {
 
     // ─── landingPage ────────────────────────────────────────────────────
     // Landing page published, edited, unpublished or deleted — purge the
-    // landingPages tag (pages, hubs, hreflang lookups) and refresh the sitemap.
+    // landingPages tag (pages, hubs, hreflang lookups), which also refreshes the sitemap.
     if (_type === 'landingPage') {
       revalidateTag('landingPages', PURGE)
-      revalidatePath('/sitemap.xml')
       return NextResponse.json({ revalidated: true, type: _type, slug, now: Date.now() })
     }
 
     // ─── unknown / missing type ─────────────────────────────────────────
-    // Delete events can arrive without _type. Purge both content tags and
-    // the sitemap instead of assuming the document was a post.
+    // Delete events can arrive without _type. Purge every content tag
+    // (which also refreshes the sitemap) instead of assuming the document was a post.
     if (_type !== 'post') {
       revalidateTag('posts', PURGE)
       revalidateTag('landingPages', PURGE)
-      revalidatePath('/sitemap.xml')
+      revalidateTag('portfolio', PURGE)
       revalidatePath('/', 'layout')
       return NextResponse.json({ revalidated: true, type: _type ?? 'unknown', slug, now: Date.now() })
     }
@@ -67,10 +69,9 @@ export async function POST(req: NextRequest) {
     // ─── post ─────────────────────────────────────────────────
     // Blog post published or updated — purge posts tag (covers blog listing,
     // individual post pages, and the slug list used by generateStaticParams),
-    // refresh the sitemap so new posts appear, and touch the homepage layout
+    // which also refreshes the sitemap, and touch the homepage layout
     // so any homepage section that surfaces recent content stays current.
     revalidateTag('posts', PURGE)
-    revalidatePath('/sitemap.xml')
     revalidatePath('/', 'layout')
 
     return NextResponse.json({ revalidated: true, type: _type, slug, now: Date.now() })

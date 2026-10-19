@@ -2,6 +2,9 @@
 
 import { useState } from 'react'
 import { motion } from 'framer-motion'
+import Honeypot from '@/components/forms/Honeypot'
+import SubmitError from '@/components/forms/SubmitError'
+import { submitLead } from '@/lib/lead-client'
 
 const challenges = [
   "No website yet",
@@ -25,6 +28,10 @@ const consultFaq = [
 
 export default function ConsultationForm() {
   const [submitted, setSubmitted] = useState(false)
+  const [sending, setSending] = useState(false)
+  const [submitError, setSubmitError] = useState<string | null>(null)
+  const [hp, setHp] = useState('')
+  const [startedAt] = useState(() => Date.now())
   const [form, setForm] = useState({ name: '', email: '', website: '', challenge: '' })
   const [errors, setErrors] = useState<Record<string, string>>({})
 
@@ -36,11 +43,27 @@ export default function ConsultationForm() {
     return e
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    if (sending) return
     const errs = validate()
     if (Object.keys(errs).length) { setErrors(errs); return }
-    setSubmitted(true)
+    setErrors({})
+    setSubmitError(null)
+    setSending(true)
+    const result = await submitLead({
+      source: 'free-consultation',
+      name: form.name,
+      email: form.email,
+      website: form.website,
+      fields: { challenge: form.challenge },
+      hp,
+      startedAt,
+    })
+    setSending(false)
+    if (result.ok) { setSubmitted(true); return }
+    if (result.fieldErrors) setErrors(result.fieldErrors)
+    setSubmitError(result.message ?? '')
   }
 
   return (
@@ -80,6 +103,7 @@ export default function ConsultationForm() {
                 <div className="bg-dark-card rounded-2xl p-8 glow-border">
                   <h2 className="font-heading text-xl font-bold text-text-primary mb-6">Book Your Free Consultation</h2>
                   <form onSubmit={handleSubmit} className="space-y-5" noValidate>
+                    <Honeypot value={hp} onChange={setHp} />
                     <div>
                       <label className="block font-body text-text-muted text-sm mb-1.5">Your Name</label>
                       <input
@@ -126,11 +150,13 @@ export default function ConsultationForm() {
                       </select>
                       {errors.challenge && <p className="text-state-error text-xs mt-1 font-body">{errors.challenge}</p>}
                     </div>
+                    {submitError !== null && <SubmitError message={submitError || undefined} />}
                     <button
                       type="submit"
-                      className="w-full bg-purple-primary hover:bg-purple-dark text-dark-base font-heading font-bold py-4 rounded-md transition-all duration-200 hover:scale-[1.01] text-base"
+                      disabled={sending}
+                      className="disabled:opacity-60 disabled:cursor-not-allowed w-full bg-purple-primary hover:bg-purple-dark text-dark-base font-heading font-bold py-4 rounded-md transition-all duration-200 hover:scale-[1.01] text-base"
                     >
-                      Book My Free Consultation →
+                      {sending ? 'Sending...' : 'Book My Free Consultation →'}
                     </button>
                   </form>
                 </div>

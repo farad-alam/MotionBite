@@ -1,6 +1,7 @@
 import type { MetadataRoute } from 'next'
 import { client } from '@/sanity/client'
 import { getLandingSitemapEntries, landingPath } from '@/lib/landing'
+import { getTwinTable, languagesFor } from '@/lib/hreflang'
 
 const BASE = 'https://www.motionbite.com'
 
@@ -93,5 +94,51 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     console.error('Sitemap: failed to fetch landing pages from Sanity', e)
   }
 
-  return [...staticRoutes, ...blogRoutes, ...landingRoutes, ...portfolioRoutes]
+  // Arabic blog (WP3 5.5): /ar/blog only once at least one Arabic post is published.
+  let arabicBlogRoutes: MetadataRoute.Sitemap = []
+  try {
+    const posts = await client.fetch<{ slug: string; updatedAt?: string; publishedAt: string }[]>(
+      `*[_type == "post" && language == "ar" && defined(slug.current)] | order(publishedAt desc) {
+        "slug": slug.current,
+        publishedAt,
+        updatedAt
+      }`,
+      {},
+      { next: { tags: ['posts'] } }
+    )
+    arabicBlogRoutes = posts.map((post) => ({
+      url: `${BASE}/ar/blog/${post.slug}`,
+      lastModified: new Date(post.updatedAt ?? post.publishedAt),
+      changeFrequency: 'weekly' as const,
+      priority: 0.7,
+    }))
+    if (posts.length > 0) {
+      arabicBlogRoutes.unshift({
+        url: `${BASE}/ar/blog`,
+        lastModified: new Date(posts[0].updatedAt ?? posts[0].publishedAt),
+        changeFrequency: 'weekly',
+        priority: 0.7,
+      })
+    }
+  } catch (e) {
+    console.error('Sitemap: failed to fetch Arabic posts from Sanity', e)
+  }
+
+  const all = [...staticRoutes, ...blogRoutes, ...landingRoutes, ...arabicBlogRoutes, ...portfolioRoutes]
+
+  // hreflang alternates (WP4 6.5 / WP3 5.4): only on entries whose twin is live,
+  // with the same reciprocal pair table the pages use, including the self-reference.
+  try {
+    const { byPath } = await getTwinTable()
+    if (byPath.size > 0) {
+      return all.map((entry) => {
+        const path = entry.url === BASE ? '/' : entry.url.slice(BASE.length)
+        const pair = byPath.get(path)
+        return pair ? { ...entry, alternates: { languages: languagesFor(pair) } } : entry
+      })
+    }
+  } catch (e) {
+    console.error('Sitemap: failed to resolve hreflang pairs', e)
+  }
+  return all
 }

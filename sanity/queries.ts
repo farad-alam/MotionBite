@@ -78,10 +78,12 @@ export type SanityPost = {
   publishedAt: string
   updatedAt?: string
   readTime?: string
+  readMinutes?: number
   wordCount?: number
   body?: SanityBlock[]
   faqItems?: { question: string; answer: string }[]
   canonicalUrl?: string
+  language?: 'en' | 'ar'
   related?: SanityPostCard[]
 }
 
@@ -94,6 +96,7 @@ export type SanityPostCard = {
   author?: Pick<SanityAuthor, 'firstName' | 'lastName' | 'slug' | 'avatar'>
   publishedAt: string
   readTime?: string
+  readMinutes?: number
 }
 
 export type SanityBlock = {
@@ -123,6 +126,8 @@ const AUTHOR_FIELDS = `
   }
 `
 
+export type PostLanguage = 'en' | 'ar'
+
 // ─────────────────────────────────────────────
 // Listing page query — minimal fields for fast load
 // ─────────────────────────────────────────────
@@ -137,7 +142,8 @@ export async function getAllPosts(): Promise<SanityPostCard[]> {
       "category": category->{ title },
       "author": author->{ firstName, lastName, slug, avatar { asset, alt } },
       publishedAt,
-      "readTime": round(length(pt::text(body)) / 1500) + " min read"
+      "readTime": round(length(pt::text(body)) / 1500) + " min read",
+      "readMinutes": round(length(pt::text(body)) / 1500)
     }`,
     {},
     { next: { tags: ['posts'] } }
@@ -158,14 +164,46 @@ export async function getAllPostSlugs(): Promise<string[]> {
 }
 
 // ─────────────────────────────────────────────
+// Arabic blog (WP3 5.5): /ar/blog and /ar/blog/[slug]
+// ─────────────────────────────────────────────
+
+export async function getArabicPosts(): Promise<SanityPostCard[]> {
+  return client.fetch(
+    `*[_type == "post" && language == "ar"] | order(publishedAt desc) {
+      title,
+      slug,
+      excerpt,
+      mainImage { asset, alt },
+      "category": category->{ title },
+      "author": author->{ firstName, lastName, slug, avatar { asset, alt } },
+      publishedAt,
+      "readTime": round(length(pt::text(body)) / 1500) + " min read",
+      "readMinutes": round(length(pt::text(body)) / 1500)
+    }`,
+    {},
+    { next: { tags: ['posts'] } }
+  )
+}
+
+export async function getArabicPostSlugs(): Promise<string[]> {
+  const results = await client.fetch<{ slug: { current: string } }[]>(
+    `*[_type == "post" && language == "ar" && defined(slug.current)]{ slug }`,
+    {},
+    { next: { tags: ['posts'] } }
+  )
+  return results.map((r) => r.slug.current)
+}
+
+// ─────────────────────────────────────────────
 // Single post — full fields for article page
 // ─────────────────────────────────────────────
 
 // Wrapped with React cache() so generateMetadata() and the page component
 // share one fetch result per render — eliminates the duplicate Sanity call.
-export const getPost = cache(async (slug: string): Promise<SanityPost | null> => {
+// `language` keeps the two blogs apart: /blog/<an-arabic-slug> is a 404 and vice versa.
+export const getPost = cache(async (slug: string, language: PostLanguage = 'en'): Promise<SanityPost | null> => {
   return fetchContent<SanityPost | null>(
-    `*[_type == "post" && coalesce(language, "en") == "en" && slug.current == $slug][0] {
+    `*[_type == "post" && coalesce(language, "en") == $language && slug.current == $slug][0] {
       _id,
       title,
       slug,
@@ -177,20 +215,23 @@ export const getPost = cache(async (slug: string): Promise<SanityPost | null> =>
       publishedAt,
       updatedAt,
       "readTime": round(length(pt::text(body)) / 1500) + " min read",
+      "readMinutes": round(length(pt::text(body)) / 1500),
       "wordCount": length(string::split(pt::text(body), " ")),
       body,
       faqItems,
       canonicalUrl,
-      "related": *[_type == "post" && coalesce(language, "en") == "en" && category._ref == ^.category._ref && slug.current != $slug][0..1] {
+      "language": coalesce(language, "en"),
+      "related": *[_type == "post" && coalesce(language, "en") == $language && category._ref == ^.category._ref && slug.current != $slug][0..1] {
         title,
         slug,
         excerpt,
         "category": category->{ title },
         publishedAt,
-        "readTime": round(length(pt::text(body)) / 1500) + " min read"
+        "readTime": round(length(pt::text(body)) / 1500) + " min read",
+      "readMinutes": round(length(pt::text(body)) / 1500)
       }
     }`,
-    { slug },
+    { slug, language },
     ['posts']
   )
 })
@@ -241,7 +282,8 @@ export const getAuthor = cache(async (slug: string): Promise<SanityAuthorWithPos
         mainImage { asset, alt },
         "category": category->{ title },
         publishedAt,
-        "readTime": round(length(pt::text(body)) / 1500) + " min read"
+        "readTime": round(length(pt::text(body)) / 1500) + " min read",
+      "readMinutes": round(length(pt::text(body)) / 1500)
       }
     }`,
     { slug },

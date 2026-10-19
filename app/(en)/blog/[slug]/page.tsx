@@ -11,6 +11,8 @@ import AuthorBox from '@/components/blog/AuthorBox'
 import TableOfContents from '@/components/blog/TableOfContents'
 import ShareButtons from '@/components/blog/ShareButtons'
 import { articleSchema, faqSchema } from '@/lib/schema'
+import { getTwin, languagesFor } from '@/lib/hreflang'
+import { otherLanguageLabel } from '@/lib/i18n'
 
 export const revalidate = false
 
@@ -31,6 +33,8 @@ export async function generateMetadata({
   const ogImage = post.mainImage?.asset
     ? urlFor(post.mainImage).width(1200).height(630).format('webp').url()
     : undefined
+  // Reciprocal hreflang with a live Arabic twin (WP3 5.4).
+  const twin = await getTwin(`/blog/${post.slug.current}`, 'en')
 
   return {
     ...((await isDraftMode()) ? { robots: { index: false, follow: false } } : {}),
@@ -42,6 +46,7 @@ export async function generateMetadata({
       : [{ name: 'MotionBite', url: 'https://www.motionbite.com' }],
     alternates: {
       canonical: post.canonicalUrl ?? `https://www.motionbite.com/blog/${post.slug.current}`,
+      ...(twin ? { languages: languagesFor(twin) } : {}),
     },
     openGraph: {
       type: 'article',
@@ -85,6 +90,7 @@ export default async function BlogPostPage({
   const { slug } = await params
   const post = await getPost(slug)
   if (!post) notFound()
+  const twin = await getTwin(`/blog/${post.slug.current}`, 'en')
 
   const ogImage = post.mainImage?.asset
     ? urlFor(post.mainImage).width(1200).height(630).format('webp').url()
@@ -149,6 +155,16 @@ export default async function BlogPostPage({
             <Link href="/blog" className="text-purple-primary text-sm font-body hover:underline mb-8 inline-block">
               ← Back to Blog
             </Link>
+            {twin && (
+              <Link
+                href={twin.arPath}
+                hrefLang={twin.hreflang}
+                lang="ar"
+                className="text-purple-primary text-sm font-body hover:underline mb-8 inline-block ms-4"
+              >
+                {otherLanguageLabel('en')}
+              </Link>
+            )}
 
             {/* Meta */}
             <div className="flex items-center gap-3 mb-4 flex-wrap">

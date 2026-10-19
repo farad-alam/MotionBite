@@ -4,25 +4,18 @@ import { PortableText as SanityPortableText, PortableTextComponents } from 'next
 import Image from 'next/image'
 import { urlFor } from './image'
 import { SanityBlock } from './queries'
+import { useMemo } from 'react'
+import { headingIds } from '@/lib/slugify'
 
-// Converts heading text to a URL-safe anchor id
-function slugify(text: unknown): string {
-  if (!text) return ''
-  const str = Array.isArray(text)
-    ? text.map((t) => (typeof t === 'string' ? t : (t as { text?: string })?.text ?? '')).join('')
-    : String(text)
-  return str
-    .toLowerCase()
-    .replace(/[^a-z0-9\s-]/g, '')
-    .trim()
-    .replace(/\s+/g, '-')
-}
-
-const components: PortableTextComponents = {
+// Anchor ids come from headingIds() (lib/slugify.ts), shared with the table of
+// contents, so Arabic headings get non-empty ids and repeats get -2, -3.
+function buildComponents(ids: Map<string, string>): PortableTextComponents {
+  const idFor = (value: { _key?: string } | undefined) => (value?._key ? ids.get(value._key) : undefined)
+  return {
   block: {
     h2: ({ children, value }) => (
       <h2
-        id={slugify((value?.children as { text?: string }[] | undefined)?.map((c) => c?.text))}
+        id={idFor(value)}
         className="font-heading text-2xl md:text-3xl font-bold text-text-primary mt-12 mb-4 leading-snug scroll-mt-28"
       >
         {children}
@@ -30,7 +23,7 @@ const components: PortableTextComponents = {
     ),
     h3: ({ children, value }) => (
       <h3
-        id={slugify((value?.children as { text?: string }[] | undefined)?.map((c) => c?.text))}
+        id={idFor(value)}
         className="font-heading text-xl md:text-2xl font-bold text-text-primary mt-10 mb-3 leading-snug scroll-mt-28"
       >
         {children}
@@ -45,19 +38,19 @@ const components: PortableTextComponents = {
       <p className="font-body text-text-muted leading-relaxed text-base mb-6">{children}</p>
     ),
     blockquote: ({ children }) => (
-      <blockquote className="border-l-2 border-purple-primary/50 pl-5 my-8 italic font-body text-text-muted text-lg leading-relaxed">
+      <blockquote className="border-s-2 border-purple-primary/50 ps-5 my-8 italic font-body text-text-muted text-lg leading-relaxed">
         {children}
       </blockquote>
     ),
   },
   list: {
     bullet: ({ children }) => (
-      <ul className="font-body text-text-muted list-disc list-inside space-y-2 mb-6 ml-2">
+      <ul className="font-body text-text-muted list-disc list-inside space-y-2 mb-6 ms-2">
         {children}
       </ul>
     ),
     number: ({ children }) => (
-      <ol className="font-body text-text-muted list-decimal list-inside space-y-2 mb-6 ml-2">
+      <ol className="font-body text-text-muted list-decimal list-inside space-y-2 mb-6 ms-2">
         {children}
       </ol>
     ),
@@ -146,11 +139,13 @@ const components: PortableTextComponents = {
     },
   },
 }
+}
 
 interface PortableTextProps {
   value: SanityBlock[]
 }
 
 export function PortableText({ value }: PortableTextProps) {
+  const components = useMemo(() => buildComponents(headingIds(value)), [value])
   return <SanityPortableText value={value} components={components} />
 }

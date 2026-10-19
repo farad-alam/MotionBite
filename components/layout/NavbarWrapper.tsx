@@ -6,8 +6,8 @@ import Navbar from './Navbar'
 // Routes where the Navbar should be hidden
 const HIDDEN_ROUTES = ['/free-consultation', '/start-project', '/studio']
 
-export default function NavbarWrapper() {
+export default function NavbarWrapper({ showArabic = false }: { showArabic?: boolean }) {
   const pathname = usePathname()
   if (pathname && HIDDEN_ROUTES.some((r) => pathname.startsWith(r))) return null
-  return <Navbar />
+  return <Navbar showArabic={showArabic} />
 }

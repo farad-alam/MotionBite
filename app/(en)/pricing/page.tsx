@@ -1,37 +1,44 @@
 ﻿import Link from 'next/link'
 import { services } from '@/data/services'
 import type { Metadata } from 'next'
+import { getAlternates } from '@/lib/hreflang'
+import TwinLanguageLink from '@/components/layout/TwinLanguageLink'
 
-export const metadata: Metadata = {
-  alternates: { canonical: '/pricing' },
-  title: 'Website Design Pricing – Plans from $1,500',
-  description:
-    'Transparent web design and development pricing with no hidden fees. Starter Site from $1,500, Growth Package from $3,500, Premium Build from $6,000.',
-  keywords: [
-    'web design and development cost',
-    'website design and development pricing',
-    'how much does web design and development cost',
-    'business website packages',
-    'affordable web design and development pricing',
-    'web design and development packages and prices',
-    'website development cost for business',
-    'web design developer pricing',
-  ],
-  openGraph: {
-    type: 'website',
-    title: 'Website Design Pricing – Plans from $1,500 | MotionBite',
+// generateMetadata so hreflang appears once the Arabic twin (/ar/pricing, R028)
+// is published. The twin lookup is tagged landingPages.
+export async function generateMetadata(): Promise<Metadata> {
+  const languages = await getAlternates('/pricing', 'en')
+  return {
+    alternates: { canonical: '/pricing', ...(languages ? { languages } : {}) },
+    title: 'Website Design Pricing – Plans from $1,500',
     description:
-      'Transparent web design and development pricing. Starter Site from $1,500, Growth Package from $3,500, Premium Build from $6,000. No hidden fees.',
-    url: 'https://www.motionbite.com/pricing',
-    images: ['https://www.motionbite.com/opengraph-image.png'],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Website Design Pricing – Plans from $1,500 | MotionBite',
-    description:
-      'Transparent web design and development pricing. Starter Site from $1,500, Growth Package from $3,500. No hidden fees.',
-    images: ['https://www.motionbite.com/opengraph-image.png'],
-  },
+      'Transparent web design and development pricing with no hidden fees. Starter Site from $1,500, Growth Package from $3,500, Premium Build from $6,000.',
+    keywords: [
+      'web design and development cost',
+      'website design and development pricing',
+      'how much does web design and development cost',
+      'business website packages',
+      'affordable web design and development pricing',
+      'web design and development packages and prices',
+      'website development cost for business',
+      'web design developer pricing',
+    ],
+    openGraph: {
+      type: 'website',
+      title: 'Website Design Pricing – Plans from $1,500 | MotionBite',
+      description:
+        'Transparent web design and development pricing. Starter Site from $1,500, Growth Package from $3,500, Premium Build from $6,000. No hidden fees.',
+      url: 'https://www.motionbite.com/pricing',
+      images: ['https://www.motionbite.com/opengraph-image.png'],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: 'Website Design Pricing – Plans from $1,500 | MotionBite',
+      description:
+        'Transparent web design and development pricing. Starter Site from $1,500, Growth Package from $3,500. No hidden fees.',
+      images: ['https://www.motionbite.com/opengraph-image.png'],
+    },
+  }
 }
 
 const pricingDetails = [
@@ -102,6 +109,7 @@ export default function PricingPage() {
           <p className="font-body text-text-muted text-xl max-w-xl mx-auto">
             No hourly rates. No surprise invoices. Pick your package.
           </p>
+          <TwinLanguageLink path="/pricing" className="mt-4" />
         </div>
       </section>
 

@@ -99,10 +99,16 @@ export const articleSchema = ({
   wordCount,
   author,
   authorAvatarUrl,
+  path,
+  inLanguage,
 }: {
   title: string
   description: string
   slug: string
+  /** URL path; defaults to /blog/<slug>. Arabic posts pass /ar/blog/<slug>. */
+  path?: string
+  /** Set only for Arabic pages ("ar"); English output is unchanged. */
+  inLanguage?: string
   datePublished: string
   dateModified?: string
   keywords?: string[]
@@ -115,11 +121,12 @@ export const articleSchema = ({
   '@type': 'BlogPosting',
   mainEntityOfPage: {
     '@type': 'WebPage',
-    '@id': `${BASE}/blog/${slug}`,
+    '@id': `${BASE}${path ?? `/blog/${slug}`}`,
   },
   headline: title,
   description,
-  url: `${BASE}/blog/${slug}`,
+  url: `${BASE}${path ?? `/blog/${slug}`}`,
+  ...(inLanguage ? { inLanguage } : {}),
   datePublished,
   dateModified: dateModified || datePublished,
   ...(keywords && keywords.length > 0 ? { keywords: keywords.join(', ') } : {}),
@@ -233,8 +240,11 @@ export const landingPageSchema = ({
   image,
   author,
   authorAvatarUrl,
+  inLanguage,
 }: {
   schemaType: 'Service' | 'WebPage' | 'CollectionPage' | 'Report'
+  /** Set only for Arabic pages ("ar"); English output is unchanged. */
+  inLanguage?: string
   name: string
   description: string
   path: string
@@ -245,8 +255,9 @@ export const landingPageSchema = ({
   author?: SanityAuthor | null
   authorAvatarUrl?: string
 }) => {
-  const url = `${BASE}${path}`
+  const url = path === '/' ? BASE : `${BASE}${path}`
   const org = { '@id': `${BASE}/#organization` }
+  const lang = inLanguage ? { inLanguage } : {}
   if (schemaType === 'Service') {
     return {
       '@context': 'https://schema.org',
@@ -254,6 +265,7 @@ export const landingPageSchema = ({
       name,
       description,
       url,
+      ...lang,
       ...(areaServed && areaServed.length > 0 ? { areaServed } : {}),
       provider: org,
     }
@@ -265,6 +277,7 @@ export const landingPageSchema = ({
       headline: name,
       description,
       url,
+      ...lang,
       mainEntityOfPage: { '@type': 'WebPage', '@id': url },
       ...(datePublished ? { datePublished } : {}),
       dateModified: dateModified || datePublished,
@@ -279,6 +292,7 @@ export const landingPageSchema = ({
     name,
     description,
     url,
+    ...lang,
     isPartOf: { '@type': 'WebSite', url: BASE },
   }
 }

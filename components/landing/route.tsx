@@ -10,9 +10,11 @@ import {
   getLandingIndex,
   getLandingPage,
   getPrimaryCta,
+  getArabicSiteSettings,
   landingPath,
   type LandingSection,
 } from '@/lib/landing'
+import { arabicOgLocale, getTwin, languagesFor } from '@/lib/hreflang'
 
 const BASE = 'https://www.motionbite.com'
 const DEFAULT_OG = `${BASE}/opengraph-image.png`
@@ -20,8 +22,12 @@ const DEFAULT_OG = `${BASE}/opengraph-image.png`
 export async function landingMetadata(section: LandingSection, slug: string): Promise<Metadata> {
   const page = await getLandingPage(section, slug)
   if (!page) return {}
-  const url = `${BASE}${landingPath(section, page.slug)}`
+  const path = landingPath(section, page.slug)
+  const url = path === '/' ? BASE : `${BASE}${path}`
   const title = page.seoTitle || page.title
+  const isArabic = page.language === 'ar'
+  // Reciprocal hreflang (WP2 4.4 / WP3 5.4): only when both sides are live.
+  const twin = await getTwin(path, isArabic ? 'ar' : 'en')
 
   let ogImage: string | undefined = page.mainImage?.asset
     ? urlFor(page.mainImage).width(1200).height(630).format('webp').url()
@@ -36,13 +42,17 @@ export async function landingMetadata(section: LandingSection, slug: string): Pr
   return {
     title,
     description: page.metaDescription,
-    alternates: { canonical: page.canonicalUrl ?? url },
+    alternates: {
+      canonical: page.canonicalUrl ?? url,
+      ...(twin ? { languages: languagesFor(twin) } : {}),
+    },
     ...(page.noindex || (await isDraftMode()) ? { robots: { index: false, follow: false } } : {}),
     openGraph: {
       type: 'website',
       title,
       description: page.metaDescription,
       url,
+      ...(isArabic ? { locale: arabicOgLocale(page.hreflang), alternateLocale: ['en_US'] } : {}),
       images: [{ url: ogImage, width: 1200, height: 630, alt: page.title }],
     },
     twitter: { card: 'summary_large_image', title, description: page.metaDescription, images: [ogImage] },
@@ -52,8 +62,16 @@ export async function landingMetadata(section: LandingSection, slug: string): Pr
 export async function LandingRoute({ section, slug }: { section: LandingSection; slug: string }) {
   const page = await getLandingPage(section, slug)
   if (!page) notFound()
-  const cta = await getPrimaryCta()
-  return <LandingPageView page={page} cta={cta} />
+  const isArabic = page.language === 'ar'
+  const cta = isArabic ? (await getArabicSiteSettings()).cta : await getPrimaryCta()
+  const path = landingPath(section, page.slug)
+  const pair = await getTwin(path, isArabic ? 'ar' : 'en')
+  const twin = pair
+    ? isArabic
+      ? { href: pair.enPath, hrefLang: 'en' }
+      : { href: pair.arPath, hrefLang: pair.hreflang }
+    : null
+  return <LandingPageView page={page} cta={cta} twin={twin} />
 }
 
 type IndexSection = keyof typeof SECTION_META

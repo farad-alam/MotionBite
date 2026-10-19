@@ -25,6 +25,7 @@ const playfairDisplay = Playfair_Display({
 })
 
 import { getSiteSettings } from '@/sanity/queries'
+import { hasArabicHome } from '@/lib/landing'
 import { urlFor } from '@/sanity/image'
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -77,7 +78,9 @@ export async function generateMetadata(): Promise<Metadata> {
   }
 }
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
+  // WP3 5.2: the "العربية" link appears only once the Arabic home page is published.
+  const showArabic = await hasArabicHome()
   return (
     <html lang="en" className={`${redHatDisplay.variable} ${outfit.variable} ${playfairDisplay.variable}`}>
       <head>
@@ -85,7 +88,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body>
         <SiteProviders>
-          <NavbarWrapper />
+          <NavbarWrapper showArabic={showArabic} />
           <main>{children}</main>
           <FooterWrapper />
         </SiteProviders>

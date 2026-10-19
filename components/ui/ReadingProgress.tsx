@@ -6,7 +6,7 @@ export default function ReadingProgress() {
   const progress = useScrollProgress()
 
   return (
-    <div className="fixed top-0 left-0 right-0 z-[60] h-0.5 bg-dark-border">
+    <div className="fixed top-0 inset-x-0 z-[60] h-0.5 bg-dark-border">
       <div
         className="h-full bg-purple-primary transition-none"
         style={{ width: `${progress}%` }}

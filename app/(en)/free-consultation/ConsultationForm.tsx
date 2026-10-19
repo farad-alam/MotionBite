@@ -5,14 +5,7 @@ import { motion } from 'framer-motion'
 import Honeypot from '@/components/forms/Honeypot'
 import SubmitError from '@/components/forms/SubmitError'
 import { submitLead } from '@/lib/lead-client'
-
-const challenges = [
-  "No website yet",
-  "Low traffic / hard to find on Google",
-  "Poor conversions (visitors don't contact)",
-  "Outdated or slow website",
-  "Other",
-]
+import { CHALLENGES as challenges } from '@/data/leadOptions'
 
 const whatYouGet = [
   { icon: '🔍', title: 'Site & Strategy Review', desc: "We look at your current site (or competitors') and map out exactly where you are losing customers." },

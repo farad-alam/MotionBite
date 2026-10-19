@@ -4,7 +4,7 @@ import { usePathname } from 'next/navigation'
 import Footer from './Footer'
 
 // Routes where the Footer should be hidden
-const HIDDEN_ROUTES = ['/free-consultation', '/start-project', '/studio']
+const HIDDEN_ROUTES = ['/free-consultation', '/free-website-audit', '/start-project', '/studio']
 
 export default function FooterWrapper() {
   const pathname = usePathname()

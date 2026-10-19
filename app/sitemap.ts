@@ -2,6 +2,7 @@ import type { MetadataRoute } from 'next'
 import { client } from '@/sanity/client'
 import { getLandingSitemapEntries, landingPath } from '@/lib/landing'
 import { getTwinTable, languagesFor } from '@/lib/hreflang'
+import { AUDIT_COPY_IS_PLACEHOLDER } from '@/data/audit'
 
 const BASE = 'https://www.motionbite.com'
 
@@ -14,6 +15,10 @@ const SITEMAP_REVALIDATE = 3600
 
 // Static pages — priority-weighted
 const staticRoutes: MetadataRoute.Sitemap = [
+  // WP5.2: listed once data/audit.ts holds the final R026 copy (noindex until then).
+  ...(AUDIT_COPY_IS_PLACEHOLDER
+    ? []
+    : [{ url: `${BASE}/free-website-audit`, lastModified: new Date('2026-12-02T00:00:00Z'), changeFrequency: 'monthly' as const, priority: 0.8 }]),
   { url: BASE, lastModified: new Date('2026-10-18T00:00:00Z'), changeFrequency: 'weekly', priority: 1.0 },
   { url: `${BASE}/services`, lastModified: new Date('2026-09-07T00:00:00Z'), changeFrequency: 'monthly', priority: 0.9 },
   { url: `${BASE}/pricing`, lastModified: new Date('2026-09-07T00:00:00Z'), changeFrequency: 'monthly', priority: 0.9 },

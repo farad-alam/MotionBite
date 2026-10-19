@@ -63,6 +63,9 @@ export function validateLead(body: unknown): ValidationResult {
     else website = normalised
   }
 
+  // WP5.2: the audit form needs the site to audit.
+  if (source === 'free-website-audit' && !rawWebsite && !errors.website) errors.website = 'Website URL is required'
+
   const fields: Record<string, string> = {}
   const rawFields = b.fields && typeof b.fields === 'object' && !Array.isArray(b.fields) ? (b.fields as Record<string, unknown>) : {}
   const keys = Object.keys(rawFields)

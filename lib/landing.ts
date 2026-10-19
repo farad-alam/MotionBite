@@ -2,6 +2,7 @@ import { cache } from 'react'
 import { client } from '@/sanity/client'
 import { fetchContent } from '@/lib/draft'
 import type { SanityBlock, SanityAuthor } from '@/sanity/queries'
+import { dict } from '@/lib/i18n'
 
 export const LANDING_TAG = 'landingPages'
 
@@ -82,6 +83,7 @@ export type LandingPage = {
   areaServed?: string[]
   canonicalUrl?: string
   noindex?: boolean
+  hreflang?: string
   parent?: (LandingRef & { parent?: LandingRef }) | null
   author?: SanityAuthor | null
   relatedCaseStudies?: LandingCaseStudy[]
@@ -114,6 +116,7 @@ export const getLandingPage = cache(
         areaServed,
         canonicalUrl,
         noindex,
+        hreflang,
         "parent": parent->{ ${REF}, "parent": parent->{ ${REF} } },
         "author": author->{ firstName, lastName, slug, avatar { asset, alt }, jobTitle, shortBio, expertiseAreas, yearsExperience, linkedin, twitter, facebook, website },
         "relatedCaseStudies": relatedCaseStudies[]->{ _id, name, "slug": slug.current, industry, result, thumbnail { asset, alt } }[defined(slug)][0..2]
@@ -150,6 +153,57 @@ export const getPrimaryCta = cache(async (): Promise<SiteCta> => {
     return { label: row?.label?.trim() || DEFAULT_CTA.label, href: row?.href?.trim() || DEFAULT_CTA.href }
   } catch {
     return DEFAULT_CTA
+  }
+})
+
+export const DEFAULT_CTA_AR: SiteCta = { label: dict.ar.freeConsultation, href: '/free-consultation' }
+
+// Arabic CTA and navigation from siteSettings (WP3 5.2). Links must be internal paths.
+export type ArabicSiteSettings = {
+  cta: SiteCta
+  nav: { label: string; href: string }[]
+  footer: { label: string; href: string }[]
+}
+
+function internalLinks(rows: { label?: string; href?: string }[] | null | undefined) {
+  return (rows ?? [])
+    .filter((r) => r?.label?.trim() && typeof r.href === 'string' && r.href.startsWith('/') && !r.href.startsWith('//'))
+    .map((r) => ({ label: r.label!.trim(), href: r.href!.trim() }))
+}
+
+export const getArabicSiteSettings = cache(async (): Promise<ArabicSiteSettings> => {
+  try {
+    const row = await client.fetch<{
+      label?: string
+      href?: string
+      nav?: { label?: string; href?: string }[]
+      footer?: { label?: string; href?: string }[]
+    } | null>(
+      `*[_type == "siteSettings"][0]{ "label": primaryCtaLabelAr, "href": primaryCtaHrefAr, "nav": navAr[]{ label, href }, "footer": footerAr[]{ label, href } }`,
+      {},
+      { next: { tags: ['siteSettings'] } }
+    )
+    return {
+      cta: { label: row?.label?.trim() || DEFAULT_CTA_AR.label, href: row?.href?.trim() || DEFAULT_CTA_AR.href },
+      nav: internalLinks(row?.nav),
+      footer: internalLinks(row?.footer),
+    }
+  } catch {
+    return { cta: DEFAULT_CTA_AR, nav: [], footer: [] }
+  }
+})
+
+// True once the Arabic home page (section "ar", reserved slug "home") is published.
+// Tagged landingPages so publishing or unpublishing it refreshes the English navbar.
+export const hasArabicHome = cache(async (): Promise<boolean> => {
+  try {
+    return await client.fetch<boolean>(
+      `defined(*[_type == "landingPage" && !(_id in path("drafts.**")) && section == "ar" && slug.current == "home"][0]._id)`,
+      {},
+      { next: { tags: [LANDING_TAG] } }
+    )
+  } catch {
+    return false
   }
 })
 

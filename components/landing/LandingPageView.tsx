@@ -61,7 +61,7 @@ export default function LandingPageView({
   const showPackages = PACKAGE_SECTIONS.includes(page.section) && page.language === 'en'
   const faq = page.faqItems?.filter((f) => f.question && f.answer) ?? []
   const related = page.relatedLinks?.filter((l) => l.href?.startsWith('/')) ?? []
-  const cases = page.relatedCaseStudies ?? []
+  const cases = (page.relatedCaseStudies ?? []).filter((c): c is NonNullable<typeof c> => !!c?.slug)
   const ogImage = page.mainImage?.asset
     ? urlFor(page.mainImage).width(1200).height(630).format('webp').url()
     : undefined

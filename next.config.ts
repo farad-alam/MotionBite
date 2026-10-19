@@ -24,6 +24,12 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
+        // WP3 5.4: the Arabic home page document uses the reserved slug "home".
+        source: '/ar/home',
+        destination: '/ar',
+        permanent: true,
+      },
+      {
         source: '/free-audit',
         destination: '/free-consultation',
         permanent: true,

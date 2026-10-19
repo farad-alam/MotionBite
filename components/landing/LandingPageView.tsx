@@ -8,6 +8,8 @@ import { services } from '@/data/services'
 import { siteData } from '@/data/site'
 import { breadcrumbSchema, faqSchema, landingPageSchema } from '@/lib/schema'
 import { landingPath, type LandingPage, type SiteCta } from '@/lib/landing'
+import { t, otherLanguageLabel, type Locale } from '@/lib/i18n'
+import Arrow from '@/components/ui/Arrow'
 
 const PACKAGE_SECTIONS = ['services', 'uae', 'saudi', 'partners']
 const WHATSAPP = `https://wa.me/${siteData.contact.phone.replace(/\D/g, '')}`
@@ -16,8 +18,11 @@ function jsonLd(data: unknown) {
   return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }} />
 }
 
-function buildCrumbs(page: LandingPage) {
-  const crumbs: { name: string; path: string }[] = [{ name: 'Home', path: '/' }]
+function buildCrumbs(page: LandingPage, locale: Locale) {
+  const home = locale === 'ar' ? '/ar' : '/'
+  const crumbs: { name: string; path: string }[] = [{ name: t(locale).home, path: home }]
+  // The Arabic home page (/ar) is itself "Home": no second crumb.
+  if (landingPath(page.section, page.slug) === home) return crumbs
   if (page.parent) {
     // max two levels of parent, grandparent first
     if (page.parent.parent) {
@@ -35,9 +40,22 @@ function countH2(body: LandingPage['body']) {
   return (body ?? []).filter((b) => b._type === 'block' && b.style === 'h2').length
 }
 
-export default function LandingPageView({ page, cta }: { page: LandingPage; cta: SiteCta }) {
+export type TwinLink = { href: string; hrefLang: string }
+
+export default function LandingPageView({
+  page,
+  cta,
+  twin,
+}: {
+  page: LandingPage
+  cta: SiteCta
+  /** Live page in the other language, when one exists (WP3 5.2). */
+  twin?: TwinLink | null
+}) {
+  const locale: Locale = page.language === 'ar' ? 'ar' : 'en'
+  const strings = t(locale)
   const path = landingPath(page.section, page.slug)
-  const crumbs = buildCrumbs(page)
+  const crumbs = buildCrumbs(page, locale)
   const hasBody = !!page.body && page.body.length > 0
   const showToc = hasBody && countH2(page.body) >= 3
   const showPackages = PACKAGE_SECTIONS.includes(page.section) && page.language === 'en'
@@ -62,6 +80,7 @@ export default function LandingPageView({ page, cta }: { page: LandingPage; cta:
     image: ogImage,
     author: page.author,
     authorAvatarUrl,
+    inLanguage: locale === 'ar' ? 'ar' : undefined,
   })
 
   return (
@@ -72,7 +91,7 @@ export default function LandingPageView({ page, cta }: { page: LandingPage; cta:
 
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* 1. Breadcrumb */}
-        <nav aria-label="Breadcrumb" className="mb-8">
+        <nav aria-label={strings.breadcrumb} className="mb-8">
           <ol className="flex flex-wrap items-center gap-x-2 gap-y-1 text-xs font-body text-text-muted">
             {crumbs.map((c, i) => (
               <li key={c.path} className="flex items-center gap-2">
@@ -89,6 +108,19 @@ export default function LandingPageView({ page, cta }: { page: LandingPage; cta:
           </ol>
         </nav>
 
+        {twin && (
+          <p className="mb-6">
+            <Link
+              href={twin.href}
+              hrefLang={twin.hrefLang}
+              lang={locale === 'en' ? 'ar' : 'en'}
+              className="inline-flex items-center gap-2 text-sm font-body text-purple-primary hover:underline"
+            >
+              {otherLanguageLabel(locale)}
+            </Link>
+          </p>
+        )}
+
         {/* 2. Hero */}
         <header className="mb-12">
           <h1 className="font-heading text-3xl sm:text-4xl md:text-5xl font-bold text-text-primary leading-tight mb-5">
@@ -102,7 +134,7 @@ export default function LandingPageView({ page, cta }: { page: LandingPage; cta:
               href={cta.href}
               className="inline-flex items-center justify-center gap-2 bg-purple-primary hover:bg-purple-dark text-dark-base font-heading font-semibold px-6 py-3 rounded-md transition-colors duration-200"
             >
-              {cta.label} →
+              {cta.label} <Arrow />
             </Link>
             <a
               href={WHATSAPP}
@@ -110,7 +142,7 @@ export default function LandingPageView({ page, cta }: { page: LandingPage; cta:
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-2 border border-dark-border hover:border-purple-primary/40 text-text-primary font-heading font-semibold px-6 py-3 rounded-md transition-colors duration-200"
             >
-              Chat on WhatsApp
+              {strings.chatOnWhatsapp}
             </a>
           </div>
         </header>
@@ -120,7 +152,7 @@ export default function LandingPageView({ page, cta }: { page: LandingPage; cta:
           <div className="mb-14">
             {showToc && (
               <div className="mb-8">
-                <TableOfContents body={page.body!} variant="mobile" />
+                <TableOfContents body={page.body!} variant="mobile" locale={locale} />
               </div>
             )}
             <PortableText value={page.body!} />
@@ -131,7 +163,7 @@ export default function LandingPageView({ page, cta }: { page: LandingPage; cta:
         {cases.length > 0 && (
           <section className="mb-14" aria-labelledby="proof-heading">
             <h2 id="proof-heading" className="font-heading text-2xl font-bold text-text-primary mb-6">
-              Work we have delivered
+              {strings.proofHeading}
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               {cases.map((c) => (
@@ -187,7 +219,7 @@ export default function LandingPageView({ page, cta }: { page: LandingPage; cta:
         {/* 6. FAQ */}
         {faq.length > 0 && (
           <section className="mb-14">
-            <h2 className="font-heading text-2xl font-bold text-text-primary mb-6">Frequently Asked Questions</h2>
+            <h2 className="font-heading text-2xl font-bold text-text-primary mb-6">{strings.faq}</h2>
             <div className="space-y-4">
               {faq.map((item, i) => (
                 <div key={i} className="bg-dark-card border border-dark-border rounded-xl p-6">
@@ -202,7 +234,7 @@ export default function LandingPageView({ page, cta }: { page: LandingPage; cta:
         {/* 7. Related links */}
         {related.length > 0 && (
           <section className="mb-14">
-            <h2 className="font-heading text-xl font-bold text-text-primary mb-4">Related</h2>
+            <h2 className="font-heading text-xl font-bold text-text-primary mb-4">{strings.relatedPages}</h2>
             <ul className="space-y-2">
               {related.map((l) => (
                 <li key={l.href}>
@@ -216,16 +248,26 @@ export default function LandingPageView({ page, cta }: { page: LandingPage; cta:
         )}
 
         {/* 8. Author */}
-        {page.author && <AuthorBox author={page.author} />}
+        {page.author &&
+          (locale === 'ar' ? (
+            <p className="font-body text-text-muted text-sm">
+              {strings.writtenBy}{' '}
+              <bdi className="text-text-primary">
+                {`${page.author.firstName} ${page.author.lastName}`.trim()}
+              </bdi>
+            </p>
+          ) : (
+            <AuthorBox author={page.author} />
+          ))}
 
         {/* 9. Closing CTA */}
         <div className="mt-12 bg-dark-card rounded-xl p-6 sm:p-8 glow-border text-center">
-          <p className="font-heading text-xl font-bold text-text-primary mb-6">Ready to grow your business online?</p>
+          <p className="font-heading text-xl font-bold text-text-primary mb-6">{strings.closingCta}</p>
           <Link
             href={cta.href}
             className="inline-flex items-center gap-2 bg-purple-primary hover:bg-purple-dark text-dark-base font-heading font-semibold px-6 py-3 rounded-md transition-colors duration-200"
           >
-            {cta.label} →
+            {cta.label} <Arrow />
           </Link>
         </div>
       </div>

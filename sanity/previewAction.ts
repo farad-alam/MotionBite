@@ -20,8 +20,9 @@ export function previewPath(type: string, doc: Doc | null | undefined): string |
     return `/${section}/${slug}`
   }
   if (type === 'post') {
-    // English blog only for now; Arabic post routes arrive with WP3.
-    if ((doc?.language ?? 'en') !== 'en') return null
+    const language = doc?.language ?? 'en'
+    if (language === 'ar') return `/ar/blog/${slug}`
+    if (language !== 'en') return null
     return `/blog/${slug}`
   }
   return null

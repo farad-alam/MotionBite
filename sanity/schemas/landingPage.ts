@@ -60,14 +60,15 @@ export const landingPageSchema = defineType({
       type: 'slug',
       group: 'content',
       options: { source: 'title', maxLength: 96, isUnique: isUniqueInSection },
-      description: 'Unique within its section.',
+      description: 'Unique within its section. In section "ar", the slug "home" makes this the Arabic home page at /ar.',
       validation: (rule) =>
         rule.required().custom((value, context) => {
           const current = value?.current
-          if (current && context.document?.section === 'ar' && (current === 'blog' || current === 'home')) {
-            return current === 'blog'
-              ? 'The slug "blog" is reserved: /ar/blog is a separate route.'
-              : 'The slug "home" is reserved for the /ar home page and cannot be used here.'
+          // "blog" is rejected in section ar: /ar/blog is a separate route.
+          // "home" is allowed: it is the reserved slug of the Arabic home page,
+          // which /ar renders (WP3 5.4); slug uniqueness keeps it to one document.
+          if (current && context.document?.section === 'ar' && current === 'blog') {
+            return 'The slug "blog" is reserved: /ar/blog is a separate route.'
           }
           return true
         }),

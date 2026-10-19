@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
+import { dict } from '@/lib/i18n'
 
 const links = [
   { href: '/services',  label: 'Services'  },
@@ -13,7 +14,10 @@ const links = [
   { href: '/blog',      label: 'Blog'      },
 ]
 
-export default function Navbar() {
+// Language switch v1 (WP3 5.2): shown only after the Arabic home page is published.
+const ARABIC_LINK = { href: '/ar', label: dict.ar.languageSwitch }
+
+export default function Navbar({ showArabic = false }: { showArabic?: boolean }) {
   const [scrolled, setScrolled]   = useState(false)   // hero has been scrolled past
   const [visible, setVisible]     = useState(true)    // whether the navbar is shown
   const [menuOpen, setMenuOpen]   = useState(false)
@@ -99,7 +103,18 @@ export default function Navbar() {
           </nav>
 
           {/* Desktop CTA */}
-          <div className="hidden md:flex items-center shrink-0">
+          <div className="hidden md:flex items-center gap-2 shrink-0">
+            {showArabic && (
+              <Link
+                href={ARABIC_LINK.href}
+                hrefLang="ar"
+                lang="ar"
+                dir="rtl"
+                className="text-text-muted hover:text-text-primary text-sm font-body px-3 py-1.5"
+              >
+                {ARABIC_LINK.label}
+              </Link>
+            )}
             <Link
               href="/free-consultation"
               className="text-text-primary font-body font-semibold text-sm px-4 py-2 rounded-xl border border-white/20 transition-all duration-200 hover:bg-white/10 hover:border-white/30"
@@ -150,6 +165,19 @@ export default function Navbar() {
                 {l.label}
               </Link>
             ))}
+
+            {showArabic && (
+              <Link
+                href={ARABIC_LINK.href}
+                hrefLang="ar"
+                lang="ar"
+                dir="rtl"
+                onClick={() => setMenuOpen(false)}
+                className="font-body text-lg text-text-muted hover:text-text-primary"
+              >
+                {ARABIC_LINK.label}
+              </Link>
+            )}
 
             <Link
               href="/free-consultation"

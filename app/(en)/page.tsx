@@ -11,12 +11,18 @@ import CTABanner from '@/components/sections/CTABanner'
 import ExitIntentModal from '@/components/ui/ExitIntentModal'
 import { faqItems } from '@/data/faq'
 import { faqSchema } from '@/lib/schema'
+import { getAlternates } from '@/lib/hreflang'
 
-export const metadata: Metadata = {
-  title: { absolute: 'Web Design and Development Agency for Businesses Worldwide – Websites in 14 Days | MotionBite' },
-  description:
-    'Custom websites for businesses and restaurants, from $1,500. Design and development delivered in 14 days. Book a free consultation.',
-  alternates: { canonical: '/' },
+// generateMetadata (not a static export) so hreflang appears once the Arabic
+// twin (/ar, R009) is published. The twin lookup is tagged landingPages.
+export async function generateMetadata(): Promise<Metadata> {
+  const languages = await getAlternates('/', 'en')
+  return {
+    title: { absolute: 'Web Design and Development Agency for Businesses Worldwide – Websites in 14 Days | MotionBite' },
+    description:
+      'Custom websites for businesses and restaurants, from $1,500. Design and development delivered in 14 days. Book a free consultation.',
+    alternates: { canonical: '/', ...(languages ? { languages } : {}) },
+  }
 }
 
 export default function HomePage() {

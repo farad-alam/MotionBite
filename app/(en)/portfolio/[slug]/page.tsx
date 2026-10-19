@@ -5,6 +5,7 @@ import { notFound } from 'next/navigation'
 import { getPortfolioProjects, getPortfolioProject, getRelatedPortfolioProjects } from '@/sanity/queries'
 import { urlFor } from '@/sanity/image'
 import YouTubeEmbed from '@/components/ui/YouTubeEmbed'
+import { getFeaturedOn, landingPath, type FeaturedOnItem } from '@/lib/landing'
 
 export const revalidate = false
 
@@ -51,6 +52,13 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
   if (!item) notFound()
 
   const otherProjects = await getRelatedPortfolioProjects(slug)
+  // WP6.4: landing pages that reference this case study. Empty list renders nothing.
+  let featuredOn: FeaturedOnItem[] = []
+  try {
+    featuredOn = await getFeaturedOn(item._id)
+  } catch (e) {
+    console.error('Featured on: failed to load landing pages', e)
+  }
   const thumbnailUrl = item.thumbnail ? urlFor(item.thumbnail).width(1600).height(700).format('webp').url() : '/opengraph-image.png'
 
   // Structured data
@@ -199,6 +207,25 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
               <h3 className="font-heading text-sm font-bold text-text-primary mb-3 uppercase tracking-wider">Industry</h3>
               <p className="font-body text-text-muted text-sm">{item.industry}</p>
             </div>
+            {featuredOn.length > 0 && (
+              <div className="bg-dark-card rounded-xl p-5 glow-border">
+                <h3 className="font-heading text-sm font-bold text-text-primary mb-3 uppercase tracking-wider">Featured on</h3>
+                <ul className="space-y-2">
+                  {featuredOn.map((p) => (
+                    <li key={`${p.section}/${p.slug}`}>
+                      <Link
+                        href={landingPath(p.section, p.slug)}
+                        lang={p.language === 'ar' ? 'ar' : undefined}
+                        dir={p.language === 'ar' ? 'rtl' : undefined}
+                        className="font-body text-sm text-purple-primary hover:underline"
+                      >
+                        {p.title}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
             <div className="bg-dark-card rounded-xl p-5 glow-border">
               <h3 className="font-heading text-sm font-bold text-text-primary mb-2 uppercase tracking-wider">Key Result</h3>
               <p className="font-heading text-purple-primary font-bold">{item.result}</p>

@@ -148,6 +148,18 @@ export async function getServicesHubPages(): Promise<ServicesHubItem[]> {
   )
 }
 
+// WP6.4: published landing pages that feature a case study in relatedCaseStudies.
+export type FeaturedOnItem = { title: string; section: LandingSection; slug: string; language?: string }
+
+export async function getFeaturedOn(projectId: string): Promise<FeaturedOnItem[]> {
+  return client.fetch(
+    `*[_type == "landingPage" && !(_id in path("drafts.**")) && references($id) && defined(slug.current) && defined(section)]
+      | order(title asc) { title, section, "slug": slug.current, language }`,
+    { id: projectId },
+    { cache: 'force-cache', next: { tags: [LANDING_TAG] } }
+  )
+}
+
 export type LandingIndexItem = { title: string; slug: string; metaDescription: string }
 
 export async function getLandingIndex(section: LandingSection): Promise<LandingIndexItem[]> {

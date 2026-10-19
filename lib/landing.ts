@@ -127,6 +127,27 @@ export const getLandingPage = cache(
   }
 )
 
+// WP6.2: groups shown on the /services hub, in display order. Titles match the
+// hubGroup dropdown in sanity/schemas/landingPage.ts.
+export const SERVICES_HUB_GROUPS = [
+  { value: 'industry', title: 'Industry' },
+  { value: 'development', title: 'Development' },
+  { value: 'seo-marketing', title: 'SEO & marketing' },
+] as const
+
+export type ServicesHubItem = { title: string; slug: string; metaDescription: string; hubGroup?: string | null }
+
+// Every published services landing page, for the /services hub. Tagged so the
+// webhook's landingPages purge adds or removes pages with no manual hub edits.
+export async function getServicesHubPages(): Promise<ServicesHubItem[]> {
+  return client.fetch(
+    `*[_type == "landingPage" && !(_id in path("drafts.**")) && section == "services" && defined(slug.current)]
+      | order(title asc) { title, "slug": slug.current, metaDescription, hubGroup }`,
+    {},
+    { cache: 'force-cache', next: { tags: [LANDING_TAG] } }
+  )
+}
+
 export type LandingIndexItem = { title: string; slug: string; metaDescription: string }
 
 export async function getLandingIndex(section: LandingSection): Promise<LandingIndexItem[]> {

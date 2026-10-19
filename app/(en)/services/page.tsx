@@ -1,5 +1,10 @@
 ﻿import type { Metadata } from 'next'
 import Link from 'next/link'
+import ServicesHub, { groupServicesHubPages } from '@/components/services/ServicesHub'
+import { getServicesHubPages } from '@/lib/landing'
+
+// Static, refreshed by the webhook purging the landingPages tag (WP6.2).
+export const revalidate = false
 
 export const metadata: Metadata = {
   alternates: { canonical: '/services' },
@@ -134,7 +139,15 @@ const faqs = [
   },
 ]
 
-export default function ServicesPage() {
+export default async function ServicesPage() {
+  let hubPages: Awaited<ReturnType<typeof getServicesHubPages>> = []
+  try {
+    hubPages = await getServicesHubPages()
+  } catch (e) {
+    console.error('Services hub: failed to load landing pages', e)
+  }
+  const hubGroups = groupServicesHubPages(hubPages)
+
   return (
     <div className="min-h-screen bg-dark-base">
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: `{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.motionbite.com"},{"@type":"ListItem","position":2,"name":"Services","item":"https://www.motionbite.com/services"}]}` }} />
@@ -269,6 +282,9 @@ export default function ServicesPage() {
           </div>
         </div>
       </section>
+
+      {/* Services by industry and topic (WP6.2), above the FAQ */}
+      <ServicesHub groups={hubGroups} />
 
       {/* FAQs */}
       <section className="section-padding px-4 sm:px-6 lg:px-8">

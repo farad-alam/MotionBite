@@ -1,8 +1,8 @@
 'use client'
 
-import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useExitIntent } from '@/hooks/useExitIntent'
+import { PrimaryCtaLink } from '@/components/cta/PrimaryCta'
 
 export default function ExitIntentModal() {
   const { triggered, dismiss } = useExitIntent(4000)
@@ -47,14 +47,13 @@ export default function ExitIntentModal() {
                 Get a free 30-minute website consultation. We&apos;ll tell you exactly what&apos;s costing you customers online — no pitch, no strings.
               </p>
 
-              <Link
-                href="/free-consultation"
-                onClick={dismiss}
+              <PrimaryCtaLink
+                defaultLabel="Book My Free Consultation"
+                after=" →"
                 className="block w-full text-center text-white font-heading font-bold py-3.5 rounded-md transition-all duration-200 mb-3"
                 style={{ backgroundColor: '#712EFF', boxShadow: 'rgba(255,255,255,0.72) 0px 2px 3px 0px inset' }}
-              >
-                Book My Free Consultation →
-              </Link>
+                onClick={dismiss}
+              />
               <button onClick={dismiss} className="font-body text-text-muted text-xs hover:text-text-primary transition-colors">
                 No thanks, I&apos;ll pass
               </button>

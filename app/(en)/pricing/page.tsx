@@ -3,6 +3,7 @@ import { services } from '@/data/services'
 import type { Metadata } from 'next'
 import { getAlternates } from '@/lib/hreflang'
 import TwinLanguageLink from '@/components/layout/TwinLanguageLink'
+import { PrimaryCtaLink } from '@/components/cta/PrimaryCta'
 
 // generateMetadata so hreflang appears once the Arabic twin (/ar/pricing, R028)
 // is published. The twin lookup is tagged landingPages.
@@ -191,12 +192,11 @@ export default function PricingPage() {
             Ready to Get Started?
           </h2>
           <p className="font-body text-text-muted mb-8">Free consultation. No commitment.</p>
-          <Link
-            href="/free-consultation"
+          <PrimaryCtaLink
+            defaultLabel="Book My Free Audit"
+            after=" →"
             className="inline-flex items-center gap-2 bg-purple-primary hover:bg-purple-dark text-dark-base font-heading font-bold px-8 py-4 rounded-md transition-all duration-200"
-          >
-            Book My Free Audit →
-          </Link>
+          />
         </div>
       </section>
     </div>

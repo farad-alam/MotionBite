@@ -2,6 +2,7 @@
 
 import Link from 'next/link'
 import { motion } from 'framer-motion'
+import { PrimaryCtaLink } from '@/components/cta/PrimaryCta'
 
 export default function Hero() {
   return (
@@ -105,12 +106,10 @@ export default function Hero() {
           transition={{ duration: 0.6, delay: 0.82 }}
           className="flex flex-col sm:flex-row items-center justify-center gap-4"
         >
-          <Link
-            href="/free-consultation"
+          <PrimaryCtaLink
+            defaultLabel="Book a Free Call"
             className="inline-flex items-center justify-center gap-2 bg-white text-[#0A0A0A] font-body font-bold text-sm px-7 py-3.5 rounded-full transition-all duration-200 hover:bg-purple-light hover:scale-[1.03] shadow-lg"
-          >
-            Book a Free Call
-          </Link>
+          />
           <Link
             href="/portfolio"
             className="inline-flex items-center justify-center gap-2 bg-white/10 border border-white/15 backdrop-blur-sm text-text-primary font-body font-semibold text-sm px-7 py-3.5 rounded-full transition-all duration-200 hover:bg-white/15 hover:scale-[1.03]"

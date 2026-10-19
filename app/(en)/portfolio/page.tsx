@@ -1,9 +1,9 @@
 import type { Metadata } from 'next'
-import Link from 'next/link'
 import { getPortfolioProjects } from '@/sanity/queries'
 import { siteData } from '@/data/site'
 import PortfolioHub from '@/components/portfolio/PortfolioHub'
 import WhatsAppCTA from '@/components/sections/WhatsAppCTA'
+import { PrimaryCtaLink } from '@/components/cta/PrimaryCta'
 
 export const revalidate = false
 
@@ -106,12 +106,11 @@ export default async function PortfolioPage() {
             <p className="font-body text-text-muted text-lg md:text-xl mb-10 max-w-2xl mx-auto leading-relaxed">
               We are currently accepting new projects. Start with a free audit — we will show you exactly what your current site is missing, no strings attached.
             </p>
-            <Link
-              href="/free-consultation"
+            <PrimaryCtaLink
+              defaultLabel="Get My Free Audit"
+              after={<> <span className="text-xl">→</span></>}
               className="inline-flex items-center justify-center gap-3 bg-purple-primary hover:bg-purple-dark text-dark-base font-heading text-lg font-bold px-8 py-4 md:py-5 rounded-xl transition-all duration-300 hover:scale-[1.02] shadow-[0_0_30px_-10px_rgba(0,200,150,0.5)]"
-            >
-              Get My Free Audit <span className="text-xl">→</span>
-            </Link>
+            />
             <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-3 mt-8 text-text-muted text-sm font-body">
               <span className="flex items-center gap-2"><span className="text-purple-primary">✓</span> Free</span>
               <span className="flex items-center gap-2"><span className="text-purple-primary">✓</span> No commitment</span>

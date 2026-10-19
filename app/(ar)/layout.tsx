@@ -7,6 +7,7 @@ import SiteProviders, { OrganizationJsonLd } from '@/components/layout/SiteProvi
 import NavbarAr from '@/components/layout/NavbarAr'
 import FooterAr from '@/components/layout/FooterAr'
 import { getArabicSiteSettings } from '@/lib/landing'
+import { PrimaryCtaProvider } from '@/components/cta/PrimaryCta'
 
 // WP3 5.1/5.2: root layout for everything under /ar. Loaded only here, so
 // English pages gain no font weight.
@@ -51,9 +52,11 @@ export default async function ArabicRootLayout({ children }: { children: React.R
       </head>
       <body>
         <SiteProviders>
-          <NavbarAr links={settings.nav} cta={settings.cta} />
-          <main>{children}</main>
-          <FooterAr links={settings.footer} />
+          <PrimaryCtaProvider value={settings.cta}>
+            <NavbarAr links={settings.nav} cta={settings.cta} />
+            <main>{children}</main>
+            <FooterAr links={settings.footer} />
+          </PrimaryCtaProvider>
         </SiteProviders>
       </body>
     </html>

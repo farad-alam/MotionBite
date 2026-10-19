@@ -5,6 +5,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
 import { dict } from '@/lib/i18n'
+import { PrimaryCtaLink } from '@/components/cta/PrimaryCta'
 
 const links = [
   { href: '/services',  label: 'Services'  },
@@ -115,12 +116,10 @@ export default function Navbar({ showArabic = false }: { showArabic?: boolean })
                 {ARABIC_LINK.label}
               </Link>
             )}
-            <Link
-              href="/free-consultation"
+            <PrimaryCtaLink
+              defaultLabel="Get a Free Demo"
               className="text-text-primary font-body font-semibold text-sm px-4 py-2 rounded-xl border border-white/20 transition-all duration-200 hover:bg-white/10 hover:border-white/30"
-            >
-              Get a Free Demo
-            </Link>
+            />
           </div>
 
           {/* Mobile hamburger */}
@@ -179,27 +178,24 @@ export default function Navbar({ showArabic = false }: { showArabic?: boolean })
               </Link>
             )}
 
-            <Link
-              href="/free-consultation"
-              onClick={() => setMenuOpen(false)}
+            <PrimaryCtaLink
+              defaultLabel="Get a Free Demo"
               className="text-white font-body font-bold text-base px-8 py-3.5 rounded-xl mt-4 transition-all duration-200"
               style={{ backgroundColor: '#712EFF', boxShadow: 'rgba(255,255,255,0.72) 0px 2px 3px 0px inset' }}
-            >
-              Get a Free Demo
-            </Link>
+              onClick={() => setMenuOpen(false)}
+            />
           </motion.div>
         )}
       </AnimatePresence>
 
       {/* ── MOBILE BOTTOM STICKY CTA ── */}
       <div className={`fixed bottom-0 left-0 right-0 z-30 md:hidden bg-dark-base/95 backdrop-blur-md border-t border-dark-border px-4 py-3 transition-transform duration-200 ${menuOpen ? 'translate-y-full' : 'translate-y-0'}`}>
-        <Link
-          href="/free-consultation"
+        <PrimaryCtaLink
+          defaultLabel="Get a Free Demo"
+          after=" →"
           className="block w-full text-center text-white font-body font-semibold text-sm py-3 rounded-xl transition-all duration-200"
           style={{ backgroundColor: '#712EFF', boxShadow: 'rgba(255,255,255,0.72) 0px 2px 3px 0px inset' }}
-        >
-          Get a Free Demo →
-        </Link>
+        />
       </div>
     </>
   )

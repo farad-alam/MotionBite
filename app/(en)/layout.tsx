@@ -25,7 +25,8 @@ const playfairDisplay = Playfair_Display({
 })
 
 import { getSiteSettings } from '@/sanity/queries'
-import { hasArabicHome } from '@/lib/landing'
+import { hasArabicHome, getPrimaryCtaSetting } from '@/lib/landing'
+import { PrimaryCtaProvider } from '@/components/cta/PrimaryCta'
 import { urlFor } from '@/sanity/image'
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -81,6 +82,8 @@ export async function generateMetadata(): Promise<Metadata> {
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   // WP3 5.2: the "العربية" link appears only once the Arabic home page is published.
   const showArabic = await hasArabicHome()
+  // WP5.3: primary call to action from Studio, used by every PrimaryCtaLink.
+  const primaryCta = await getPrimaryCtaSetting()
   return (
     <html lang="en" className={`${redHatDisplay.variable} ${outfit.variable} ${playfairDisplay.variable}`}>
       <head>
@@ -88,9 +91,11 @@ export default async function RootLayout({ children }: { children: React.ReactNo
       </head>
       <body>
         <SiteProviders>
-          <NavbarWrapper showArabic={showArabic} />
-          <main>{children}</main>
-          <FooterWrapper />
+          <PrimaryCtaProvider value={primaryCta}>
+            <NavbarWrapper showArabic={showArabic} />
+            <main>{children}</main>
+            <FooterWrapper />
+          </PrimaryCtaProvider>
         </SiteProviders>
       </body>
     </html>

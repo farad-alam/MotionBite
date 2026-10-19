@@ -13,6 +13,7 @@ import ShareButtons from '@/components/blog/ShareButtons'
 import { articleSchema, faqSchema } from '@/lib/schema'
 import { getTwin, languagesFor } from '@/lib/hreflang'
 import { otherLanguageLabel } from '@/lib/i18n'
+import { PrimaryCtaLink } from '@/components/cta/PrimaryCta'
 
 export const revalidate = false
 
@@ -255,12 +256,11 @@ export default async function BlogPostPage({
               <p className="font-body text-text-muted text-sm mb-6">
                 Get a free 30-minute consultation — we will tell you exactly what to improve.
               </p>
-              <Link
-                href="/free-consultation"
+              <PrimaryCtaLink
+                defaultLabel="Book My Free Consultation"
+                after=" →"
                 className="inline-flex items-center gap-2 bg-purple-primary hover:bg-purple-dark text-dark-base font-heading font-semibold px-6 py-3 rounded-md transition-colors duration-200"
-              >
-                Book My Free Consultation →
-              </Link>
+              />
             </div>
 
             {/* Related posts */}

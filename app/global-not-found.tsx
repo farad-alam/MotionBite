@@ -5,7 +5,8 @@ import NavbarWrapper from '@/components/layout/NavbarWrapper'
 import FooterWrapper from '@/components/layout/FooterWrapper'
 import SiteProviders from '@/components/layout/SiteProviders'
 import NotFoundView from '@/components/layout/NotFoundView'
-import { hasArabicHome } from '@/lib/landing'
+import { hasArabicHome, getPrimaryCtaSetting } from '@/lib/landing'
+import { PrimaryCtaProvider } from '@/components/cta/PrimaryCta'
 
 // URLs that match no route at all. With two root layouts ((en) and (ar)) there is
 // no single layout to compose a 404 from, so this page renders the English shell
@@ -27,15 +28,18 @@ export default async function GlobalNotFound() {
   } catch {
     showArabic = false
   }
+  const primaryCta = await getPrimaryCtaSetting()
   return (
     <html lang="en" className={`${redHatDisplay.variable} ${outfit.variable} ${playfairDisplay.variable}`}>
       <body>
         <SiteProviders>
-          <NavbarWrapper showArabic={showArabic} />
-          <main>
-            <NotFoundView locale="en" />
-          </main>
-          <FooterWrapper />
+          <PrimaryCtaProvider value={primaryCta}>
+            <NavbarWrapper showArabic={showArabic} />
+            <main>
+              <NotFoundView locale="en" />
+            </main>
+            <FooterWrapper />
+          </PrimaryCtaProvider>
         </SiteProviders>
       </body>
     </html>

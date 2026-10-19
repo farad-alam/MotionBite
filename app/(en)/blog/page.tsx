@@ -3,6 +3,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { getAllPosts, type SanityPostCard } from '@/sanity/queries'
 import { urlFor } from '@/sanity/image'
+import { PrimaryCtaLink } from '@/components/cta/PrimaryCta'
 
 export const revalidate = false
 
@@ -261,12 +262,11 @@ export default async function BlogPage() {
           <p className="font-body text-text-muted text-sm mb-6 max-w-md mx-auto">
             We will review your site and tell you exactly what is holding it back — for free.
           </p>
-          <Link
-            href="/free-consultation"
+          <PrimaryCtaLink
+            defaultLabel="Book a Free Consultation"
+            after=" →"
             className="inline-flex items-center gap-2 bg-purple-primary hover:bg-purple-dark text-dark-base font-heading font-semibold px-6 py-3 rounded-md transition-colors duration-200"
-          >
-            Book a Free Consultation →
-          </Link>
+          />
         </div>
 
       </div>

@@ -26,6 +26,7 @@ export type SanityPortfolioProject = {
   slug: { current: string }
   status: 'published' | 'draft'
   industry: string
+  clientCountry?: string | null
   services?: string[]
   result: string
   liveUrl?: string
@@ -318,6 +319,7 @@ const PORTFOLIO_FIELDS = `
   slug,
   status,
   industry,
+  clientCountry,
   services,
   result,
   liveUrl,

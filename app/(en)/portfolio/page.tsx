@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { getPortfolioProjects } from '@/sanity/queries'
 import { siteData } from '@/data/site'
-import SanityVideoCard from '@/components/ui/SanityVideoCard'
+import PortfolioHub from '@/components/portfolio/PortfolioHub'
 import WhatsAppCTA from '@/components/sections/WhatsAppCTA'
 
 export const revalidate = false
@@ -83,13 +83,9 @@ export default async function PortfolioPage() {
         </div>
       </section>
 
-      {/* Case studies grid */}
+      {/* Industry/country filter chips and case studies grid (WP6.3) */}
       <section className="px-4 sm:px-6 lg:px-8 pb-24">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
-          {projects.map((project, index) => (
-            <SanityVideoCard key={project._id} project={project} priority={index < 2} />
-          ))}
-        </div>
+        <PortfolioHub projects={projects} />
       </section>
 
       {/* WhatsApp CTA */}

@@ -83,6 +83,18 @@ export default function SanityVideoCard({ project, priority = false }: SanityVid
         />
       )}
 
+      {/* Industry and country tags, visible until hover (WP6.3) */}
+      <div className="absolute top-4 left-4 right-4 flex flex-wrap gap-2 z-[3] transition-opacity duration-300 group-hover:opacity-0">
+        <span className="text-xs font-body bg-dark-base/80 border border-purple-primary/30 text-purple-primary px-2.5 py-1 rounded-full backdrop-blur-sm">
+          {project.industry}
+        </span>
+        {project.clientCountry && (
+          <span className="text-xs font-body bg-dark-base/80 border border-dark-border text-text-primary px-2.5 py-1 rounded-full backdrop-blur-sm">
+            {project.clientCountry}
+          </span>
+        )}
+      </div>
+
       {/* Dark Overlay on Hover */}
       <div className="absolute inset-0 bg-dark-base/85 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-[2]" />
 
@@ -97,7 +109,10 @@ export default function SanityVideoCard({ project, priority = false }: SanityVid
             </div>
             <div>
               <h2 className="font-heading text-2xl md:text-3xl font-bold text-white leading-tight">{project.name}</h2>
-              <p className="font-body text-xs text-purple-primary uppercase tracking-widest mt-1">{project.industry}</p>
+              <p className="font-body text-xs text-purple-primary uppercase tracking-widest mt-1">
+                {project.industry}
+                {project.clientCountry ? ` · ${project.clientCountry}` : ''}
+              </p>
             </div>
           </div>
 

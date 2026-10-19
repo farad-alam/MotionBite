@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import LandingPageView from '@/components/landing/LandingPageView'
+import { isDraftMode } from '@/lib/draft'
 import { urlFor } from '@/sanity/image'
 import { getSiteSettings } from '@/sanity/queries'
 import {
@@ -36,7 +37,7 @@ export async function landingMetadata(section: LandingSection, slug: string): Pr
     title,
     description: page.metaDescription,
     alternates: { canonical: page.canonicalUrl ?? url },
-    ...(page.noindex ? { robots: { index: false } } : {}),
+    ...(page.noindex || (await isDraftMode()) ? { robots: { index: false, follow: false } } : {}),
     openGraph: {
       type: 'website',
       title,

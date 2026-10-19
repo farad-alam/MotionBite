@@ -7,6 +7,7 @@ import { authorSchema } from './sanity/schemas/author'
 import { siteSettingsSchema } from './sanity/schemas/siteSettings'
 import { portfolioProjectSchema } from './sanity/schemas/portfolioProject'
 import { landingPageSchema } from './sanity/schemas/landingPage'
+import { OpenPreviewAction } from './sanity/previewAction'
 
 const LANDING_TEMPLATES = [
   { section: 'services', title: 'Services page' },
@@ -130,6 +131,10 @@ export default defineConfig({
       },
     }),
   ],
+  document: {
+    actions: (prev, context) =>
+      context.schemaType === 'landingPage' || context.schemaType === 'post' ? [...prev, OpenPreviewAction] : prev,
+  },
   schema: {
     types: [
       siteSettingsSchema,

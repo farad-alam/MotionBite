@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-import { SanityPortfolioProject } from '@/sanity/queries'
+import type { SanityPortfolioProject } from '@/sanity/queries'
 import { urlFor } from '@/sanity/image'
 
 interface SanityVideoCardProps {

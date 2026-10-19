@@ -67,6 +67,7 @@ export default function CTABanner() {
                   </a>
 
                   {/* Solid Button: Start Project */}
+                  {/* TODO(owner, spec open question 7, due 20 Nov): does this /start-project button stay, or become the primary CTA (PrimaryCtaLink)? Unchanged until answered. */}
                   <Link
                     href="/start-project"
                     className="flex items-center justify-center bg-white hover:bg-gray-100 text-dark-base font-body text-sm font-semibold px-8 py-3.5 rounded-xl transition-colors w-full sm:w-auto"

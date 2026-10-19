@@ -1,7 +1,7 @@
 ﻿import type { Metadata } from 'next'
-import Link from 'next/link'
 import ContactForm from './ContactForm'
 import { siteData } from '@/data/site'
+import { PrimaryCtaLink } from '@/components/cta/PrimaryCta'
 
 export const metadata: Metadata = {
   alternates: { canonical: '/contact' },
@@ -136,12 +136,11 @@ export default function ContactPage() {
                 <p className="font-body text-text-muted text-sm leading-relaxed mb-4">
                   Book a free 30-minute website audit. We will review your current site (or your competitors&apos;) and tell you specifically what to fix.
                 </p>
-                <Link
-                  href="/free-consultation"
+                <PrimaryCtaLink
+                  defaultLabel="Book My Free Audit"
+                  after=" →"
                   className="block w-full text-center bg-purple-primary hover:bg-purple-dark text-dark-base font-heading font-semibold py-3 rounded-md transition-all duration-200 text-sm"
-                >
-                  Book My Free Audit →
-                </Link>
+                />
                 <p className="font-body text-text-muted text-xs text-center mt-2">Free. No commitment.</p>
               </div>
 

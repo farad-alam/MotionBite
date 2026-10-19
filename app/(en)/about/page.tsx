@@ -1,5 +1,6 @@
 ﻿import type { Metadata } from 'next'
 import Link from 'next/link'
+import { PrimaryCtaLink } from '@/components/cta/PrimaryCta'
 
 export const metadata: Metadata = {
   alternates: { canonical: '/about' },
@@ -196,12 +197,11 @@ export default function AboutPage() {
             Start with a free 30-minute website audit. No commitment, no pitch — just an honest assessment of what your site needs.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link
-              href="/free-consultation"
+            <PrimaryCtaLink
+              defaultLabel="Get My Free Audit"
+              after=" →"
               className="inline-flex items-center justify-center gap-2 bg-purple-primary hover:bg-purple-dark text-dark-base font-heading font-semibold px-8 py-4 rounded-md transition-all duration-200 hover:scale-[1.02]"
-            >
-              Get My Free Audit →
-            </Link>
+            />
             <Link
               href="/contact"
               className="inline-flex items-center justify-center gap-2 border border-dark-border text-text-primary hover:border-purple-primary/40 font-heading font-semibold px-8 py-4 rounded-md transition-all duration-200"

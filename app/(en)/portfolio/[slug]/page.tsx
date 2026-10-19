@@ -6,6 +6,7 @@ import { getPortfolioProjects, getPortfolioProject, getRelatedPortfolioProjects 
 import { urlFor } from '@/sanity/image'
 import YouTubeEmbed from '@/components/ui/YouTubeEmbed'
 import { getFeaturedOn, landingPath, type FeaturedOnItem } from '@/lib/landing'
+import { PrimaryCtaLink } from '@/components/cta/PrimaryCta'
 
 export const revalidate = false
 
@@ -281,12 +282,11 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
           <p className="font-body text-text-muted text-sm mb-6 max-w-md mx-auto">
             Start with a free 30-minute audit — we will show you exactly what your website needs.
           </p>
-          <Link
-            href="/free-consultation"
+          <PrimaryCtaLink
+            defaultLabel="Get My Free Audit"
+            after=" →"
             className="inline-flex items-center gap-2 bg-purple-primary hover:bg-purple-dark text-dark-base font-heading font-semibold px-6 py-3 rounded-md transition-all duration-200"
-          >
-            Get My Free Audit →
-          </Link>
+          />
         </div>
 
         {/* More Projects */}

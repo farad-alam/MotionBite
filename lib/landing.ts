@@ -177,6 +177,22 @@ export type SiteCta = { label: string; href: string }
 
 export const DEFAULT_CTA: SiteCta = { label: 'Get a free consultation', href: '/free-consultation' }
 
+// WP5.3: primary CTA for the PrimaryCtaProvider. href falls back to /free-consultation;
+// label stays null unless set in Studio, so each button keeps its current text.
+// (The Arabic layout already reads primaryCtaLabelAr/HrefAr via getArabicSiteSettings.)
+export const getPrimaryCtaSetting = cache(async (): Promise<{ href: string; label: string | null }> => {
+  try {
+    const row = await client.fetch<{ label?: string; href?: string } | null>(
+      `*[_type == "siteSettings"][0]{ "label": primaryCtaLabel, "href": primaryCtaHref }`,
+      {},
+      { cache: 'force-cache', next: { tags: ['siteSettings'] } }
+    )
+    return { href: row?.href?.trim() || DEFAULT_CTA.href, label: row?.label?.trim() || null }
+  } catch {
+    return { href: DEFAULT_CTA.href, label: null }
+  }
+})
+
 // Primary CTA from siteSettings with code fallback. Same tag as other settings reads.
 export const getPrimaryCta = cache(async (): Promise<SiteCta> => {
   try {

@@ -2,6 +2,7 @@
 import Link from 'next/link'
 import ServicesHub, { groupServicesHubPages } from '@/components/services/ServicesHub'
 import { getServicesHubPages } from '@/lib/landing'
+import { PrimaryCtaLink } from '@/components/cta/PrimaryCta'
 
 // Static, refreshed by the webhook purging the landingPages tag (WP6.2).
 export const revalidate = false
@@ -167,12 +168,11 @@ export default async function ServicesPage() {
               Three clear packages built around where your business is right now — from your first online presence to a full growth engine.
             </p>
             <div className="flex flex-wrap gap-4">
-              <Link
-                href="/free-consultation"
+              <PrimaryCtaLink
+                defaultLabel="Get Your Free Audit"
+                after=" →"
                 className="inline-flex items-center gap-2 bg-purple-primary hover:bg-purple-dark text-dark-base font-heading font-semibold px-6 py-3 rounded-md transition-all duration-200 hover:scale-[1.02]"
-              >
-                Get Your Free Audit →
-              </Link>
+              />
               <Link
                 href="/pricing"
                 className="inline-flex items-center gap-2 border border-dark-border text-text-primary hover:border-purple-primary/40 font-heading font-semibold px-6 py-3 rounded-md transition-all duration-200"
@@ -312,12 +312,11 @@ export default async function ServicesPage() {
           <p className="font-body text-text-muted text-sm mb-6 max-w-md mx-auto">
             Get a free 30-minute website audit. We will tell you what to fix, which package fits, and what results to expect.
           </p>
-          <Link
-            href="/free-consultation"
+          <PrimaryCtaLink
+            defaultLabel="Book My Free Audit"
+            after=" →"
             className="inline-flex items-center gap-2 bg-purple-primary hover:bg-purple-dark text-dark-base font-heading font-semibold px-8 py-4 rounded-md transition-all duration-200 hover:scale-[1.02]"
-          >
-            Book My Free Audit →
-          </Link>
+          />
           <p className="font-body text-text-muted text-xs mt-4">Free. No commitment. Reply within 24 hours.</p>
         </div>
       </section>

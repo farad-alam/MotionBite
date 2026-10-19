@@ -3,7 +3,7 @@ import ConsultationForm from './ConsultationForm'
 
 export const metadata: Metadata = {
   alternates: { canonical: '/free-consultation' },
-  title: 'Free 30-Min Website Consultation for Businesses | MotionBite',
+  title: 'Free 30-Min Website Consultation for Businesses',
   description:
     "Book a free 30-minute consultation. We'll review your website, identify what's costing you customers, and give you a clear action plan — no pitch, no strings.",
   keywords: [

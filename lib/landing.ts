@@ -27,7 +27,7 @@ export type LandingSitemapEntry = {
   language?: string
 }
 
-export async function getLandingSitemapEntries(revalidate: number | false = false): Promise<LandingSitemapEntry[]> {
+export async function getLandingSitemapEntries(): Promise<LandingSitemapEntry[]> {
   return client.fetch(
     `*[_type == "landingPage" && defined(slug.current) && defined(section) && coalesce(noindex, false) != true]
       | order(section asc, slug.current asc) {
@@ -37,7 +37,7 @@ export async function getLandingSitemapEntries(revalidate: number | false = fals
         language
       }`,
     {},
-    { cache: 'force-cache', next: { tags: [LANDING_TAG], revalidate } }
+    { cache: 'force-cache', next: { tags: [LANDING_TAG] } }
   )
 }
 

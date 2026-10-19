@@ -1,4 +1,4 @@
-﻿import type { Metadata } from 'next'
+import type { Metadata } from 'next'
 import ContactForm from './ContactForm'
 import { siteData } from '@/data/site'
 import { PrimaryCtaLink } from '@/components/cta/PrimaryCta'

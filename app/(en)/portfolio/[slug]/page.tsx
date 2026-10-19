@@ -25,7 +25,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const thumbnailUrl = item.thumbnail ? urlFor(item.thumbnail).width(1200).height(630).format('webp').url() : 'https://www.motionbite.com/opengraph-image.png'
 
   return {
-    title,
+    // The fallback already ends with the brand, so it bypasses the layout's '%s | MotionBite' template.
+    title: item.seoTitle ? title : { absolute: title },
     description,
     keywords: item.seoKeywords
       ? item.seoKeywords.split(',').map((k) => k.trim())

@@ -22,7 +22,7 @@ function processFile(filePath: string) {
 
   const originalContent = fs.readFileSync(filePath, 'utf-8')
   
-  let newContent = originalContent
+  const newContent = originalContent
     // Plural replacements
     .replace(/Small Businesses/g, 'Businesses')
     .replace(/Small businesses/g, 'Businesses')

@@ -1,4 +1,4 @@
-﻿import type { Metadata } from 'next'
+import type { Metadata } from 'next'
 import Link from 'next/link'
 import ServicesHub, { groupServicesHubPages } from '@/components/services/ServicesHub'
 import { getServicesHubPages } from '@/lib/landing'

@@ -96,7 +96,7 @@ export default function FAQ() {
           transition={{ delay: 0.4 }}
           className="text-center text-text-charcoal/70 text-base font-body"
         >
-          Can't find what you're looking for?{' '}
+          Can&apos;t find what you&apos;re looking for?{' '}
           <Link href="/contact" className="text-purple-primary hover:text-dark-base font-semibold transition-colors duration-200">
             Reach out to us →
           </Link>

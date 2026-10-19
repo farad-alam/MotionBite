@@ -45,11 +45,11 @@ export default function CTABanner() {
               {/* Left Column: Text & Buttons */}
               <div className="text-left">
                 <h2 className="font-heading font-medium text-4xl md:text-5xl lg:text-5xl text-white mb-6 leading-tight tracking-tight">
-                  Let's build something <br className="hidden lg:block" /> extraordinary.
+                  Let&apos;s build something <br className="hidden lg:block" /> extraordinary.
                 </h2>
                 
                 <p className="font-body text-text-muted text-base md:text-lg mb-10 max-w-md leading-relaxed font-light">
-                  Ready to transform your digital presence? Book a free discovery call and let's map out your success.
+                  Ready to transform your digital presence? Book a free discovery call and let&apos;s map out your success.
                 </p>
 
                 <div className="flex flex-col sm:flex-row items-center gap-4">
@@ -94,7 +94,7 @@ export default function CTABanner() {
                     </div>
 
                     <p className="font-body text-[#9a9a9f] text-[13px] sm:text-sm leading-relaxed mb-8 pr-4">
-                      "MotionBite delivered an incredible website that transformed our online presence. The attention to detail and communication throughout the process was phenomenal. Highly recommended."
+                      &quot;MotionBite delivered an incredible website that transformed our online presence. The attention to detail and communication throughout the process was phenomenal. Highly recommended.&quot;
                     </p>
 
                     <div className="flex items-center gap-3">

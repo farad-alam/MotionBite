@@ -41,7 +41,7 @@ export default function Testimonials() {
           </div>
 
           {/* Testimonial Cards */}
-          {testimonials.map((t, i) => (
+          {testimonials.map((t) => (
             <div
               key={t.id}
               className="w-[85vw] md:w-[65vw] flex-shrink-0 flex flex-col justify-center text-left"

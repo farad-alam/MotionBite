@@ -3,6 +3,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { notFound } from 'next/navigation'
 import { getAllPostSlugs, getPost } from '@/sanity/queries'
+import { isDraftMode } from '@/lib/draft'
 import { urlFor } from '@/sanity/image'
 import { PortableText } from '@/sanity/portableText'
 import ReadingProgress from '@/components/ui/ReadingProgress'
@@ -32,6 +33,7 @@ export async function generateMetadata({
     : undefined
 
   return {
+    ...((await isDraftMode()) ? { robots: { index: false, follow: false } } : {}),
     title: post.title,
     description: post.excerpt,
     keywords: post.keywords ?? [],

@@ -1,5 +1,6 @@
 import { cache } from 'react'
 import { client } from './client'
+import { fetchContent } from '../lib/draft'
 
 // ─────────────────────────────────────────────
 // Types
@@ -163,7 +164,7 @@ export async function getAllPostSlugs(): Promise<string[]> {
 // Wrapped with React cache() so generateMetadata() and the page component
 // share one fetch result per render — eliminates the duplicate Sanity call.
 export const getPost = cache(async (slug: string): Promise<SanityPost | null> => {
-  return client.fetch(
+  return fetchContent<SanityPost | null>(
     `*[_type == "post" && coalesce(language, "en") == "en" && slug.current == $slug][0] {
       _id,
       title,
@@ -190,7 +191,7 @@ export const getPost = cache(async (slug: string): Promise<SanityPost | null> =>
       }
     }`,
     { slug },
-    { next: { tags: ['posts'] } }
+    ['posts']
   )
 })
 

@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
-import { SanityBlock } from '@/sanity/queries'
+import type { SanityBlock } from '@/sanity/queries'
 
 interface TocItem {
   id: string

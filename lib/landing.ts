@@ -1,5 +1,6 @@
 import { cache } from 'react'
 import { client } from '@/sanity/client'
+import { fetchContent } from '@/lib/draft'
 import type { SanityBlock, SanityAuthor } from '@/sanity/queries'
 
 export const LANDING_TAG = 'landingPages'
@@ -93,7 +94,7 @@ const REF = `title, "section": section, "slug": slug.current`
 // the page share one request. A slug in the wrong section yields null (-> notFound).
 export const getLandingPage = cache(
   async (section: LandingSection, slug: string): Promise<LandingPage | null> => {
-    return client.fetch(
+    return fetchContent<LandingPage | null>(
       `*[_type == "landingPage" && !(_id in path("drafts.**")) && section == $section && slug.current == $slug][0] {
         _id,
         title,
@@ -118,7 +119,7 @@ export const getLandingPage = cache(
         "relatedCaseStudies": relatedCaseStudies[]->{ _id, name, "slug": slug.current, industry, result, thumbnail { asset, alt } }[defined(slug)][0..2]
       }`,
       { section, slug },
-      { next: { tags: [LANDING_TAG] } }
+      [LANDING_TAG]
     )
   }
 )

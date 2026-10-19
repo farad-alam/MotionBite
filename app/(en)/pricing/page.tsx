@@ -1,4 +1,4 @@
-﻿import Link from 'next/link'
+import Link from 'next/link'
 import { services } from '@/data/services'
 import type { Metadata } from 'next'
 import { getAlternates } from '@/lib/hreflang'

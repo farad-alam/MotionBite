@@ -1,6 +1,3 @@
-import Link from 'next/link'
-import Image from 'next/image'
-
 interface WhatsAppCTAProps {
   // Pass the full phone number with country code, e.g., '8801406466559'
   phoneNumber?: string

@@ -2,7 +2,7 @@
 
 import { useRef } from 'react'
 import Link from 'next/link'
-import { motion, useScroll, useTransform } from 'framer-motion'
+import { motion, useScroll, useTransform, type MotionValue } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
 import { portfolioItems, PortfolioItem } from '@/data/portfolio'
 
@@ -92,12 +92,12 @@ export default function Portfolio() {
 }
 
 // Individual Card Component
-function Card({ project, style, index, total, progress, targetScale }: { 
+function Card({ project, style, index, total, targetScale }: { 
   project: PortfolioItem, 
   style: { bg: string, accent: string },
   index: number, 
   total: number, 
-  progress: any,
+  progress: MotionValue<number>,
   targetScale: number 
 }) {
   const cardRef = useRef<HTMLDivElement>(null)

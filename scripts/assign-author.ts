@@ -35,7 +35,7 @@ async function main() {
   console.log(`✅ Found Author: ${author.firstName} ${author.lastName} (${author._id})`)
 
   console.log('\nFetching all posts...')
-  const posts = await client.fetch<{ _id: string; title: string; author?: any }[]>(
+  const posts = await client.fetch<{ _id: string; title: string; author?: { _ref?: string } }[]>(
     `*[_type == "post"] { _id, title, author }`
   )
   console.log(`Found ${posts.length} total posts.`)

@@ -29,6 +29,9 @@ import { hasArabicHome, getPrimaryCtaSetting } from '@/lib/landing'
 import { PrimaryCtaProvider } from '@/components/cta/PrimaryCta'
 import { urlFor } from '@/sanity/image'
 
+type OgImages = NonNullable<Metadata['openGraph']>['images']
+type TwitterImages = NonNullable<Metadata['twitter']>['images']
+
 export async function generateMetadata(): Promise<Metadata> {
   let settings = null
   try {
@@ -44,7 +47,7 @@ export async function generateMetadata(): Promise<Metadata> {
     ? settings.seoKeywords.split(',').map((k: string) => k.trim())
     : defaultMetadata.keywords
   
-  let ogImage = defaultMetadata.openGraph?.images
+  let ogImage: OgImages = defaultMetadata.openGraph?.images
   if (settings?.seoImage?.asset) {
     ogImage = [
       {
@@ -68,13 +71,13 @@ export async function generateMetadata(): Promise<Metadata> {
       ...defaultMetadata.openGraph,
       title,
       description: description as string,
-      images: ogImage as any,
+      images: ogImage,
     },
     twitter: {
       ...defaultMetadata.twitter,
       title,
       description: description as string,
-      images: ogImage as any,
+      images: ogImage as TwitterImages,
     },
   }
 }

@@ -1,9 +1,9 @@
-﻿import type { Metadata } from 'next'
+import type { Metadata } from 'next'
 import ProjectForm from './ProjectForm'
 
 export const metadata: Metadata = {
   alternates: { canonical: '/start-project' },
-  title: 'Start Your Web Design Project | MotionBite',
+  title: 'Start Your Web Design Project',
   description:
     'Ready to start your project? Tell us about your business, budget, and timeline. We\'ll get back to you within 24 hours to map out your success.',
   keywords: [

@@ -77,7 +77,7 @@ export default async function PortfolioPage() {
               Stop Losing Customers to <span className="text-purple-primary block mt-2">Outdated Design</span>
             </h1>
             <p className="font-body text-text-muted text-lg leading-relaxed max-w-2xl mx-auto">
-              These businesses were leaking revenue because their websites didn't build trust. See how we turned their online presence into their strongest sales asset.
+              These businesses were leaking revenue because their websites didn&apos;t build trust. See how we turned their online presence into their strongest sales asset.
             </p>
           </div>
         </div>

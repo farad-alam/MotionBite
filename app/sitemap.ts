@@ -8,10 +8,8 @@ const BASE = 'https://www.motionbite.com'
 
 // Render per request so newly published Sanity content shows up without a redeploy.
 // The Sanity queries below stay in the Data Cache (force-cache), tagged so the
-// webhook's revalidateTag purges them, with an hourly fallback so the sitemap can
-// never stay stale for long even if a webhook call is missed.
+// webhook's revalidateTag purges them. Refresh is webhook-only (no time-based fallback).
 export const dynamic = 'force-dynamic'
-const SITEMAP_REVALIDATE = 3600
 
 // Static pages — priority-weighted
 const staticRoutes: MetadataRoute.Sitemap = [
@@ -43,7 +41,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         updatedAt
       }`,
       {},
-      { cache: 'force-cache', next: { tags: ['posts'], revalidate: SITEMAP_REVALIDATE } }
+      { cache: 'force-cache', next: { tags: ['posts'] } }
     )
     blogRoutes = posts.map((post) => ({
       url: `${BASE}/blog/${post.slug}`,
@@ -64,7 +62,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         _updatedAt
       }`,
       {},
-      { cache: 'force-cache', next: { tags: ['portfolio'], revalidate: SITEMAP_REVALIDATE } }
+      { cache: 'force-cache', next: { tags: ['portfolio'] } }
     )
     portfolioRoutes = items.map((item) => ({
       url: `${BASE}/portfolio/${item.slug}`,
@@ -79,7 +77,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // Landing pages (published only; the webhook purges the 'landingPages' tag)
   let landingRoutes: MetadataRoute.Sitemap = []
   try {
-    const pages = await getLandingSitemapEntries(SITEMAP_REVALIDATE)
+    const pages = await getLandingSitemapEntries()
     landingRoutes = pages.map((p) => ({
       url: `${BASE}${landingPath(p.section, p.slug)}`,
       lastModified: new Date(p.lastmod),
@@ -116,7 +114,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         updatedAt
       }`,
       {},
-      { cache: 'force-cache', next: { tags: ['posts'], revalidate: SITEMAP_REVALIDATE } }
+      { cache: 'force-cache', next: { tags: ['posts'] } }
     )
     arabicBlogRoutes = posts.map((post) => ({
       url: `${BASE}/ar/blog/${post.slug}`,

@@ -3,7 +3,7 @@ import { siteData } from '@/data/site'
 
 export const metadata: Metadata = {
   alternates: { canonical: '/privacy' },
-  title: 'Privacy Policy | MotionBite',
+  title: 'Privacy Policy',
   description: 'MotionBite privacy policy — how we collect, use, and protect your personal information.',
   robots: { index: false, follow: false },
 }

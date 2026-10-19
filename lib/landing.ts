@@ -94,6 +94,8 @@ const REF = `title, "section": section, "slug": slug.current`
 // Published documents only: the client has no token, so drafts are never returned;
 // the path() filter is a second guard. Wrapped in cache() so generateMetadata and
 // the page share one request. A slug in the wrong section yields null (-> notFound).
+// relatedCaseStudies: the parentheses matter. Without them GROQ applies
+// [defined(slug)] to each projected object and returns null entries (500 error).
 export const getLandingPage = cache(
   async (section: LandingSection, slug: string): Promise<LandingPage | null> => {
     return fetchContent<LandingPage | null>(
@@ -119,7 +121,7 @@ export const getLandingPage = cache(
         hreflang,
         "parent": parent->{ ${REF}, "parent": parent->{ ${REF} } },
         "author": author->{ firstName, lastName, slug, avatar { asset, alt }, jobTitle, shortBio, expertiseAreas, yearsExperience, linkedin, twitter, facebook, website },
-        "relatedCaseStudies": relatedCaseStudies[]->{ _id, name, "slug": slug.current, industry, result, thumbnail { asset, alt } }[defined(slug)][0..2]
+        "relatedCaseStudies": (relatedCaseStudies[]->{ _id, name, "slug": slug.current, industry, result, thumbnail { asset, alt } })[defined(slug)][0..2]
       }`,
       { section, slug },
       [LANDING_TAG]
